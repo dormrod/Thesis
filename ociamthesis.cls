@@ -448,8 +448,14 @@
   {\appendix\adjustmtc\noappendicestocpagenum\addappheadtotoc\appendixpage}
 
 % DOM: Personal touches
+
+% Chapter heading style
 \usepackage{titlesec, blindtext, color}
 \definecolor{gray75}{gray}{0.75}
 \newcommand{\hsp}{\hspace{20pt}}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
 
+\usepackage{shortcuts}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[sub]{font=footnotesize,labelfont=bf}

@@ -52,7 +52,7 @@
 % Either way, you'll have to choose and configure an appropriate bibliography format...
 
 % The science-type option: numerical in-text citation with references in order of appearance.
-\usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false]{biblatex}
+\usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false, url=false]{biblatex}
 \newcommand*{\bibtitle}{References}
 
 % The humanities-type option: author-year in-text citation with an alphabetical works cited.
@@ -153,20 +153,20 @@
 %\end{dedication}
 
 %%%%% ACKNOWLEDGEMENTS -- Nothing to do here except comment out if you don't want it.
-\begin{acknowledgements}
- 	\input{text/acknowledgements}
-\end{acknowledgements}
+%\begin{acknowledgements}
+% 	\input{text/acknowledgements}
+%\end{acknowledgements}
 
 %%%%% ABSTRACT -- Nothing to do here except comment out if you don't want it.
-\begin{abstract}
-	\input{text/abstract}
-\end{abstract}
+%\begin{abstract}
+%	\input{text/abstract}
+%\end{abstract}
 
 %%%%% MINI TABLES
 % This lays the groundwork for per-chapter, mini tables of contents.  Comment the following line
 % (and remove \minitoc from the chapter files) if you don't want this.  Un-comment either of the
 % next two lines if you want a per-chapter list of figures or tables.
-\dominitoc % include a mini table of contents
+%\dominitoc % include a mini table of contents
 %\dominilof  % include a mini list of figures
 %\dominilot  % include a mini list of tables
 
@@ -188,7 +188,8 @@
 % This example includes a list of abbreviations.  Look at text/abbreviations.tex to see how that file is
 % formatted.  The template can handle any kind of list though, so this might be a good place for a
 % glossary, etc.
-\include{text/abbreviations}
+%\include{text/abbreviations}
+%\include{text/publications}
 
 % The Roman pages, like the Roman Empire, must come to its inevitable close.
 \end{romanpages}
@@ -197,14 +198,14 @@
 %%%%% CHAPTERS
 % Add or remove any chapters you'd like here, by file name (excluding '.tex'):
 \flushbottom
-\include{text/chapter_template}
-
+%\include{text/chapter_template}
+\include{text/introduction}
 
 
 %% APPENDICES %% 
 % Starts lettered appendices, adds a heading in table of contents, and adds a
 %    page that just says "Appendices" to signal the end of your main text.
-\startappendices
+%\startappendices
 % Add or remove any appendices you'd like here:
 %\include{text/appendix_template}
 
@@ -212,10 +213,10 @@
 %%%%% REFERENCES
 
 % JEM: Quote for the top of references (just like a chapter quote if you're using them).  Comment to skip.
-\begin{savequote}[8cm]
-The first kind of intellectual and artistic personality belongs to the hedgehogs, the second to the foxes \dots
-  \qauthor{--- Sir Isaiah Berlin \cite{berlin_hedgehog_2013}}
-\end{savequote}
+%\begin{savequote}[8cm]
+%The first kind of intellectual and artistic personality belongs to the hedgehogs, the second to the foxes \dots
+  %\qauthor{--- Sir Isaiah Berlin \cite{berlin_hedgehog_2013}}
+%\end{savequote}
 
 \setlength{\baselineskip}{0pt} % JEM: Single-space References
 
