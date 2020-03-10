@@ -17,3 +17,14 @@ thesis.out
 thesis.run.xml
 thesis.synctex.gz
 thesis.toc
+thesis-blx.bib
+thesis.aux.bbl
+thesis.aux.blg
+thesis.bbl
+thesis.blg
+thesis.dvi
+*.aux
+*.bbl
+*.blg
+*.log
+figures/draft/*
