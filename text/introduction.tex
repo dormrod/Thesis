@@ -1,8 +1,8 @@
 \chapter{Introduction}
 \label{ch:intro}
 
-\section{Background}
-\label{s:background}
+%\section{Background}
+%\label{s:background}
 
 The notion of describing amorphous materials as random networks dates back to \zach, who in 1932 sketched a simple diagram of a \td{} glass \cite{Zachariasen1932}.
 This configuration, reproduced in figure \ref{fig:zach_orig}, showed a collection of percolating rings with an absence of long\--range order.
@@ -69,25 +69,47 @@ In figure \ref{fig:zach_high} similar sized rings are dispersed throughout the a
 Furthermore, given the large number of configurations which may be theoretically possible for any set of ring statistics, only a subset of these may be physically realisable.
 Empirically, these are found to be the ones in which large rings tend to be surrounded by smaller rings \ie{} similar to \ref{fig:zach_high}.
 Once again, chemical intuition would support this in the context of atomic materials, as strain is minimised by maintaining bond lengths and angles as close to their equilibrium values as possible.
-
 This effect was first noticed in polycrystals and quantified through the \aw{} law \cite{Aboav1970,Weaire1974}.
 This law claims that the mean ring size about any given ring can be related to the central ring size by a single fitting parameter.
-Hence the value of this parameter in some way describes the increased tendency of the small rings to be adjacent to large rings in a network.
-Perhaps surprisingly, this law holds for a wide range of physical systems, originally encompassing metal oxides, foams and Voronoi polygons \cite{Aboav1980,Boots1984}.
+Hence the value of this parameter in some way describes the increased tendency of the small rings to be adjacent to large rings.
+The \aw{} parameter therefore provides information on the first\--order ring correlations, completing the topological description of the network material.
 
+The novelty and potential usefulness of \td{} materials makes them a  clear candidate for computational study, in order to complement and supplement experimental endeavours. 
+Taking the example of thin silica films, there have already been multiple complementary computational investigations including both \abinitio{} methods and molecular dynamics studies using classical force fields at varying levels of theory \cite{Bjorkman2013,Malashevich2016,Wilson2013,Wilson2018,Zhang2018a,Bamer2019,Roy2019,Richter2019}.
+In order to perform these simulations, it is necessary to have a starting atomistic configuration.
+This can be achieved in multiple ways. 
+The most straightforward is to take one of the existing experimental images. 
+These are however limited in size and number and can contain defects or areas which cannot be fully imaged.
+As a result, computational techniques are often preferable, but generating configurations will the required topological properties (\ie{} correct ring statistics \textit{and} \aw{} parameter) has proved surprisingly difficult \cite{Roy2018,Kumar2014}.
+Therefore, the first part of this thesis will focus on developing methods to generate configurations of \td{} networks in which the topological parameters can be tuned in a controllable manner.
+These configurations can then be used as a seed for further computational studies, removing the reliance for experimental configurations and opening the door for high\--throughput calculations which can be speculative and potentially predictive.
+
+However, the scope of this work extends beyond materials modelling.
+As previously mentioned, much of the original work in this field focussed on polycrystals of metal oxides with some links to foams and Voronoi polygons \cite{Aboav1980,Boots1984}.
 It is now clear that these chemical networks fit into a much wider class of \td{} physical networks that are ubiquitous in the natural world, emerging across all physical disciplines and length scales.
 Traditional examples range from the atomic level of ultra\--thin materials, through colloids, foams, epithelial cells and all the way to geological rock formations \cite{Earnshaw1994,Allain1995,Durand2011,Tong2017,Goehring2014}.
 There are however countless more occurrences, with drying blood, stratocumulus clouds, crocodile scales and geopolitical borders all being the subject of studies \cite{Brutin2011,Glassmeier2017,Milinkovitch2019,LeCaer1993}.
 More intriguingly, although these systems are incredibly physically diverse, they still have similar structures \cite{Schliecker1999}. 
 This is because they can all be mapped onto the same generic system, which can be equivalently described as a collection of tessellating polygons or percolating rings, and hence they are governed by the same fundamental laws. 
+Understanding the behaviours of \td{} networks is therefore key to a wide range of problems in frontier research, not only the directed synthesis of nano\--materials but also for example the control of mitotic division \cite{Gibson2011,Ladan2019}; as well as to curiosities such as explaining the arrangement of the stones in Giant's Causeway or cracking in famous artworks \cite{Weaire1984,Flores2017}.
 
-Understanding the behaviours of \td{} networks is therefore key to a wide range of problems in frontier research, not only the directed synthesis of nano\--materials but also for example the control of mitotic division \cite{Malashevich2016,Gibson2011,Ladan2019}; as well as to curiosities such as explaining the arrangement of the stones in Giant's Causeway or cracking in famous artwork \cite{Weaire1984,Flores2017}.
+Furthermore, the continuing expansion and maturity of network science as a field has led to significant advances in the description and characterisation of complex networks.
+This has largely been driven by interest in networks in the more abstract sense of the internet, social media and neural networks \cite{Strogatz2001,Boccaletti2006,Barabasi2012}.
+To date, the application of these principles in the physical sciences has mostly been confined to topics such as biological signalling pathways.
+The second half of this thesis will therefore show how robust metrics from network science can be applied to physical \td{} networks to better quantify their structure and replace the need for empirical measures such as the \aw{} law.
+This also has the effect of tying physical \td{} networks into the wider field of network science, showing them to be a unique and interesting addition to the area.
 
-
- 
-
+As part of this process, more generic methods will be developed to construct \td{} networks across a range of potential models, coordination environments and topologies.
+This will allow a systematic study into the factors which influence the underlying network properties in \td{} systems.
+These will be compared to two further in\--depth studies of network forming structures from the physical sciences.
+\davidnote{Expand colloid/procrystals bit.}
+The first are Voronoi tessellations formed in colloidal monolayers.
+which can be simulated via hard particle models \cite{Thorneywork2017}.
+The second are the ring structures in so\--called ``procrystalline'' lattices \cite{Overy2016}.
+\davidnote{Paragraph to wrap up}
 
 
 \section{Thesis Structure}
 
-
+\davidnote{Add thesis structure to introduction}
+\marknote{Test: Mark can add notes with the command \textbackslash marknote} 

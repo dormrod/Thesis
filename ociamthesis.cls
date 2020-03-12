@@ -455,7 +455,29 @@
 \newcommand{\hsp}{\hspace{20pt}}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
 
-\usepackage{shortcuts}
+% Captions
 \usepackage{caption}
 \usepackage{subcaption}
 \captionsetup[sub]{font=footnotesize,labelfont=bf}
+
+% Additional definitions
+\usepackage{shortcuts}
+
+% List of notes
+\usepackage{tocloft}
+\newlistof{davidnote}{dn}{List of Notes By David}
+\newcommand{\davidnote}[1]
+{
+    \textcolor{blue}{#1}
+    \refstepcounter{davidnote}
+    \addcontentsline{dn}{davidnote}
+    {\protect\numberline{\thedavidnote}#1}
+}
+\newlistof{marknote}{mn}{List of Notes By Mark}
+\newcommand{\marknote}[1]
+{
+    \textcolor{red}{#1}
+    \refstepcounter{marknote}
+    \addcontentsline{mn}{marknote}
+    {\protect\numberline{\themarknote}#1}
+}
