@@ -460,6 +460,9 @@
 \usepackage{subcaption}
 \captionsetup[sub]{font=footnotesize,labelfont=bf}
 
+% Matrices
+\usepackage{blkarray, bigstrut}
+
 % Additional definitions
 \usepackage{shortcuts}
 
