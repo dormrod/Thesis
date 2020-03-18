@@ -27,7 +27,7 @@ All the networks considered in this work are undirected and all the theory assum
      \label{fig:smallnet}
 \end{figure}
 
-\subsection{Node Degree and Degree Distributions} 
+\subsection{Node Degree and Probability Distributions} 
 
 A key concept in network science is the the node degree, defined as the number of links that each node possesses.
 A node with $k$ links is then said simply to have degree $k$, where $k\in\mathbb{N}$.
@@ -46,7 +46,7 @@ The $n$\th{} moments of this distribution are then given by:
 	\langle k^{n} \rangle = \sumk k^np_k \,.
 \end{equation}
 Alternatively, one can also calculate the probability that a randomly selected link has a $k$\--degree node at the end, denoted $q_k$.
-This is not the same as the distribution above, as there is greater chance of selecting links which emanate from high degree nodes, which is proportional to the node degree.
+This is not the same as the distribution above, as there is greater chance of selecting links which emanate from high degree nodes, in a manner which is proportional to the node degree.
 As this distribution is normalised, this leads to the relations:
 \begin{align}
 	\sumk q_k &= 1 \label{eq:qknorm} \\
@@ -61,8 +61,7 @@ Once again this is normalised and satisfies the following relationships:
 	e_{jk} &= e_{kj} \label{eq:ejkekj} \,,
 \end{align}
 where the final result arises from reciprocal nature of the links in an undirected network.
-As an example, consider again the network in figure \ref{fig:smallnet}.
-This has the following probability distributions:
+As an example, these three probability distributions are provided for the network in figure \ref{fig:smallnet}:
 \begin{align}
 	\textbf{p} =  \frac{1}{16} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
@@ -106,7 +105,7 @@ This has the following probability distributions:
 
 \subsection{Atomic and Ring Networks}
 
-To see how this relates to atomic materials, consider the amorphous graphene configuration in figure \ref{fig:graphdualgraph}.
+To see how network theory relates to atomic materials, consider the amorphous graphene configuration in figure \ref{fig:graphdualgraph}.
 In this network the nodes represent carbon atoms and the links sp$^2$ bonds.
 The node degree in the atomic network for all nodes is then equal to three, being equivalent to the atomic coordination number (which throughout this thesis will be denoted by $c$).
 This is problematic, because whilst there is clear disorder in the system, it is not well captured by the atomic network.
@@ -166,7 +165,7 @@ These laws act on a number of ``levels'': Euler's law controls the overall mean 
 \subsection{Euler's Law}
 \label{ssec:eulerslaw}
 
-Euler's law constrains the mean ring size, $\ki=\sumk kp_k$, in an atomic network; equivalent to the mean node degree of the ring network.
+Euler's law constrains the mean ring size, $\ki$, in an atomic network or equivalently the mean node degree of the ring network.
 The atomic networks studied in this work are all \td{}, connected (there is a path between any two nodes) and planar (they have no overlapping links) and so are subject to Euler's formula which states:
 \begin{equation}
 	\label{eq:eulerformula}
@@ -200,7 +199,8 @@ The planar case with periodic boundary conditions (mimicking an infinite planar 
 To reiterate in plain terms, this means that if there is a material consisting of atoms all forming exactly three bonds (as for amorphous carbon), the mean ring size \textit{must} be equal to six. 
 Similarly if all atoms form four bonds the mean ring size is four, and if there is a two\--thirds to one\--third mixture of coordination environments the mean ring size is five.
 The simplest illustrations of these are the hexagonal, square and cairo regular tilings, shown in figure \ref{fig:lattices}, but this law holds equally well for amorphous configurations.
-For aperiodic systems strictly $\chi=1$, but as $N$ grows and the proportion of vertices with unsatisfied coordination on the sample perimeter become negligible overall, in reality these relationships hold, and remain as applicable to amorphous graphene as the basalt columns in Fingal's Cave, and the Penrose tiling \cite{Goehring2014,Ressouche2009}.
+For aperiodic systems strictly $\chi=1$, but as $N\rightarrow \infty$, the proportion of vertices with unsatisfied coordination on the sample perimeter become negligible overall as does the term in $\chi$.
+Therefore in reality these relationships hold, and remain as applicable to amorphous graphene as the basalt columns in Fingal's Cave, and the Penrose tiling \cite{Goehring2014,Ressouche2009}.
 
 This analysis also extends to spherical topology where $\chi=2$, and so:
  \begin{equation}
@@ -269,7 +269,7 @@ In addition, the degree distribution has the following constraints:
 \begin{align}
 		\sumk p_k &=1, \\
 		\sumk kp_k&=\ki,  \label{con:lm2}\\
-		\sumk p_k/k&=\text{constant} \label{con:lm3},
+		\sumk \frac{p_k}{k}&=\text{constant} \label{con:lm3},
 \end{align}
 where the first two constraints correspond to the normalisation condition and the fixed mean ring size, and the final constraint will be discussed below.
 The entropy can then be maximised using Lagrange's method of undetermined multipliers to yield the result:
@@ -328,6 +328,55 @@ It was originally rationalised on the basis that the areas of rings of a given s
 As noted at the time, this is by no means true for all systems and in fact is contrary to the widely known Lewis law, which states that $A_k$ is linear in $k$ for many observable networks \cite{Lewis1928,Fortes1995,Kim2014}.
 Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \davidnote{Link to later networks} it will be demonstrated that it can be regenerated by considering ring adjacencies.
 
-
-
 \subsection{\aw{} Law}
+
+The ring statistics given by \lm's law are an important measure for physical networks, but they do not provide a complete characterisation of the ring structure, as they say nothing about the ring adjacencies. 
+This is important because whilst with the same ring statistics it is theoretically possible to organise the rings in many different arrangements, it is well known experimentally that only a subsection of these are observed.
+The vast majority of physical systems have a preference for small rings ($k<\ki$) be adjacent to large rings ($k>\ki$).
+This effect was first noted in the grains of polycrystals by Aboav \cite{Aboav1970}.
+Aboav quantified these ring correlations by measuring the mean ring size about a $k$\--ring, denoted $m_k$, and found empirically that $m_k \approx 5 + 8/k$.
+
+In an attempt to explain this observation, Weaire came across the following relation
+\begin{equation}
+	\label{eq:weairesumrule}
+	\sumk km_kp_k = \sumk k^2p_k = \mu_2 + \ki^2 \,,
+\end{equation}
+known as Weaire's sum rule \cite{Weaire1974}.
+From this he suggested the modification of $m_k=5+\left(6+\mu_2\right)/k$ which satisfied this rule.
+Aboav's original equation then became a special case when $\mu_2=2$, which is close to the expected value for a random collection of Voronoi polygons (see section \davidnote{link to Poisson\--Voronoi}).
+Aboav then proposed that if a generic form of $m_k = A + B/k$ was used in conjunction with Weaire's sum rule then
+\begin{equation}
+	m_k = A+\frac{\mu_2+\ki^2-A\ki}{k}\,.
+\end{equation}
+This is now more commonly expressed in the linear form \cite{Chiu1995}:
+\begin{equation}
+	\label{eq:aboavweaire}
+	km_k = \mu_2+\ki^2+\ki\left(1-\alpha\right)\left(k-\ki\right).
+\end{equation}
+Equation \ref{eq:aboavweaire} is known as the \aw{} law and relates the mean ring size about a given central ring to a single fitting parameter, $\alpha$.
+The value of $\alpha$ describes the strength of the ring correlations, with a larger positive value indicating a greater tendency for small\--large ring adjacencies.
+More specifically, the random limit can be deduced by evaluating $\frac{\partial{m_k}}{\partial{x}}=0$ as \cite{Delannay1994}:
+\begin{equation}
+	\label{eq:awrandlim}
+	\alpha=-\frac{\mu_2}{\ki^2} \,.
+\end{equation}
+Hence all systems with $\alpha>-\mu_2/\ki^2$ have more small\--large ring  adjacencies than would be expected from chance whilst conversely those with $\alpha<-\mu_2/\ki^2$ have more small\--small and large\--large pairings.
+
+Despite the \aw{} law being purely empirical and there being no topological requirement for $m_k$ to vary systematically $k$, the law does seem to hold well for a diverse set of physical systems.
+The law is well used for example in studies of materials, emulsions, biological tissues as well as in planetary science \cite{LeRoux2013,Roy2018,Noever1992,Mombach1993,Pedro2008}.
+As an example of the calculation of the \aw{} parameter, the plots of the fits for the systems in figure \ref{fig:zach} are presented in figure \ref{fig:awdemo}, along with the corresponding $\alpha$ parameters.
+This demonstrates two contrasting aspects of the \aw{} law. 
+Firstly the law holds very well, especially given the fact that these samples consist of just twenty rings each.
+However, it also demonstrates that the law is by no means exact and that some greyness is inevitably introduced during the linear regression.
+
+\begin{figure}[h]
+     \centering
+      \includegraphics[width=8cm]{./figures/methods/aw_demo.pdf}
+     \caption{Calculation of an \aw{} fit for three configurations (shown in figure \ref{fig:zach}(a)\--(c)). The value of the $\alpha$ parameter quantifies the tendency of small rings to be adjacent to large rings, with a larger value indicating stronger small\--large ring correlations.}
+     \label{fig:awdemo}
+\end{figure}
+
+\section{Computational Methods}
+\label{sec:compmethods}
+
+Hmmm....
