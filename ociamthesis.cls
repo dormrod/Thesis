@@ -462,6 +462,7 @@
 
 % Matrices
 \usepackage{blkarray, bigstrut}
+\usepackage{bm}
 
 % Additional definitions
 \usepackage{shortcuts}

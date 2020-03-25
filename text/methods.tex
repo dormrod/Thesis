@@ -5,8 +5,8 @@ This chapter discusses the theory underpinning complex networks, covering the re
 The laws which govern the topological properties of physical networks, namely Euler's law, \lm's law and the \aw{} law are also explored.
 Further developments linking to modern network science etc. are given in chapter \davidnote{Link to network theory later}.
 In addition some of the existing computational approaches for generating realisations of \td{} networks are presented.
-A broad overview of Monte Carlo methods is given, before specific methods are covered in detail.
-These include the bond switching algorithm and hard particle Monte Carlo in conjunction with the Voronoi construction.
+A broad overview of \mc{} methods is given, before specific methods are covered in detail.
+These include the bond switching algorithm and hard particle \mc{} in conjunction with the Voronoi construction.
 Extensions to these methods and additional approaches are outlined in the relevant chapters \davidnote{Link to bond switching/Voronoi/mx2/procrystals later}.
 Finally some measures are discussed...
 
@@ -63,7 +63,7 @@ Once again this is normalised and satisfies the following relationships:
 where the final result arises from reciprocal nature of the links in an undirected network.
 As an example, these three probability distributions are provided for the network in figure \ref{fig:smallnet}:
 \begin{align}
-	\textbf{p} =  \frac{1}{16} \, \begin{blockarray}{*{1}{c} l}
+	\mathbf{p} =  \frac{1}{16} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
 	4 \: \bigstrut[t]& 5\\
 	8 & 6 \\
@@ -71,7 +71,7 @@ As an example, these three probability distributions are provided for the networ
 	\end{block}
 	\end{blockarray}
 	\qquad
-	\textbf{q} =  \frac{1}{96} \, \begin{blockarray}{*{1}{c} l}
+	\mathbf{q} =  \frac{1}{96} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
 	20 \: \bigstrut[t]& 5\\
 	48 & 6 \\
@@ -79,7 +79,7 @@ As an example, these three probability distributions are provided for the networ
 	\end{block}
 	\end{blockarray}
 	\qquad	
-	\textbf{e} = \frac{1}{96}\: \begin{blockarray}{*{3}{c} l}
+	\mathbf{e} = \frac{1}{96}\: \begin{blockarray}{*{3}{c} l}
 	\begin{block}{*{3}{>{$\footnotesize}c<{$}} l}
 	5 & 6 & 7 \\
 	\end{block}
@@ -376,7 +376,264 @@ However, it also demonstrates that the law is by no means exact and that some gr
      \label{fig:awdemo}
 \end{figure}
 
-\section{Computational Methods}
-\label{sec:compmethods}
+\section{\mc{} Methods}
+\label{sec:mc}
 
-Hmmm....
+\mc{} methods are a class of computational algorithms designed to solve complex problems stochastically.
+These normally fall into the broad categories of calculating integrals, sampling probability distributions and finding global minima of very high dimensional functions \-- tasks which are often incredibly hard to compute deterministically.
+Since their initial development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
+\mc{} methods are used in this context for calculating thermodynamic averages of properties in equilibrium systems; finding the minima in potential energy surfaces of small molecules, glasses, crystals and biomolecules; as well as non\--equilibrium simulations such as growth of crystals and thin\--films \cite{Landau2014,Wales1999,Levi1997,Ratsch2003,Kob1999,Jensen1999}.
+In this thesis these \mc{} methods  will be used in a variety of contexts chapter xxx \davidnote{fill this in}.
+Therefore, the general theory is presented here along with specific details of two established methods: bond switching and hard particle \mc{}.
+
+\subsection{Statistical Mechanics}
+
+The total energy of a system with a fixed number of particles, $\mathcal{N}$, is given by the Hamiltonian,
+\begin{equation}
+	\ham = \ken+\pen \,,
+\end{equation}
+where $\ken$ is the kinetic energy as a function of all particle momenta and $\pen$ is the potential energy as a function of all particle positions \cite{Frenkel2002}.
+The positions and momenta comprise the phase space of the system.
+At fixed volume, $\mathcal{V}$, and temperature, $T$, all the the essential thermodynamic information is then provided through the classical canonical partition function:
+\begin{equation}
+	Q = \frac{1}{h^{D\mathcal{N}}\mathcal{N}!}\int \dd\mathbf{p}\,\dd\mathbf{r}\,\exp{\left[-\ham/ \kb T\right]}\,,
+\end{equation}
+where $D$ is the number of spatial dimensions.
+This can be factorised into kinetic and potential components as
+\begin{equation}
+	Q = \frac{1}{h^{D\mathcal{N}}\mathcal{N}!}\int \dd\mathbf{p}\,\exp{\left[-\ken/\kb T\right]} \int \dd\mathbf{r}\,\exp{\left[-\pen/\kb T\right]} \,,
+\end{equation}
+where
+\begin{equation}
+	Z = \int \dd\mathbf{r}\,\exp{\left[-\pen/\kb T\right]}
+\end{equation}
+is the configurational integral \cite{Allen2017}. 
+As will be shown, in \mc{} simulations it is the energetic differences between configurations that are required, and so at constant temperature the kinetic component can be neglected and it is only the configurational integral that is of importance.
+In this case the probability density of the system being in the configuration $\mathbf{r}$ is given by the Boltzmann distribution:
+\begin{equation}
+	\label{eq:boltzmann}
+	P\left(\mathbf{r}\right) = \frac{\exp{\left[-\pen/\kb T\right]}}{Z}\,.
+\end{equation}
+This allows the expectation value of an observable of the system, $\obs$, to be determined from:
+\begin{equation}
+	\label{eq:expectationobs}
+	%\langle A \rangle = \frac{1}{Z}\int \dd\mathbf{r}\,\obs\exp{\left[-\pen/\kb T\right]} \,.
+		\langle A \rangle = \int \dd\mathbf{r}\,\obs P\left(\mathbf{r}\right) \,.
+\end{equation} 
+The expectation value is then the ratio of two $\mathcal{N}D$ dimensional integrals.
+The next section shows how these can be evaluated by \mc{} sampling.
+
+\subsection{Importance Sampling}
+
+An integral of form \eqref{eq:expectationobs} can be evaluated numerically by a number of methods.
+As an illustration, consider the simple example of a \td{} potential energy surface in figure \ref{fig:montecarloint}.
+To calculate the expectation value of the potential energy one must evaluate the integral
+\begin{equation}
+	\langle \mathcal{U} \rangle = \int_{0}^{L_y}\int_{0}^{L_x} \dd x \dd y\, \mathcal{U}\left(x,y\right)\mathcal{P}\left(x,y\right)\,.
+\end{equation}
+One way to achieve this would be to use standard numerical methods such as the trapezium rule or Simpson's rule to calculate the potential energy over a regular grid of points, as in figure \ref{fig:montecarloint1}, weighting each according to the Boltzmann distribution.
+
+An alternative would be to take a stochastic approach.
+In the simplest implementation, a series of $S$ random sampling points, $\left(x_i,y_i\right)$, can be generated uniformly in the intervals $\left[0,L_x\right]$ and $\left[0,L_y\right]$, as in figure \ref{fig:montecarloint2}.
+Weighting these according to the Boltzmann distribution and averaging gives an estimation to the integral:
+\begin{equation}
+	\langle \mathcal{U} \rangle = \frac{L_xL_y}{S}\sum_{i=1}^{S} \mathcal{U}\left(x_i,y_i\right)\mathcal{P}\left(x_i,y_i\right)\,,
+\end{equation}
+which converges to the exact value as $S\rightarrow\infty$.
+
+However, both quadrature and \mc{} uniform sampling suffer from the same inefficiency.
+As can be seen in both schemes, many of the sampling points fall in regions of phase space where the potential energy is high and hence the weighting probability distribution is very small at reasonable temperatures.
+In effect, significant effort is spent calculating regions where the contribution to the total integral is negligible.
+A better approach is therefore to generate a series of $S$ random sampling points, $\left(x_i,y_i\right)$, according to the distribution $\mathcal{P}\left(x,y\right)$, as in figure \ref{fig:montecarloint2}.
+The expectation value of the observable can then be calculated using a simple average:
+\begin{equation}
+	\langle \mathcal{U} \rangle = \frac{1}{S}\sum_{i=1}^{S} \mathcal{U}\left(x_i,y_i\right)\,.
+\end{equation}
+This is known as importance sampling and is vastly more efficient when dealing with an aggressive probability distribution like the Boltzmann, where only a small proportion of the phase space is accessible.
+
+Whilst this scheme is ideal theoretically, it is impracticable for physical systems.
+This is because for any problem of real interest one lives in a ``black box'' where the functional form of the potential energy surface in its hundreds if not thousands of dimensions is unknown.
+In this case often the only way of learning about the form is by on\--the\--fly exploration of the surface \cite{Brooks2011}.
+This can be achieved by talking a random walk through configurational space using Markov chain \mc.
+
+\begin{figure}[h]
+     \centering
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/methods/mc_2d_quad.pdf}
+         \caption{Quadrature.}
+         \label{fig:montecarloint1}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/methods/mc_2d_rand.pdf}
+         \caption{Uniform Sampling.}
+         \label{fig:montecarloint2}
+     \end{subfigure}
+     \hfill
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/methods/mc_2d_imp.pdf}
+         \caption{Importance Sampling.}
+         \label{fig:montecarloint3}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/methods/mc_2d_mcmc.pdf}
+         \caption{Markov Chain \mc}
+         \label{fig:montecarloint4}
+     \end{subfigure}
+     \hfill
+    
+     \caption{Demonstration of different sampling methods with an example \td{} potential energy surface (contour lines). Panels(a)\--(c) display the same number of (red) sampling points. Panel (a) shows conventional quadrature where the surface is divided into a regular grid of sampling points which are then weighted by the Boltzmann distribution. Panel (b) shows \mc{} sampling with a uniform distribution of points which again must be Boltzmann\--weighted. Panel (c) shows \mc{} importance sampling with points now selected according to the Boltzmann distribution. Panel (d) shows Markov chain \mc{} with two random walks through phase space (red and blue lines) starting from different random seeds.}
+     \label{fig:montecarloint}
+\end{figure}
+
+\subsection{Markov Chain Monte Carlo}
+
+Markov chain Monte Carlo provides a framework to perform importance sampling on a potential energy surface.
+A system of interest can exist in a (very large) number of configurational states, $\left\{\mathbf{r}_0,\mathbf{r}_1,\dots,\mathbf{r}_M\right\}$.
+A Markov chain can then be constructed from this set, whereby a sequence of states is generated stochastically across a series of steps, $s=0,1,\dots,S$.
+In this process, the probability of moving between states at each step is given by the transition matrix, $\bm{\pi}$, where each element, $\pi_{ij}$, gives the probability of moving from the state $\mathbf{r}_i$ to another state $\mathbf{r}_j$.  
+This leads to the two relationships:
+\begin{align}
+	0\leq \pi_{ij} &\leq 1\,, \\
+	\sum_{j} \pi_{ij} &= 1\,, \label{eq:tmrowsum}
+\end{align}
+the first being a statement of the probabilistic nature of the elements whilst the second ensures all transfer remains within the state space \cite{Frenkel2002,Allen2017,Brooks2011}.
+
+The probability that the system is in each state at a given step, $s$, can be represented by the row vector $\mathbf{P}_s$.
+This probability distribution evolves with each step as $\mathbf{P}_{s+1}=\mathbf{P}_{s}\bm{\pi}$, so that starting from any initial distribution, $\mathbf{P}_0$, it follows that $\mathbf{P}_S=\mathbf{P}_0\bm{\pi}^S$. 
+The question is then as to the behaviour as $S\rightarrow \infty$.
+Provided certain criteria are met, the distribution will tend to a stationary distribution, $\mathbf{P}$, which satisfies the eigenvalue equation 
+\begin{equation}
+	\mathbf{P} = \mathbf{P}\bm{\pi}\,, \label{eq:mcmceig}
+\end{equation}
+regardless of the initial distribution (although the speed of the convergence does depend on $\mathbf{P}_0$).
+This will occur only if the system is \textit{ergodic}, meaning that every state is connected to every other by some finite path.
+
+In a discrete analogue to equation \eqref{eq:expectationobs}, the expectation value of an observable, $A$, can be calculated from the ensemble average:
+\begin{equation}
+	\langle A \rangle = \sum_{i=1}^{M} A\left(\mathbf{r}_i\right)\mathcal{P}\left(\mathbf{r}_i\right)\,,
+\end{equation}
+where $\mathcal{P}\left(\mathbf{r}_i\right)$ are the elements of $\mathbf{P}$.
+However, as previously mentioned the number of discrete states is usually exceedingly large and so calculating the average over all states is not possible.
+The solution is to take a random walk across through configurational space, sampling explicit states to form the chain $X_0,X_1,\dots,X_S$; where each move is chosen randomly according to the transition matrix $\bm{\pi}$.
+In this case the expectation of the same observable can be calculated from the average over the sampled states:
+\begin{equation}
+	\langle A \rangle = \frac{1}{S}\sum_{i=1}^{S} A\left(X_i\right)\,,
+\end{equation}
+where the true value is approached as $S\rightarrow \infty$.
+
+In this section the problem of sampling phase space efficiently has been reformulated, but as yet not solved. 
+This is because the form of the transition matrix is still unknown.
+Instead only the ideal form of the limiting probability distribution, $\mathbf{P}$, is available \-- where the elements follow the Boltzmann probabilities in equation \eqref{eq:boltzmann}.
+A practical solution to this problem is provided by the Metropolis algorithm.
+
+\subsection{Metropolis Algorithm}
+
+The Metropolis algorithm gives a prescription of how to construct a transition matrix, $\bm{\pi}$, with the requisite properties that samples the Boltzmann distribution \cite{Metropolis1953}.
+Firstly, combining equations \eqref{eq:tmrowsum} and \eqref{eq:mcmceig} gives a condition on the transition matrix known as global balance:
+\begin{equation}
+	\sum_j \mathcal{P}\left(\mathbf{r}_i\right)\pi_{ij} = \sum_j \mathcal{P}\left(\mathbf{r}_j\right)\pi_{ji}\,.
+\end{equation} 
+Whilst it is possible to construct transition matrices which satisfy only global balance \cite{Manousiouthakis1999,Suwa2010,Michel2018}, it is practically simpler to satisfy global balance by applying the stronger condition of detailed balance:
+\begin{equation}
+	\mathcal{P}\left(\mathbf{r}_i\right)\pi_{ij} = \mathcal{P}\left(\mathbf{r}_j\right)\pi_{ji}\,.
+\end{equation}
+In the Metropolis algorithm the off\--diagonal elements of the transition matrix are written as the product of two probabilities: 
+\begin{equation}
+	\pi_{ij} = \begin{cases} 
+		\tau_{ij}P_{ij} \quad & i\neq j \\
+		1-\sum\limits_{j\neq i}\tau_{ij}P_{ij} \quad & i=j
+	\end{cases}\,,
+\end{equation}
+where $\tau_{ij}$ is the trial probability of moving from state $\mathbf{r}_i$ to $\mathbf{r}_j$ and $P_{ij}$ is the probability of accepting the trial move.
+To conform to detailed balance, the trial probabilities must be chosen to satisfy $\tau_{ij}=\tau_{ji}$.
+Then, in the crux of the algorithm, the acceptance probabilities are given by
+\begin{align}
+	 P_{ij}&=\begin{cases}
+	 	1 \quad &\mathcal{P}\left(\mathbf{r}_j\right)\geq \mathcal{P}\left(\mathbf{r}_i\right) \\
+	 	\frac{\mathcal{P}\left(\mathbf{r}_j\right)}{\mathcal{P}\left(\mathbf{r}_i\right)} \quad & \mathcal{P}\left(\mathbf{r}_j\right)< \mathcal{P}\left(\mathbf{r}_i\right)
+	 \end{cases}
+	 =\begin{cases}
+	 	1 \quad &\mathcal{U}\left(\mathbf{r}_j\right)\leq \mathcal{U}\left(\mathbf{r}_i\right) \\
+	 	\frac{\exp\left[-\mathcal{U}\left(\mathbf{r}_j\right)/\kb T\right]}{\exp\left[-\mathcal{U}\left(\mathbf{r}_i\right)/\kb T\right]} \quad & \mathcal{U}\left(\mathbf{r}_j\right)>\mathcal{U}\left(\mathbf{r}_i\right)
+	 \end{cases}\,,
+\end{align}
+which can be expressed more succinctly as
+\begin{equation}
+	\label{eq:metropolis}
+	 P_{ij}=\text{min}\big[1,\exp\left[-\Delta \mathcal{U}/\kb T\right]\big]\,,
+\end{equation}
+where $\Delta \mathcal{U}$ is the difference in potential energy between the final and initial states.
+The elegance of the Metropolis algorithm lies in the fact that the acceptance probability depends only on the ratio of the configuration probabilities removing the need for a normalising factor.
+This means the relative probabilities can be used (which are computable) instead of the absolute probabilities (which are unknowable).
+
+The final stage is the choice of the matrix of trial probabilities, $\bm{\tau}$. 
+This is very flexible and one can be creative in the selection of trial moves, providing that the underlying matrix is symmetric and ergodic.
+An effective strategy is to choose moves in which the trial state is relatively close to the current state to trace the paths of high probability in the system.
+A summary of the Metropolis algorithm is therefore as follows:
+\begin{enumerate}
+	\item Initialise the system in a state $X_{s=0}$ and calculate the potential energy $\mathcal{U}\left(X_s\right)$
+	\item Generate a trial state $X_t$ (a perturbation of $X_s$) according to $\tau_{st}$
+	\item Calculate the potential energy of the trial state $\mathcal{U}\left(X_t\right)$
+	\item Determine acceptance or rejection of the trial move according to the Metropolis criterion \eqref{eq:metropolis}
+	\item Update the system to the new state: if the trial move is accepted $X_{s+1}=X_{t}$ otherwise $X_{s+1}=X_{s}$
+	\item Repeat steps 2\--5
+\end{enumerate}
+There are a few practical factors related to the scheme above.
+In Markov chain \mc{} it was previously mentioned that it takes time for the system to evolve to the stationary distribution.
+Therefore it is necessary to have an equilibration period where the chain is generated but not used for sampling of observables.
+In addition, whilst selecting trial moves close to the current state increases efficiency, it introduces correlation into the procedure.
+A way around this is to not calculate observables based on every step, but rather after a number of statistically significant steps.
+
+As an example of the Metropolis algorithm, consider again the \td{} potential energy surface in figure \ref{fig:montecarloint4}.
+Here two simulation paths are displayed in red and blue, starting from the same initial state but with different starting points in the random number generators \ie{} random seeds.
+As can be seen the Metropolis algorithm takes a random walk over the configurational space, conducting importance sampling as in \ref{fig:montecarloint3}.
+However, in this example highlights a potential problem.
+There are two regions of phase space with non\--zero probabilities which are separated by a relatively large energy barrier.
+Although they are in principle linked by a path, the barrier may effectively mean they are disconnected on a reasonable simulation time scale, breaking ergodicity.
+This manifests as the red walk sampling one region and the blue walk being trapped in the other region.
+Using multiple seeds in this way helps to identify if any such behaviour is present.
+If it leads to significant differences in the computed averages, more advanced techniques using enhanced sampling may have to be employed \cite{Torrie1977,Earl2005}.
+
+\subsection{Global Optimisation \& Simulated Annealing}
+
+So far in this section it has been shown how Monte Carlo methods can be used perform importance sampling of potential energy surfaces.
+These methods can also be used to solve the related problem of finding global minima in potential energy surfaces and other more general functions.
+Consider the case where there is an objective function, $\obj\left(\mathbf{r}\right)$, which depends on particle positions.
+If it is known that there exists a solution where $\obj\left(\mathbf{r}\right)=0$, it may be sufficient to perform a standard random walk of the type in figure \ref{fig:montecarloint4} until a solution is found, using the more general Metropolis criterion:
+\begin{equation}
+	\label{eq:objmetropolis}
+	P_{ij} = \min\big[1,\exp\left[-\Delta\Omega/\kb T\right]\big].
+\end{equation}
+There is of course a chance that the optimisation will not converge to the global minimum, most likely getting trapped in a local minimum (as for instance the blue path in \ref{fig:montecarloint4}).
+One solution to this problem is just to keep restarting the algorithm with different initial conditions until the global minimum is obtained.
+
+Often however the value of the global minimum is not known, as is the case for a potential energy surface, and this rudimentary approach is insufficient.
+One must then employ a more sophisticated technique to find the global minimum of a very high dimensional and potentially rough surface.
+This in itself is an extensive area of study and there are many approaches such as using genetic algorithms or basin\--hopping \cite{Hartke1993,Niesse1996,Wales1997}.
+This thesis will use simulated annealing, which can be considered an extension to Metropolis \mc{} \cite{Kirkpatrick1983}.
+In addition simulated annealing is effective for searching surfaces with many similar minima as in glasses \-- the name reflecting its origins in the analogous process in metallurgy to generate defect free metals.
+
+The simulated annealing algorithm proceeds as follows.
+The system of interest is first thermalised by performing Metropolis \mc{} at infinite temperature \ie{} accepting every move. 
+The system is then gradually cooled to zero temperature, with the Metropolis criterion \eqref{eq:objmetropolis} reducing the proportion of accepted moves.
+In theory if the cooling is infinitely slow, the system is maintained in thermal equilibrium and will eventually reach the global minimum \cite{Henderson2003}.
+In practice this is not realisable and so a cooling rate must be empirically selected.
+Still it is possible for trapping to occur in local minima, especially if the transition between low energy states is very slow.
+As before, one can then cycle the simulated annealing, repeatedly heating and cooling the system until the global minimum is found.
+The simulated annealing algorithm is demonstrated with the \td{} potential energy surface in figure \ref{fig:montecarloint5}.
+As can be seen at high temperature the entire surface is sampled, overcoming all energy barriers, but as cooling takes place the system settles into the low energy regions of the surface, finally terminating in the global minimum.
+
+\begin{figure}[h]
+     \centering
+    \includegraphics[width=0.45\textwidth]{./figures/methods/mc_2d_sa.pdf}
+      \caption{Demonstration of the simulated annealing algorithm on a \td{} potential energy surface, with states coloured by temperature (red$\rightarrow$blue indicating hot$\rightarrow$cold. As the temperature is reduced the state converges on the global minimum.}
+      \label{fig:montecarloint5}
+\end{figure}
