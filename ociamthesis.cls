@@ -460,12 +460,37 @@
 \usepackage{subcaption}
 \captionsetup[sub]{font=footnotesize,labelfont=bf}
 
+% Tables
+\usepackage[para,online,flushleft]{threeparttable}
+\usepackage{booktabs} 
+\usepackage{colortbl}
+\usepackage{pdflscape}
+%\newcommand{ra}[1]{renewcommand{arraystretch}{#1}}
+
 % Matrices
 \usepackage{blkarray, bigstrut}
 \usepackage{bm}
 
 % Additional definitions
 \usepackage{shortcuts}
+
+% Chapter abstract
+\usepackage{setspace}
+\def\chabrule{\leavevmode\leaders\hrule height 1.0pt\hfill\kern\z@}
+\newenvironment{chapterabstract}{%
+  \par\nobreak\noindent
+%  \textbf{\textit{Abstract}\hrulefill}\par\nobreak
+  \textbf{\textcolor{gray75}{\chabrule}}\par\nobreak
+  %\small
+  \setstretch{1.25}
+  \noindent\ignorespaces
+  %\em
+}{%
+  \par\nobreak\normalsize
+  \vskip-\ht\strutbox\noindent
+  \textbf{\textcolor{gray75}\chabrule}%
+  %\vspace{-2em}
+}
 
 % List of notes
 \usepackage{tocloft}
