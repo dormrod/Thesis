@@ -101,6 +101,7 @@ As an example, these three probability distributions are provided for the networ
 \end{align}
 
 \subsection{Atomic and Ring Networks}
+\label{s:atomringnetworks}
 
 To see how network theory relates to atomic materials, consider the amorphous graphene configuration in figure \ref{fig:graphdualgraph}.
 In this network the nodes represent carbon atoms and the links sp$^2$ bonds.
@@ -153,14 +154,14 @@ Hence, the disorder is captured directly in the node properties of the ring netw
 These characteristics make the ring network preferable for manipulating and analysing the systems in this thesis.
 
 \section{Topological Laws}
-\label{sec:topolaws}
+\label{s:topolaws}
 
 There are a number of laws which govern the topological properties of \td{} network\--forming materials.
 These laws constrain the ring structure, influencing the network properties in a manner that makes physical networks unique in the field of network science.
 These laws act on a number of ``levels'': Euler's law controls the overall mean ring size, \lm's{} law the ring size distribution and the \aw{} law the ring\--ring correlations.
 
 \subsection{Euler's Law}
-\label{ssec:eulerslaw}
+\label{s:eulerslaw}
 
 Euler's law constrains the mean ring size, $\ki$, in an atomic network or equivalently the mean node degree of the ring network.
 The atomic networks studied in this work are all \td{}, connected (there is a path between any two nodes) and planar (they have no overlapping links) and so are subject to Euler's formula which states:
@@ -206,7 +207,7 @@ This analysis also extends to spherical topology where $\chi=2$, and so:
 		\frac{4N-8}{N}, \quad x_4 = 1.
 	\end{cases}
 \end{equation}
-These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92},\ref{fig:latticesfull98}) \cite{Fowler1996}.
+These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92}, \ref{fig:latticesfull98}) \cite{Fowler1996}.
 Much of the richness in the behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
 
 \begin{figure}[h]
@@ -366,7 +367,7 @@ Hence all systems with $\alpha>-\mu_2/\ki^2$ have more small\--large ring  adjac
 \begin{figure}[tb]
      \centering
       \includegraphics[width=8cm]{./figures/methods/aw_demo.pdf}
-     \caption{Calculation of an \aw{} fit for three configurations (shown in figure \ref{fig:zach}(a)\--(c)). The value of the $\alpha$ parameter quantifies the tendency of small rings to be adjacent to large rings, with a larger value indicating stronger small\--large ring correlations.}
+     \caption{Calculation of an \aw{} fit for three configurations (shown in figure \ref{fig:zach}(b)\--(d)). The value of the $\alpha$ parameter quantifies the tendency of small rings to be adjacent to large rings, with a larger value indicating stronger small\--large ring correlations.}
      \label{fig:awdemo}
 \end{figure}
 

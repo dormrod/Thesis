@@ -471,6 +471,10 @@
 \usepackage{blkarray, bigstrut}
 \usepackage{bm}
 
+% General Maths
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
 % Additional definitions
 \usepackage{shortcuts}
 
