@@ -475,6 +475,10 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 
+% Additional maths letters
+%\DeclareMathAlphabet{\mathantt}{OT1}{antt}{li}{it}
+%\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
 % Additional definitions
 \usepackage{shortcuts}
 

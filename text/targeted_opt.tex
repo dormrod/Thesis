@@ -2,7 +2,7 @@
 \label{ch:targetedopt}
 
 \begin{chapterabstract}
-A targeted optimisation method is presented which enables \td{} networks to be constructed by reference to a set of ring statistics and the \aw{} parameter, $\alpha$, which controls the preferred nearest\--neighbour spatial correlations.
+A targeted optimisation method is presented which enables \td{} networks to be constructed by reference to a set of ring statistics and \aw{} parameter, $\alpha$, which controls the preferred nearest\--neighbour spatial correlations.
 The method efficiently utilises the dual lattice and allows systematic exploration of configurational space. 
 Three different systems are considered; a system containing 5\--, 6\-- and 7\--membered rings only (a proxy for amorphous graphene), the configuration proposed by Zachariasen, and those
 observed experimentally for ultra\--thin films of \sioii. 
@@ -17,10 +17,10 @@ As mentioned in previous sections \davidnote{link}, the characterisation of the 
 For three\--coordinate atomic materials the mean ring size is constrained to six by Euler's law, which allows the variance of the ring size distribution, $\mu_2$, to act as a proxy measure for disorder (see sections \ref{s:eulerslaw}, \ref{s:lemaitre}).
 The same set of ring statistics can however lead to a large number of different ring arrangements, as shown in figure \ref{fig:zach}.
 These can be further quantified by the \aw{} parameter, which measures the ring\--ring correlations.
-An interesting observation across a wide range of experimental systems, is that the measured value of the \aw{} parameter is in a tight range of $\alpha\approx0.15\rightarrow 0.3$ \cite{Zsoldos1999}.
+An interesting observation across a wide range of experimental systems, is that the measured value of the \aw{} parameter lies in a tight range of $\alpha\approx0.15\rightarrow 0.3$ \cite{Zsoldos1999}.
 This is also effect is also seen in computational studies, including for example the previous chapter.
 
-Whilst it is necessary to capture these measures accurately, and almost by definition good computational models capture the underlying essential physics of a system, they do not give insight into \textit{why} such configurations are preferred. 
+Whilst it is necessary for good computational models to capture these measures accurately, they do not give insight into \textit{why} such configurations are preferred. 
 To answer this question a different approach is required, where configurations can be systematically generated, covering a parameter space which exceeds the experimentally accessible region.
 To achieve this a targeted optimisation method can be employed, whereby configurations are produced to fit network properties, and not driven by an underlying potential model.
 This allows the experimentally occurring structures to be viewed in the context of the wider configurational landscape.
@@ -38,9 +38,9 @@ In targeted optimisation, the same Monte Carlo moves are proposed as in bond swi
 This agreement is measured by a cost function of the form:
 \begin{equation}
 	\label{eq:costfunc}
-	\obj=k_\alpha\abs{\alpha-\alpha^t}+\frac{\abs{\mu_2-\mu_2^t}}{\mu_2^t}+\sumk\frac{\abs{p_k-p_k^t}}{p_k^t}\,,
+	\obj=\fk_\alpha\abs{\alpha-\alpha^t}+\frac{\abs{\mu_2-\mu_2^t}}{\mu_2^t}+\sumk\frac{\abs{p_k-p_k^t}}{p_k^t}\,,
 \end{equation} 
-where $k_\alpha$ is a scaling constant; $p_k^t$, $\mu_2^t$ and $\alpha^t$ are the input target values; $p_k$ are the system ring statistics; and $\mu_2$ and $\alpha$ are calculated from an \aw{} fit on the current state.
+where $\fk_\alpha$ is a scaling constant; $p_k^t$, $\mu_2^t$ and $\alpha^t$ are the input target values; $p_k$ are the system ring statistics; and $\mu_2$ and $\alpha$ are calculated from an \aw{} fit on the current state.
 In the cost function the relative difference is used for the ring distribution, as the same accuracy is required for all $p_k^t$, which may differ by several orders of magnitude. 
 This is not a concern for $\alpha^t$, which must also have the flexibility to take a zero value, and hence the absolute difference is used in the first term. 
 
@@ -51,10 +51,10 @@ Moves in targeted optimisation are accepted with probability given by the Metrop
 where $\Delta\obj$ is the difference in cost functions before and after the proposed move, and $T$ is a temperature parameter. 
 In contrast to bond switching which is concerned with sampling, this is a global optimisation algorithm and moves are proposed until the network has converged to the target properties and the cost function is zero.
 As is the case with such optimisation techniques, steps must be taken to avoid becoming trapped in local minima, and the calculation not converging. 
-This is achieved through selection of the parameters $k_\alpha$ and $T$. 
-The parameter $k_\alpha$ changes the relative costs of satisfying the $\alpha^t$ and $p_k^t$ conditions, and must be chosen so that neither is overweighted. The parameter $T$ controls the proportion of moves which are accepted. 
+This is achieved through selection of the parameters $\fk_\alpha$ and $T$. 
+The parameter $\fk_\alpha$ changes the relative costs of satisfying the $\alpha^t$ and $p_k^t$ conditions, and must be chosen so that neither is overweighted. The parameter $T$ controls the proportion of moves which are accepted. 
 Some temperature is required to overcome local minima, but if set too high the algorithm will no longer move downhill in cost and the search becomes effectively random \-- invariably leading to non\--convergence. 
-Values for $k_\alpha$ and $T$ can be determined from a parameter search checking for convergence of target systems; but $k_\alpha=10$ and $T\sim 10^{-4}$ were appropriate for systems of the type and size described in this work. 
+Values for $\fk_\alpha$ and $T$ can be determined from a parameter search checking for convergence of target systems; but $\fk_\alpha=10$ and $T\sim 10^{-4}$ were appropriate for systems of the type and size described in this work. 
 
 One key point which arises from using a cost function in this way is that there becomes no requirement for accurate on\--the\--fly geometry optimisation of the atomic positions (as there is no need to calculate potential energies).
 It is the underlying topology of the network which determines the system properties, which is invariant to the geometry.
@@ -66,9 +66,9 @@ This opens the door for significant speed\--ups through efficient use of the dua
 Whilst the targeted optimisation algorithm can be employed using atomic positions, there are significant advantages to a dual space implementation.
 As discussed in section \ref{s:atomringnetworks}, the ring structure is better described through the use of the dual network. 
 In this representation the ring statistics in equation \eqref{eq:costfunc} are simply given by the node degree distribution. 
-In addition, the mean ring sizes about each ring, $m_j$, required for the Aboav\--Weaire fit (equation \eqref{eq:aboavweaire}) can be easily calculated from the joint degree distribution:
+In addition, the mean ring sizes about each ring, $m_j$, required for the Aboav\--Weaire fit, equation \eqref{eq:aboavweaire}, can be easily calculated from the joint degree distribution:
 \begin{equation}
-	m_j = \sumk \frac{ke_{jk}}{q_k}\,.
+	m_j = \sumk \frac{ke_{jk}}{q_j}\,.
 \end{equation}
 Hence, by utilising the ring network, the book\--keeping to track the network properties becomes trivial.
 
@@ -78,7 +78,6 @@ Hence, by utilising the ring network, the book\--keeping to track the network pr
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=3cm]{./figures/targeted_opt/dualswitch_0.pdf}
-         \vspace{-1mm}
          \caption{}
          \label{fig:dualswitch1}
      \end{subfigure}
@@ -106,11 +105,245 @@ Figure \ref{fig:dualswitch} shows how an atomic system can be manipulated \texti
 Here the triangular nature of the dual (reflecting the trivalency of the atoms) can be exploited to good effect.
 By selecting edge sharing triangles in the ring network and transposing the shared edge connection, a perturbation equivalent to the Stone\--Wales defect can be enacted. 
 This process can be continued to generate an amorphous network. 
-In addition, although there is no requirement for geometry optimisation after each step, the triangle lattice can be used to cheaply maintain a semi\--phyical structure.
-By applying a harmonic potential between all pairs of linked nodes \davidnote{link} etc etc etc. physical, regenerate atomic positions, speedy
+
+In addition, although there is no strict requirement for geometry optimisation after each step, the triangle lattice can be used to maintain a reasonable physical structure in a cost efficient manner.
+By applying a harmonic potential, equation \eqref{eq:harmonic}, between all pairs of linked nodes the ring centroids can be maintained at a reasonable separation.
+The atomic positions can then be regenerated by reversing the triangulation, placing species at the centre of each triangle, relatively close to the minimum in the atomic potential energy surface.
+Specifically, in this chapter a Keating potential, equation \eqref{eq:keating}, is used  with an interatomic separation of $r_0$ and $\fk_S=5\fk_A$ (as in previous studies of amorphous graphene \cite{Kumar2012}).
+If the resultant polygons are assumed to be regular, the equilibrium separation for two polygons in the dual of sizes, $k_i$ and $k_j$, can be expressed:
+\begin{equation}
+	r_{ij}^0 = \frac{r_0}{2}\left(\frac{1}{\tan\left(\pi/k_i\right)}+\frac{1}{\tan\left(\pi/k_j\right)}\right)\,.
+\end{equation}
+The extreme computational efficiency of evaluating the forces of the harmonic potential enables the targeted optimisation algorithm to complete rapidly whilst retaining the essential physics of the system.
+The final geometry can then be refined.
+
+\section{Mapping Configurational Space}
+
+The targeted optimisation algorithm provides a opportunity to gain insight into the physical meaning of the \aw{} and its effect on network topology.
+For this, a variety of test systems are used, the principle of which contains only $5\rightarrow 7$ membered rings, a proxy for amorphous graphene, aG.
+This system represents a useful framework for investigating the \aw{} law due to the presence of additional constraints which make it highly controllable. As a consequence of Euler's law the proportion of $5$\-- and $7$\-- rings must be equal, which leads to a trivial relationship between the second moment and proportion of $6$- rings,
+\begin{equation}
+\label{eq:agcon}
+        p_5=p_7=\frac{1}{2}\left(1-p_6\right), \qquad \mu_2=1-p_6 \,.
+\end{equation}
+In addition, this allows the $\alpha$ parameter to be explicitly defined in terms of the difference between the $5\--5$ and $5\--7$ ring adjacencies:
+\begin{equation}
+	\alpha = \frac{12\chi_{75}^5-\left(1-p_6\right)^2}{6\left(1-p_6\right)}\,,
+\end{equation}
+where $\chi_{75}^5=e_{57}-e_{55}$ (details the derivation can be found in appendix \davidnote{appendix for derivation of aG $\alpha$}.
+This makes the aG model the first example of a system where the $\alpha$ parameter is well defined in terms of the underlying ring structure.
+It also highlights the relative complexity in the \aw{} parameter for even a seemingly simple case.
+
+Two further systems with fixed ring statistics are also used to provide supplementary results.
+These are based on the \zach{} configuration, figure \ref{fig:zach}, and experimental samples of silica glass, which are chosen to provide examples of increasing ring diversity, with the \zach{} sample containing ring sizes in the range $k=4\rightarrow 8$ and silica $k=4\rightarrow 10$. 
+The ring distributions for all the systems used in this chapter are summarised in table \ref{tab:toptpk}.
+In addition whereas the silica distribution should be easily achievable by the targeted optimisation algorithm (essentially following \lm's maximum entropy distribution), the \zach{} distribution provides a more ``extreme'' case, where the distribution is not unimodal and the proportion of $5$-rings is greatest.
+
+%\begin{table}[h]
+%	\centering
+%	\caption{Ring statistics for systems used with the targeted optimisation algorithm.}
+%	\label{tab:toptpk}
+%	\begin{tabular}{c c c c}
+%	\toprule
+%	& aG & Zach. & \sioii \\[0.5mm]
+%	\midrule
+%	$p_4$ & - & $0.1$ & $0.040$ \\ 
+%	$p_5$ & $\left(1-p_6\right)/2$ & $0.35$ & $0.268$ \\
+%	$p_6$ & $p_6$ & $0.15$ & $0.420$ \\
+%	$p_7$ & $\left(1-p_6\right)/2$ & $0.25$ & $0.210$ \\
+%	$p_8$ & - & $0.15$ & $0.050$ \\
+%	$p_9$ & - & - & $0.010$ \\
+%	$p_{10}$ & - & - & $0.002$ \\
+%	\bottomrule	
+%	\end{tabular}
+%\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Ring statistics for systems used with the targeted optimisation algorithm.}
+	\label{tab:toptpk}
+	\begin{tabular}{c c c c c c c c}
+	\toprule
+	& $p_4$ & $p_5$ & $p_6$ & $p_7$ & $p_8$ & $p_9$ & $p_{10}$ \\[0.5mm]
+	\midrule
+	aG &- & $\left(1-p_6\right)/2$ & $p_6$ & $\left(1-p_6\right)/2$ & - & - & -  \\	
+	Zach. & $0.10$ & $0.35$ & $0.15$ &  $0.25$ & $0.15$ & - & - \\	
+	\sioii{} & $0.040$ & $0.268$ & $0.420$ & $0.210$ & $0.050$  & $0.010$ & $0.002$ \\
+	\bottomrule	
+	\end{tabular}
+\end{table}
+
+\subsection{Limits of the \aw{} Parameter}
+
+To begin mapping the configurational space of these atomic networks, the range of accessible $\alpha$ values for the aG system was determined by generating periodic networks containing 10,000 rings with $0.1\leq p_6 \leq 0.9$. 
+The aim of these simulations was to try and probe the topological limits of $\alpha$, and so a high number of \mc{} steps was used, $10^{9}$, without the need for geometry optimisation.
+Visualisations of the output of the targeted optimisation algorithm are given in figure \ref{fig:toptconfigs} for $p_6=0.4$ and $\alpha=-0.3\rightarrow 0.3$.
+These images give a good qualitative feel for the physical meaning of the \aw{} parameter: at low $\alpha$ similar sized rings tightly cluster together, dispersing as $\alpha$ increases to favour dissimilar ring pairings.
+Figure \ref{fig:alphalim} shows the range of accessible $\alpha$ values
+as a function of $p_6$ \ie{} those for which the targeted optimisation algorithm converges.
+The upper limit, $\alpha_{\mathrm{max}}$, appears a relatively weak function of $p_6$ whilst the lower limit, $\alpha_{\mathrm{min}}$, shows a much
+stronger dependence.
+In addition, the range of accessible values, $\Delta\alpha=\alpha_{\mathrm{max}}-\alpha_{\mathrm{min}}$, broadly mirrors the system entropy, although there is deviation around $p_6=1/3$.
+
+\begin{figure}[bt]
+     \centering
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_30.pdf}
+         \caption{$p_6=0.4$, $\alpha=0.3$}
+         \label{fig:toptconfigs1}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_10.pdf}
+         \caption{$p_6=0.4$, $\alpha=0.1$}
+         \label{fig:toptconfigs2}
+     \end{subfigure}
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_-10.pdf}
+         \caption{$p_6=0.4$, $\alpha=-0.1$}
+         \label{fig:toptconfigs3}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_-30.pdf}
+         \caption{$p_6=0.4$, $\alpha=-0.3$}
+         \label{fig:toptconfigs4}
+     \end{subfigure}
+     \hfill
+
+     \caption{Configurations produced via targeted optimisation of an aG network with 400 rings. Each has the same ring statistics ($p_5=0.3$, $p_6=0.4$, $p_7=0.3$) but a variable $\alpha$ parameter.}
+     \label{fig:toptconfigs}
+\end{figure}
+
+\begin{figure}[bt]
+	\centering
+	\includegraphics[width=7cm]{./figures/targeted_opt/topt_alpha_limits.pdf}
+	\caption{Accessible range of the \aw{} parameter in the aG system, for variable $p_6$.}
+	\label{fig:alphalim}
+\end{figure}
 
 
+\subsection{Structure and Energetics}
 
+To explore the structural properties of the aG networks at different values of $p_6$ and $\alpha$, 100 periodic networks containing 10,000 rings, were constructed for $p_6=0.2,0.4,0.6,0.8$. 
+These simulations were performed with geometry optimisation and so also provide information on the physical limits on $\alpha$.
+Figure \ref{fig:toptenergy1} displays the mean and standard deviation of the total potential energy for each $p_6$ atomic network across a range of $\alpha$ values. 
+It can be seen that the energy minimum in each case is only weakly dependent on the value of $p_6$, varying from $\alpha\simeq{0.23}$ at $p_6=0.8$ to $\alpha\simeq{0.27}$ at $p_6=0.2$, and close to the value of $\alpha$ seen across many natural systems. 
+Whilst there is little cost for small deviations from the minimum, decreasing $\alpha$ rapidly incurs a relatively large energetic penalty. 
+Figure \ref{fig:toptenergy2} shows the analogous energies when minimising through the dual lattice alone. 
+The curves have a very similar form with the minima aligned, suggesting that working in dual\--space can be sufficient to capture all system properties, with a much lower computational overhead.
+
+%The overall energetic ordering of the different systems is also reflective of underlying ring structure.
+%As is intuitive, the greater the number of $5$\-- and $7$\-- rings in the aG system the higher the energy minimum.
+%The energy is not necessarily a solely a function of the range of accessible rings.
+%The structures based on the \zach{} statistics are always higher in energy than those with the silica distribution, despite the silica samples containing larger rings.
+%This is a manifestation of the \zach{} networks being inherently more ``unphysical'' as previously discussed.
+
+\begin{figure}[bt]
+     \centering
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_u_graph.pdf}
+         \caption{Minimisation through Atomic Network}
+         \label{fig:toptenergy1}
+     \end{subfigure}
+     \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_u_dual.pdf}
+         \caption{Minimisation through Ring Network}
+         \label{fig:toptenergy2}
+     \end{subfigure}
+
+     \caption{Geometry optimised potential energy of configurations produced via targeted optimisation for a range of systems with variable $\alpha$ parameter, with bars indicating one standard deviation from the mean. Panel (a) gives the results of optimisation through the atomic network with the Keating potential, whilst panel (b) gives the optimisation through the ring network with a simple harmonic potential.}
+     \label{fig:toptenergy}
+\end{figure}
+
+Partial radial distribution functions (RDF) \davidnote{link to methods rdf} can be used to further quantify any ordering imposed on the generated configurations.
+These partial RDFs are constructed in reference to the distance of the centroids of a $k$\--ring from a central $j$\--ring, denoted $g_{jk}\left(r\right)$.
+They can therefore equivalently be thought of as the dual\--space RDFs between nodes of degrees $j$,$k$.
+The Euclidean distance is used as opposed to the topological distance (\ie{} the number of links from a given node) as the latter has been shown to lead to artificial long range correlations \cite{Sadjadi2016}. 
+
+Figures \ref{fig:toptrdf1} and \ref{fig:toptrdf2} show the partial RDFs for the 5\--5 and 5\--7 ring pairings, $g_{55}\left(r\right)$ and $g_{57}\left(r\right)$ respectively \davidnote{add remaining to appendix?}.
+As is consistent with its intuitive meaning, increasing $\alpha$ causes a reduction in intensity in the first peak of $g_{55}\left(r\right)$ and a concomitant increase in intensity in the first peak of $g_{57}\left(r\right)$, as 5\--5 adjacencies are replaced with 5\--7. 
+In addition, the position of the first peak shifts to smaller $r$ as $\alpha$ is reduced, reflecting both the increased distortion in the rings and the deviation from the ideal $2\pi/3$ bond angle, which translates to the higher observed potential energy.
+
+These figures also show significant structural evolution beyond the nearest-neighbour length scale. 
+As $\alpha$ becomes more positive, peaks emerge in $g_{55}\left(r\right)$ at $r/r_{55}^0\sim{1.8}$ and $\sim{2.3}$. 
+An increase in $\alpha$ corresponds to a greater tendency for 7\--rings to
+be near\--neighbours to 5\--rings and, in turn, increases the probability of the same 7\--ring having a second 5\--ring near\--neighbour. 
+In simple geometric terms, the second 5\--ring can occupy three possible sites around the 7\--ring \davidnote{fig here maybe, and for 8-4-8}, the non\--adjacent positions corresponding to the developing peaks. 
+Note that one might na\"ively assume that driving $\alpha$ to more positive values would tend to eliminate the nearest-neighbour 5\--5 spatial correlations. However, figure \ref{fig:toptrdf1} indicates this not to be the case, reflecting the balance between retaining these units and facilitating nearest\--neighbour 5\--7 ring interactions via the formation of 5\--7\--5 triplets.
+
+Similar analysis was performed on 100 generated \zach{} and \sioii{} networks.
+Although our algorithm requires the fit to equation \eqref{eq:aboavweaire} to be exactly linear for the aG system, for broader ring distributions this is no longer the case. 
+However, for the \zach{} configuration the linear regression ($R^2$) coefficient was always in excess of $0.995$, and for the silica the average $R^{2}$ was $0.979$, representing a very good fit. 
+Figure \ref{fig:topt1} shows the energies of both the \zach{} and \sioii{} systems as a function of $\alpha$. 
+Both cases resemble those for the aG with energy minima at $\alpha\sim{0.25}$. The silica curve shows smaller curvature reflecting the broader distribution
+of ring sizes whilst the \zach{} curve shows a greater curvature reflecting the ``extreme'' \ie{} physically unrealistic) nature of the distribution.
+In addition it proved difficult to generate low $\alpha$ configurations ($\alpha<-0.1$) for the Zachariasen network.
+
+
+Figures \ref{fig:toptrdf3} and \ref{fig:toptrdf4} show two key RDFs for the \zach{} configuration, $g_{44}\left(r\right)$ and $g_{88}\left(r\right)$, highlighting the spatial correlations between the smallest and largest rings in the system. 
+The effects of changing $\alpha$ on $g_{44}\left(r\right)$ are dramatic with strong nearest\--neighbour clustering at negative values. 
+In this case, however, the nearest-neighbour 4-4 correlations do vanish at high $\alpha$ as 4\--8 nearest\--neighbour correlations dominate but the 8\--ring is large enough to accommodate up to four 4\--ring nearest\--neighbours without any 4\--4 neighbouring pairs. 
+Again this is demonstrated through the next nearest neighbours by the 8\--4\--8 peak developing at $\sim 1.4$.
+
+\begin{figure}[bt]
+     \centering
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/partial_gr_55_567.pdf}
+         \caption{}
+         \label{fig:toptrdf1}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/partial_gr_57_567.pdf}
+         \caption{}
+         \label{fig:toptrdf2}
+     \end{subfigure}
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/partial_gr_44_zach.pdf}
+         \caption{}
+         \label{fig:toptrdf3}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/targeted_opt/partial_gr_88_zach.pdf}
+         \caption{}
+         \label{fig:toptrdf4}
+     \end{subfigure}
+     
+     \caption{Partial RDFs for the aG (a)\--(b) and \zach{} (c)\--(d) systems illustrate the evolution in ring structure with varying $\alpha$ parameter.}
+     \label{fig:toptrdf}
+\end{figure}
+
+\section{Chapter Summary}
+
+An innovative method has been presented to generate \td{} materials with well defined topology. 
+This targeted \mc{} search algorithm allows configurations to be constructed which have precise ring size distributions and ring\--ring correlations.
+The advantage of this approach is that configurations can be produced rapidly with controllable properties; which may lie outside experimentally or physically accessible regions of phase space.
+These configurations may then be used as starting points for further investigations.
+For example, the algorithm outlined in this work has already been utilised to study the mechanical properties of vitreous silica under deformation \cite{Bamer2020,Ebrahem2020a}.
+\davidnote{Oli's thesis also}
+In this chapter the targeted optimisation method was employed to probe the physical meaning of the \aw{} parameter.
+The effect of $\alpha$ on the ring structure has been quantified through partial RDFs.
+In addition the energetic minima for a range of systems has been shown to correspond well with values commonly found in nature.
+
+ 
 
 
 

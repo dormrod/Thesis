@@ -99,9 +99,10 @@ In order to simulate bilayer systems in two\--dimensions, a suitable potential m
 The model used here is modified from a relatively simple potential used in all\--atom bilayer calculations \cite{Wilson2013,Wilson2018}. 
 Each \sioiii{} unit has a harmonic potential acting between all three Si\---O pairs, and the three nearest\--neighbour O\---O pairs, given by:
 \begin{equation}
-	\mathcal{U}_{ij} = \frac{k}{2}\left(r_{ij}-r_{ij}^{0}\right)^{2},
+	\label{eq:harmonic}
+	\mathcal{U}_{ij} = \frac{\fk}{2}\left(r_{ij}-r_{ij}^{0}\right)^{2},
 \end{equation}
-where $k$ is a constant, $r_{ij}$ is the interatomic separation and $r_{ij}^{0}$ the equilibrium interatomic separation between $i$, $j$. 
+where $\fk$ is a constant, $r_{ij}$ is the interatomic separation and $r_{ij}^{0}$ the equilibrium interatomic separation between $i$, $j$. 
 The spring constant, $k$, is set to be very stiff, whilst the equilibrium separations are set according to elemental species such that $r_{\text{OO}}^{0}=\sqrt{3}\,r_{\text{SiO}}^{0}$, maintaining a set of ideal \sioiii{} triangles. 
 
 The Si\---O\---Si angle, which determines the strain associated with different ring sizes, is controlled by a shifted and cut 24\--12 potential of the form:
@@ -155,7 +156,7 @@ Using the model detailed above, a Monte Carlo construction algorithm has been de
 The probability of a ring of size $k$ being accepted, $P_k$, is given by the equation:
 \begin{equation}
 	\label{eq:probdist}
-	P_k=\frac{ \exp{-\left(\mathcal{U}_{k}-\mathcal{U}_k\right)/T}}{\sum\limits_{k}\exp{-\left(\mathcal{U}_{k}-\mathcal{U}_{0}\right)/T}},
+	P_k=\frac{ \exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_k\right)/T\right]}}{\sum\limits_{k}\exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_{0}\right)/T\right]}},
 \end{equation}
 where $\mathcal{U}_k$ and $\mathcal{U}_{0}$ correspond to the energy of the trial structure and lowest energy of all trial structures respectively, and $T$ is a ``temperature''. 
 The parameter $T$ controls how easily the potential energy landscape can be explored, and therefore how accessible strained rings become. 
@@ -570,7 +571,7 @@ the values obtained here are more commensurate with those obtained
 from experimental imaging compared with previously constructed configurations.
 The high throughput method has allowed a detailed analysis of \lm's
 law and has highlighted why the fraction of six-membered rings observed
-in real systems is often $\approx$0.4. 
+in real systems is often $\sim$0.4. 
 Finally, a consideration of the ring areas show our configurations to contain more regular polyhedra than a number of previous configurations. 
 However, the area itself is shown to be a relatively poor measure of a deviation from ideality for systems of this type.
 
