@@ -1,0 +1,74 @@
+\chapter[Extension to Generic Physical Networks]{Extension to Generic Physical \\ Networks}
+\label{ch:generalnetworks}
+
+\begin{chapterabstract}
+The properties of a wide range of physical \td{} networks are investigated by formulating a generalised network theory.
+The methods developed are shown to be applicable to a wide range of systems generated from both computation and experiment; incorporating atomistic materials, foams, fullerenes, colloidal monolayers and geopolitical regions.
+The ring structure in physical networks is described in terms of robust measures from network science: the node degree distribution and the assortativity.
+These quantities are linked to previous empirical measures such as \lm's law and the Aboav\--Weaire law.
+The effect on these network properties is explored by systematically changing the coordination environments, topologies and underlying potential model of the physical system.
+\end{chapterabstract}
+
+\section{Two\--Dimensional Networks in Nature}
+
+So far this thesis has focussed on 3\--coordinate atomic networks such as silica and amorphous graphene.
+These atomic systems can however be considered a subset of a much larger class of \td{} networks which occur throughout the natural world.
+Such networks emerge across all disciplines and span many orders of magnitude in size.
+In physical sciences random tessellations are not restricted to atomic materials, but are observed in foams, crack\--patterns  (in dessicated films, ceramics \etc) as well as in colloidal films through the Voronoi construction \-- to name a few \cite{Durand2011,Tong2017,Noever1992,Ma2019,Earnshaw1994,Allain1995,Moncho-Jorda2000}.
+Similar mosaics can also be seen in the biological world in the form of epithelial cells and polymer networks such as collagen \cite{Honda1978,Carter2017,Kim2016,Broedersz2014}, as well as in geology in the guise of rock formations and geography in context of geopolitical borders \cite{Weaire1984,Goehring2014,LeCaer1993}.
+Whilst this last example may seem to fall into the category of seemingly more esoteric offerings in the literature (including for instance crocodile scales and oil paintings \cite{Milinkovitch2019,Flores2017}), it provides an interesting insight into the formation of tessellations through random point processes.
+Although man\--made maps are nominally carefully constructed, the influence of random geographical features serve to generate tessellations which are entirely consistent with others found in the natural world.
+
+This is to say that the study of inorganic chemical networks fits into a wider remit of understanding the behaviours of generic physical networks.
+Similarly the techniques and theory used to model and characterise atomic networks can be readily deployed to understand a wide range of other complex physical systems.
+Therefore the focus of this chapter is on extending theory and computational methods to study general \td{} networks which are physically motivated (\ie{} have an underlying physical potential model). 
+To demonstrate the effectiveness and potential of this approach, results will be compared to those from a wide variety of experimental systems.
+
+\section{Generalised Network Theory}
+
+A consequence of the universality of \td{} networks is that both the language and the metrics used to describe then varies considerably between fields, as demonstrated in table \ref{tab:genterms}.
+From a nano\--materials perspective there are rings formed from a set of bonded atoms, in crystals there are grains separated by boundaries and in biological tissues cells which divide.
+Further complication may arise from the concept of graph duality, where ring structure emerges only after transforming the physical coordinates.
+In the context of colloidal monolayers for instance, rings are generated using the Voronoi construction; where the vertices have no real manifestation and the particle positions are the simplices in the dual Delaunay triangulation.
+In addition as seen in previous chapters, there remains a prevalence of empirical laws to describe their structure.
+
+\begin{table}[bt]
+	\centering
+     \caption{Terminology to describe ring structure in literature reflects the diversity of the underlying physical systems.}
+     \label{tab:genterms}
+     \begin{tabular}{cc}
+     \toprule
+     Term & Synonyms and Examples \\
+     \midrule
+     Ring & Face, polygon, cell, grain, pore, Voronoi cell\\
+     Network & Graph, tiling, packing, tessellation, partition, \\
+     & arrangement, decomposition, net, mosaic\\
+     Link & Edge, bond, boundary, interface \\
+     Node & Vertex, point, atom \\
+     \bottomrule
+     \end{tabular}
+\end{table}
+
+Network science offers an opportunity to unite the study of these disparate physical systems through a generalised theory.
+Much of the groundwork for this has been laid in chapter \ref{ch:networktheory}, but there are some important additions, namely the introduction of the assortativity to describe ring\--ring correlations.
+Firstly, some of the key aspects which were introduced in chapter \ref{ch:networktheory} will be briefly recapped and extensions highlighted.
+
+Chapters \davidnote{link} of this thesis focussed on planar atomic systems which had a fixed coordination of three.
+The main difference in this chapter is that the scope has increased to include networks with variable coordination and topologies.
+For generic physical networks the equivalent of the atomic coordination number, $c$, is not necessarily precisely defined by an atomic species. 
+The consequence of this is that the mean ring size as dictated by Euler's law is no longer always six, but rather determined by equations \eqref{eq:2dplanarcases},\eqref{eq:2dsphericalcases}; so that for example a network of $c=4$ will have a mean ring size of $\ki=4$.
+That being said, the majority of naturally occurring networks still have $c=3$, as higher order sites are unstable with respect to small perturbations, with for example a 4\--coordinate site readily splitting into two 3\--coordinate sites \cite{Caer1993}.
+In addition, the node degree distribution of the ring network, $p_k$, (equivalent to the ring statistics) is still an important measure and is expected to follow \lm's maximum entropy distribution \eqref{eq:mepk}.
+
+XXX START TO TALK ABOUT AW XXX
+
+\subsection{Deficiencies in the \aw{} Law}
+
+\subsection{Assortativity as a Measure of Ring Correlations}
+
+
+
+
+
+
+
