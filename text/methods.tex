@@ -373,7 +373,7 @@ For a \td{} system the Keating potential has the form:
 \begin{equation}
 	\label{eq:keating}
 	\pen = \frac{3}{16}\frac{\fk_S}{r_0^2}\sum_{\substack{i,j \in \\ \text{stretches}}} \left(r_{ij}^2-r_0^2\right)^2+
-	\frac{3}{8}\frac{\fk_A}{r_0^2}\sum_{\substack{ijk \in \\ \text{angles}}}\left(r_{ij}r_{ik}\cos\theta_{i,j,k}+d_0^2\cos\theta_0\right)^2 \,,
+	\frac{3}{8}\frac{\fk_A}{r_0^2}\sum_{\substack{ijk \in \\ \text{angles}}}\left(r_{ij}r_{ik}\cos\theta_{ijk}-r_0^2\cos\theta_0\right)^2 \,,
 \end{equation}
 where $r_{ij}$ the distance and $\theta_{ijk}$ the angle between particles; whilst $\fk_S$ and $\fk_A$ are the force constants for the stretching and angular terms respectively \cite{Kumar2012}.
 This potential drives the system towards equilibrium values of $r_0$ for the bond lengths and $\theta_0$ for the bond angles.
@@ -409,7 +409,7 @@ It has the following scheme:
 	\item Set $\mathbf{r}_{i+1}=\mathbf{r}_i+\lambda_{\text{min}} \mathbf{F}_i$
 	\item Evaluate convergence and repeat steps 1-4 if $\left|\mathcal{U}_{i+1}-\mathcal{U}_i\right|>\gamma$
 \end{enumerate}
-The calculation of forces in stage 2 will depend on the potential model used, details of which are given in appendix \davidnote{Add appendix for force calculations...eugh}.
+The calculation of forces in stage 2 will depend on the potential model used, details of which are given in appendix \ref{app:forces}.
 Note that stage 3 also requires a minimisation routine, which may seem counter\--intuitive. 
 However, this is a one\--dimensional minimisation which trivial to estimate with a line search method \davidnote{appendix?}.
 The tightness of the convergence condition is set through the parameter $\gamma$.

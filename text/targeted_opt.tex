@@ -68,6 +68,7 @@ As discussed in section \ref{s:atomringnetworks}, the ring structure is better d
 In this representation the ring statistics in equation \eqref{eq:costfunc} are simply given by the node degree distribution. 
 In addition, the mean ring sizes about each ring, $m_j$, required for the Aboav\--Weaire fit, equation \eqref{eq:aboavweaire}, can be easily calculated from the joint degree distribution:
 \begin{equation}
+	\label{eq:mjejklink}
 	m_j = \sumk \frac{ke_{jk}}{q_j}\,.
 \end{equation}
 Hence, by utilising the ring network, the book\--keeping to track the network properties becomes trivial.
@@ -128,6 +129,7 @@ This system represents a useful framework for investigating the \aw{} law due to
 \end{equation}
 In addition, this allows the $\alpha$ parameter to be explicitly defined in terms of the difference between the $5\--5$ and $5\--7$ ring adjacencies:
 \begin{equation}
+	\label{eq:agalpha}
 	\alpha = \frac{12\chi_{75}^5-\left(1-p_6\right)^2}{6\left(1-p_6\right)}\,,
 \end{equation}
 where $\chi_{75}^5=e_{57}-e_{55}$ (details the derivation can be found in appendix \davidnote{appendix for derivation of aG $\alpha$}.

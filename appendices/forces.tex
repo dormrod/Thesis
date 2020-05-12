@@ -1,0 +1,111 @@
+\chapter{Calculation of Forces}
+\label{app:forces}
+
+The calculation of forces from a given potential model is central to the geometry optimisation routines (see section \ref{s:geomopt}) employed in many algorithms in this thesis.
+This appendix derives the equations used to calculate the forces for the potentials covered throughout this work.
+The notation used will aim to be consistent, and is outlined as follows.
+An position vector is denoted by $\vr=\left[r_1\, r_2\right]^{T}$, with:
+\begin{align}
+	\vrij=\vrj-\vrj\,, \\
+	r_{ij}=\abs{\vrij}\,, \\
+	\vhrij=\frac{\vrij}{r_{ij}}\,.
+\end{align}
+The derivative of a function with respect to $\vr$ is then given by $\frac{\partial f\left(\vr\right) }{\partial \vr}=\left[\frac{\partial f\left(\vr\right)}{\partial r_1}\, \frac{\partial f\left(\vr\right)}{\partial r_2}\right]^{T}$.
+It therefore follows that:
+\begin{align}
+	\frac{\partial r_{ij}}{\partial\vrij}=\vhrij\,,\quad \frac{\partial r_{ij}}{\partial \vri}=-\vhrij\,,\quad \frac{\partial r_{ij}}{\partial \vrj}=\vhrij \,.
+\end{align}
+
+Angles are denoted by $\theta_{ijk}$, representing the angle between $\vrij$ and $\vrik$. 
+It will also be useful to determine the derivative of the cosine of angles with respect to a position vector:
+\begin{align}
+	\frac{\partial \cos\theta_{ijk}}{\partial \vrj} &= \frac{\partial}{\partial \vrj}\left(\frac{\vrij\cdot\vrik}{r_{ij}r_{ik}}\right) \nonumber \\[0.5em]
+	&= \frac{r_{ij}r_{ik}\vrik-\vrij\cdot\vrik\vhrij\vrik}{r_{ij}^2r_{ik}^2} \nonumber \\[0.5em]
+	&= \frac{1}{r_{ij}}\left(\vhrik-\vhrij\cdot\vhrik\vhrij\right) \nonumber \\[0.5em]
+	&= \frac{1}{r_{ij}}\left(\vhrik-\cos\theta_{ijk}\vhrij\right)\,,
+\end{align}
+and similarly
+\begin{equation}
+	\frac{\partial \cos\theta_{ijk}}{\partial \vrk} = \frac{1}{r_{ik}}\left(\vhrij-\cos\theta_{ijk}\vhrik\right)\,.
+\end{equation}
+These relationships form the basis to derive the forces for the various stretching and angular potentials used in this thesis.
+
+The force on a given particle at $\vri$ is given by the negative derivative of the potential:
+\begin{equation}
+	\vfi=-\frac{\partial \mathcal{U}}{\partial \vri}\,.
+\end{equation}
+As forces are conservative, the sum of the forces on all particles must be zero \ie{} for stretching and angular terms respectively:
+\begin{align}
+	\vfi &= -\vfj\,, \label{eq:fistretch}\\
+	\vfi &= -\vfj -\vfk. \label{eq:fiangle}\
+\end{align}
+In the following sections $\fk$ denotes a force constant and a subscript zero an equilibrium value.
+
+\section{Harmonic Stretching Potential}
+
+The harmonic stretching potential is a simple bonding potential that approximates many atomic potentials at small displacements.
+The interaction between two particles at separation $\vrij$ is given by:
+\begin{equation}
+	\mathcal{U} = \frac{\fk}{2}\left(r_{ij}-r_0\right)^2\,.
+\end{equation}
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial r_{ij}} \frac{\partial r_{ij}}{\partial \vrj} = -\fk\left(r_{ij}-r_0\right)\vhrij\,,
+\end{align}
+with $\vfi$ given by equation \eqref{eq:fistretch}.
+
+\section{Quartic Stretching Potential}
+
+The quartic stretching potential is related to the harmonic potential, but is even more computationally efficient as there is no square root operations are required.
+The interaction between two particles at separation $\vrij$ is given by:
+\begin{equation}
+	\mathcal{U} = \frac{\fk}{4}\left(r_{ij}^2-r_0^2\right)^2\,.
+\end{equation}
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial r_{ij}} \frac{\partial r_{ij}}{\partial \vrj} = -\fk\left(r_{ij}^2-r_0^2\right)\vrij\,,
+\end{align}
+with $\vfi$ given by equation \eqref{eq:fistretch}.
+
+\section{Harmonic Cosine Angle Potential}
+
+In analogue with the stretching potential, the harmonic cosine angle is a elegant yet simple form angular potential, utilising the cosine function to reduce overheads when calculating angles.
+The interaction between three particles with angle $\theta_{ijk}$ is given by:
+\begin{equation}
+	\mathcal{U} = \frac{\fk}{2}\left(\cos\theta_{ijk}-\cos\theta_0\right)^2\,.
+\end{equation}
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial \cos\theta_{ijk}} \frac{\partial \cos\theta_{ijk}}{\partial \vrj} \nonumber \\ 
+	&=-\frac{\fk}{r_{ij}}\left(\cos\theta_{ijk}-\cos\theta_0\right)\left(\vhrik-\cos\theta_{ijk}\vhrij\right) \,,
+\end{align}
+with $\vfk$ having an analogous form and $\vfi$ given by equation \eqref{eq:fiangle}.
+
+\section{Restricted Bending Potential}
+
+The restricted bending (ReB) potential is a modification on the harmonic cosine angle potential which diverges at $\theta_{ijk}=0,\pi$, ensuing angles cannot become reflex.
+The interaction between three particles with angle $\theta_{ijk}$ is given by:
+\begin{equation}
+	\mathcal{U} = \frac{\fk}{2}\frac{\left(\cos\theta_{ijk}-\cos\theta_0\right)^2}{\sin^2\theta_{ijk}}\,.
+\end{equation}
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial \cos\theta_{ijk}} \frac{\partial \cos\theta_{ijk}}{\partial \vrj} \nonumber \\ 
+	&=-\frac{\fk}{r_{ij}\sin^4\theta_{ijk}}\left(\cos\theta_{ijk}-\cos\theta_0\right)\left(1-\cos\theta_{ijk}\cos\theta_0\right)\left(\vhrik-\cos\theta_{ijk}\vhrij\right) \,,
+\end{align}
+with $\vfk$ having an analogous form and $\vfi$ given by equation \eqref{eq:fiangle}.
+
+\section{Keating Potential}
+
+The Keating potential combines the quartic stretching potential with a computationally efficient angle potential of the form:
+\begin{equation}
+	\mathcal{U} = \frac{\fk}{2}\left(\vrij\cdot\vrik-r_0^2\cos\theta_0\right)^2\,
+\end{equation}
+for three particles with an angle given by $\vrij$ and $\vrik$.
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial \vrj} \nonumber \\ 
+	&=-\fk\left(\vrij\cdot\vrik-r_0^2\cos\theta_0\right)\vrik \,,
+\end{align}
+with $\vfk$ having an analogous form and $\vfi$ given by equation \eqref{eq:fiangle}.
+
