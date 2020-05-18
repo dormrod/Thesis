@@ -16,6 +16,7 @@ These can be prepared experimentally by chemical vapour deposition on metal and 
 As in the three\--dimensional glass, the basic building blocks of silica bilayers are vertex sharing \sioiv{} tetrahedra, maintaining full coordination for all atoms in the bulk \cite{Wilson2013}.
 These are arranged such that three of the vertices are connected to tetrahedra in the same layer, with the final vertex being shared between layers acting as a ``bridge'' (figure \ref{fig:bilayer1}).
 A consequence of these bridging oxygen atoms is to enforce a symmetry plane between the upper and lower layers. \davidnote{Put more bilayer stuff in intro?}
+\marknote{Could do. It's ok here as background as it makes the chapter more self contained.}
 
 Topologically, the symmetry plane means that these materials can be viewed as effective \td{} networks.
 Taking one of the layers, without the bridging oxygens, and projecting the atoms onto the horizontal plane reveals a representation of vertex sharing triangles, referred to as a triangle raft (figure \ref{fig:bilayer2}).
@@ -25,6 +26,9 @@ Indeed, scanning tunnelling microscopy (STM) has been used to directly visualise
 More recently experimentalists have also succeeded in synthesising bilayers of germania, \geoii{} \cite{Lewandowski2018,Lewandowski2019}.
 These have the same fundamental structure as \sioii{}, but with more distorted tetrahedra \davidnote{Why again...some inorganic stuff...}.
 This can lead to a build up of strain and rumpling of the tetrahedral layers.
+\marknote{Have you discussed somewhere why they are doing this? Control of the pore size and pote
+density critical for gas separation applications....}
+\marknote{Note somewhere that making the GeO2 analogue is more difficult experimentally.....}
 
 \begin{figure}[bt]
      \centering
@@ -62,7 +66,7 @@ This can lead to a build up of strain and rumpling of the tetrahedral layers.
 
 As mentioned in the  introduction, both \abinitio{} methods and classical molecular dynamics have been used in computational studies of silica bilayers, which often require a starting atomistic configuration  \cite{Bjorkman2013,Malashevich2016,Wilson2013,Roy2018}.  
 One approach is to simply take an experimental sample as the starting structure. 
-Whilst this is on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine'' enough for use in computational studies.
+Whilst this is on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine'' enough for use in computational studies. \marknote{Could lose the end of the sentence - implies calculations betters than experiments?}
 Additionally, the location of each atom has an associated uncertainty which leads to discrepancies in the observed bond lengths and angles, which can be compounded by any out\--of\--plane distortions.
 Whilst computational refinement can attenuate these problems \cite{Sadjadi2017,Wilson2018}, there remains the more fundamental question of how ``typical'' the available images are from experiment, as STM provides exceptional information but only on relatively small sample sizes.
 Computational techniques can therefore prove a valuable tool for generating a large number of high\--quality configurations, and corroborating experimental information.  
@@ -128,6 +132,7 @@ meaning of the system ``temperature'' as discussed below.
 The only requirement is that they generate energies of the same magnitude to allow for efficient
 structural evolution.
 \davidnote{Accompanying figure?}
+\marknote{Probably a good idea.}
 
 \subsection{Algorithmic Details}
 
@@ -483,7 +488,7 @@ It can now be proposed why the experimental amorphous distributions are found wi
 The system aims to maximise entropy by obtaining a ring distribution along the \lm{} curve with the minimum $p_6$ possible. 
 However, for $p_6<0.4$ the energetic cost becomes prohibitively large, as higher entropy distributions can only be achieved by increasing the proportion of extreme ring sizes at the expense of relatively low strain 5- and 7- rings.
 Interestingly it is also evident why no configurations are present below $p_6\approx 0.16$, even at the highest temperature.
-Below this point, the entropy of $\br{4}{10}$ system decreases whilst the energy continues to rise and so there is no driving force to sample this area of phase space.
+Below this point, the entropy of \marknote{the?} $\br{4}{10}$ system decreases whilst the energy continues to rise and so there is no driving force to sample this area of phase space.
 
 \subsection{Physical Properties}
 
