@@ -29,4 +29,5 @@ thesis.mn
 *.bbl
 *.blg
 *.log
+*.png
 figures/draft/*
