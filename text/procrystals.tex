@@ -1,8 +1,9 @@
-\chapter[Order and Disorder in Procrystalline Lattices]{Order and Disorder in \\ Procrystalline Lattices} 
+\chapter[Partial Ordering in Procrystalline Lattices]{Partial Ordering in \\ Procrystalline Lattices} 
 
 \begin{chapterabstract}
-Recent work has introduced the term ``procrystalline'' to define systems which lack translational symmetry but have an underlying high symmetry lattice, owing to a difference between the coordination numbers of the molecular units and natural coordination of the underlying lattice.
-These materials are expected to exhibit structural properties between crystalline and amorphous phases.
+Recent work has introduced the term ``procrystalline'' to define systems which lack translational symmetry but have an underlying high symmetry lattice.
+This behaviour arises owing to a difference between the coordination numbers of the molecular units and natural coordination of the underlying lattice.
+These materials are expected to exhibit structural properties in between crystalline and amorphous phases.
 The network properties of a range of these procrystals are investigated, encompassing a range of coordination environments.
 Configurations are generated using a zero\--temperature \mc{} method, whilst simpler lattices are also considered analytically.
 Procrystals are shown to be rare examples of systems with violate \lm{}'s law, whilst also displaying assortativities different to those calculated for amorphous materials.
@@ -50,7 +51,7 @@ More strikingly, a system of percolating rings once again emerges, highlighted i
 The local environment around each node in a procrystal is therefore identical, leading them to appear crystalline in their atomic RDFs and structure factors. 
 However, considering the network in its entirety with both nodes and links, it is clear an infinite procrystalline lattice has no unit cell.
 As such procrystals can be considered to sit somewhere in between traditional crystals and the amorphous materials discussed in previous chapters.
-This ``partial disordering'' is expected to be reflected in their structural and electronic properties.
+This partial ordering is expected to be reflected in their structural and electronic properties.
 
 Experimentally there are several systems which can be thought of as realisations of procrystals. 
 These include self-assembled molecular monolayers, classical bond valence solids, mixed-anion perovskites, and order/disorder ferroelectrics \cite{Blunt2008,Anderson1973,Camp2012,Comes1968}.
@@ -62,8 +63,8 @@ Again although the future focus of the field may be lie more in three\--dimensio
 In this chapter a range of \td{} procrystalline systems will be investigated based on a selection of underlying high symmetry lattices and node coordination numbers.
 Figure \ref{fig:symlat} details the high symmetry lattices that form the basis of these procrystals.
 These regular and semi\--regular tilings have been chosen to provide a series of underlying coordination numbers in the range $4\rightarrow6$, whilst also occurring across various theoretical and experimental studies on \td{} materials.
-The $4$\--coordinate tilings considered are the square \cite{Algara-Siller2015,Zhu2017,Hibble2011} and trihexagonal (also known as kagome) \cite{Zheng2014,Postulka2016,Chen2011} nets,
-the $5$\--coordinate tilings are the elongated\--triangular \cite{Griffith2018} and snub\--square \cite{Urgel2014,Kryuchkov2018,Song2015,Pineros2016} nets, and the $6$\--coordinate tiling is the triangular net. 
+The $4$\--coordinate tilings considered are the square and trihexagonal (also known as kagome) nets \cite{Algara-Siller2015,Zhu2017,Hibble2011,Zheng2014,Postulka2016,Chen2011},
+the $5$\--coordinate tilings are the elongated\--triangular and snub\--square nets \cite{Griffith2018,Urgel2014,Kryuchkov2018,Song2015,Pineros2016}, and the $6$\--coordinate tiling is the triangular net. 
 
 \begin{figure}[bt]
      \centering
@@ -98,6 +99,7 @@ the $5$\--coordinate tilings are the elongated\--triangular \cite{Griffith2018} 
      \end{subfigure}
      \hfill
      
+     \vspace{0.5cm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.5cm]{./figures/procrystals/tri.pdf}
@@ -142,7 +144,7 @@ Firstly, one can attempt to find all possible arrangements for a lattice of give
 Whilst exact tiling gives a complete view of the procrystalline landscape, it will be seen that even with optimisations it quickly becomes computationally intractable.
 
 The second approach is to sample configurations using a stochastic method such as \mc{} sampling.
-This allows procrystalline configurations to be generated which are representative of the wider landscape for far larger lattice dimensions.
+This allows procrystalline configurations to be generated which are representative of the wider landscape, for far larger lattice dimensions.
 This has the advantage of mitigating any effects of enforcing periodicity, and will be the primary method used to generate procrystals in this work.
 
 \subsection{Exact Tiling Algorithm}
@@ -151,7 +153,7 @@ The exact tiling algorithm finds all procrystalline lattices for a given lattice
 It has been used here to investigate the \pro{4}{3}square lattice.
 The method starts from the observation that there are seven possibilities for each square in the procrystalline lattice (some of which are symmetry related) forming the $1\times 1$ tiles in figures \ref{fig:et1x1_0}\--\ref{fig:et1x1_6} (these are colour coded by a central circle).
 These $1\times 1$ tiles can be stacked to produce $1\times 2$ tiles, of which there are 22 possibilities that satisfy internal coordination requirements (but are not necessarily periodic), the first 5 of which are given in figures \ref{fig:et2x1_0}\--\ref{fig:et2x1_4}.
-Again these can in turn be stacked to yield 84 $2\times 2$ building blocks, a selection of which are given in figures \ref{fig:et2x2_0}\--\ref{fig:et2x2p_3}.
+Again these can in turn be stacked to yield 84, $2\times 2$ building blocks, a selection of which are given in figures \ref{fig:et2x2_0}\--\ref{fig:et2x2p_3}.
 
 \begin{figure}[bt]
      \centering
@@ -361,7 +363,7 @@ It is a zero\--temperature \mc{} algorithm which proceeds as follows:
 	\item Repeat steps 2 and 3 until all dangling bonds have been removed and all node coordinations are satisfied.
 	The final lattice is then in the procrystalline state.
 \end{enumerate}
-This process is demonstrated for an $8\times 8$ \pro{4}{3}square lattice in figure \ref{fig:promc}.
+This process is demonstrated for an $8\times 8$, \pro{4}{3}square lattice in figure \ref{fig:promc}.
 One aspect of note is that as removing the dangling bonds often requires a correlated motion, it becomes increasingly difficult to remove defects as they reduce in number.
 Furthermore the structure obtained with a small number of dangling bonds can be quite different to the final procrystalline network as a consequence of the required reorganisation.
 
@@ -468,6 +470,7 @@ The first are networks generated from bond switching at infinite temperature \da
 The second are series of crystalline motifs of the form $8-6^i-5^2$ and $8-6^i-4$ for $0\leq i\leq3$ (the nomenclature indicating the number of each ring size in the unit cell) taken from Altman \etal{} \cite{Malashevich2016}.
 
 \subsection{Ring Size Distributions}
+\label{s:pro3pk}
 
 The first structural measure that will be investigated is the ring size distribution.
 These will be compared to the maximum entropy (ME) distributions given by equation \ref{eq:prome}, with the accessible $k$\--range for each procrystal outlined in section \ref{s:pro3} above. 
@@ -540,7 +543,7 @@ These distributions act to highlight how the different tilings impose additional
 As discussed above, for the \pro{4}{3}square lattice only even\--membered rings are allowed.
 In addition, the $V=16$ lattice is small enough to explicitly calculate all the possible lattices using the exact tiling method.
 These are depicted in figure \ref{fig:pro3pksq} and the corresponding ring statistics are provided in table \ref{tab:sqV16}.
-The overall ring statistics of the $V=16$ case can then be shown to be a simple weighted average of these tilings, namely: $p_4=\frac{20}{51}$, $p_6=\frac{14}{51}$, $p_8=\frac{14}{51}$, $p_{10}=\frac{3}{51}$.
+The overall ring statistics of the $V=16$ case can then be shown to be a simple weighted average of these tilings, namely: $p_4=\frac{80}{204}$, $p_6=\frac{56}{204}$, $p_8=\frac{56}{204}$, $p_{10}=\frac{12}{204}$.
 This gives confidence that the configurations generated via \mc{} are appropriately sampling the phase space.
 As the lattice size increases, the ring statistics initially change markedly, before settling on values close to the ME distribution.
 This demonstrates that there are important system size effects, the most obvious of which is the largest ring size which can be supported.
@@ -771,35 +774,35 @@ The assortativity for these systems is likewise closer to the random limit of $r
 \begin{figure}[bt]
      \centering
      
-     \begin{subfigure}[b]{0.37\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/procrystals/pro3_p6_mu2.pdf}
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro3_p6_mu2.pdf}
          \caption{}
          \label{fig:pro3p6mu2}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.61\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/procrystals/pro3_p6_r.pdf}
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro3_p6_r.pdf}
          \caption{}
          \label{fig:pro3p6r}
      \end{subfigure}
      
-     \begin{subfigure}[b]{0.37\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/procrystals/pro3_ss_mu2.pdf}
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro3_ss_mu2.pdf}
          \caption{}
          \label{fig:pro3p6ssmu2}
      \end{subfigure}
      \hfill
-        \begin{subfigure}[b]{0.6\textwidth}
+        \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/procrystals/pro3_ss_r.pdf}
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro3_ss_r.pdf}
          \caption{}
          \label{fig:pro3p6ssr}
      \end{subfigure}
      
-     \caption{Panels (a) and (b) plot the second moment of the ring statistics, $\mu_2$, against the assortativity, $r$, respectively for the largest lattice dimension investigated for each procrystal, as well as for selected crystals and CRNs. Panels (c) and (d) plot these same average values for procrystals of increasing lattice dimensions to highlight any system size effects.}
+     \caption{Panels (a) and (b) plot the second moment of the ring statistics, $\mu_2$, against the assortativity, $r$, respectively for the largest lattice dimension investigated for each procrystal, as well as for selected crystals and CRNs. Panels (c) and (d) plot these average values for procrystals of increasing lattice dimensions to highlight any system size effects.}
      \label{fig:pro3p6mu2r}
 \end{figure}
 
@@ -838,7 +841,234 @@ Careful observation of figure \ref{fig:pro3pktrihex} allows the joint degree dis
 \end{equation} 
 This corresponds to $r=-101/367\approx -0.275$, as measured from simulation.
 
-System size effects for the procrystalline lattices are provided in figures \ref{fig:pro3p6ssmu2} \ref{fig:pro3p6ssr}.
-As can be seen, there is often a relatively large change initially, as certain ring sizes or motifs cannot be accommodated due to the restrictions in lattice size (as previously discussed).
-However, both metrics appear to be converging as lattice size is scaled.
-\davidnote{discuss}
+\subsection{System Size Effects}
+
+Figure \ref{fig:pro3pk} highlights potential system size effects in the five procrystalline lattices studied.
+Most dramatically, the smallest \pro{4}{3}trihexagonal system (containing 12 vertices as shown in figure \ref{fig:trihex}) is unable to sustain a $6$\-- or $9$\--membered ring whilst maintaining full $3-$coordination, in contrast to larger lattice dimensions.
+This can be rationalised again by examining the configurations from figure \ref{fig:pro3pktrihex}.
+If a unit containing a 6\-- or 9\--membered ring is taken, then repeating any of these units will automatically generate a 4\--coordinate site. 
+For any larger lattice dimension, all the rings in the range $k=\left\{3,6,7,8,9\right\}$ become accessible and the maximum ring size ceases to evolve.
+This behaviour is in contrast to the other procrystals, in which the maximum ring size always scales with the lattice size (\eg{} as discussed for the square lattice in section \ref{s:pro3pk}).
+This means that the system size effects will never completely disappear.
+What is evident from figure \ref{fig:pro3pk} though, is that these larger ring sizes become increasingly improbable, and so their effect on the structural metrics should abate with increased system size.
+
+To investigate this, figures \ref{fig:pro3p6ssmu2},\ref{fig:pro3p6ssr} shows the evolution of $\mu_2$ and $r$ as a function of system size (as characterised
+by the number of vertices in the lattice, $V$). 
+It is clear that the different systems display structural properties
+which converge with system size over different length\--scales. 
+As expected, both metrics converge quickly for the \pro{4}{3}trihexagonal lattice, owing to the constraints on the ring sizes discussed above.
+For the remaining procrystals, $\mu_2$ converges at approximately
+the same rates for the different lattices, and the second moments must increase with system size variationally.
+In addition, the assortativities appear to converge more slowly than $\mu_2$, reflecting the higher sensitivity of this metric to the potential existence of very large rings.
+
+The \pro{4}{3}square procrystal in particular appears to converge relatively slowly with system size. 
+This can be ascribed to the restriction of forming linear rings only being a stronger constraint on the maximum ring size than if non\--linear rings
+were allowed. 
+Put more simply, a given square area can contain a larger non\--linear ring than linear. 
+Similar arguments apply to the two 5\--coordinate procrystals.
+The \pro{5}{3}elongated\--triangular procrystal contains alternating chains of percolating squares and triangles the the former again preferentially promoting the formation of more linear rings (evident `by eye' in figure \ref{fig:pro3c}).
+On the other hand the \pro{5}{3}snub\--square lattice can be considered to be more closely aligned to the \pro{6}{3}triangular tiling.
+In general, it is clear that the effect of the constraints imposed by the underlying high symmetry lattices is to promote a slower convergence with length\--scale.
+
+
+\section{Structure of Higher\--Coordinate Procrystals}
+\label{s:pro45}
+
+To extend the analysis of procrystalline lattices further, similar investigations can be carried out on 4\-- and 5\--coordinate procrystals; based on a subset of the same underlying lattices.
+From equation \davidnote{ref}, these systems will have mean ring sizes of $\ki=4$ and $\ki=\frac{4}{3}$ respectively.
+Again the Monte Carlo method in section \davidnote{ref} was used to generate 100,000 periodic samples of these procrystals, across a range of system sizes.
+Example visualisations of each lattice type are given in figure \ref{fig:pro45}.
+Unlike networks elsewhere in this thesis, the rings in these visualisations are not coloured relative to the mean ring size.
+Instead they are coloured in the same way as the configurations in figure \ref{fig:pro3}, in order to aid comparison and show evolution of the structure. 
+Again these configurations highlight some important features in the specific procrystalline lattices:
+
+\begin{itemize}
+	
+	\item $\mathbf{5,4-}$\textbf{elongated\--triangular}: supports all even ring sizes but only the two smallest odd ring sizes \i.e. $k\in\left\{3,4,5,6,8,10\dots\right\}$. This is due to rings with $k>6$ only being formed from linear rings in analogy with the \pro{4}{3}square lattice, which must have an even number of nodes.
+	\item $\mathbf{5,4-}$\textbf{snub\--square}: contains only rings in the set $k\in\left\{3,4,5,6\right\}$.
+	\item $\mathbf{6,4-}$\textbf{triangular}: difference between underlying and procrystalline lattice is 2, and all ring sizes are accessible $k\in\left\{3,4,5\dots\right\}$.
+	\item $\mathbf{6,5-}$\textbf{triangular}: only two ring sizes are possible, namely $k\in\left\{3,4\right\}$. This is because the procrystal can only be formed by removing a bond between a pair of edge\--sharing triangles.
+	
+\end{itemize}
+
+\begin{figure}[bt]
+     \centering
+ 
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=4.5cm]{./figures/procrystals/pro_elong4.pdf}
+         \caption{\pro{5}{4}elongated\--triangular}
+         \label{fig:pro45a}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=4.5cm]{./figures/procrystals/pro_snub4.pdf}
+         \caption{\pro{5}{4}snub\--square}
+         \label{fig:pro45b}
+     \end{subfigure}
+     
+	\vspace{0.5cm}          
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=4.5cm]{./figures/procrystals/pro_tri4.pdf}
+         \caption{\pro{6}{4}triangular}
+         \label{fig:pro45c}
+     \end{subfigure}
+     \hfill     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=4.5cm]{./figures/procrystals/pro_tri5.pdf}
+         \caption{\pro{6}{5}triangular}
+         \label{fig:pro45d}
+     \end{subfigure}
+    
+     \caption{Visualisations of 4\-- and 5\--coordinate procrystals based on 3 different parent lattices (as indicated in panel captions). Rings are coloured as for 3\--coordinate networks \ie grey $k=6$; blue $k<6$; red $k>6$.}
+     \label{fig:pro45}
+\end{figure}
+
+\subsection{Ring Size Distributions}
+
+
+\begin{figure}[bt]
+     \centering
+     
+     \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/procrystals/elong4_pk.pdf}
+         \caption{\pro{5}{4}elongated\--triangular}
+         \label{fig:pro45pka}
+     \end{subfigure}
+          \hfill
+     \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/procrystals/snub4_pk.pdf}
+         \caption{\pro{5}{4}snub\--square}
+         \label{fig:pro45pkb}
+     \end{subfigure}
+     \hfill
+     
+     \vspace{0.5cm}
+     \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/procrystals/tri4_pk.pdf}
+         \caption{\pro{6}{4}triangular}
+         \label{fig:pro45pkc}
+     \end{subfigure}
+     \hfill
+      \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/procrystals/tri5_pk.pdf}
+         \caption{\pro{6}{5}triangular}
+         \label{fig:pro45pkd}
+     \end{subfigure}
+     \hfill
+    
+     \caption{Ring statistics for selected 4\-- and 5\--coordinate procrystalline lattices (as highlighted in subfigure captions). Each panel also highlights potential system size effects by showing the ring size distributions for different numbers of nodes, $V$, as highlighted in the legends.}
+     \label{fig:pro45pk}
+\end{figure}
+
+The starting point for analysing higher coordinate procrystals is again with the ring size distributions.
+For the 4\--coordinate procrystals, the ring statistics will be again compared to the maximum entropy (ME) solution.
+Assuming the full $k$\--range in accessible, where $\ki=4$ one might expect the maximum entropy distribution:
+\begin{equation}
+	p_k = \left(\frac{1}{2}\right)^{k-2}, \qquad k\in\left\{3,4,5\dots\right\}.
+\end{equation}
+The purpose of the ME ring distribution is to highlight the differences in the observed distributions as a result of the specific lattice constraints.
+
+The ring statistics for the 4 procrystals discussed in this section can be found in figure \ref{fig:pro45pk}.
+It is also an interesting exercise to compare these distributions to those found for the 3\--coordinate procrystals in figure \ref{fig:pro3pk}, to see the evolution in structure.
+Each lattice will now briefly be examined in turn.
+As previously mentioned, the \pro{5}{4}elongated\--triangular lattice cannot support any odd ring sizes greater than $k=5$. 
+This is due to the large rings being only formed from the rows of square units, which necessarily makes them even in size.
+Odd rings can only be manufactured by merging ``across'' square and triangular rows, which grants access to the 5\--ring but no higher.
+This behaviour percolates through to the \pro{5}{3}elongated\--triangular lattice, which can be seen to have slightly depressed values of the odd ring sizes when compared to the ME solution.
+
+The \pro{5}{4}snub\--square lattice bears some comparison to the \pro{4}{3}trihexagonal lattice, in that the lattice imposes strong constraints on the obtainable ring sizes.
+Here it can be seen that the 5\--ring is particularly favoured, being formed from the merger of a 3\-- and 4\--ring in the parent lattice.
+Once more, the memory of this structure can be seen in the \pro{5}{3}snub\--square lattice, which has a distinctive spike in the proportion of hexagons.
+On transitioning to the lower node coordination, the \pro{5}{4}snub\--square lattice can generate a hexagon by combination of either of the abundant 5\--3 or 4\--4 pairings.
+Conversely, there are few initial hexagons to be lost.
+
+For the triangular\--based procrystals, it makes sense to begin with the \pro{6}{5}triangular lattice.
+This can be simply rationalised, having only two ring sizes, with statistics $p_3=\frac{2}{3}$ and $p_4=\frac{1}{3}$, required by Euler's formula.
+On removal of another degree of freedom, to form the \pro{6}{4}triangular lattice, as with the other lattices all ring sizes immediately become accessible.
+In the case of the triangular lattice this is facilitated by in the introduction of ``diagonal'' rings.
+Whilst some history of the preceding lattice can be detected in the \pro{6}{4}triangular lattice (with an over abundance of small rings), this quickly washes out when obtaining the final \pro{6}{3}triangular procrystal.
+
+\subsection{\lm's Law and Assortativity}
+
+\begin{figure}[bt]
+     \centering
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro45_p4_mu2.pdf}
+         \caption{}
+         \label{fig:pro45p6mu2}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro45_p4_r.pdf}
+         \caption{}
+         \label{fig:pro45p6r}
+     \end{subfigure}
+     
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro45_ss_mu2.pdf}
+         \caption{}
+         \label{fig:pro45p6ssmu2}
+     \end{subfigure}
+     \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[height=6.5cm]{./figures/procrystals/pro45_ss_r.pdf}
+         \caption{}
+         \label{fig:pro45p6ssr}
+     \end{subfigure}
+     
+     \caption{Panels (a) and (b) plot the second moment of the ring statistics, $\mu_2$, against the assortativity, $r$, respectively for the largest lattice dimension investigated for each procrystal. Panels (c) and (d) plot the average values for procrystals of increasing lattice dimensions to highlight any system size effects.}
+     \label{fig:pro45p6mu2r}
+\end{figure}
+
+Higher\--coordinate procrystals can also be viewed in the context of \lm's law and their assortativity.
+These are explored in figures \ref{fig:pro45p6mu2} and \ref{fig:pro45p6r} respectively, with $p_4$ plotted against $\mu_2$ and $r$.
+Similar behaviour is seen as for the 3\--coordinate cases discussed previously, and so this analysis will be covered relatively briefly.
+
+In terms of \lm's law, the discrepancy between the random limit and the procrystals is increased as the number of constraints increases. 
+Hence the \pro{6}{5}triangular lattice appears almost crystalline in behaviour, but the \pro{6}{4}triangular lattice is much closer to a CRN.
+The spread of the data is also correlated with the number of available ring sizes.
+Hence the \pro{5}{4}snub\--square lattice has quite a tight distribution (similar to the \pro{4}{3}trihexagonal case), with the \pro{5}{4}elongated triangular procrystal points being much more diffuse.
+
+The assortativities are also in keeping with the information learnt from the 3\--coordinate procrystals.
+The \pro{5}{4}snub\--square lattice has an assortativity similar to the \pro{4}{3}trihexagonal case, likely a reflection of both these systems having a highly constrained set of ring sizes.
+The remaining procrystals have assortativity values in the now\--familiar range of $r\approx-0.2$.
+Interestingly, despite its precisely defined ring statistics, the \pro{6}{5}triangular lattice still exhibits a range of assortativities comparable to the other procrystals.
+This illustrates again that the ring statistics are insufficient to fully describe the structure of a given ring system.
+
+\subsection{System Size Effects}
+
+The effects of system size on the network properties of higher\--coordinate procrystals are shown in figure \ref{fig:pro45p6ssmu2} and \ref{fig:pro45p6ssr}.
+All these procrystals show fast convergence of $\mu_2$ and $r$ with the number of vertices in the system, $V$.
+This is as expected, as there are no dramatic changes in the accessible ring sizes as the underlying lattice dimensions increase.
+In particular, the ring statistics are largely constant, even for procrystals in which the maximum ring size continues to grow with the lattice dimension \ie \pro{5}{4}elongated\--triangular and \pro{6}{4}triangular.
+This is because very large rings are in vanishingly small abundance for these  procrystals.
+
+As found for the 3\--coordinate procrystals, the assortativity proves slower to converge. 
+This holds true even for the \pro{6}{5}triangular lattice, which has well\--determined ring statistics.
+Whilst the proportion of squares and triangles must be constant, the smallest lattice dimensions can still not support certain motifs (\eg{} pyramids of triangles), which naturally restricts the obtainable assortativity.
+In general, all the higher\--coordinate procrystals still show rapid convergence, reflecting the relatively rigid underlying constraints.
+
+\section{Chapter Summary}
+
+This chapter has applied the tools of network theory to analyse \td{} examples of recently\--defined procrystalline lattices.
+These procrystalline configurations, generated by \mc{} methods, have been shown to have fundamentally different structural properties to both crystalline and amorphous arrangements.
+This has been demonstrated through the violation of \lm's law, and measured assortativities atypical of more well\--understood systems.
+
+These \td{} systems provided a good starting place for investigations into the procrystalline state, because they are simpler to understand; for instance by having well\--defined ring structure.
+Extensions to this work pose exciting possibilities.
+If these results are mirrored by equally anomalous ring statistics in three\--dimensional procrystalline networks, one might expect a variety of physical properties that depend on correlation to be affected in otherwise unexpected ways. 
+For example, the disordered pore networks of Prussian blue analogues possess topological characteristics that differ meaningfully from those of random or ordered porous media, in turn influencing their transport properties \cite{Simonov2020}.
+On a different lengthscale, photonic procrystals should exhibit photonic band structures different to those of both ordered and amorphous phase \cite{Florescu2009,Sellers2017}.
