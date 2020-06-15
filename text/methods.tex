@@ -4,7 +4,7 @@
 \begin{chapterabstract}
 The theoretical basis of \mc{} methods and their application to generating realisations of \td{} networks is reviewed.
 There is a broad discussion of Metropolis \mc{} methods, before specific methods are covered in detail; namely the bond switching algorithm and hard particle \mc{} in conjunction with the Voronoi construction.
-Extensions to these methods and additional approaches are outlined in the relevant chapters \davidnote{Link to bond switching/Voronoi/mx2/procrystals later}.
+This discussion lays the groundwork for the extension of these methods and development of additional \mc{} algorithms in subsequent chapters.
 \end{chapterabstract}
 
 \section{General \mc{} Methods}
@@ -14,7 +14,7 @@ Extensions to these methods and additional approaches are outlined in the releva
 These normally fall into the broad categories of calculating integrals, sampling probability distributions and finding global minima of very high dimensional functions \-- tasks which are often incredibly hard to compute deterministically.
 Since their initial development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
 \mc{} methods are used in this context for calculating thermodynamic averages of properties in equilibrium systems; finding the minima in potential energy surfaces of small molecules, glasses, crystals and biomolecules; as well as non\--equilibrium simulations such as growth of crystals and thin\--films \cite{Landau2014,Wales1999,Levi1997,Ratsch2003,Kob1999,Jensen1999}.
-In this thesis these \mc{} methods  will be used in a variety of contexts chapter xxx \davidnote{fill this in}.
+In this thesis these \mc{} methods  will be used in a variety of contexts: chapter \ref{ch:bilayers} simulates the growth of bilayer materials using  a random sequential growth algorithm; chapter \ref{ch:targetedopt} optimises a cost function to control network structure; chapter \ref{ch:generalnetworks} samples amorphous configurations of various system topologies; chapter \ref{ch:quasi2d} samples the phase space of hard particle assemblies and chapter \ref{ch:procrystals} finds solutions to the procrystalline problem, essentially via global optimisation.
 Therefore, the general theory is presented here with specific details of two established methods: bond switching and hard particle \mc{} given in the following section.
 
 \subsection{Statistical Mechanics}
@@ -277,7 +277,7 @@ As can be seen at high temperature the entire surface is sampled, overcoming all
 Bond switching Monte Carlo was originally developed by Wooten, Winer and Weaire to generate high quality configurations of three dimensional silica glass \cite{Wooten1985}.
 The basic principle is to amorphise a crystalline lattice with a series of transformations that swap the nearest neighbours of pairs of atoms and optimise the resulting structure to generate a continuous random network which is well\--relaxed.
 These continuous random network models replicate experimental observables with high accuracy (including bond length and angle distributions, radial distribution functions, electronic band gaps and Raman spectra) and have since been applied to alternative systems such as three\--dimensional amorphous carbon, binary glasses and biological polymers \cite{Treacy2012,Tu1998,Djordjevic1995,Mousseau2004,Huisman2008,Broedersz2014}.
-However, the method can also be readily modified to study \td{} systems, as has been done for amorphous graphene and silica, and which forms the basis for much of the work in this thesis \davidnote{ref to later chapters} \cite{Kumar2014,Jain2018}.
+However, the method can also be readily modified to study \td{} systems, as has been done for amorphous graphene and silica, and which forms the basis for much of the work in this thesis, particularly in chapters \ref{ch:targetedopt} and \ref{ch:generalnetworks} \cite{Kumar2014,Jain2018}.
 The basic algorithmic details are described in this section, with extensions given in sections \davidnote{again ref later}.
 
 \subsection{Algorithmic Details} 
@@ -366,7 +366,7 @@ This simply reflects the inherent balance of enthalpic \vs{} entropic  considera
 Figure \ref{fig:bsmc8} also demonstrates the importance of cooling a randomised lattice instead of heating a crystal, as some low energy defects may have a multi\--step formation with a high energy barrier.  
 
 \subsection{Potential Models}
-\ref{s:potentials}
+\label{s:potentials}
 
 The nature of the bond switching method lends itself to the use of semi\--empirical potentials which have explicit stretching and angular neighbour lists.
 As such a popular choice for materials modelling is the Keating potential and modifications thereof \cite{Keating1966,Barkema2000}. 

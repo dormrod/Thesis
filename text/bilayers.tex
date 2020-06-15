@@ -15,8 +15,7 @@ An important class of \td{} materials which have emerged in the 21\st{} century 
 These can be prepared experimentally by chemical vapour deposition on metal and graphene supports \cite{Huang2012,Lichtenstein2012a}.
 As in the three\--dimensional glass, the basic building blocks of silica bilayers are vertex sharing \sioiv{} tetrahedra, maintaining full coordination for all atoms in the bulk \cite{Wilson2013}.
 These are arranged such that three of the vertices are connected to tetrahedra in the same layer, with the final vertex being shared between layers acting as a ``bridge'' (figure \ref{fig:bilayer1}).
-A consequence of these bridging oxygen atoms is to enforce a symmetry plane between the upper and lower layers. \davidnote{Put more bilayer stuff in intro?}
-\marknote{Could do. It's ok here as background as it makes the chapter more self contained.}
+A consequence of these bridging oxygen atoms is to enforce a symmetry plane between the upper and lower layers.
 
 Topologically, the symmetry plane means that these materials can be viewed as effective \td{} networks.
 Taking one of the layers, without the bridging oxygens, and projecting the atoms onto the horizontal plane reveals a representation of vertex sharing triangles, referred to as a triangle raft (figure \ref{fig:bilayer2}).
@@ -66,7 +65,7 @@ density critical for gas separation applications....}
 
 As mentioned in the  introduction, both \abinitio{} methods and classical molecular dynamics have been used in computational studies of silica bilayers, which often require a starting atomistic configuration  \cite{Bjorkman2013,Malashevich2016,Wilson2013,Roy2018}.  
 One approach is to simply take an experimental sample as the starting structure. 
-Whilst this is on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine'' enough for use in computational studies. \marknote{Could lose the end of the sentence - implies calculations betters than experiments?}
+Whilst this is on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine''.
 Additionally, the location of each atom has an associated uncertainty which leads to discrepancies in the observed bond lengths and angles, which can be compounded by any out\--of\--plane distortions.
 Whilst computational refinement can attenuate these problems \cite{Sadjadi2017,Wilson2018}, there remains the more fundamental question of how ``typical'' the available images are from experiment, as STM provides exceptional information but only on relatively small sample sizes.
 Computational techniques can therefore prove a valuable tool for generating a large number of high\--quality configurations, and corroborating experimental information.  
@@ -75,7 +74,7 @@ One current approach is to transform amorphous graphene configurations \cite{Wil
 Here amorphous samples of carbon are generated using a bond switching method (as outlined in section \ref{s:bondswitch}), before the carbon atoms are swapped from silicon and decorated with oxygens.
 Whilst this is a valid approach, the method assumes that the two materials are topologically equivalent.
 This is likely an oversimplification, as the presence of the bridging oxygens in silica afford the structure increased flexibility when compared to the carbon analogue.
-This likely explains why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large rings being under\--estimated, \davidnote{as will be shown in sec x} \cite{Kumar2014}.
+This likely explains why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large rings being under\--estimated \cite{Kumar2014}.
 
 An alternative approach is to use molecular dynamics coupled with an effective pair potential to obtain viable configurations \cite{Roy2018}.
 Such methods are relatively common, having been employed previously to study amorphous graphene \cite{Kumar2012}. 
@@ -84,7 +83,7 @@ A potential artefact of the high cooling rates is the effectively freezing in of
 In addition, as with the method above, such methods appears to systematically underestimate the \aw{} parameter, indicative of too little structural ordering.
 
 \section{Triangle Raft Method}
-\ref{s:triangleraft}
+\label{s:triangleraft}
 
 The motivation of this work was to develop a construction algorithm to generate samples of silica bilayers which can capture the full \td{} network topology; both the ring distribution \textit{and} correlations. 
 The model should be able to explore all phases from crystalline to amorphous yet computationally efficient enough to produce configurations suitable for further high throughput calculations. 
@@ -131,8 +130,7 @@ Furthermore, the parameters $k$ and $\epsilon$ need have no direct physical mean
 meaning of the system ``temperature'' as discussed below. 
 The only requirement is that they generate energies of the same magnitude to allow for efficient
 structural evolution.
-\davidnote{Accompanying figure?}
-\marknote{Probably a good idea.}
+\davidnote{Accompanying figure}
 
 \subsection{Algorithmic Details}
 
@@ -329,6 +327,7 @@ For instance, molecular dynamics with sliding boundary conditions requires fitti
 Other areas such as percolation problems may benefit from square samples.
 
 \subsection{Network Properties}
+\label{s:triraftnetprop}
 
 The quantitative relationship between temperature and ring structure was investigated for three systems of varying ring size ranges;  $\br{5}{7}$, $\br{4}{8}$ and $\br{4}{10}$. 
 For each system, 100 samples consisting of 1000 rings were grown at temperatures between $T=10^{-4.5}\rightarrow 10^{-1.5}$. 
@@ -488,7 +487,7 @@ It can now be proposed why the experimental amorphous distributions are found wi
 The system aims to maximise entropy by obtaining a ring distribution along the \lm{} curve with the minimum $p_6$ possible. 
 However, for $p_6<0.4$ the energetic cost becomes prohibitively large, as higher entropy distributions can only be achieved by increasing the proportion of extreme ring sizes at the expense of relatively low strain 5- and 7- rings.
 Interestingly it is also evident why no configurations are present below $p_6\approx 0.16$, even at the highest temperature.
-Below this point, the entropy of \marknote{the?} $\br{4}{10}$ system decreases whilst the energy continues to rise and so there is no driving force to sample this area of phase space.
+Below this point, the entropy of the $\br{4}{10}$ system decreases whilst the energy continues to rise and so there is no driving force to sample this area of phase space.
 
 \subsection{Physical Properties}
 

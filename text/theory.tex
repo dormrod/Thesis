@@ -3,8 +3,7 @@
 
 \begin{chapterabstract}
 The theory underpinning complex networks is discussed, covering the representation of atomic systems as networks and the relationship of the dual network to ring structure.
-The laws which govern the topological properties of physical networks, namely Euler's law, \lm's law and the \aw{} law are also explored.
-Further developments linking to modern network science etc. are given in chapter \davidnote{Link to network theory later}.
+The laws which govern the topological properties of physical networks, namely Euler's law, \lm's law and the \aw{} law are also introduced.
 \end{chapterabstract}
 
 \section{Network Theory}
@@ -17,7 +16,7 @@ Networks in which the links between nodes are mutual are termed undirected, wher
 At the risk of dating this thesis, this is the difference between Facebook (an undirected social network of friends) and Twitter (a directed social network of followers).
 All the networks considered in this work are undirected and all the theory assumes this property.
 
-\begin{figure}[h]
+\begin{figure}[ht]
      \centering
       \includegraphics[width=8cm]{./figures/methods/small_periodic_net.pdf}
      \caption{Example of a periodic \td{} network where nodes are represented by circles and links as lines. Nodes are coloured similarly according to their degree, whilst periodic images are greyed out to highlight the central repeating unit.}
@@ -110,7 +109,7 @@ This is problematic, because whilst there is clear disorder in the system, it is
 Due to the fact that the local environment around the atoms is identical, when examining say the node degree distribution any information about the glassy structure is lost.
 This network is to first order indeterminable from a crystalline hexagonal lattice.
 
-\begin{figure}[h]
+\begin{figure}[bt]
      \centering
      
      \begin{subfigure}[b]{0.3\textwidth}
@@ -211,7 +210,7 @@ This analysis also extends to spherical topology where $\chi=2$, and so:
 These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92}, \ref{fig:latticesfull98}) \cite{Fowler1996}.
 Much of the richness in the behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
 
-\begin{figure}[h]
+\begin{figure}[bt]
      \centering
      
      \begin{subfigure}[b]{0.3\textwidth}
@@ -285,17 +284,19 @@ By allowing the chosen constant to vary, a family of maximum entropy curves can 
 The resulting distributions can be summarised by relating the variance, $\mu_2=\kii-\ki^2$, to a single chosen node degree probability, leading to the plot known as \lm's law, given in figure \ref{fig:lm2}.
 It is usually framed in the context of the proportion of hexagons in a system, $p_6$, for the precise reason that most networks have $\ki=6$ and $p_6$ as the largest contribution.
 Many experimental and theoretical studies have shown good agreement to this law \cite{Caer1993,Cerisier1996,Miklius2012}.
+
 Simple extensions of the classic law are however possible, by modifying the mean degree or the permitted degree range.
-For instance, $k$ is usually taken in the interval $k\geq3$ (as the triangle, $k=3$, is the smallest polygon), but there can be manifestations of physical systems where only certain degrees are accessible \cite{Rivier1988}. \davidnote{Link to procrystal chapter}.
+For instance, $k$ is usually taken in the interval $k\geq3$ (as the triangle, $k=3$, is the smallest polygon), but there can be manifestations of physical systems where only certain degrees are accessible \cite{Rivier1988}.
+Additional examples of such systems will be procrystalline lattices explored in chapter \ref{ch:procrystals}. 
 The resulting \lm{} curves for a selection of these modifications are given in figure \ref{fig:lm3}. 
-\davidnote{explain these here or later?}
+A discussion of these will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
 The maximum value of these curves can be simply determined by removing constraint \eqref{con:lm3}, equivalent to setting $\lambda_2=0$ in equation \eqref{eq:mepk}.
 %Exploring these cases helps to understand the behaviour of \lm's law itself.
 %By restricting the ring size to just $5\leq k \leq 7$ results in a straight line, which to satisfy Euler's law must have equation $\mu_2 = 1-p_6$.
 %This line closely follows the high $p_6$ behaviour demonstrating that the initial deviation from the hexagonal lattice ($p_6=1$) is marked by the introduction of 5\-- and 7\-- ring defects.
 
 
-\begin{figure}[h]
+\begin{figure}[bt]
      \centering
      
      \begin{subfigure}[b]{0.45\textwidth}
@@ -329,7 +330,7 @@ The maximum value of these curves can be simply determined by removing constrain
 The only somewhat puzzling aspect of this successful theory is the choice of constraint \eqref{con:lm3}.
 It was originally rationalised on the basis that the areas of rings of a given size, $A_k$, can be well fit by an expression $A_k = ak+b+c/k$, where $a$, $b$ and $c$ are constants.
 As noted at the time, this is by no means true for all systems and in fact is contrary to the widely known Lewis law, which states that $A_k$ is linear in $k$ for many observable networks \cite{Lewis1928,Fortes1995,Kim2014}.
-Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \davidnote{Link to later networks} it will be demonstrated that it can be regenerated by considering ring adjacencies.
+Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \ref{s:assortativity} it will be demonstrated that it can be regenerated by considering ring adjacencies.
 
 \subsection{\aw{} Law}
 \label{s:awlaw}

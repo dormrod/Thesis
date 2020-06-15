@@ -1,4 +1,5 @@
 \chapter[Partial Ordering in Procrystalline Lattices]{Partial Ordering in \\ Procrystalline Lattices} 
+\label{ch:procrystals}
 
 \begin{chapterabstract}
 Recent work has introduced the term ``procrystalline'' to define systems which lack translational symmetry but have an underlying high symmetry lattice.
@@ -133,7 +134,7 @@ To get the expected maximum entropy ring statistics, $\pme_k$, one can remove th
 As with \lm's law, an important additional constraint arises implicitly through the $k$\--range in the summation.
 Owing to the fact that there are many subtly different systems here, these will be further discussed in the relevant sections \davidnote{link}.
 
-Finally, the assortativity will again be used to measure ring\--ring correlations. \davidnote{ref}
+Finally, the assortativity will again be used to measure ring\--ring correlations.
 
 \section{Computational Generation of Procrystals}
 
@@ -351,6 +352,7 @@ Table \ref{tab:exacttiling} highlights the enormity of the full configurational 
 In order to find all the solutions for larger lattices, a more sophisticated algorithm would be required, although it is hard to see how the hurdle of scaling could be easily overcome.
 
 \subsection{Monte Carlo Algorithm}
+\label{s:promc}
 
 To generate procrystals for larger lattice dimensions, a method is required that can quickly search configurational space and find representative samples.
 As with much of the work in this thesis, this is achieved by utilising a \mc{} algorithm.
@@ -407,7 +409,7 @@ In addition, the temperature parameter was not found to appreciably affect the o
 
 The bulk of the investigation in this chapter will focus on \pro{c^\prime}{3}procrystalline lattices. 
 As stated before, this is because such systems are most prevalent in nature and draw parallels with previous work. 
-To study the ring structure of these procrystals, the \mc{} method detailed in \davidnote{ref} was used to generate configurations for each of the five underlying lattice types, with number of nodes, $V$, in the lattice scaled to explore system size effects.
+To study the ring structure of these procrystals, the \mc{} method detailed in \ref{s:promc} was used to generate configurations for each of the five underlying lattice types, with number of nodes, $V$, in the lattice scaled to explore system size effects.
 For each set of parameters some $100,000$ periodic procrystalline lattices were generated.
 A visualisation of an example configuration based on each parent lattice type is given in figure \ref{fig:pro3} for reference. 
 These configurations highlight some important features of the specific procrystalline lattices which will will be a useful for the coming discussions.
@@ -466,7 +468,7 @@ These configurations highlight some important features of the specific procrysta
 \end{figure}
 
 Importantly, these 3\--coordinate procrystals will be compared and contrasted with two other states.
-The first are networks generated from bond switching at infinite temperature \davidnote{link}, which is in effect a method for producing continuous random networks (CRNs) \ie{} a fully amorphous state.
+The first are networks generated from bond switching at infinite temperature (see section \ref{s:bondswitch}, which is in effect a method for producing continuous random networks (CRNs) \ie{} a fully amorphous state.
 The second are series of crystalline motifs of the form $8-6^i-5^2$ and $8-6^i-4$ for $0\leq i\leq3$ (the nomenclature indicating the number of each ring size in the unit cell) taken from Altman \etal{} \cite{Malashevich2016}.
 
 \subsection{Ring Size Distributions}
@@ -739,7 +741,7 @@ summation.}
 
 The \pro{4}{3}trihexagonal lattice is clearly the most constrained system, and is simple enough to fully explain analytically.
 Consider a trihexagonal lattice with $V$ nodes. 
-This parent lattice must have $2V$ edges and $V$ faces by Euler's formula \davidnote{ref}, $\frac{2V}{3}$ of which are triangles.
+This parent lattice must have $2V$ edges and $V$ faces by Euler's formula, equation \eqref{eq:eulerformula}, $\frac{2V}{3}$ of which are triangles.
 Generating the procrystal requires removal $\frac{V}{2}$ edges leaving $\frac{V}{2}$ faces.
 Each edge removed must necessarily remove exactly one triangle so that the final number of triangles is $\frac{V}{6}$.
 Hence the \pro{4}{3}trihexagonal lattice \textit{must} have $p_3=\frac{1}{3}$.
@@ -844,7 +846,7 @@ This corresponds to $r=-101/367\approx -0.275$, as measured from simulation.
 \subsection{System Size Effects}
 
 Figure \ref{fig:pro3pk} highlights potential system size effects in the five procrystalline lattices studied.
-Most dramatically, the smallest \pro{4}{3}trihexagonal system (containing 12 vertices as shown in figure \ref{fig:trihex}) is unable to sustain a $6$\-- or $9$\--membered ring whilst maintaining full $3-$coordination, in contrast to larger lattice dimensions.
+Most dramatically, the smallest \pro{4}{3}trihexagonal system (containing 12 vertices as shown in figure \ref{fig:pro3pktrihex}) is unable to sustain a $6$\-- or $9$\--membered ring whilst maintaining full $3-$coordination, in contrast to larger lattice dimensions.
 This can be rationalised again by examining the configurations from figure \ref{fig:pro3pktrihex}.
 If a unit containing a 6\-- or 9\--membered ring is taken, then repeating any of these units will automatically generate a 4\--coordinate site. 
 For any larger lattice dimension, all the rings in the range $k=\left\{3,6,7,8,9\right\}$ become accessible and the maximum ring size ceases to evolve.
@@ -875,8 +877,8 @@ In general, it is clear that the effect of the constraints imposed by the underl
 \label{s:pro45}
 
 To extend the analysis of procrystalline lattices further, similar investigations can be carried out on 4\-- and 5\--coordinate procrystals; based on a subset of the same underlying lattices.
-From equation \davidnote{ref}, these systems will have mean ring sizes of $\ki=4$ and $\ki=\frac{4}{3}$ respectively.
-Again the Monte Carlo method in section \davidnote{ref} was used to generate 100,000 periodic samples of these procrystals, across a range of system sizes.
+From equation \eqref{eq:avdegree}, these systems will have mean ring sizes of $\ki=4$ and $\ki=\frac{4}{3}$ respectively.
+Again the Monte Carlo method in section \ref{s:promc} was used to generate 100,000 periodic samples of these procrystals, across a range of system sizes.
 Example visualisations of each lattice type are given in figure \ref{fig:pro45}.
 Unlike networks elsewhere in this thesis, the rings in these visualisations are not coloured relative to the mean ring size.
 Instead they are coloured in the same way as the configurations in figure \ref{fig:pro3}, in order to aid comparison and show evolution of the structure. 

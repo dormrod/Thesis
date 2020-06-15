@@ -113,7 +113,7 @@ Network science offers an opportunity to unite the study of these disparate phys
 Much of the groundwork for this has been laid in chapter \ref{ch:networktheory}, but there are some important additions, namely the introduction of the assortativity to describe ring\--ring correlations.
 Some of the key aspects which were introduced in chapter \ref{ch:networktheory} will be briefly recapped, before these extensions are highlighted.
 
-Chapters \davidnote{link} of this thesis focussed on planar atomic systems which had a fixed coordination of three.
+Chapters \ref{ch:targetedopt} and \ref{ch:bilayers} of this thesis focussed on planar atomic systems which had a fixed coordination of three.
 The main difference in this chapter is that the scope has increased to include networks with variable coordination and topologies.
 For generic physical networks the equivalent of the atomic coordination number, $c$, is not necessarily precisely defined by an atomic species. 
 The consequence of this is that the mean ring size as dictated by Euler's law is no longer always six, but rather determined by equations \eqref{eq:2dplanarcases},\eqref{eq:2dsphericalcases}; so that for example a network of $c=4$ will have a mean ring size of $\ki=4$.
@@ -121,13 +121,13 @@ That being said, the majority of naturally occurring networks still have $c=3$, 
 
 The ring statistics, $p_k$, remain an important measure, and have a clear analogue in network science, being the node degree distribution of the ring network (see section \ref{s:atomringnetworks}).
 The node degree distribution is still expected to follow \lm's maximum entropy distribution, provided the constraints are appropriately adjusted to reflect the mean node degree.
-Whilst all natural networks lie on the universal \lm{} curve, it will be seen in section \davidnote{link}, that the specific location of a given network is dependent on the underlying physics of the system.
+Whilst all natural networks lie on the universal \lm{} curve, it will be seen in section \ref{s:gendegreedist}, that the specific location of a given network is dependent on the underlying physics of the system.
 
 The other empirical law heavily discussed in this thesis, the \aw{} law, is more problematic.
 Although it has proved useful in materials science, it is largely confined to this area, and is not without flaws.
 These flaws will be discussed in detail below, but they essentially arise from the empiricism of the law and the resulting difficulty in interpreting its results.
 However, network science has a well\--adopted metric for measuring node degree correlations, termed the assortativity.  
-This chapter therefore provides a good opportunity to replace the empirical \aw{} law with a concrete measure, and it will be shown in section \davidnote{link} that there is a mapping between the \aw{} parameter and the assortativity.
+This chapter therefore provides a good opportunity to replace the empirical \aw{} law with a concrete measure, and it will be shown in section \ref{s:assortativity} that there is a mapping between the \aw{} parameter and the assortativity.
 
 \subsection{Deficiencies in the Aboav\--Weaire Law}
 
@@ -159,6 +159,7 @@ This is not to say that the \aw{} law does not have value, and certainly the gen
 It is more to point out that there is scope to improve the quantification of the effect and that a robust approach which is applicable to diverse systems will be required to study generic \td{} networks.
 
 \subsection{Assortativity as a Measure of Ring Size Correlations}
+\label{s:assortativity}
 
 The assortativity was introduced by Newman to measure the preference of low degree nodes to be adjacent to high degree nodes in generic networks \cite{Newman2002}.
 It has proved highly popular in the network science and the study of social and biological networks \cite{Noldus2015}, but has also been applied for example in theoretical studies of hard disk packings \cite{Chremos2007}.
@@ -483,9 +484,10 @@ This tradition has been continued by analysing five further maps: the communes o
 \section{Investigations into Generic Physical Networks}
 
 The properties \td{} atomic networks are now discussed alongside generic physical systems introduced in this chapter.
-This primarily focusses on the network properties introduced in chapter \ref{c:networktheory}, but also covers a case study on the energetics of a 92\--ring fullerene.
+This primarily focusses on the network properties introduced in chapter \ref{ch:networktheory}, but also covers a case study on the energetics of a 92\--ring fullerene.
 
 \subsection{Degree Distributions}
+\label{s:gendegreedist}
 
 The degree distributions of physical networks are discussed in terms of Lemaitre's law; with the distribution variance, $\mu_2$, plotted against the proportion of rings of mean size.
 Figure \ref{fig:lmgena} presents these data for a range of 3\--coordinate systems comprising experimental, computational and theoretical.
