@@ -427,16 +427,17 @@ Through its simplicity it is able to provide insight into the fundamental behavi
 In this thesis it will be used to generate ring systems in the form of Voronoi tessellations (see section \ref{ssec:voronoi}), in analogy to experimental colloidal systems \cite{Thorneywork2017}.
 
 \subsection{Hard Particle Model}
+\label{s:hardparticlemodelintro}
 
 Hard particle models are applicable over a range of dimensions.
 In two dimensions the system consists of an arrangement of hard disks and in three dimensions hard spheres.
 One can also take a quasi \td{} system, which comprises hard spheres confined to a plane.
 Regardless of the dimensionality, the central principle is that no two particles in the system can have any degree overlap.
-Formally, if the particle radii are denoted by $R_i$ and the distance between any pair of particle centroids by $r_{ij}$, the pair potential is:
+Formally, if the particle radii are denoted by $R_i$ and the distance between any pair of particle centres by $r_{ij}$, the pair potential is:
 \begin{equation}
 	\mathcal{U}_{ij} = \begin{cases}
 	\infty \quad &r_{ij}<R_i+R_j \\
-	0 \quad &r_{ij}\geq R_i+R_j 
+	0 \quad &\text{otherwise} %r_{ij}\geq R_i+R_j 
 	\end{cases} \,.
 \end{equation}
 As the total energy is simply then
@@ -532,7 +533,7 @@ This is illustrated in figure \ref{fig:pbc}.
 
 The hard particle configurations produced by \mc{} simulations are not in themselves network structures, rather simply a collection of correlated points.
 The network structure is revealed by construction of a Voronoi diagram, which partitions the sample into a system of tessellating cells, where each cell encapsulates all the space closest to the associated particle \cite{Okabe1992}.
-A \td{} Voronoi diagram is formed through the placement of dividing lines between the centroids of neighbouring particles. 
+A \td{} Voronoi diagram is formed through the placement of dividing lines between the centres of neighbouring particles. 
 The intersection of these lines forms the characteristic tessellating polygons.
 
 \begin{figure}[bt]
@@ -571,7 +572,7 @@ The intersection of these lines forms the characteristic tessellating polygons.
 \end{figure}
 
 In the simplest unweighted approach, the dividing line between two neighbouring particles separated by the Euclidean distance $r_{ij}$, is simply located midway between the particles at a distance $r_{ij} /2$. 
-The elegance of the unweighted Voronoi diagram is that only the particle centroids are required for its construction, with no requirement for a cut-off parameter. 
+The elegance of the unweighted Voronoi diagram is that only the particle centres are required for its construction, with no requirement for a cut-off parameter. 
 Whilst the unweighted Voronoi tessellation is very effective for studying monodisperse particles, there are some limitations for polydisperse species. 
 Specifically, the Voronoi partition underestimates the space assigned to large particles and overestimates that for small particles \-- a simple reflection of the lack of information on particle radii  (see figure \ref{fig:vorodemov1}). 
 To rectify this, weighted modifications have been suggested which take account of the differences in radii \cite{Poupon2004}.
