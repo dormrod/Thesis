@@ -30,4 +30,5 @@ thesis.mn
 *.blg
 *.log
 *.png
+*.dvi
 figures/draft/*

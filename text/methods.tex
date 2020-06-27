@@ -528,7 +528,7 @@ Coupled with this is the use of the minimum image convention, where each particl
 This is illustrated in figure \ref{fig:pbc}.
  
 \subsection{Voronoi Construction}
-\label{ssec:voronoi}
+\label{s:voronoiintro}
 
 
 The hard particle configurations produced by \mc{} simulations are not in themselves network structures, rather simply a collection of correlated points.
@@ -578,16 +578,16 @@ Specifically, the Voronoi partition underestimates the space assigned to large p
 To rectify this, weighted modifications have been suggested which take account of the differences in radii \cite{Poupon2004}.
 
 To construct a weighted Voronoi diagram, one simply adjusts the position of the dividing line, such that it is further from the particle with the greater weight. 
-The weighting method used in this work is the so called radical tessellation introduced by Finney \cite{GELLATLY1982}. In this modification, the dividing line is placed a distance $d_i$ from particle $i$, given by:
+The weighting method used in this work is the so called radical tessellation, or power diagram \cite{GELLATLY1982,Aurenhammer1987}. In this modification, the dividing line is placed a distance $r_i$ from particle $i$, given by:
 \begin{equation}
 	\label{eq:radical}
-	d_i = \frac{w_i^2-w_j^2+r_{ij}^2}{2r_{ij}}\,,
+	r_i = \frac{w_i^2-w_j^2+r_{ij}^2}{2r_{ij}}\,,
 \end{equation}
 where $w_i$ and $w_j$ are the weights for each particle. 
 The benefit of this method is that is adjusts the partitioning of space so that greater volume is assigned to the particles with larger weight, and is well designed so that all of the sample space remains accounted for - unlike some alternative constructions \cite{Richards1974}. 
 In terms of the particle weights, the logical choice is simply the disk radii. 
-This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $d_i = R_i$ \ie{} the radical dividing line sits exactly between the two disks, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
-Furthermore, when the radii are equal, $d_i = r_{ij} /2$ and the result from the standard unweighted Voronoi is regenerated as expected.
+This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $r_i = R_i$ \ie{} the radical dividing line sits exactly between the two disks, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
+Furthermore, when the radii are equal, $r_i = r_{ij} /2$ and the result from the standard unweighted Voronoi is regenerated as expected.
 It is worth noting here that the weighting method can affect the ring sizes (\ie{} number of vertices) as well as the ring areas, as demonstrated in figures \ref{fig:vorodemov2},\ref{fig:vorodemor2}.
 
 The outcome of the Voronoi construction is a system of percolating rings not dissimilar to those seen in materials.
