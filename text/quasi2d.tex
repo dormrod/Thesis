@@ -259,14 +259,14 @@ The overarching properties of the ring structure will first be explored, before 
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/bi_ssr_l_phi_p6.pdf}
-         \caption{$\gamma=1.45$, Large Spheres}
+         \caption{$\gamma=1.45$, large spheres}
          \label{fig:bi3}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/bi_ssr_s_phi_p6.pdf}
-         \caption{$\gamma=1.45$, Small Spheres}
+         \caption{$\gamma=1.45$, small spheres}
          \label{fig:bi4}
      \end{subfigure}
      \hfill
@@ -313,14 +313,14 @@ Similar trends were in fact seen for x-rings in triangle rafts in section \david
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_l_53.pdf}
-         \caption{$\gamma=1.45$, $c_l=0.53$, \\Large Spheres}
+         \caption{$\gamma=1.45$, $c_l=0.53$, \\large spheres}
          \label{fig:bime1}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_s_53.pdf}
-         \caption{$\gamma=1.45$, $c_l=0.53$, \\Small Spheres}
+         \caption{$\gamma=1.45$, $c_l=0.53$, \\small spheres}
          \label{fig:bime2}
      \end{subfigure}
      \hfill
@@ -328,28 +328,52 @@ Similar trends were in fact seen for x-rings in triangle rafts in section \david
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_l_9.pdf}
-         \caption{$\gamma=1.45$, $c_l=0.09$, \\Large Spheres}
+         \caption{$\gamma=1.45$, $c_l=0.09$, \\large spheres}
          \label{fig:bime3}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_s_9.pdf}
-         \caption{$\gamma=1.45$, $c_l=0.09$, \\Small Spheres}
-         \label{fig:bime3}
+         \caption{$\gamma=1.45$, $c_l=0.09$, \\small spheres}
+         \label{fig:bime4}
      \end{subfigure}
      \hfill
     
      \caption{Variation of partial ring distributions with packing fraction for two different compositions of a $\gamma=1.45$ bidisperse monolayer, contrasted with maximum entropy solutions. Left panels show the statistics for rings associated with larger particles, and right panels with smaller particles. The maximum entropy solutions are overlaid as dashed lines for comparison.}
      \label{fig:bime}
 \end{figure}
-\davidnote{Is this figure clear or confusing?} 
+\davidnote{Is figure \ref{fig:bime} clear or confusing?} 
+
+To further investigate the ring statistics in bidisperse colloidal monolayers, the numerical partial ring size distributions are compared to maximum entropy solutions.
+These maximum entropy solutions to are assumed to follow the same form as \lm's law, \ie{} satisfy the constraints:
+\begin{align}
+	\sum_k p_k &= 1\,, \\
+	\sum_k kp_k &= \langle k \rangle_{l,s}\,, \\
+	\sum_k \frac{p_k}{k} &= \text{constant}\,.
+\end{align}
+Unlike \lm's law, which requires only the value of a single ring, such as $p_6$, to obtain the entire distribution, the additional freedom afforded to the mean ring size means that here the mean ring size of the partial distributions must also be provided.
+
+The comparison of the partial ring statistics from simulation and maximum entropy is given in figure \ref{fig:bime}.
+The partial distributions are provided for the large and small spheres, with a small size ratio, at the two limiting compositions of $c_l=0.53,0.09$.
+The continuous evolution in the ring statistics with packing fraction is detailed by the shading of the bars (note for instance that the $k=6$ bars in figure \ref{fig:bime} are the reverse of the lines of $p_6^{l,s}$ in figures \ref{fig:bi3}, \ref{fig:bi4}).
+In these plots, the left\--most points in each bar represent the system at the highest packing fraction, and the right\--most points the limit of zero packing fraction.
+In all cases, the maximum entropy solutions fit the observed numerical results quite well.
+The difference in the ring statistics for each component is also stark.
+For the $c_l=0.53$ system, which is roughly equal in large and small spheres, although at high packing fraction $p_6$ is comparable in magnitude, the distribution for large spheres is skewed heavily towards large rings (particularly $k=7$), whereas that for the small spheres is skewed towards small rings (particularly $k=5$).
+For the $c_l=0.09$ system, the distribution for the large spheres is even more dramatic, being dominated at high packing fraction by $7$\--rings.
+This causes the value of $p_6$ to exhibit a maximum in $\phi$, as the proportion initially rises as $7$\--rings decay, before heading towards the PV limit.
+One might think that this necessarily must also enforce the small sphere distribution to be more ``extreme'', but in fact the reverse is true.
+As the small spheres interact primarily with other small spheres, due to their high relative abundance, the ring distribution actually appears more similar to that of the monodisperse case.
+Hence, in this way, the two effects offset each other, so that by extremising the distribution of one component, the other must become more regular.
+
+\davidnote{Again, check with Mark}
 
 \section{Voronoi Construction in Quasi\--2D}
 
 The case of \qtd{} polydisperse spheres is a further generalisation of the mono\-- and bidisperse systems discussed already in this chapter.
 Owing to this generality, a different approach will be taken here, with the meaning of the Voronoi diagram carefully examined in the context of \qtd{} hard sphere systems, before numerical results are presented for polydisperse spheres.
-The motivation for this is that up to this point, it has merely been stated that the unweighted 2D Voronoi is an appropriate construction (as opposed to a weighted variant - see section \davidnote{link}), even for collections of particles of varying radii.
+The motivation for this is that up to this point, it has merely been stated that the unweighted 2D Voronoi is an appropriate construction (as opposed to a weighted variant - see section \ref{s:voronoiintro}), even for collections of particles of varying radii.
 The opportunity will now be taken to explore this claim more fully.
 
 \begin{figure}[tb]
@@ -391,7 +415,7 @@ In addition, it is relatively straightforward to see that this 2D tessellation i
 This is to say that the 3D Voronoi can be trivially constructed from the 2D Voronoi, and so such systems can be analysed with an unweighted 2D Voronoi, with no loss of information.
 
 A simple extension is then to take polydisperse particles in which the particle centres occupy the same plane (\eg{} particles suspended at an interface).
-As previously alluded to in section \davidnote{link}, a weighted Voronoi construction is required in this case, to avoid the possibility of the polyhedra cutting through the larger particles.
+As previously alluded to, a weighted Voronoi construction is required in this case, to avoid the possibility of the polyhedra cutting through the larger particles.
 Calculating the 3D Voronoi diagram, weighted by the sphere radii, once again leads to prismatic polyhedra, as shown in figure \ref{fig:qtdv2}.
 Now the 2D tessellations formed from horizontal cuts are topologically equivalent to the 2D Voronoi diagram, weighted by the sphere radii, calculated in the plane of the particle centres.
 Once again the partitioning of space can be fully described in two dimensions, and so such systems can be analysed with a weighted 2D Voronoi.
@@ -486,11 +510,11 @@ Panel (b) shows three spheres and the 3D weighted Voronoi polyhedron formed arou
 \subsubsection{General Case with Arbitrary Horizontal Plane}
 
 Taking the basal faces of the 3D Voronoi polyhedra can equally be thought of as taking a horizontal cut through the tessellation at $z=0$.
-The result above is essentially a special case of the fact that a cut through a 3D Voronoi must yield a tessellation which is equivalent to some weighted 2D Voronoi\cite{Imai1985,Rivier1990}.
+The result above is essentially a special case of the fact that a cut through a 3D Voronoi must yield a tessellation which is equivalent to some weighted 2D Voronoi \cite{Imai1985,Rivier1990}.
 Following from the result above, one may ask what is the analogous relationship between a 2D and 3D Voronoi when taking a cut at arbitrary $z$, as in figure \ref{fig:qtdv3}.
 Revisiting the simple arrangement in figure \ref{fig:qtdda}, for a given horizontal cut height, $z$, the projected particle centres are now defined as $\mathbf{r}_i^\prime=\left(x_i,y_i,z\right)$.
 Regardless of the the value of $z$, we note that the distances between the projected centres remain the same at $r_{AB}^\prime$.
-To obtain the same distance between the projected particle centres and the dividing plane using both a 2D and 3D Voronoi, it can be seen from combining equations \eqref{eq:rad} and \eqref{eq:plane} that:
+To obtain the same distance between the projected particle centres and the dividing plane using both a 2D and 3D Voronoi, it can be seen from combining equations \eqref{eq:radical} and \eqref{eq:plane} that:
 \begin{equation}
 	\label{eq:condition}
 	w_A^2-2\rs_Az = w_B^2-2\rs_Bz\,.
@@ -687,7 +711,7 @@ These can be averaged over $m$ nearest neighbours to give the result:
 \begin{equation}
 	h_S\left(R^\prime\right) = \frac{1}{2m\left(\langle R^\prime\rangle-R^\prime\right)}\sum\limits_{n=1}^{m} \langle r^\prime_n \rangle^2\,.
 \end{equation} 
-It will be shown in section \ref{sec:numres} and figure \ref{fig:nphi}, that averaging over $m=3$ nearest neighbour distances gave a good fit to the observed numerical distribution.
+It will be shown in section \ref{s:polycell} and figure \ref{fig:nphi}, that averaging over $m=3$ nearest neighbour distances gave a good fit to the observed numerical distribution.
 This can be rationalised on the basis that the top vertex is formed from the intersection of three neighbouring planes, which originate from the closest three particles.
 
 The important thing about this functional form is that the expected height of the Voronoi cell scales quickly with particle radius, unlike in the disk\--weighted case.
@@ -748,7 +772,7 @@ The conclusions of that section are now tested numerically with monolayers of po
 As with the mono\-- and bidisperse cases, the network properties are also analysed.
 Systems at five different number densities in the range $\rho=0.00\rightarrow0.20$, are initialised with radii drawn from the lognormal distribution in equation \eqref{eq:lognormal}, with $\mu=0.0,\sigma=0.3$.
 Configurations are then generated using the \mc{} technique outlined in section \ref{s:nonaddmc}.
-Tessellations for each sample configuration can be made on-the-fly using both a weighted 2D Voronoi and the full 3D weighted Voronoi cut at a given height \cite{Rycroft2009}.
+Tessellations for each sample configuration can be made on-the-fly using both a weighted 2D Voronoi and the full 3D weighted Voronoi cut at a given height.
 The periodicity in the system ensures that the Voronoi diagrams generated have no boundary, removing any potential edge effects. 
 This maintains the mean polygon size of $\ki=6$, and ensures all node degrees are satisfied in the calculation of the assortativity.
 
@@ -770,13 +794,14 @@ As explained in section \ref{sec:vorrel} methods 1 and 2 are equivalent and prod
 Method 3 on the other hand is expected to approximate to the other methods in the region near $z=0$.
 
 \subsection{Cell Frequency and Packing Fraction}
+\label{s:polycell}
 
-To begin with, the number of cells that can be found in each tessellation is evaluated, as the cut height is increased; displayed in figure \ref{fig:nphi}(a)\--(c).
+To begin with, the number of cells that can be found in each tessellation is evaluated, as the cut height is increased; displayed in figure \ref{fig:nphia}\--\ref{fig:nphic}.
 This is measured by the quantity $\zN$, the proportion of the total particles that have associated cells in the Voronoi construction.
-For the sphere\--weighted Voronoi, figure \ref{fig:nphi}(a), the number of cells at a given cut height scales with the system density, such that a plot of $\nSz$ against $z\times \rho_0$ produces a near universal curve.
+For the sphere\--weighted Voronoi, figure \ref{fig:nphia}, the number of cells at a given cut height scales with the system density, such that a plot of $\nSz$ against $z\times \rho_0$ produces a near universal curve.
 This curve is fit well by equation \eqref{eq:nsz} when $m=3$ \ie{} averaging over three nearest neighbours.
 The curves for $m=2,4$ are also presented, lying either side of the $m=3$ curve, systematically under\-- and over\--estimating $\nSz$.
-The main small discrepancy between systems of different density comes at the low cut heights, where the effects of short range ordering are still observable, as in \ref{fig:nphi}(c).
+The main small discrepancy between systems of different density comes at the low cut heights, where the effects of short range ordering are still observable, as in \ref{fig:nphib}.
 After the large initial drop in the number of cells at small cut heights, we see a long tail in the function $\nSz$.
 This is indicative of the fact that the cells for the largest particles are very persistent.
 As these particles are in low density and likely spaced far apart, the dividing planes are near\--vertical, leading to a slow convergence of the cell walls.
@@ -790,9 +815,9 @@ As these particles are in low density and likely spaced far apart, the dividing 
          \label{fig:nphia}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
+      \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/quasi2d/n_z_3d_disk.pdf}
+         \includegraphics[width=\textwidth]{./figures/quasi2d/n_z_3d_sphere2.pdf}
          \caption{}
          \label{fig:nphib}
      \end{subfigure}
@@ -800,7 +825,7 @@ As these particles are in low density and likely spaced far apart, the dividing 
      
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/quasi2d/n_z_3d_sphere2.pdf}
+         \includegraphics[width=\textwidth]{./figures/quasi2d/n_z_3d_disk.pdf}
          \caption{}
          \label{fig:nphic}
      \end{subfigure}
@@ -813,8 +838,8 @@ As these particles are in low density and likely spaced far apart, the dividing 
      \end{subfigure}
      \hfill
      
-	\caption{XXXXX Panels (a) and (b) compare the proportion of particles with cells in the sphere\-- and disk\-- weighted Voronoi tessellations respectively.
-	Panel (c) gives a closer inspection of the data in panel (a) over the low $z$ range, using the same legend.
+	\caption{Cell frequencies and packing fraction for Voronoi variants. Panels (a) and (c) compare the proportion of particles with cells in the sphere\-- and disk\-- weighted Voronoi tessellations respectively.
+	Panel (b) gives a closer inspection of the data in panel (a) over the low $z$ range, using the same legend.
 	Panel (d) gives the change in packing fraction as a function of the horizontal cut height.}
 	\label{fig:nphi}
 \end{figure}
@@ -822,7 +847,7 @@ As these particles are in low density and likely spaced far apart, the dividing 
 For the disk\--weighted Voronoi, the behaviour in $\nDz$ is exactly described by equation \eqref{eq:ndz}.
 In this case, the functional form is dependent only on the underlying particle distribution, and not the system density. 
 In contrast to the sphere\--weighted case, the number of cells featured in these tessellations decays rapidly to zero beyond $\langle R\rangle$, simply reflecting that the maximum cell height is defined by the particle diameter, and so the polyhedra are truncated instead of extending above the particle.
-Figure \ref{fig:nphi}(d) explores the change in packing fraction as a function of the cut height, as explained in section \ref{s:vorpackingfrac}.
+Figure \ref{fig:nphid} explores the change in packing fraction as a function of the cut height, as explained in section \ref{s:vorpackingfrac}.
 As can be seen the fundamental shape is invariant to the number density, with $\rho_0$ merely acting as a scaling factor. 
 Once again there is excellent agreement between the numerics and the theoretical results in equations \eqref{eq:packingfrac}.
 Table \ref{tab:packingfrac} shows how the maximum packing fraction differs from the naive 2D packing fraction that can be calculated from the sphere radii and the cell area as in equation \eqref{eq:simplepackingfrac}.
@@ -848,7 +873,7 @@ Calculating packing fraction in this way always acts to reduce the overall numbe
 
 The effects of the different methods of dividing space on the network properties of the system are also a subject of interest.
 Previous studies which have compared the tessellations formed from cuts through 3D packings of mono- and bidisperse spheres have found differences when comparing the results of the different methods \cite{Oger2000,Gervois2004}.
-For the differnt Voronoi methods discussed in this work, it is found that there is good agreement at low cut heights, but fundamental differences in the asymptotic limit as the cut height is increased.
+For the different Voronoi methods discussed in this work, it is found that there is good agreement at low cut heights, but fundamental differences in the asymptotic limit as the cut height is increased.
 The two network metrics common in this thesis are again compared for each system: the proportion of hexagons, $p_6$, and the assortativity, $\ass$, displayed in figure \ref{fig:pr}.
 As expected there is good agreement between methods in both metrics at low cut height, with convergence in the limit of $z\rightarrow 0$.
 However, at larger $z$ key differences emerge. 
@@ -859,56 +884,56 @@ will discuss the nature of this limit in a following section.
 
 \begin{figure}
 
-	\begin{subfigure}[b]{0.48\textwidth}
+	\begin{subfigure}[b]{0.46\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/p6_z_3d_sphere.pdf}
          \caption{}
-         \label{fig:nphia}
+         \label{fig:pra}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{./figures/quasi2d/p6_z_3d_disk.pdf}
-         \caption{}
-         \label{fig:nphib}
-     \end{subfigure}
-     \hfill
-     
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/r_z_3d_sphere.pdf}
          \caption{}
-         \label{fig:nphic}
+         \label{fig:prb}
+     \end{subfigure}
+     \hfill
+     
+       \begin{subfigure}[b]{0.46\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/quasi2d/p6_z_3d_disk.pdf}
+         \caption{}
+         \label{fig:prc}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/r_z_3d_disk.pdf}
          \caption{}
-         \label{fig:nphid}
+         \label{fig:prd}
      \end{subfigure}
      \hfill
      
-	\caption{XXXXX Comparison of the network properties in the sphere\--weighted and disk\--weighted Voronoi diagrams.
-	Panels (a),(b) give the proportion of hexagons, $p_6$, with cut height and panel (c),(d) the assortativity.}
+	\caption{Comparison of the network properties in the sphere\--weighted and disk\--weighted Voronoi diagrams.
+	The proportion of hexagons, $p_6$, and assortativity, $r$, with cut height is given in panels (a),(b) and (c),(d) for the sphere\-- and disk\--weighted diagrams respectively.}
 	\label{fig:pr}
 \end{figure}
 
 
 To explain these observations two further measures are examined, the expected weight at a given cut height, $\langle w \rangle_z$, and the average nearest neighbour distance at a given cut height, $\ed$, given in figure \ref{fig:wd}.
-These can be referred to in reference to equation \eqref{eq:rad}, which defines the position of the radical plane between two particles.
+These can be referred to in reference to equation \eqref{eq:radical}, which defines the position of the radical plane between two particles.
 For the disk\--weighted Voronoi, it was showed above that the system approached the random PV limit.
 In this limit the particles are randomly positioned and effectively unweighted. 
 The only way this is achievable is if the inter\--particle distances scale in excess of the weightings with increasing cut height.
-As seen from figures \ref{fig:wd}(b),(d), this is indeed the case, with the distances increasing exponentially as the cut height exceeds an increasing number of particle diameters whilst the average weighting remains relatively constant.
+As seen from figures \ref{fig:wdc},\ref{fig:wdd}, this is indeed the case, with the distances increasing exponentially as the cut height exceeds an increasing number of particle diameters whilst the average weighting remains relatively constant.
 Two further observations arise from these plots: equation \eqref{eq:ndist} describes the average distances very well (with the greatest deviation for higher density systems reflecting the presence of short range liquid structure), and the form of $\langle w_D\rangle_z$ mirrors the oscillations in the network properties.
-These oscillations, which are particularly pronounced in $p_6$ (figure \ref{fig:pr}(b)), are a result of the balance of weightings with cut height which become increasingly visible at higher densities where the inter\--particle distances are smaller.
+These oscillations, which are particularly pronounced in $p_6$ (figure \ref{fig:prc}), are a result of the balance of weightings with cut height which become increasingly visible at higher densities where the inter\--particle distances are smaller.
 
 Applying the same reasoning to the sphere\--weighted Voronoi, it is initially difficult to see how the network properties can tend to a limit which is \textit{not} PV.
 However, this type of behaviour is not unknown, being similar to the observation that taking random sections through 3D PV polyhedra leads to 2D polygons which follow a distribution other than PV \cite{Hahn1994}.
 As stated previously, as the cut height is increased particle cells are removed at random from the tessellation, so the system must be approaching some random limit.
-Examining equation \eqref{eq:rad} again, the only way this cannot be PV is if the particle weightings scale in the same way as the inter\--particle distances.
-Figure \ref{fig:wd}(a) and (c) show that this is indeed the case, with both metrics scaling as $z^{1/2}$.
+Examining equation \eqref{eq:radical} again, the only way this cannot be PV is if the particle weightings scale in the same way as the inter\--particle distances.
+Figure \ref{fig:wda} and \ref{fig:wdb} show that this is indeed the case, with both metrics scaling as $z^{1/2}$.
 As such, the decreasing density of points is directly offset by the increase in weighting and a random limit other than PV is reached.
 
 \begin{figure}
@@ -917,33 +942,33 @@ As such, the decreasing density of points is directly offset by the increase in 
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/d_z_3d_sphere.pdf}
          \caption{}
-         \label{fig:nphia}
+         \label{fig:wda}
      \end{subfigure}
      \hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/quasi2d/w_z_3d_sphere.pdf}
+         \caption{}
+         \label{fig:wdb}
+     \end{subfigure}
+     \hfill     
+     
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/d_z_3d_disk.pdf}
          \caption{}
-         \label{fig:nphib}
-     \end{subfigure}
-     \hfill
-     
-     \begin{subfigure}[b]{0.48\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{./figures/quasi2d/w_z_3d_sphere.pdf}
-         \caption{}
-         \label{fig:nphic}
+         \label{fig:wdc}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/w_z_3d_disk.pdf}
          \caption{}
-         \label{fig:nphid}
+         \label{fig:wdd}
      \end{subfigure}
      \hfill
 	
-	\caption{XXXXXX Comparison of the inter\--particle distances (panels(a),(b)) and particle weights (panels (c),(d)) for the sphere\-- and disk\--weighted Voronoi at increasing cut heights. In the sphere\--weighted case both measures scale as $z^{1/2}$ in the high cut height limit, whereas in the disk\--weighted case the inter\--particle distance increases exponentially, making the weighting effect negligible.}
+	\caption{Comparison of the inter\--particle distances (panels(a),(c)) and particle weights (panels (b),(d)) for the sphere\-- and disk\--weighted Voronoi at increasing cut heights. In the sphere\--weighted case both measures scale as $z^{1/2}$ in the high cut height limit, whereas in the disk\--weighted case the inter\--particle distance increases exponentially, making the weighting effect negligible.}
 	\label{fig:wd}
 \end{figure}
 
@@ -972,3 +997,19 @@ Finally an alternative definition of the packing fraction has been introduced by
 This packing fraction is well defined in that it cannot exceed unity and does not require an arbitrary definition of the sample volume.
 
 \section{Chapter Summary}
+
+This chapter has extensively explored the role of the Voronoi construction in the analysis of \qtd{} hard sphere systems.
+A substantial part of this has been a theoretical study of the relationships between various 2D and 3D tessellations for these systems.
+Although some of the problems investigated are more esoteric, others are of direct relevance to ongoing experimental research.
+Most significantly, a link has been drawn between the application of an unweighted 2D Voronoi construction and a 3D construction in which the division of space is weighted in terms of particle size, for the case in which the spheres sit on a surface.
+As a result, a clear geometrical meaning has been provided to the commonly used unweighted 2D Voronoi diagram; showing it to be equivalent to the tessellation 
+formed from taking the basal polygons in the 3D Voronoi diagram weighted by the sphere 
+radii.
+
+As an example of this, experimental configurations of \qtd{} colloidal monolayers of varying parameters were analysed using Voronoi techniques.
+The results of these analyses were also compared to analogous configurations generated by non\--additive hard disk \mc{}, to which there was good agreement.
+Monodisperse systems were found to have ring statistics concordant with \lm's law and network assortativity which was linear in packing fraction.
+Bidisperse systems were considered in terms of the partial properties of the two sphere components.
+The partial ring size distributions were shown to be fit well by maximum entropy distributions and can be tuned through varying the system parameters of packing fraction, composition and radius ratio.
+
+
