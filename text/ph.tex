@@ -35,7 +35,7 @@ Persistent homology will then be calculated for configurations of silica bilayer
 
 This section will give a broad outline of the mathematical background behind persistent homology, but with the focus on a practicable implementation for studying physical \td{} networks.
 It will begin by introducing the concept of a filtered simplicial complex, before discussing homology groups, persistent homology and the visualisation of persistence.
-Actual numerical persistent homology calculations can be carried out with the Gudhi library \cite{gudhi}.
+Actual numerical persistent homology calculations can be carried out with the GUDHI library \cite{gudhi}.
 
 \subsection{Filtered Simplicial Complexes}
 
@@ -77,7 +77,7 @@ The last subcomplex, $\mathbf{K}_\infty$, will contain all the determined simpli
 Crucially, for the alpha complex, this will be equivalent to the Delaunay triangulation.
 This is the motivation for choosing the alpha complex, as the Delaunay triangulation (which has already appeared throughout this thesis as the dual of the Voronoi diagram), is well defined in two dimensions. 
 As such it provides the best opportunity to relate the results of persistent homology to well understood systems.
-In two dimensions, the alpha complex therefore has a 
+
 
 \begin{figure}[tb]
 	\centering
@@ -226,7 +226,7 @@ These are outlined below, with examples given in figure \ref{fig:exvis}, in refe
 	
 	\item \textbf{Evolution in Betti numbers}: plots the total number of each $n$\--dimensional feature for each filtration value (see figures \ref{fig:exvisc}, \ref{fig:exvisd}), and so provides more coarse\--grained information than the barcode. It is equivalent to counting the number of bars at a specific filtration value.
 	
-	\item \textbf{Persistence diagram}: plots the birth and death values of each feature as a scatter diagram (see figures \ref{fig:exvise}, \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histogramming can be used, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
+	\item \textbf{Persistence diagram}: plots the birth and death value pairs, $\left(b,d\right)$, of each feature as a scatter diagram (see figures \ref{fig:exvise}, \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histogramming can be used, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
 	
 %	\item \textbf{Lifetime distribution function}: presents a histogram of the lifetimes of each feature. This is useful for analysing a large number of features, but loses information on the exact birth and death values.
 \end{itemize}
@@ -236,14 +236,14 @@ Although these visualisation methods have been introduced here, they will be int
 Examining the results for the two example systems in \ref{fig:exvis}, one can see that the crystalline and amorphous systems have both similarities and differences.
 To begin with, the 0\--dimensional features appear very similar across all plots, with $b=0$ and $d=r_0/2$.
 This is because in atomic systems, the average bond length is highly restricted, and so all atoms become connected in a very small range of filtration values, corresponding to half the mean bond length (as the filtration value measures the circumradius of the 1\--simplex).
-As such the $0$\--dimensional features provide little insight for atomic systems, and will be neglected in the analysis in this chapter.
+As such, the $0$\--dimensional features provide little insight for atomic systems, and will be neglected in the analysis in this chapter.
 
 On the other hand, the 1\--dimensional features show significant differences between the crystalline and amorphous configurations.
 Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa}, \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
 For the crystalline system, all persistent cycles (corresponding to hexagons) terminate at almost the same value of $\epsilon=r_0$, whereas in the amorphous case there is a much broader distribution of values.
 These values will be discussed in detail in section \davidnote{link}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
 It is not only the persistent cycles which show variation though.
-The persistence diagrams, figures \ref{fig:exvise} and \ref{fig:exvisf}), also show that the short lived features, which lie close to the line $b=d$, show greater variation in the amorphous case.
+The persistence diagrams, figures \ref{fig:exvise} and \ref{fig:exvisf}, also show that the short lived features, which lie close to the line $b=d$, show greater variation in the amorphous case.
 This will also be explored in greater depth in the remainder of the chapter.
 
 What these small examples serve to demonstrate, is that persistent homology does show some promise for capturing the disorder in amorphous materials.
@@ -303,121 +303,115 @@ The question is whether these visualisations can be systematically interpreted t
 
 \section{Persistent Homology with Triangle Rafts}
 
+Persistent homology is first studied in reference to triangle rafts, introduced in chapter \davidnote{link}.
+To briefly reiterate, triangle rafts are a model for \td{} amorphous silica, representing the bilayer of corner sharing tetrahedra as projected equilateral triangles.
+Triangle rafts are characterised by having a diverse ring distributions, owing to the flexibility afforded to the structure by the oxygen linkages.
+Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}.
+
+\begin{table}[hbt]
+\centering
+\caption{Relative Si\--Si distances within different ring sizes in a triangle raft, assuming ring regularity.}
+\label{tab:trsidist}
+\begin{tabular}{cccccccc}
+\toprule
+$k$ & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\midrule
+Si\--Si & 0.966 & 0.995 & 1.000 & 0.997 & 0.991 & 0.985 & 0.978 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+An algorithm to construct triangle rafts was introduced in section \davidnote{link}.
+The ring statistics in the resulting configurations can be tuned with a ``temperature'' parameter, $T$, with a higher temperature leading to the incorporation of more extreme ring sizes.
+This is beneficial, as it allows a systematic evaluation of the results of persistent homology calculations, using configurations with a continuous evolution in structure.
+As such, the samples from sections \davidnote{link}, with ring sizes in the range $k=4\rightarrow10$, were analysed using the GUDHI library \cite{gudhi}.
+In these analyses, only the silicon positions were included, as again the oxygen positions are in a sense ``degenerate'' (as they do not affect the ring topologies) and would only serve to obscure the calculation.
+In addition, this makes the cycles computed by persistent homology consistent with the definitions of rings elsewhere in this thesis.
+
+The results of the persistent homology calculations will be discussed primarily in terms of the persistence diagrams, with the structure rationalised in comparison to analytic examples. 
+However, it will also be shown how metrical quantities such as the ring statistics compare to persistent cycles.
+
+\subsection{Overview of Persistence Diagrams}
+
+The persistence diagrams for triangle rafts at four increasing temperatures are shown in figures \ref{fig:trpda}\--\ref{fig:trpdd}, combined across multiple configurations.
+Discussing first the overall structure, one can see there is a definite systematic evolution in behaviour as temperature (and therefore disorder) increases.
+To aid discussion points will be referred to in terms of birth\--death pairs, $\left(b,d\right)$.
+At the lowest temperature, configurations are dominated largely by regular hexagons with few defects, reflected in the persistence diagram by bright spots at $\bd{0.5}{1.0}$ and $\bd{1.0}{1.0}$ (in comparison with figure \ref{fig:exvise}).
+As the temperature increases, and rings of different sizes are introduced, characteristic bands form in the persistence diagram, which are most intense at low lifetimes (\ie{} close to $b=d$) and then ``wash out'' at lower birth values and longer lifetimes. 
+At higher temperatures still, these bands broaden and finally coalesce.
+
 \begin{figure}[tb]
 	\centering
      
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-4500_tr_pd.pdf}
-         \caption{}
+         \caption{$T=10^{-4.5}$}
          \label{fig:trpda}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-3600_tr_pd.pdf}
-         \caption{}
+         \caption{$T=10^{-3.6}$}
          \label{fig:trpdb}
      \end{subfigure}
      \hfill
-     
+     	
+     \vspace{0.5cm}
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-2700_tr_pd.pdf}
-         \caption{}
+         \caption{$T=10^{-2.7}$}
          \label{fig:trpdc}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-1800_tr_pd.pdf}
-         \caption{}
+         \caption{$T=10^{-1.8}$}
          \label{fig:trpdd}
      \end{subfigure}
      \hfill
     
-	\caption{XXXX}
-	\label{fig:}
+	\caption{Persistence diagrams for triangle rafts generated at increasing temperatures (as indicated in captions). Points are coloured by multiplicity to highlight structure. The line $b=d$ is also indicated as a diagonal black line.}
+	\label{fig:trpd}
 \end{figure}
 
-
-%\begin{figure}[tb]
-%	\centering
-%     
-%      \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.75\textwidth]{./figures/ph/sl_hex_120.pdf}
-%         \caption{}
-%         \label{fig:slhex}
-%     \end{subfigure}
-%     
-%	 \vspace{0.5cm}     
-%     \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.9\textwidth]{./figures/ph/sl_hex_60.pdf}
-%         \caption{}
-%         \label{fig:slhex}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.9\textwidth]{./figures/ph/sl_hex_90.pdf}
-%         \caption{}
-%         \label{fig:slhex}
-%     \end{subfigure}
-%     
-%     \vspace{0.5cm}
-%     \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.8\textwidth]{./figures/ph/sl_hex_150.pdf}
-%         \caption{}
-%         \label{fig:slhex}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.7\textwidth]{./figures/ph/sl_hex_180.pdf}
-%         \caption{}
-%         \label{fig:slhex}
-%     \end{subfigure}
-% 
-%	\caption{XXXX}
-%	\label{fig:}
-%\end{figure}
-
-%\begin{figure}[tb]
-%	\centering
-%     
-%      \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.85\textwidth]{./figures/ph/sl_oct_135.pdf}
-%         \caption{$\theta_1=134^\circ$, $\theta_2=135^\circ$, \\$\theta_3=136^\circ$}
-%         \label{fig:sloct}
-%     \end{subfigure}
-%     
-%     \vspace{0.5cm}
-%     \hfill
-%       \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.95\textwidth]{./figures/ph/sl_oct_90.pdf}
-%         \caption{$\theta_1=112^\circ$, $\theta_2=135^\circ$, \\$\theta_3=158^\circ$}
-%         \label{fig:sloct}
-%     \end{subfigure}
-%     \hfill
-%       \begin{subfigure}[b]{0.45\textwidth}
-%         \centering
-%         \includegraphics[width=0.85\textwidth]{./figures/ph/sl_oct_112.pdf}
-%         \caption{$\theta_1=90^\circ$, $\theta_2=135^\circ$, \\$\theta_3=180^\circ$}
-%         \label{fig:sloct}
-%     \end{subfigure}
-%     
-%     
-%
-%	\caption{XXXX}
-%	\label{fig:}
-%\end{figure}
+This band structure and its associated behaviour has been observed before in studies of three\--dimensional amorphous silica \cite{Nakamura2015,Hiraoka2016,Robins2017}.
+These papers often identify spots in the bands which correspond to known structures, and Hiraoka \etal{} go as far as suggesting that the bands correspond to rings formed from different nearest\--neighbour length scales \cite{Hiraoka2016}.
+However, this was proposed by observing the cycles directly, and the interpretation is somewhat more complicated by the inclusion of oxygen atoms.
+By studying this problem in two dimensions, it can now be shown that these bands arise from the formation of rings between nearest\--neighbour, second nearest\--neighbour, and successively higher order interactions.
 
 
+\subsection{Band Structure in Persistence Diagrams}
+
+Before rationalising the band structure observed in the persistence diagrams of triangle rafts, it is useful to consider again the process of cycle formation in persistent homology.
+The important points are summarised below:
+\begin{enumerate}
+	\item A cycle is born when a 1\--simplex cuts a previous cycle in two. The birth value is then equal to the filtration value of the 1\--simplex.
+	\item A cycle dies dies when \textit{all} of the 2\--simplices within it are present. The death value is then equal to the highest filtration value of the  constituent 2\--simplices.
+	\item A cycle is only counted if the death value is strictly greater than the birth value.
+	\item As a result of the above, a cycle will only persist if the 1\--simplex which creates it has a lower filtration value than the 2\--simplex which destroys it.
+\end{enumerate}
+Understanding these properties is key to interpreting the results of persistence diagrams.
+
+To explore the origins of the band structure, an ideal set of polygons will primarily be considered, where all sides have unit length.
+As previously mentioned, this approximation is reasonable for triangle rafts.
+The first, and simplest, band to consider is the vertical band at $b=0.5$, which displays bright spots along its length.
+These correspond to the cycles initially formed when 1\--simplices connect adjacent atoms, which have a circumradius of half the edge length.
+This band therefore originates from cycles pertaining to the nearest\--neighbour interactions, and so will be referred to as the band $B_1$.
+These cycles will only die when all the 2\--simplices inside them are present.
+As an illustration, a model is introduced whereby cycles are treated as a regular polygon with unit side lengths.
+By definition, in this case all simplices must have the same filtration value, as they lie on a common circle (see for example figure \ref{fig:b3b}).
+The filtration values for these simplices are given by:
+\begin{equation}
+	\Phi_k = \frac{1}{2\sin\left(\pi/k\right)}\,,
+\end{equation}
+where $\Phi_k$ will be used to denote the circumradius in a regular $k$\--sided polygon with unit edge lengths.
+The values of $\Phi_k$ for $4\leq k \leq 10$ can be found in table \ref{tab:circumradii}.
+It follows that a regular polygon will have a death value at $\Phi_k$, and furthermore, no more cycles will be born out of this point set.
+Although difficult to see, these correspond well with the bright spots in the persistence diagrams in figure \ref{fig:trpd}, as will be more apparent in subsequent analyses in this chapter.
 
 \begin{figure}[tb]
 	\centering
@@ -426,14 +420,14 @@ The question is whether these visualisations can be systematically interpreted t
          \centering
          \includegraphics[width=0.45\textwidth]{./figures/ph/sl_oct_b3_135x.pdf}
          \caption{\phantom{xxx} \\ \phantom{xxx}}
-         \label{fig:sloct}
+         \label{fig:b3a}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=0.7\textwidth]{./figures/ph/sl_oct_b3_135.pdf}
          \caption{$\theta_1=135^\circ$; \\$\left(0.50,1.31\right)$}
-         \label{fig:sloct}
+         \label{fig:b3b}
      \end{subfigure}
      
      \vspace{0.5cm}
@@ -441,45 +435,75 @@ The question is whether these visualisations can be systematically interpreted t
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/sl_oct_b3_150.pdf}
          \caption{$\theta_1=150^\circ$; \\$\left(0.50,1.12\right)$}
-         \label{fig:sloct}
+         \label{fig:b3c}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/sl_oct_b3_165.pdf}
          \caption{$\theta_1=165^\circ$; \\$\left(0.50,0.91\right)$, $\left(0.76,0.82\right)$ }
-         \label{fig:sloct}
+         \label{fig:b3d}
      \end{subfigure}
       \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.9\textwidth]{./figures/ph/sl_oct_b3_180.pdf}
          \caption{$\theta_1=180^\circ$; \\$\left(0.50,0.71\right)$}
-         \label{fig:sloct}
+         \label{fig:b3e}
      \end{subfigure}
    
-   
-	\caption{XXXX}
-	\label{fig:}
+	\caption{Systematic distortions of an octagon with unit side lengths, and the effect on the corresponding persistent cycles. Panel (a) shows the octagon model, which is defined in terms of two angles. Panels (b)\--(e) show a series of distortions. For each panel the angles and persistence $\bd{b}{d}$ pairs are given in the caption. In addition, the circumcircles of selected simplices are highlighted, with the corresponding filtration values colour coded. The Delaunay triangulation is given as the interior black lines. These diagrams outline the origin of the $B_1$ and $B_3$ bands.}
+	\label{fig:b3}
 \end{figure}
 
+\begin{table}[hbt]
+\centering
+\caption{Circumradii of regular polygons with unit edge lengths.}
+\label{tab:circumradii}
+\begin{tabular}{cccccccc}
+\toprule
+$k$ & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\midrule
+$\Phi_k$ & 0.707 & 0.851 & 1.000 & 1.152 & 1.307 & 1.462 & 1.618 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
+However, the vertical band clearly shows a continuum of values, not discrete points.
+Therefore, a modification to the model can be considered, whereby all edge lengths are maintained at unity, but the polygon undergoes a systematic distortion - begin compressed about an axis passing through two opposite edges.
+This process is highlighted in figures \ref{fig:b3a}\--\ref{fig:b3e}.
+In this part of the analysis, only the persistence cycles which are born at $b=0.5$ are of interest.
+These cycles will die when the Delaunay triangulation is realised.
+This is achieved when the simplex with the highest filtration value, here $DEH$ or $ADH$, is present.
+As the polygon is compressed, it can be seen that the circumcircle for this simplex (purple circle) is reduced.
+In other words, distortion of the polygon acts to reduce the lifetime of the original cycle born at $b=0.5$.
+The consequence of this is that the band $B_1$ manifests, instead of a simple series of discrete points.
 
-\begin{figure}[tb]
+The distortions in figures \ref{fig:b3a}\--\ref{fig:b3e} demonstrate the phenomenon central to the discussion of the remaining bands.
+As can be seen, between some critical values of $\theta$, a second cycle is born within the first.
+This is only possible when the 1\--simplex $AD$ has a filtration value less than the 2\--simplex $ACD$.
+In figure \ref{fig:b3c} where $\theta_1=150^\circ$, this is \textit{not} the case, as $AD$ and $ACD$ share the same filtration value.
+This is in fact the limiting case, and beyond this angle the circumcircle for $AD$ is not contained within that for $ACD$, and has a smaller radius, and therefore filtration value.
+The persistence of this cycle will therefore range between $\bd{0.5}{0.71}$, $\bd{0.76}{0.82}$ and $\bd{1.0}{1.0}$.
+The intermediate values can be found via numerically scanning the angle range, but even from these points it is clear that this corresponds well with the most prominent ``central'' band in the persistence diagram.
+Furthermore, this band arises from the cycles formed by connecting neighbours three bonds apart.
+Although shown for the octagon here, this in fact holds for the other ring sizes that can support this (\ie{} $k>5$), and so this band is termed $B_3$.
+
+\begin{figure}[tbp]
 	\centering
      
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=0.45\textwidth]{./figures/ph/sl_oct_b4_135x.pdf}
          \caption{\phantom{xxx} \\ \phantom{xxx}}
-         \label{fig:sloct}
+         \label{fig:b4a}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=0.8\textwidth]{./figures/ph/sl_oct_b4_135.pdf}
          \caption{$\theta_1=135^\circ$, $\theta_2=135^\circ$; \\$\left(0.50,1.31\right)$}
-         \label{fig:sloct}
+         \label{fig:b4b}
      \end{subfigure}
      
      \vspace{0.5cm}
@@ -487,21 +511,21 @@ The question is whether these visualisations can be systematically interpreted t
          \centering
          \includegraphics[width=0.95\textwidth]{./figures/ph/sl_oct_b4_150.pdf}
          \caption{$\theta_1=150^\circ$, $\theta_2=135^\circ$; \\$\left(0.50,1.15\right)$, $\left(1.12,1.15\right)$}
-         \label{fig:sloct}
+         \label{fig:b4c}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.85\textwidth]{./figures/ph/sl_oct_b4_165.pdf}
          \caption{$\theta_1=165^\circ$, $\theta_2=135^\circ$; \\$\left(0.50,1.00\right)$, $\left(0.92,1.00\right)$}
-         \label{fig:sloct}
+         \label{fig:b4d}
      \end{subfigure}
       \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.75\textwidth]{./figures/ph/sl_oct_b4_180.pdf}
          \caption{$\theta_1=180^\circ$, $\theta_2=135^\circ$; \\$\left(0.50,0.87\right)$, $\left(0.71,0.87\right)$}
-         \label{fig:sloct}
+         \label{fig:b4e}
      \end{subfigure}
    
    \vspace{0.5cm}
@@ -509,52 +533,75 @@ The question is whether these visualisations can be systematically interpreted t
          \centering
          \includegraphics[width=0.8\textwidth]{./figures/ph/sl_oct_b2_a.pdf}
          \caption{$\theta_1=135^\circ$, $\theta_2=170^\circ$; \\$\left(0.50,0.93\right)$, $\left(0.54,0.59\right)$}
-         \label{fig:sloct}
+         \label{fig:b4f}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.8\textwidth]{./figures/ph/sl_oct_b2_b.pdf}
-         \caption{$\theta_1=150^\circ$, $\theta_2=160^\circ$; \\$\left(0.50,0.88\right)$, $\left(0.57,0.59\right)$}
-         \label{fig:sloct}
+         \caption{$\theta_1=150^\circ$, $\theta_2=160^\circ$; \\$\left(0.50,0.88\right)$, $\left(0.57,0.61\right)$}
+         \label{fig:b4g}
      \end{subfigure}
       \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.8\textwidth]{./figures/ph/sl_oct_b2_c.pdf}
          \caption{$\theta_1=180^\circ$, $\theta_2=140^\circ$; \\$\left(0.50,0.81\right)$, $\left(0.64,0.65\right)$}
-         \label{fig:sloct}
+         \label{fig:b4h}
      \end{subfigure}
 
-	\caption{XXXX}
-	\label{fig:}
+	\caption{Further systematic distortions of an octagon with unit side lengths, and the effect on the corresponding persistent cycles. Panel (a) shows the octagon model, which is defined in terms of three angles. Panels (b)\--(h) show a series of distortions. For each panel the angles and persistence $\bd{b}{d}$ pairs are given in the caption (for panels (f)\--(h) an additional cycle is present, contributing to $B_3$, which is omitted for simplicity). In addition, the circumcircles of selected simplices are highlighted, with the corresponding filtration values colour coded. The Delaunay triangulation is given as the interior black lines. These diagrams outline the origin of the $B_2$ and $B_4$ bands.}
+	\label{fig:b4}
 \end{figure}
 
+It might now be clear that the other bands can also be related to specific nearest\--neighbour interactions.
+In order to demonstrate this, again the octagonal case can be examined, but with different ring distortions.
+Now compression is about an axis through two opposite vertices, outlined in figure \ref{fig:b4}.
+Figures \ref{fig:b4c}\--\ref{fig:b4e} illustrate how secondary cycle can be born at relatively high filtration values.
+Here compression causes the 1\--simplex $AE$ to have a filtration value lower than the 2\--simplex $ADE$, enabling formation of a second cycle.
+The atoms $A$, $E$ are separated by four bonds and so the corresponding band for such species is $B_4$.
+The as\--yet unaccounted for band, at the lowest persistence, naturally must be $B_2$, arising from atoms separated by two bonds.
+Examples of the formation of $B_2$ in the octagon are given in figures \ref{fig:b4f}\--\ref{fig:b4h}, corresponding to a ``pinch''.
 
-
-
+As can be seen, for the octagon it is relatively difficult to add to the $B_2$ band.
+This is worth some consideration. 
+It has been stated that this analysis is not unique to the octagon, which has merely been selected as it \textit{can} display all the required behaviour.
+However, in general large polygons ($k>6$) require little distortion to yield $B_3$ and $B_4$ bands, whereas significant rearrangement would be needed to contribute to $B_2$.
+On the other hand, the $B_2$ band readily forms for small polygons $k<6$ and indeed the higher bands are inaccessible.
+For the most common ring, the hexagon, most easily forms secondary cycles in $B_3$, and to a lesser extend $B_2$. 
+This explains the relative prominence of this central $B_3$ band in figures \ref{fig:trpda}\--\ref{fig:trpdd}.
+Furthermore, it is equally possible to obtain higher bands still, with sufficiently large polygons.
+In the case of the triangle rafts in this section, the decagon in fact leads to the presence of a weak $B_5$ band.
 
 \begin{figure}[tb]
 	\centering
      
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=0.87\textwidth]{./figures/ph/blines.pdf}
+         \includegraphics[width=0.88\textwidth]{./figures/ph/blines.pdf}
          \caption{}
-         \label{fig:blines}
+         \label{fig:blinesa}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/blines_overlay.pdf}
          \caption{}
-         \label{fig:blines}
+         \label{fig:blinesb}
      \end{subfigure}
  
-	\caption{XXXX}
+	\caption{Bands corresponding to different nearest\--neighbour interactions, as calculated numerically using idealised models. Panel (a) shows the isolated lines, whilst panel (b) overlays them on the persistence diagram for triangle rafts from figure \ref{fig:trpdc}, to which there is good agreement}.
 	\label{fig:blines}
 \end{figure}
 
+To conclude this section, the reasoning outlined above is tested by generating the bands numerically, by distorting polygons conforming to the various idealised models. 
+The results are given in figure \ref{fig:blines}, which seems quite compelling.
+The shapes and positions of the various bands match well with those in the persistence diagrams from triangle rafts.
+Furthermore, the intensities agree with the previous discussion, with the $B_3$ band being by far the most prominent.
+It should be noted that the $B_3$ band calculated from the idealised model corresponds to the upper limit of that found from triangle raft simulations.
+This is also as expected, as distortions in bond lengths and will only serve to reduce the death value. 
+As table \ref{tab:trsidist} showed, the nature of the triangle raft model (of hinged near\--rigid triangles), means that the bond lengths can only be less than the equilibrium value.
+The properties of the triangle rafts have therefore enabled the structure of persistence diagrams to be well understood in this \td{} case.
 
 \begin{figure}[tb]
 	\centering
