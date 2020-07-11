@@ -4,7 +4,9 @@
 \begin{chapterabstract}
 Persistent homology is a technique in topological data analysis to find the fundamental topological features in a collection of points.
 The applicability of persistent homology to the analysis of network materials is explored here for the relatively simple case of \td{} networks. 
-XXXXX
+Analysis is carried out for two systems, triangle rafts and CRNs. 
+The persistence diagrams of triangle rafts are shown to have a band structure which originates in successive nearest\--neighbour interactions, whilst the evolution of Betti numbers is related to the underlying ring statistics.
+XXX
 \end{chapterabstract}
 
 \section{Introduction to Persistent Homology}
@@ -29,7 +31,9 @@ complex datasets. Whether or not TDA can be used to make scientific discoveries 
 The purpose of this chapter is therefore to try and assess the utility of persistent homology in the context of \td{} amorphous materials, with the expectation that the interpretation may be simpler for these reduced dimensionality systems.
 The conclusions drawn from this work may then bring insight to the analysis of three dimensional systems.
 This chapter will begin by outlining the relevant theory to persistent homology, with the aid of small example systems.
-Persistent homology will then be calculated for configurations of silica bilayers (from experiment and via triangle rafts), and subsequently generic random networks as produced from bond switching.
+Persistent homology will then be calculated for triangle rafts (a proxy for amorphous silica), systematically generated with increasing levels of disorder.
+These results will then be contrasted with generic random networks as produced from bond switching.
+Conclusions XXX
 
 \section{Computing Persistent Homology}
 
@@ -114,10 +118,10 @@ As such it provides the best opportunity to relate the results of persistent hom
      \hfill
     
 	\caption{Construction of an alpha simplicial complex and its filtration. Panel (a) shows three 0\--simplices, with filtration values of $\epsilon=0$. Panel (b) shows an additional two 1\--simplices, with filtration values given by the radii of the respective circumcircles (dashed lines in black circles). Panel (c) shows an additional different 1\--simplex, in which the circumcircle (grey circle) contains the 3\--simplex $\left\{A,B,C\right\}$, and so the filtration value is set to the value of the 3\--simplex. Panel (d) shows an additional 3\--simplex with a filtration value given by the circumradius.
-	These subfigures can also be viewed as a series of subcomplexes, as highlighted in the captions, with $\mathbf{K}_0\subseteq\mathbf{K}_{4.27}\subseteq\mathbf{K}_{5.13}=\mathbf{K}_\infty$. The final complex is the Delaunay triangulation of the original point set. Panel (c) is \textit{not} a subcomplex in the filtration, as it does not contain the simplices $\left\{A,B\right\}$, $\left\{A,C\right\}$, which have lower filtration values than $\left\{B,C\right\}$.}
+	These subfigures can also be viewed as a series of subcomplexes, as highlighted in the captions, with $\mathbf{K}_0\subseteq\mathbf{K}_{4.27}\subseteq\mathbf{K}_{5.13}=\mathbf{K}_\infty$. The final complex is the Delaunay triangulation of the original point set. Panel (c) is \textit{not} a subcomplex in the filtration, as it does not contain the simplices $\left\{A,B\right\}$, $\left\{A,C\right\}$, which have lower filtration values than $\left\{B,C\right\}$. }
 	\label{fig:phalpha}
 \end{figure}
-
+\davidnote{remake 2.1 consistent with 2.5}
 
 \subsection{Homology and Persistent Homology}
 
@@ -306,7 +310,7 @@ The question is whether these visualisations can be systematically interpreted t
 Persistent homology is first studied in reference to triangle rafts, introduced in chapter \davidnote{link}.
 To briefly reiterate, triangle rafts are a model for \td{} amorphous silica, representing the bilayer of corner sharing tetrahedra as projected equilateral triangles.
 Triangle rafts are characterised by having a diverse ring distributions, owing to the flexibility afforded to the structure by the oxygen linkages.
-Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}.
+Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity afforded by the triangular subunits.
 
 \begin{table}[hbt]
 \centering
@@ -389,7 +393,7 @@ By studying this problem in two dimensions, it can now be shown that these bands
 Before rationalising the band structure observed in the persistence diagrams of triangle rafts, it is useful to consider again the process of cycle formation in persistent homology.
 The important points are summarised below:
 \begin{enumerate}
-	\item A cycle is born when a 1\--simplex cuts a previous cycle in two. The birth value is then equal to the filtration value of the 1\--simplex.
+	\item A cycle is born when a 1\--simplex cuts a previous cycle in two. The birth value of the new cycle is then equal to the filtration value of the 1\--simplex.
 	\item A cycle dies dies when \textit{all} of the 2\--simplices within it are present. The death value is then equal to the highest filtration value of the  constituent 2\--simplices.
 	\item A cycle is only counted if the death value is strictly greater than the birth value.
 	\item As a result of the above, a cycle will only persist if the 1\--simplex which creates it has a lower filtration value than the 2\--simplex which destroys it.
@@ -483,7 +487,7 @@ The distortions in figures \ref{fig:b3a}\--\ref{fig:b3e} demonstrate the phenome
 As can be seen, between some critical values of $\theta$, a second cycle is born within the first.
 This is only possible when the 1\--simplex $AD$ has a filtration value less than the 2\--simplex $ACD$.
 In figure \ref{fig:b3c} where $\theta_1=150^\circ$, this is \textit{not} the case, as $AD$ and $ACD$ share the same filtration value.
-This is in fact the limiting case, and beyond this angle the circumcircle for $AD$ is not contained within that for $ACD$, and has a smaller radius, and therefore filtration value.
+This is in fact the limiting case, and beyond this angle the circumcircle for $AD$ (red circle) is not contained within that for $ACD$ (blue circle), and has a smaller radius, and therefore filtration value.
 The persistence of this cycle will therefore range between $\bd{0.5}{0.71}$, $\bd{0.76}{0.82}$ and $\bd{1.0}{1.0}$.
 The intermediate values can be found via numerically scanning the angle range, but even from these points it is clear that this corresponds well with the most prominent ``central'' band in the persistence diagram.
 Furthermore, this band arises from the cycles formed by connecting neighbours three bonds apart.
@@ -565,10 +569,10 @@ Examples of the formation of $B_2$ in the octagon are given in figures \ref{fig:
 
 As can be seen, for the octagon it is relatively difficult to add to the $B_2$ band.
 This is worth some consideration. 
-It has been stated that this analysis is not unique to the octagon, which has merely been selected as it \textit{can} display all the required behaviour.
+It has been stated that this analysis is not unique to the octagon, which has merely been selected for illustrative purposes as it \textit{can} display all the required behaviour.
 However, in general large polygons ($k>6$) require little distortion to yield $B_3$ and $B_4$ bands, whereas significant rearrangement would be needed to contribute to $B_2$.
 On the other hand, the $B_2$ band readily forms for small polygons $k<6$ and indeed the higher bands are inaccessible.
-For the most common ring, the hexagon, most easily forms secondary cycles in $B_3$, and to a lesser extend $B_2$. 
+The most common polygon, the hexagon, most easily forms secondary cycles in $B_3$, and to a lesser extend $B_2$. 
 This explains the relative prominence of this central $B_3$ band in figures \ref{fig:trpda}\--\ref{fig:trpdd}.
 Furthermore, it is equally possible to obtain higher bands still, with sufficiently large polygons.
 In the case of the triangle rafts in this section, the decagon in fact leads to the presence of a weak $B_5$ band.
@@ -594,14 +598,28 @@ In the case of the triangle rafts in this section, the decagon in fact leads to 
 	\label{fig:blines}
 \end{figure}
 
-To conclude this section, the reasoning outlined above is tested by generating the bands numerically, by distorting polygons conforming to the various idealised models. 
-The results are given in figure \ref{fig:blines}, which seems quite compelling.
+To conclude this section, the reasoning outlined above is tested by generating the bands numerically (distorting polygons conforming to the various idealised models), and comparing to the persistence diagrams of triangle rafts. 
+The results are given in figure \ref{fig:blines}, which are quite compelling.
 The shapes and positions of the various bands match well with those in the persistence diagrams from triangle rafts.
 Furthermore, the intensities agree with the previous discussion, with the $B_3$ band being by far the most prominent.
 It should be noted that the $B_3$ band calculated from the idealised model corresponds to the upper limit of that found from triangle raft simulations.
 This is also as expected, as distortions in bond lengths and will only serve to reduce the death value. 
-As table \ref{tab:trsidist} showed, the nature of the triangle raft model (of hinged near\--rigid triangles), means that the bond lengths can only be less than the equilibrium value.
-The properties of the triangle rafts have therefore enabled the structure of persistence diagrams to be well understood in this \td{} case.
+This is because, as table \ref{tab:trsidist} shows, the nature of the triangle raft model (of hinged near\--rigid triangles), means that the bond lengths can only be less than the equilibrium value, which leads to a concomitant decrease in the circumradii.
+Overall, the relative simplicity and rigidity of the triangle raft model has enabled the structure of persistence diagrams to be well understood in this \td{} case.
+
+\subsection{Cycles, Betti Numbers and Ring Statistics}
+
+In addition to the persistence diagrams, information is also available through the first Betti number, $\beta_1$, which quantifies the number of cycles present at specific filtration value.
+Plotting the $\beta_1$ against $\epsilon$ therefore reveals how the number of cycles grows and decays across the range of filtration values \cite{Nakamura2015}.
+As will be shown, this allows characterisation of the proportion of cycles with $k$ vertices, termed here $k$\--cycles.
+The advantage of using configurations from computation is, as ever, that the these cycles can be compared to known quantities which are known and directly calculated in the computational algorithm, in this case the ring statistics.
+
+Plots of the evolution of the first Betti number with filtration are given in  \ref{fig:trbetti}, for triangle rafts constructed at different temperatures.
+Each configuration contains $1000$ rings, but the data are averaged over all $100$ configurations produced at the same temperature.
+Note that there are two subtly different calculations presented here.
+The first, figure \ref{fig:trbettia}, gives $\beta_1$ for all cycles found via persistent homology, whilst the second, figure \ref{fig:trbettib}, gives $\beta_1$ only for the $1000$ most persistent cycles (\ie{} those with the longest lifetime).
+The rationale here is that the second case will only include cycles in the $B_1$ band, excluding those in the higher order bands, and hence should correspond most closely to the known ring structure.
+In fact, both sets of results are very similar (which will be discussed in due course), and so can be considered together.
 
 \begin{figure}[tb]
 	\centering
@@ -610,19 +628,33 @@ The properties of the triangle rafts have therefore enabled the structure of per
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/tri_raft_beta1_full.pdf}
          \caption{}
-         \label{fig:trpda}
+         \label{fig:trbettia}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/tri_raft_beta1_cut.pdf}
          \caption{}
-         \label{fig:trpda}
+         \label{fig:trbettib}
      \end{subfigure}
 
-	\caption{XXXX}
-	\label{fig:}
+	\caption{Evolution of the first Betti number with filtration for triangle rafts at different levels of disorder. In panel (a) the calculation includes all cycles, whereas panel (b) includes only the $1000$ most persistent cycles. The circumradii of regular polygons with $k$ vertices, $\Phi_k$, are indicated by vertical grey lines.}
+	\label{fig:trbetti}
 \end{figure}
+
+As is now expected, $\beta_1$, rises very sharply from $0\rightarrow 1000$ at $\epsilon=0.5$, as the first cycles form at half the bond distance.
+The value of $\beta_1$ must then decay to zero in the limit of $\epsilon\rightarrow \infty$, but the form of the curve varies with the system temperature.
+At the lowest temperature, which is primarily a hexagonal lattice, the function is almost a step function at $\epsilon=1.0$, but as the temperature increases, and more diverse ring sizes are incorporated, the curve broadens and smoothens.
+Even for the highest temperature, the decay in $\beta_1$ is not however smooth, but a series of stepwise decrements.
+These decrements align very closely to the values of the circumradii of $k$\--polygons with unit edge lengths, $\Phi_k$, given in table \ref{tab:circumradii}.
+As discussed in the previous section, $\Phi_k$ represents the upper bound on the death value for a $k$\--polygon in $B_1$, for triangle rafts. 
+Any deviations from regularity therefore act to reduce the lifetime.
+This largely explains the full behaviour of the curves in figure \ref{fig:trbetti}.
+The discontinuities represent changes between successive $k$\--cycles dying, with the broadening of the curve indicative of the increasing variety of $k$ values, and the smoothening the increased polygon distortion - both of which increase with temperature.
+It is interesting to note that the secondary cycles do not seem to affect the Betti numbers to a large degree, as evidenced by the similarity of figures \ref{fig:trpkpha} and \ref{fig:trpkphb}.
+Only at the highest temperature is there a detectable presence in the region between $\epsilon=0.5\rightarrow0.7$.
+This is because these species are so relatively short\--lived and spread throughout the filtration range, that at any filtration value they add a virtually insignificant contribution to the total. 
+
 
 \begin{figure}[tb]
 	\centering
@@ -630,15 +662,15 @@ The properties of the triangle rafts have therefore enabled the structure of per
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=0.87\textwidth]{./figures/ph/tr_pk_ph.pdf}
-         \caption{}
-         \label{fig:trpkph}
+         \caption{Cycle statistics}
+         \label{fig:trpkpha}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=0.87\textwidth]{./figures/ph/tr_pk_true.pdf}
-         \caption{}
-         \label{fig:trpkph}
+         \caption{Ring statistics}
+         \label{fig:trpkphb}
      \end{subfigure}
      \vspace{0.5cm}
      
@@ -646,14 +678,35 @@ The properties of the triangle rafts have therefore enabled the structure of per
          \centering
          \includegraphics[width=0.87\textwidth]{./figures/ph/tr_delta_pk.pdf}
          \caption{}
-         \label{fig:trpkph}
+         \label{fig:trpkphc}
      \end{subfigure}
 
  
-	\caption{XXXX}
+	\caption{Comparison of the $k$\--cycle statistics, panel (a), against the ring statistics, panel (b), in triangle rafts across different levels of disorder. Panel (c) gives a direct comparison between the two.}
 	\label{fig:trpkph}
 \end{figure}
 
+
+With this logic, it should be possible to extract the cycle statistics, which will be denoted $p_k$, in analogy with ring statistics.
+To do so, one simply needs to calculate:
+\begin{equation}
+	p_k = \beta_1\left(\Phi_k\right)-\beta_1\left(\Phi_{k-1}\right)\,,
+\end{equation}
+and normalise across all $k$ values.
+The cycle statistics from this process are given in figure \ref{fig:trpkpha}, which can be considered in reference to the ring statistics in figure \ref{fig:trpkphb}.
+In addition, the comparative measure,
+\begin{equation}
+	\Delta p_k = \frac{p_k^\text{cycles}-p_k^\text{rings}}{p_k^{rings}}\,,
+\end{equation}
+is given in figure \ref{fig:trpkphc}.
+As can be seen, to a first approximation the agreement is very good, particularly for the ring sizes close to $k=6$, at modest temperatures.
+This means that the cycles computed via persistent homology agree well with the primitive rings in the system, taking account for the approximative method to calculate $k$\--cycles.
+Deviations are accentuated at very low temperature, when the absolute ring statistics of non\--six rings are small, or at high temperatures, when rings are increasingly distorted.
+For example, it is clear that $p_{10}$ is systematically underestimated from cycles across the whole temperature range.
+In addition, the statistics of smaller rings ($k\leq6$) are overestimated and larger rings ($k\geq 8$) underestimated increasingly at higher temperatures.
+The reason for this is that when large rings become sufficiently distorted, for instance becoming very elongated or even slightly non\--convex, the cross ring distances become sufficiently small that they die much earlier than expected.
+Examining the polygons in figure \ref{fig:b3a} and \ref{fig:b4a}, and referring again to table \ref{tab:circumradii}, one can see that almost all of these examples would be classified as being of a smaller cycle size than they are in reality, when examining the death values.
+Considering all these factors, overall in two dimensions, for triangle rafts, it is reasonable to conclude that the cycles found from persistent homology are in almost exact accordance with the primitive rings in the system.
 
 \section{Persistent Homology with CRNs}
 
