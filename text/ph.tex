@@ -350,14 +350,14 @@ At higher temperatures still, these bands broaden and finally coalesce.
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-4500_tr_pd.pdf}
-         \caption{$T=10^{-4.5}$}
+         \caption{$T=10^{-4.5}$, $p_6=0.997$}
          \label{fig:trpda}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-3600_tr_pd.pdf}
-         \caption{$T=10^{-3.6}$}
+         \caption{$T=10^{-3.6}$, $p_6=0.668$}
          \label{fig:trpdb}
      \end{subfigure}
      \hfill
@@ -366,19 +366,19 @@ At higher temperatures still, these bands broaden and finally coalesce.
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-2700_tr_pd.pdf}
-         \caption{$T=10^{-2.7}$}
+         \caption{$T=10^{-2.7}$, $p_6=0.354$}
          \label{fig:trpdc}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-1800_tr_pd.pdf}
-         \caption{$T=10^{-1.8}$}
+         \caption{$T=10^{-1.8}$, $p_6=0.211$}
          \label{fig:trpdd}
      \end{subfigure}
      \hfill
     
-	\caption{Persistence diagrams for triangle rafts generated at increasing temperatures (as indicated in captions). Points are coloured by multiplicity to highlight structure. The line $b=d$ is also indicated as a diagonal black line.}
+	\caption{Persistence diagrams for triangle rafts generated at increasing temperatures and disorder (as indicated in captions). Points are coloured by multiplicity to highlight structure. The line $b=d$ is also indicated as a diagonal black line.}
 	\label{fig:trpd}
 \end{figure}
 
@@ -681,7 +681,6 @@ This is because these species are so relatively short\--lived and spread through
          \label{fig:trpkphc}
      \end{subfigure}
 
- 
 	\caption{Comparison of the $k$\--cycle statistics, panel (a), against the ring statistics, panel (b), in triangle rafts across different levels of disorder. Panel (c) gives a direct comparison between the two.}
 	\label{fig:trpkph}
 \end{figure}
@@ -710,42 +709,138 @@ Considering all these factors, overall in two dimensions, for triangle rafts, it
 
 \section{Persistent Homology with CRNs}
 
+The results of persistent homology with triangle rafts led to a well defined band structure in the persistence diagrams, as a consequence of the tightly controlled ring geometries.
+This structure is not always observed in simulations, for example with Cu\--Zr alloys and high density molecular liquids \cite{Hiraoka2016,Onodera2019}.
+In these cases, more diffuse diagrams are found, which naturally accompanies the increase in degrees of freedom in such systems.
+The triangle raft algorithm is unable to directly reproduce these effects in two dimensions, owing to the innate rigidity of the model.
+However, this can be achieved with another algorithm developed in this thesis, namely bond switching \davidnote{link}.
+In bond switching, the potential model allows for greater freedom in the bond lengths and angles, and the process of randomising an existing lattice (as opposed to building an random ring structure sequentially) allows configurations with a greater range of ring sizes, and a greater level of ring disorder, to be realised.
+
+Therefore, in this section, persistent homology analysis will be performed on the configurations generated from bond switching, applying the information learned from analogous calculations on triangle rafts.
+The specific systems studied will be a subset of those from chapter \davidnote{link}, namely those at two different bond stretching and angle force constant ratios of $k_r/t_\theta=16,4$, with convexity maintained.
+The persistence diagrams and change in Betti numbers will be investigated for these systems, and the effect of the potential model highlighted.
+In addition, the results will be contrasted with those of triangle rafts.
+
+\subsection{Persistence Diagrams}
+
+The persistence diagrams for bond switching configurations generated with the two potential models are given in figure \ref{fig:bspd}.
+Figures \ref{fig:bspda}\--\ref{fig:bspdd} pertain to the force constant ratio $k_r/k_\theta=16$ and figures \ref{fig:bspde}\--\ref{fig:bspdh} at $k_r/k_\theta=4$.
+For both models, four different $p_6$ values were selected, corresponding to four increasing levels of disorder.
+The initial impression may be that the persistence diagrams look very different from those of triangle rafts in figure \ref{fig:trpd}, but closer inspection reveals this is not the case, and they share many of the same characteristics.
+A key point these apparent differences is that the bond lengths have inherently more flexibility in the case of bond switching than triangle rafts.
+As such, any similar features will appear much broader, but retain similar structural origins.
+For example, the $B_1$ band is present in all the diagrams in figure \ref{fig:bspd}, centred around $b=0.5$.
+The difference is that at low levels of disorder  (see for example figures \ref{fig:bspda}\--\ref{fig:bspdb}), one can clearly see distinct ``spots'' in $B_1$, which are present in figures \ref{fig:trpd} but harder to detect due to the narrowness of the band.
+The upper limits of these spots correspond well with the circumradii in table \ref{tab:circumradii} \ie{} they are related to the occurrence of specific $k$\--cycles.
+At higher disorder these spots begins to coalesce, as in figure \ref{fig:bspdc}, before fully combining to form a single high density feature, as in figure \ref{fig:bspdd}.
+This final diagram can be considered ``typical'' of a highly disordered amorphous or liquid state \cite{Hiraoka2016,Onodera2019}.
+By using the bond switching method, it is clear however that this originates from the broadening and aggregation of features relating to individual cycle sizes.
+Other bands in the persistence diagram are also detectable, in particular $B_3$, but largely only at higher $p_6$ values. 
+This is because these bands only occur when there are well defined large cycles.
+In bond switching, although there are primitive rings which are very large, these can become so distorted that they are not calculated as a single persistent cycle, but rather multiple smaller cycles.
+This precludes the formation of significant higher order bands as seen in triangle rafts. 
+
+\begin{figure}[tbp]
+	\centering
+     
+      \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k16_399_bs_pd.pdf}
+         \caption{$k_r/k_\theta=16$, $p_6=0.890$} %399
+         \label{fig:bspda}
+     \end{subfigure}
+     \hspace{2cm}
+        \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k16_301_bs_pd.pdf}
+         \caption{$k_r/k_\theta=16$, $p_6=0.666$}% 301
+         \label{fig:bspdb}
+     \end{subfigure}
+     
+        \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k16_231_bs_pd.pdf}
+         \caption{$k_r/k_\theta=16$, $p_6=0.332$}% 231
+         \label{fig:bspdc}
+     \end{subfigure}
+     \hspace{2cm}
+      \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k16_0_bs_pd.pdf}
+         \caption{$k_r/k_\theta=16$, $p_6=0.164$}% 0
+         \label{fig:bspdd}
+     \end{subfigure}
+
+
+	\begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k4_399_bs_pd.pdf}
+         \caption{$k_r/k_\theta=4$, $p_6=0.943$}% 399
+         \label{fig:bspde}
+     \end{subfigure}
+     \hspace{2cm}
+        \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k4_257_bs_pd.pdf}
+         \caption{$k_r/k_\theta=4$, $p_6=0.662$}% 257
+         \label{fig:bspdf}
+     \end{subfigure}
+     
+        \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k4_189_bs_pd.pdf}
+         \caption{$k_r/k_\theta=4$, $p_6=0.332$}% 189
+         \label{fig:bspdg}
+     \end{subfigure}
+     \hspace{2cm}
+      \begin{subfigure}[b]{0.40\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/ph/t_k4_0_bs_pd.pdf}
+         \caption{$k_r/k_\theta=4$, $p_6=0.163$}% 0}
+         \label{fig:bspdh}
+     \end{subfigure}
+     
+	\caption{Persistence diagrams for configurations from bond switching, at different bond stretch/angle constants and $p_6$ (as indicated in captions).}
+	\label{fig:bspd}
+\end{figure}
+
+%Other bands in the persistence diagram are also detectable, in particular $B_3$, but largely only at higher $p_6$ values. 
+%This is because these bands only occur when there are well defined large cycles.
+%In bond switching, although there are primitive rings which are very large, these can become so distorted that they are not calculated as a single persistent cycle, but rather multiple smaller cycles.
+%This precludes the formation of significant higher order bands as seen in triangle rafts. 
+%There is however one band which develops that was not previously observed in triangle rafts, which is the small intense region in figures \ref{fig:bspdd} and \ref{fig:bspdh} below $b=0.5$.
+%It will be shown in the following section that this is due to the presence of fleeting secondary cycles.
+
+As for the comparison between the different potential models, the effect of changing the force constant ratio appears relatively small.
+By comparing the persistence diagram of similar $p_6$ values, one can see there is a general broadening of the regions corresponding to each cycle size on reducing the bond stretch to angle ratio.
+The rationale for this trend is the same as for increasing temperature - that increasing the variation in nearest\--neighbour interatomic distances comes with associated variation in the values at which cycles are born and die.
+The difference between potential models naturally becomes less pronounced as disorder increases, and the Monte Carlo temperature is effectively infinite, such that the final diagrams, figures \ref{fig:bspdd} and \ref{fig:bspdh}, are almost identical.
+In these diagrams, the $B_1$ line appears to become progressively angled, driven by the decreasing birth value of smaller cycles.
+This is likely because the birth filtration value of a cycle depends on the final 1\--simplex to form.
+As a cycles becomes larger, the probability that all constituent 1\--simplices will have filtrations less that $b=0.5$ becomes increasingly unlikely compared to smaller cycles.
+The result of this is that smaller cycles, with lower death values, can also have progressively lower birth values, leading to the perceived tilting of the $B_1$ band.
+
+\subsection{Evolution in Betti Numbers}
+
 \begin{figure}[tb]
 	\centering
      
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/ph/t399_bs_pd.pdf}
-         \caption{}
-         \label{fig:trpda}
+         \includegraphics[width=\textwidth]{./figures/ph/bs_k16_beta1_cut.pdf}
+         \caption{$k_r/k_\theta=16$}
+         \label{fig:bsbettia}
      \end{subfigure}
      \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/ph/t299_bs_pd.pdf}
-         \caption{}
-         \label{fig:trpda}
-     \end{subfigure}
-     \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{./figures/ph/t199_bs_pd.pdf}
-         \caption{}
-         \label{fig:trpda}
-     \end{subfigure}
-     \hfill
-      \begin{subfigure}[b]{0.48\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{./figures/ph/t0_bs_pd.pdf}
-         \caption{}
-         \label{fig:trpda}
+         \includegraphics[width=\textwidth]{./figures/ph/bs_k4_beta1_cut.pdf}
+         \caption{$k_r/k_\theta=4$}
+         \label{fig:bsbettib}
      \end{subfigure}
 
-     
-  
-    
-	\caption{XXXX}
-	\label{fig:}
+	\caption{Evolution of the first Betti number with filtration for bond switching configurations at different levels of disorder and two different potential models (as indicated in captions).}
+	\label{fig:bsbetti}
 \end{figure}
 
 \section{Chapter Summary}
