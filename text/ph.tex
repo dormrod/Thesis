@@ -2,11 +2,12 @@
 \label{ch:ph}
 
 \begin{chapterabstract}
-Persistent homology is a technique in topological data analysis to find the fundamental topological features in a collection of points.
+Persistent homology is a technique in topological data analysis to find the fundamental topological features collections of points.
 The applicability of persistent homology to the analysis of network materials is explored here for the relatively simple case of \td{} networks. 
-Analysis is carried out for two systems, triangle rafts and CRNs. 
+Analysis is carried out for two systems, triangle rafts and CRNs, which have different underlying constraints.
 The persistence diagrams of triangle rafts are shown to have a band structure which originates in successive nearest\--neighbour interactions, whilst the evolution of Betti numbers is related to the underlying ring statistics.
-XXX
+These are compared and contrasted with CRNs, which display broader and more aggregated persistence diagrams.
+Conclusions are drawn of relevance to more complex systems.
 \end{chapterabstract}
 
 \section{Introduction to Persistent Homology}
@@ -33,7 +34,7 @@ The conclusions drawn from this work may then bring insight to the analysis of t
 This chapter will begin by outlining the relevant theory to persistent homology, with the aid of small example systems.
 Persistent homology will then be calculated for triangle rafts (a proxy for amorphous silica), systematically generated with increasing levels of disorder.
 These results will then be contrasted with generic random networks as produced from bond switching.
-Conclusions XXX
+The conclusions of these investigations will then be discussed in the context of more complex systems, and the potential utility of persistent homology as an analytic tool for materials examined.
 
 \section{Computing Persistent Homology}
 
@@ -104,14 +105,14 @@ As such it provides the best opportunity to relate the results of persistent hom
       \vspace{0.5cm}
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/ph/alpha_b1.pdf}
+         \includegraphics[width=0.85\textwidth]{./figures/ph/alpha_b1.pdf}
          \caption{$\sigma_6=\left\{B,C\right\}$ \\ \phantom{x}}
          \label{fig:phalphab2}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/ph/alpha_c.pdf}
+         \includegraphics[width=0.85\textwidth]{./figures/ph/alpha_c.pdf}
          \caption{$\sigma_7=\left\{A,B,C\right\}$; \\ $\mathbf{K}_{5.13}=\mathbf{K}_{\infty} = \left\{\sigma_1,\sigma_2,\cdots,\sigma_7\right\}$}
          \label{fig:phalphac}
      \end{subfigure}
@@ -121,7 +122,7 @@ As such it provides the best opportunity to relate the results of persistent hom
 	These subfigures can also be viewed as a series of subcomplexes, as highlighted in the captions, with $\mathbf{K}_0\subseteq\mathbf{K}_{4.27}\subseteq\mathbf{K}_{5.13}=\mathbf{K}_\infty$. The final complex is the Delaunay triangulation of the original point set. Panel (c) is \textit{not} a subcomplex in the filtration, as it does not contain the simplices $\left\{A,B\right\}$, $\left\{A,C\right\}$, which have lower filtration values than $\left\{B,C\right\}$. }
 	\label{fig:phalpha}
 \end{figure}
-\davidnote{remake 2.1 consistent with 2.5}
+
 
 \subsection{Homology and Persistent Homology}
 
@@ -143,7 +144,7 @@ To make this less abstract, one can see how this fits with the examples in figur
 	\item Figures \ref{fig:phexc} and \ref{fig:phexg} both have a reduced number of cycles owing to the filtration values of triangular simplices being met. The Betti numbers are $\beta_0=1$, $\beta_1=12$ and $\beta_0=1$, $\beta_1=10$ in each case.
 	\item Figures \ref{fig:phexd} and \ref{fig:phexh} have just one large connected component and no cycles, such that $\beta_0=1$ and $\beta_1=0$.
 \end{itemize}
-These examples illustrate a more general principle, that the ``starting point'', $\mathbf{K}_0$, will always have $\beta_0=\mathcal{N}$ and $\beta_1=0$, and the ``end point'', $\mathbf{K}_1$,  will always have $\beta_0=1$ and $\beta_1=0$ \ie{} trivial homology.
+These examples illustrate a more general principle, that the ``starting point'', $\mathbf{K}_0$, will always have $\beta_0=\mathcal{N}$ and $\beta_1=0$, and the ``end point'', $\mathbf{K}_\infty$,  will always have $\beta_0=1$ and $\beta_1=0$ \ie{} trivial homology.
 It is the filtration values in between which lead to richer behaviour.
 
 This leads onto the notion of persistent homology.
@@ -339,7 +340,7 @@ However, it will also be shown how metrical quantities such as the ring statisti
 
 The persistence diagrams for triangle rafts at four increasing temperatures are shown in figures \ref{fig:trpda}\--\ref{fig:trpdd}, combined across multiple configurations.
 Discussing first the overall structure, one can see there is a definite systematic evolution in behaviour as temperature (and therefore disorder) increases.
-To aid discussion points will be referred to in terms of birth\--death pairs, $\left(b,d\right)$.
+To aid discussion points will be referred to in terms of birth\--death pairs, $\left(b,d\right)$, with filtration values given in reference to the equilibrium bond length, $r_0$.
 At the lowest temperature, configurations are dominated largely by regular hexagons with few defects, reflected in the persistence diagram by bright spots at $\bd{0.5}{1.0}$ and $\bd{1.0}{1.0}$ (in comparison with figure \ref{fig:exvise}).
 As the temperature increases, and rings of different sizes are introduced, characteristic bands form in the persistence diagram, which are most intense at low lifetimes (\ie{} close to $b=d$) and then ``wash out'' at lower birth values and longer lifetimes. 
 At higher temperatures still, these bands broaden and finally coalesce.
@@ -720,6 +721,7 @@ Therefore, in this section, persistent homology analysis will be performed on th
 The specific systems studied will be a subset of those from chapter \davidnote{link}, namely those at two different bond stretching and angle force constant ratios of $k_r/t_\theta=16,4$, with convexity maintained.
 The persistence diagrams and change in Betti numbers will be investigated for these systems, and the effect of the potential model highlighted.
 In addition, the results will be contrasted with those of triangle rafts.
+Again calculations were performed with the GUDHI library \cite{gudhi}, and birth and death filtration values are given with reference to the equilibrium bond length, $r_0$.
 
 \subsection{Persistence Diagrams}
 
@@ -730,7 +732,7 @@ The initial impression may be that the persistence diagrams look very different 
 A key point these apparent differences is that the bond lengths have inherently more flexibility in the case of bond switching than triangle rafts.
 As such, any similar features will appear much broader, but retain similar structural origins.
 For example, the $B_1$ band is present in all the diagrams in figure \ref{fig:bspd}, centred around $b=0.5$.
-The difference is that at low levels of disorder  (see for example figures \ref{fig:bspda}\--\ref{fig:bspdb}), one can clearly see distinct ``spots'' in $B_1$, which are present in figures \ref{fig:trpd} but harder to detect due to the narrowness of the band.
+The difference is that at low levels of disorder  (see for example figures \ref{fig:bspda}\--\ref{fig:bspdb}), one can clearly see distinct ``spots'' in $B_1$, which are present in figure \ref{fig:trpd} but harder to detect due to the narrowness of the band.
 The upper limits of these spots correspond well with the circumradii in table \ref{tab:circumradii} \ie{} they are related to the occurrence of specific $k$\--cycles.
 At higher disorder these spots begins to coalesce, as in figure \ref{fig:bspdc}, before fully combining to form a single high density feature, as in figure \ref{fig:bspdd}.
 This final diagram can be considered ``typical'' of a highly disordered amorphous or liquid state \cite{Hiraoka2016,Onodera2019}.
@@ -822,6 +824,19 @@ The result of this is that smaller cycles, with lower death values, can also hav
 
 \subsection{Evolution in Betti Numbers}
 
+The first Betti number, $\beta_1$, can again give insight into the cycle structure in configurations generated from bond switching.
+Figures \ref{fig:bsbettia} and \ref{fig:bsbettib} show the evolution in $\beta_1$ with $\epsilon$ for the two variations in potential, where $k_r/k_\theta = 16,4$.
+In all cases configurations contain 1024 rings, averaged over 100 samples. 
+For both potentials, at the two higher $p_6$ values the curves exhibit similar behaviour to those from triangle rafts.
+Around $\epsilon=0.5$, 1024 cycles form, corresponding to the primitive rings in the system, before decaying in a stepwise fashion at filtration values corresponding to the regular $k$\--polygon circumradii.
+However, at the lower $p_6$ values, the curves become smooth and the maximum decreases to around half its original value.
+As there remain the same number of primitive rings, the implication of the maximum reducing is that some cycles die before others are even born and they never coexist.
+This in turn means that all these rings are not detectable on the same length scale.
+The final broad distribution resembles closely that of previous studies of random structures \cite{Nakamura2015}.
+This can therefore be considered characteristic of a highly amorphous (approaching liquid) disordered limit.
+As mentioned for the corresponding persistence diagrams, this results from the large variation in bond length and angle distributions \davidnote{Would it be useful to include histograms of the bond lengths/angles in all this discussion?}.
+Once again, the effect of changing the force constant ratio is weak, with some broadening observed for $k_r/k_\theta=4$ over $k_r/k_\theta=16$ at higher $p_6$ values.
+
 \begin{figure}[tb]
 	\centering
      
@@ -843,4 +858,53 @@ The result of this is that smaller cycles, with lower death values, can also hav
 	\label{fig:bsbetti}
 \end{figure}
 
+\section{Evaluation of Persistent Homology}
+
+Having investigated the results of persistent homology calculations for range of \td{} systems, an attempt will be made to draw conclusions on the utility of persistent homology in the characterisation of \td{} materials and more complex atomic systems.
+To begin with, the success of persistent homology is evaluated in the context of \td{} amorphous materials in comparison to other, more established, analysis methods.
+For systems with relatively rigid geometries, persistence diagrams have proved effective in showing the evolution in structure through the band structure.
+On the one hand, these diagrams can be considered to contain more information than other measures such as RDFs, as the interaction distances are already partitioned into increasing nearest\--neighbour contributions.
+On the other hand, the distances conveyed by the filtration value can be viewed as less intuitive than other real\--space methods, being related to the circumcircles of variously sized simplices.
+
+Nevertheless, presenting these data through the Betti numbers does allow a good estimation of the ring statistics in the system.
+The natural analogue of this would be integrating under successive peaks in the RDF to extract coordination numbers.
+In this case persistent homology does give access to clear information which is hard to extract otherwise.
+It is worth remembering that the samples studied in this chapter were computationally generated, and the ring structure is readily available.
+However, experimental images are often less well resolved, possibly containing areas which could not be fully imaged.
+Persistent homology can provide a computationally tractable way of obtaining the ring structure, which must otherwise be achieved by a brute force path search.
+The benefits are more nuanced than simple speed concerns.
+By definition, persistent homology considers cycles appearing at different length scales, and so one can separate the rings trivially from large holes of defective sample.
+
+When materials have more flexibility, the efficacy of persistent homology is less clear cut.
+At relatively low levels of disorder the metrics described above still apply, but in highly amorphous systems, the cycles no longer become reflective of the primitive ring structure.
+Rather, the persistence diagram adopts a more generic and diffuse form.
+Whilst the relative flexibility in the atomic potential is detectable through broadening of features, it is not clear that it is quantifiable.
+Furthermore, there is no evidence as yet that persistent homology is able to capture information on the medium range ring order, as for instance provided by the assortativity or \aw{} parameter.
+In fairness to the method, almost by definition, other classical measures such as the RDF equally lose information as structure is lost.
+In the case of persistent homology, it is just not clear that anything ``more'' is available in this situation.
+
+Based on these \td{} analyses, there is certainly scope for application of persistent homology to \thd{} systems, as has been tried in previous studies.
+The question is whether the same insight can be gained, as there is a less well defined ring structure.
+There are also additional complications with increasing dimensionality, in that the next homology group is also accessible.
+In the \td{} case, the focus was on cycles which were filled with triangles, but in \thd{} there are also voids which are filled with tetrahedra.
+The advantage of persistent homology is that these different groups are trivially separable, and it may be that in \thd{} systems that the voids carry more structural significance.
+One potential downside is also that while real\--space data is becoming widespread for \td{} systems, direct imaging is less feasible for \thd{} structures.
+This would limit persistent homology calculations to computational systems, which adds another layer of abstraction when comparing to experimental results.
+Irrespective of this added complexity, the \td{} case has at least demonstrated how physical structure can be related to persistent topological features.
+
+Overall, there is cause for cautious optimism for the use of persistent homology as another tool in the characterisation of amorphous materials.
+It is certainly true that to the trained eye, a persistence diagram of a crystal, amorphous material and liquid are easily identifiable, and information on the ring structure may also be gleaned. 
+Once the principle is understood, there is no more inherent difficulty in interpreting such diagrams than RDFs, structure factors or any other traditional measure.
+In addition, the use of persistent homology is by no means limited to chemical systems, and it may be that improvements in other fields will allow a novel interpretation of the structure of atomistic systems.
+   
 \section{Chapter Summary}
+
+Persistent homology, a tool from topological data analysis, has been applied to the study computational configurations of \td{} materials.
+These were generated using methods described elsewhere in this thesis, namely triangle rafts and bond switching.
+Whilst the analyses of the two systems displayed similarities, the differences in the underlying constraints manifested in the persistence diagrams and Betti numbers.
+The relatively constrained triangle rafts showed well defined bands in the persistence diagrams, which were traced to successive nearest\--neighbour interactions, which broadened as ring disorder increased.
+The introduction of new ring sizes could also be quantified by plotting the Betti numbers with filtration value.
+On the other hand, the configurations from bond switching displayed similar features, but these quickly aggregated with increased disorder to make quantifying the structure more difficult.
+
+In general, persistent homology has been shown to have potential as an investigative tool for studying \td{} materials, where persistent features can be explicitly linked to atomic interactions.
+It remains an open question whether similar links can be developed for use with \thd{} systems, particularly in experiment when real\--space data is less readily available.
