@@ -4,13 +4,13 @@
 The calculation of forces from a given potential model is central to the geometry optimisation routines (see section \ref{s:geomopt}) employed in many algorithms in this thesis.
 This appendix derives the equations used to calculate the forces for the potentials covered throughout this work.
 The notation used will aim to be consistent, and is outlined as follows.
-An position vector is denoted by $\vr=\left[r_1\, r_2\right]^{T}$, with:
+A position vector is denoted by $\vr=\left[x\, y\right]^{T}$, with:
 \begin{align}
-	\vrij=\vrj-\vrj\,, \\
+	\vrij=\vrj-\vri\,, \\
 	r_{ij}=\abs{\vrij}\,, \\
 	\vhrij=\frac{\vrij}{r_{ij}}\,.
 \end{align}
-The derivative of a function with respect to $\vr$ is then given by $\frac{\partial f\left(\vr\right) }{\partial \vr}=\left[\frac{\partial f\left(\vr\right)}{\partial r_1}\, \frac{\partial f\left(\vr\right)}{\partial r_2}\right]^{T}$.
+The derivative of a function with respect to $\vr$ is then given by $\frac{\partial f\left(\vr\right) }{\partial \vr}=\left[\frac{\partial f\left(\vr\right)}{\partial x}\, \frac{\partial f\left(\vr\right)}{\partial y}\right]^{T}$.
 It therefore follows that:
 \begin{align}
 	\frac{\partial r_{ij}}{\partial\vrij}=\vhrij\,,\quad \frac{\partial r_{ij}}{\partial \vri}=-\vhrij\,,\quad \frac{\partial r_{ij}}{\partial \vrj}=\vhrij \,.
@@ -109,3 +109,13 @@ The forces are therefore:
 \end{align}
 with $\vfk$ having an analogous form and $\vfi$ given by equation \eqref{eq:fiangle}.
 
+\section{Proper Line Intersection}
+
+Some potential models have an additional term to prevent overlap of edges in a \td{} network, termed proper line intersection.
+This can be detected using standard computational geometry algorithms \cite{ORourke1998}.
+The signed area of a triangle, $A$, is given by:
+\begin{equation}
+	A\left(\mathbf{r_0}, \mathbf{r_1}, \mathbf{r_2}\right) = \frac{1}{2}\sum_{i=0}^{2} \left(x_iy_{i+1}-y_ix_{i+1}\right)\,.
+\end{equation}
+A point can then be designated ``left'' of a line segment if $A>0$ and ``right'' otherwise.
+Overlap of two line segments can be detected if one point of one segment is ``left'' and the other point ``right'' with respect to the other segment, and no three points are collinear.

@@ -168,7 +168,7 @@ The probability of any link having degree $k$ is distributed according to $q_k=k
 Deviation from this random arrangement is the assortativity, and can be measured by Pearson's correlation coefficient:
 \begin{equation}
         \label{eq:assortativity}
-        r = \frac{\sumjk jk\left(e_{jk}-q_jq_k\right)}{\sumk k^2q_k - \left(\sumk kq_k\right)^2}=\frac{\ki^2\sumjk jke_{jk}-\kii^2}{\ki\kiii-\kii^2}.
+        r = \frac{\sumjk jk\left(e_{jk}-q_jq_k\right)}{\sumk k^2q_k - \left(\sumk kq_k\right)^2}=\frac{\ki^2\sumjk jke_{jk}-\kii^2}{\ki\kiii-\kii^2}\,.
 \end{equation}
 For this coefficient to be calculable, the second and third moments of the degree distribution must be finite \cite{Litvak2013}.
 This condition is satisfied for these physical systems, as the proportion of large rings quickly becomes vanishingly small.
@@ -188,6 +188,7 @@ Substituting this expression into equation \eqref{eq:assortativity}, and assumin
         \alpha = - \frac{r\left(\ki\kiii-\kii^2\right)}{\mu_2\ki^2}-\frac{\mu_2}{\ki^2},
 \end{equation}
 which is consistent with the topological gas, when $r=0$.
+The derivation of this result is given in appendix \ref{app:derivalphaassort}.
 In reality, the \aw{} fit is never perfect, and so equation \eqref{eq:rawlink} provides an approximation to the value of $\alpha$. 
 The accuracy of this equation will therefore depend on the applicability of the linear fit.
 \davidnote{Include that figure somewhere}.
@@ -479,7 +480,7 @@ Exposure to increasing doses created 14 samples with varying levels of disorder.
 For each sample, defects were identified from the presence of under\--coordinated atoms, arising largely from the sample perimeter or from holes in the centre, which were removed.
 After processing, configurations comprised $\sim3000\rightarrow5000$ rings.
 \item \textbf{Geopolitical regions}: physicists have previously studied the regions of France and Ireland, and noted the similarity in their properties to materials \cite{LeCaer1993,Okabe1992}.
-This tradition has been continued by analysing five further maps: the communes of Switzerland, the parishes and Westminster constituencies of Great Britain and the socio\--economic regions of the European Union (EU) and the European Free Trade Association (EFTA) (including both current and candidate countries at the time of writing) \cite{osmap,chmap,eumap}. Details of the analysis can be found in appendix \davidnote{appendix on maps}, and a summary of the results in table \davidnote{link}.
+This tradition has been continued by analysing five further maps: the communes of Switzerland, the parishes and Westminster constituencies of Great Britain and the socio\--economic regions of the European Union (EU) and the European Free Trade Association (EFTA) (including both current and candidate countries at the time of writing) \cite{osmap,chmap,eumap}. Details of the analysis can be found in appendix \ref{app:maps}.
 \end{enumerate}
 
 \section{Investigations into Generic Physical Networks}
