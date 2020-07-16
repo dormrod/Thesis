@@ -88,14 +88,14 @@ This is known as importance sampling and is vastly more efficient when dealing w
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_quad.pdf}
-         \caption{Quadrature.}
+         \caption{Quadrature}
          \label{fig:montecarloint1}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_rand.pdf}
-         \caption{Uniform Sampling.}
+         \caption{Uniform sampling}
          \label{fig:montecarloint2}
      \end{subfigure}
      \hfill
@@ -103,7 +103,7 @@ This is known as importance sampling and is vastly more efficient when dealing w
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_imp.pdf}
-         \caption{Importance Sampling.}
+         \caption{Importance sampling}
          \label{fig:montecarloint3}
      \end{subfigure}
      \hfill
@@ -127,9 +127,9 @@ This can be achieved by talking a random walk through configurational space usin
 \subsection{Markov Chain Monte Carlo}
 
 Markov chain Monte Carlo provides a framework to perform importance sampling on a potential energy surface.
-A system of interest can exist in a (very large) number of configurational states, $\left\{\mathbf{r}_0,\mathbf{r}_1,\dots,\mathbf{r}_M\right\}$.
+A system of interest can exist in a (very large) number of configurational states, $\left\{\vrc{0},\vrc{1},\cdots,\vrc{M}\right\}$ (in this work the notation $\vrc{i}$ will be used to denote all particle positions in a state $i$, whereas $\vrp{i}$ will be used to denote the $i$\th{} particle position in a given state).
 A Markov chain can then be constructed from this set, whereby a sequence of states is generated stochastically across a series of steps, $s=0,1,\dots,S$.
-In this process, the probability of moving between states at each step is given by the transition matrix, $\bm{\pi}$, where each element, $\pi_{ij}$, gives the probability of moving from the state $\mathbf{r}_i$ to another state $\mathbf{r}_j$.  
+In this process, the probability of moving between states at each step is given by the transition matrix, $\bm{\pi}$, where each element, $\pi_{ij}$, gives the probability of moving from the state $\vrc{i}$ to another state $\vrc{j}$.  
 This leads to the two relationships:
 \begin{align}
 	0\leq \pi_{ij} &\leq 1\,, \\
@@ -149,9 +149,9 @@ This will occur only if the system is \textit{ergodic}, meaning that every state
 
 In a discrete analogue to equation \eqref{eq:expectationobs}, the expectation value of an observable, $A$, can be calculated from the ensemble average:
 \begin{equation}
-	\langle A \rangle = \sum_{i=1}^{M} A\left(\mathbf{r}_i\right)\mathcal{P}\left(\mathbf{r}_i\right)\,,
+	\langle A \rangle = \sum_{i=1}^{M} A\left(\vrc{i}\right)\mathcal{P}\left(\vrc{i}\right)\,,
 \end{equation}
-where $\mathcal{P}\left(\mathbf{r}_i\right)$ are the elements of $\mathbf{P}$.
+where $\mathcal{P}\left(\vrc{i}\right)$ are the elements of $\mathbf{P}$.
 However, as previously mentioned the number of discrete states is usually exceedingly large and so calculating the average over all states is not possible.
 The solution is to take a random walk across through configurational space, sampling explicit states to form the chain $X_0,X_1,\dots,X_S$; where each move is chosen randomly according to the transition matrix $\bm{\pi}$.
 In this case the expectation of the same observable can be calculated from the average over the sampled states:
@@ -171,11 +171,11 @@ A practical solution to this problem is provided by the Metropolis algorithm.
 The Metropolis algorithm gives a prescription of how to construct a transition matrix, $\bm{\pi}$, with the requisite properties that samples the Boltzmann distribution \cite{Metropolis1953}.
 Firstly, combining equations \eqref{eq:tmrowsum} and \eqref{eq:mcmceig} gives a condition on the transition matrix known as global balance:
 \begin{equation}
-	\sum_j \mathcal{P}\left(\mathbf{r}_i\right)\pi_{ij} = \sum_j \mathcal{P}\left(\mathbf{r}_j\right)\pi_{ji}\,.
+	\sum_j \mathcal{P}\left(\vrc{i}\right)\pi_{ij} = \sum_j \mathcal{P}\left(\vrc{j}\right)\pi_{ji}\,.
 \end{equation} 
 Whilst it is possible to construct transition matrices which satisfy only global balance \cite{Manousiouthakis1999,Suwa2010,Michel2014}, it is practically simpler to satisfy global balance by applying the stronger condition of detailed balance:
 \begin{equation}
-	\mathcal{P}\left(\mathbf{r}_i\right)\pi_{ij} = \mathcal{P}\left(\mathbf{r}_j\right)\pi_{ji}\,.
+	\mathcal{P}\left(\vrc{i}\right)\pi_{ij} = \mathcal{P}\left(\vrc{j}\right)\pi_{ji}\,.
 \end{equation}
 In the Metropolis algorithm the off\--diagonal elements of the transition matrix are written as the product of two probabilities: 
 \begin{equation}
@@ -184,17 +184,17 @@ In the Metropolis algorithm the off\--diagonal elements of the transition matrix
 		1-\sum\limits_{j\neq i}\tau_{ij}P_{ij} \quad & i=j
 	\end{cases}\,,
 \end{equation}
-where $\tau_{ij}$ is the trial probability of moving from state $\mathbf{r}_i$ to $\mathbf{r}_j$ and $P_{ij}$ is the probability of accepting the trial move.
+where $\tau_{ij}$ is the trial probability of moving from state $\vrc{i}$ to $\vrc{j}$ and $P_{ij}$ is the probability of accepting the trial move.
 To conform to detailed balance, the trial probabilities must be chosen to satisfy $\tau_{ij}=\tau_{ji}$.
 Then, in the crux of the algorithm, the acceptance probabilities are given by
 \begin{align}
 	 P_{ij}&=\begin{cases}
-	 	1 \quad &\mathcal{P}\left(\mathbf{r}_j\right)\geq \mathcal{P}\left(\mathbf{r}_i\right) \\
-	 	\frac{\mathcal{P}\left(\mathbf{r}_j\right)}{\mathcal{P}\left(\mathbf{r}_i\right)} \quad & \mathcal{P}\left(\mathbf{r}_j\right)< \mathcal{P}\left(\mathbf{r}_i\right)
+	 	1 \quad &\mathcal{P}\left(\vrc{j}\right)\geq \mathcal{P}\left(\vrc{i}\right) \\
+	 	\frac{\mathcal{P}\left(\vrc{j}\right)}{\mathcal{P}\left(\vrc{i}\right)} \quad & \mathcal{P}\left(\vrc{j}\right)< \mathcal{P}\left(\vrc{i}\right)
 	 \end{cases}
 	 =\begin{cases}
-	 	1 \quad &\mathcal{U}\left(\mathbf{r}_j\right)\leq \mathcal{U}\left(\mathbf{r}_i\right) \\
-	 	\frac{\exp\left[-\mathcal{U}\left(\mathbf{r}_j\right)/\kb T\right]}{\exp\left[-\mathcal{U}\left(\mathbf{r}_i\right)/\kb T\right]} \quad & \mathcal{U}\left(\mathbf{r}_j\right)>\mathcal{U}\left(\mathbf{r}_i\right)
+	 	1 \quad &\mathcal{U}\left(\vrc{j}\right)\leq \mathcal{U}\left(\vrc{i}\right) \\
+	 	\frac{\exp\left[-\mathcal{U}\left(\vrc{j}\right)/\kb T\right]}{\exp\left[-\mathcal{U}\left(\vrc{i}\right)/\kb T\right]} \quad & \mathcal{U}\left(\vrc{j}\right)>\mathcal{U}\left(\vrc{i}\right)
 	 \end{cases}\,,
 \end{align}
 which can be expressed more succinctly as
@@ -234,7 +234,7 @@ This manifests as the red walk sampling one region and the blue walk being trapp
 Using multiple seeds in this way helps to identify if any such behaviour is present.
 If it leads to significant differences in the computed averages, more advanced techniques using enhanced sampling may have to be employed \cite{Torrie1977,Earl2005}.
 
-\subsection{Global Optimisation \& Simulated Annealing}
+\subsection{Global Optimisation and Simulated Annealing}
 \label{s:simulatedannealing}
 
 So far in this section it has been shown how Monte Carlo methods can be used perform importance sampling of potential energy surfaces.
@@ -277,8 +277,8 @@ As can be seen at high temperature the entire surface is sampled, overcoming all
 Bond switching Monte Carlo was originally developed by Wooten, Winer and Weaire to generate high quality configurations of three dimensional silica glass \cite{Wooten1985}.
 The basic principle is to amorphise a crystalline lattice with a series of transformations that swap the nearest neighbours of pairs of atoms and optimise the resulting structure to generate a continuous random network which is well\--relaxed.
 These continuous random network models replicate experimental observables with high accuracy (including bond length and angle distributions, radial distribution functions, electronic band gaps and Raman spectra) and have since been applied to alternative systems such as three\--dimensional amorphous carbon, binary glasses and biological polymers \cite{Treacy2012,Tu1998,Djordjevic1995,Mousseau2004,Huisman2008,Broedersz2014}.
-However, the method can also be readily modified to study \td{} systems, as has been done for amorphous graphene and silica, and which forms the basis for much of the work in this thesis, particularly in chapters \ref{ch:targetedopt} and \ref{ch:generalnetworks} \cite{Kumar2014,Jain2018}.
-The basic algorithmic details are described in this section, with extensions given in sections \davidnote{again ref later}.
+However, the method can also be readily modified to study \td{} systems, as has been done for amorphous graphene and silica, and which forms the basis for much of the work in this thesis, particularly in chapters \ref{ch:targetedopt}, \ref{ch:generalnetworks} and \ref{ch:ph} \cite{Kumar2014,Jain2018}.
+The basic algorithmic details are described in this section, with extensions given in sections \ref{s:targetedoptalg} and \ref{s:genbondswitching}.
 
 \subsection{Algorithmic Details} 
 
@@ -368,6 +368,16 @@ Figure \ref{fig:bsmc8} also demonstrates the importance of cooling a randomised 
 \subsection{Potential Models}
 \label{s:potentials}
 
+To first address a matter of notation, in this thesis $\vrp{i}$ is used to denote the $i$\th{} particle position in a given configuration.
+The vector between two particles is then defined $\vrp{ij}=\vrp{j}-\vrp{i}$.
+The distance between two particles, $r_{ij}$, and the angle between three particles, $\theta_{ijk}$, are then given by:
+\begin{align}
+	r_{ij} &= \abs{\vrp{ij}}\,, \\
+	\boldsymbol{\hat{\mathbf{r}}}_{ij} &= \frac{\vrp{ij}}{r_{ij}}\,, \\
+	\boldsymbol{\hat{\mathbf{r}}}_{ij} \cdot \boldsymbol{\hat{\mathbf{r}}}_{ik}&=\cos\theta_{ijk}\,.
+\end{align}
+These will remain consistent throughout the work.
+
 The nature of the bond switching method lends itself to the use of semi\--empirical potentials which have explicit stretching and angular neighbour lists.
 As such a popular choice for materials modelling is the Keating potential and modifications thereof \cite{Keating1966,Barkema2000}. 
 For a \td{} system the Keating potential has the form:
@@ -376,7 +386,8 @@ For a \td{} system the Keating potential has the form:
 	\pen = \frac{3}{16}\frac{\fk_S}{r_0^2}\sum_{\substack{i,j \in \\ \text{stretches}}} \left(r_{ij}^2-r_0^2\right)^2+
 	\frac{3}{8}\frac{\fk_A}{r_0^2}\sum_{\substack{ijk \in \\ \text{angles}}}\left(r_{ij}r_{ik}\cos\theta_{ijk}-r_0^2\cos\theta_0\right)^2 \,,
 \end{equation}
-where $r_{ij}$ the distance and $\theta_{ijk}$ the angle between particles; whilst $\fk_S$ and $\fk_A$ are the force constants for the stretching and angular terms respectively \cite{Kumar2012}.
+%where $r_{ij}$ the distance and $\theta_{ijk}$ the angle between particles; whilst 
+where $\fk_S$ and $\fk_A$ are the force constants for the stretching and angular terms respectively \cite{Kumar2012}.
 This potential drives the system towards equilibrium values of $r_0$ for the bond lengths and $\theta_0$ for the bond angles.
 The Keating potential has been parametrised for a range of specific materials \cite{Kumar2012,Drabold2009}. 
 
@@ -404,15 +415,15 @@ In addition as the potential models in this work are smooth and harmonic, a stra
 The steepest descent algorithm is an iterative method which searches down the potential energy gradient until a minimum is reached \cite{Nocedal2006}.
 It has the following scheme:
 \begin{enumerate}
-	\item Calculate the potential energy of the system $\mathcal{U}_i=\mathcal{U}\left(\mathbf{r}_i\right)$
+	\item Calculate the potential energy of the system $\mathcal{U}_i=\mathcal{U}\left(\vrc{i}\right)$
 	\item Determine the negative gradient of the potential \ie{} the forces acting on the particles $\mathbf{F}_i=-\nabla \mathcal{U}_i$ 
-	\item Find the optimal distance to displace the particles along the lines of force $\mathcal{U}_{i+1}=\min \left[\mathcal{U}\left(\mathbf{r}_i+\lambda \mathbf{F}_i\right)\right]$
-	\item Set $\mathbf{r}_{i+1}=\mathbf{r}_i+\lambda_{\text{min}} \mathbf{F}_i$
+	\item Find the optimal distance to displace the particles along the lines of force $\mathcal{U}_{i+1}=\min \left[\mathcal{U}\left(\vrc{i}+\lambda \mathbf{F}_i\right)\right]$
+	\item Set $\vrc{i+1}=\vrc{i}+\lambda_{\text{min}} \mathbf{F}_i$
 	\item Evaluate convergence and repeat steps 1-4 if $\left|\mathcal{U}_{i+1}-\mathcal{U}_i\right|>\gamma$
 \end{enumerate}
 The calculation of forces in stage 2 will depend on the potential model used, details of which are given in appendix \ref{app:forces}.
 Note that stage 3 also requires a minimisation routine, which may seem counter\--intuitive. 
-However, this is a one\--dimensional minimisation which trivial to estimate with a line search method \davidnote{appendix?}.
+However, this is a one\--dimensional minimisation which trivial to estimate with a line search method \davidnote{Todo: decide on if appendix needed}.
 The tightness of the convergence condition is set through the parameter $\gamma$.
 
 One final performance improvement arises from the fact that the \mc{} are inherently local.
@@ -509,7 +520,7 @@ where $\rho=\mathcal{N}/{V}$, the number density.
 Hard particle systems can be simulated using the Metropolis algorithm outlined in section \ref{ssec:metropolis}.
 The system is initialised by selecting a random non\--overlapping configuration.
 This can be achieved easily for low to medium densities by a greedy algorithm like random sequential addition, where particles are added successively in a manner which does not overlap with any previous particles \cite{Widom1966}.
-For higher packing fractions a more sophisticated algorithm is needed \davidnote{Find refs}.
+For higher packing fractions a more sophisticated algorithm is needed where particles are swelled and optimised \cite{Woodcock1976}.
 
 Once the initial configuration has been generated, it is evolved via two \mc{} moves.
 The first is the displacement move, whereby a random particle is selected and translated according to a random vector with elements generated uniformly in the range $\left[-\delta,\delta\right]$.
@@ -529,11 +540,19 @@ This is illustrated in figure \ref{fig:pbc}.
  
 \subsection{Voronoi Construction}
 \label{s:voronoiintro}
-
+\davidnote{Todo: could improve this, and construction diagram and paraboloid stuff}
 
 The hard particle configurations produced by \mc{} simulations are not in themselves network structures, rather simply a collection of correlated points.
 The network structure is revealed by construction of a Voronoi diagram, which partitions the sample into a system of tessellating cells, where each cell encapsulates all the space closest to the associated particle \cite{Okabe1992}.
-A \td{} Voronoi diagram is formed through the placement of dividing lines between the centres of neighbouring particles. 
+Formally, given the set of particle positions $\mathbf{r}$, the Voronoi cell associated with a each particle, $V_i$, can be written
+\begin{equation}
+	V_i = \left\{\mathbf{x}\in {\rm I\!R}^D | \,\, \abs{\mathbf{x}-\vrp{i}}\leq \abs{\mathbf{x}-\vrp{j}} \,\, \forall \, i\neq j\right\}\,,
+\end{equation}
+so that the Voronoi diagram in its entirety is the set
+\begin{equation}
+	V = \left\{V_0, V_1, \cdots, V_\mathcal{N}\right\}\,.
+\end{equation} 
+More intuitively, a Voronoi diagram is formed through the placement of dividing lines between the centres of neighbouring particles. 
 The intersection of these lines forms the characteristic tessellating polygons.
 
 \begin{figure}[bt]
@@ -578,17 +597,18 @@ Specifically, the Voronoi partition underestimates the space assigned to large p
 To rectify this, weighted modifications have been suggested which take account of the differences in radii \cite{Poupon2004}.
 
 To construct a weighted Voronoi diagram, one simply adjusts the position of the dividing line, such that it is further from the particle with the greater weight. 
-The weighting method used in this work is the so called radical tessellation, or power diagram \cite{GELLATLY1982,Aurenhammer1987}. In this modification, the dividing line is placed a distance $r_i$ from particle $i$, given by:
+The weighting method used in this work is the so called radical tessellation, or power diagram \cite{GELLATLY1982,Aurenhammer1987}. In this modification, the dividing line is placed a distance $d_i$ from particle $i$, given by:
 \begin{equation}
 	\label{eq:radical}
-	r_i = \frac{w_i^2-w_j^2+r_{ij}^2}{2r_{ij}}\,,
+	d_i = \frac{w_i^2-w_j^2+r_{ij}^2}{2r_{ij}}\,,
 \end{equation}
 where $w_i$ and $w_j$ are the weights for each particle. 
 The benefit of this method is that is adjusts the partitioning of space so that greater volume is assigned to the particles with larger weight, and is well designed so that all of the sample space remains accounted for - unlike some alternative constructions \cite{Richards1974}. 
 In terms of the particle weights, the logical choice is simply the disk radii. 
-This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $r_i = R_i$ \ie{} the radical dividing line sits exactly between the two disks, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
-Furthermore, when the radii are equal, $r_i = r_{ij} /2$ and the result from the standard unweighted Voronoi is regenerated as expected.
+This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $d_i = R_i$ \ie{} the radical dividing line sits exactly between the two disks, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
+Furthermore, when the radii are equal, $d_i = r_{ij} /2$ and the result from the standard unweighted Voronoi is regenerated as expected.
 It is worth noting here that the weighting method can affect the ring sizes (\ie{} number of vertices) as well as the ring areas, as demonstrated in figures \ref{fig:vorodemov2},\ref{fig:vorodemor2}.
+In this thesis, the majority of Voronoi calculations were carried out practically using the excellent Voro\texttt{++} library \cite{Rycroft2009}.
 
 The outcome of the Voronoi construction is a system of percolating rings not dissimilar to those seen in materials.
 The dual network, known as the Delaunay triangulation, is also obtained, which defines the nearest neighbours for each particle.
@@ -631,8 +651,6 @@ In this way Voronoi systems provide a good complement to compare and contrast wi
      \caption{The ring structure in Voronoi diagrams is controlled through the packing fraction, $\phi$, of the underlying hard particle system. Ring diversity increases as packing fraction is lowered from $0.8\rightarrow 0.2$ in (a)\--(d).}
      \label{fig:voromono}
 \end{figure}
-
-\davidnote{cite \cite{Rycroft2009} somewhere}
 
 \section{Analysis Methods}
 

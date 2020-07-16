@@ -7,7 +7,7 @@ The method efficiently utilises the dual lattice and allows systematic explorati
 Three different systems are considered; a system containing 5\--, 6\-- and 7\--membered rings only (a proxy for amorphous graphene), the configuration proposed by Zachariasen, and those
 observed experimentally for ultra\--thin films of \sioii. 
 The system energies are investigated as a function of the network topologies and the range of physically\--realisable structures established and compared to known experimental results.
-The limits on the parameter $\alpha$ are discussed and compared to previous results, whilst the evolution of the network structure as a function of topology is discussed in terms of the ring\--ring pair distribution functions.
+The limits on $\alpha$ are evaluated, whilst the evolution of the network structure as a function of topology is discussed in terms of the ring\--ring pair distribution functions.
 A short study on ring percolation in amorphous graphene is also presented.
 \end{chapterabstract}
 
@@ -27,6 +27,7 @@ To achieve this a targeted optimisation method can be employed, whereby configur
 This allows the experimentally occurring structures to be viewed in the context of the wider configurational landscape.
 
 \section{Targeted Optimisation Algorithm}
+\label{s:targetedoptalg}
 
 The primary remit of the targeted optimisation algorithm is to generate plausible network configurations based on the supplied network properties of ring statistics and \aw{} parameter.
 A secondary requirement is for the method to be efficient enough to produce samples for further high\--throughput calculations.
@@ -255,14 +256,14 @@ The curves have a very similar form with the minima aligned, suggesting that wor
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_u_graph.pdf}
-         \caption{Minimisation through Atomic Network}
+         \caption{Minimisation through atomic network}
          \label{fig:toptenergy1}
      \end{subfigure}
      \hfill
 	\begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_u_dual.pdf}
-         \caption{Minimisation through Ring Network}
+         \caption{Minimisation through ring network}
          \label{fig:toptenergy2}
      \end{subfigure}
 
@@ -275,7 +276,7 @@ These partial RDFs are constructed in reference to the distance of the centroids
 They can therefore equivalently be thought of as the dual\--space RDFs between nodes of degrees $j$,$k$.
 The Euclidean distance is used as opposed to the topological distance (\ie{} the number of links from a given node) as the latter has been shown to lead to artificial long range correlations \cite{Sadjadi2016}. 
 
-Figures \ref{fig:toptrdf1} and \ref{fig:toptrdf2} show the partial RDFs for the 5\--5 and 5\--7 ring pairings, $g_{55}\left(r\right)$ and $g_{57}\left(r\right)$ respectively \davidnote{add remaining to appendix?}.
+Figures \ref{fig:toptrdf1} and \ref{fig:toptrdf2} show the partial RDFs for the 5\--5 and 5\--7 ring pairings, $g_{55}\left(r\right)$ and $g_{57}\left(r\right)$ respectively.
 As is consistent with its intuitive meaning, increasing $\alpha$ causes a reduction in intensity in the first peak of $g_{55}\left(r\right)$ and a concomitant increase in intensity in the first peak of $g_{57}\left(r\right)$, as 5\--5 adjacencies are replaced with 5\--7. 
 In addition, the position of the first peak shifts to smaller $r$ as $\alpha$ is reduced, reflecting both the increased distortion in the rings and the deviation from the ideal $2\pi/3$ bond angle, which translates to the higher observed potential energy.
 
@@ -428,7 +429,7 @@ This is to say, if there are $N$ nodes in the lattice and the maximum lattice si
 	P_{\infty}\approx \frac{s_\text{max}}{N}\,.
 \end{equation} 
 This expression will hold in the limit of $N\rightarrow \infty$.
-As will be seen in section \davidnote{ref}, for finite size lattices this approximation leads to smoothing of the step\--like nature of $P_{\infty}$.
+As will be seen in section \ref{s:percphasediagram}, for finite size lattices this approximation leads to smoothing of the step\--like nature of $P_{\infty}$.
 The percolation threshold in this case is then approximated by as the occupancy, $p$, for which $P_{\infty}=\frac{1}{2}$.
 
 \subsection{Percolation in Disordered Networks}
@@ -480,7 +481,8 @@ However, unlike the regular lattices, the percolation threshold must also depend
 As seen throughout this chapter, this property is controllable through the \aw{} parameter.
 Therefore, for each $k$\--ring subgraph, the percolation threshold will be a function of both a critical ring frequency, $p_k^c$, and a critical \aw{} value $\alpha_k^c$.
 
-\subsection{Phase Diagram of Amorphous Graphene}
+\subsection{Percolation Phase Diagram of Amorphous Graphene}
+\label{s:percphasediagram}
 
 The percolation phase behaviour was investigated for the aG system, containing only 5\--, 6\-- and 7\--rings.
 Again this system is relatively well defined in terms of the ring statistics, as shown by equation \ref{eq:agcon}.
@@ -606,7 +608,7 @@ This could have implications when designing materials, for which there are eigen
 
 
 
-\section{Chapter Summary}
+\section{Chapter Conclusions}
 
 An innovative method has been presented to generate \td{} materials with well defined topology. 
 This targeted \mc{} search algorithm allows configurations to be constructed which have precise ring size distributions and ring\--ring correlations.

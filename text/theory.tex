@@ -3,7 +3,7 @@
 
 \begin{chapterabstract}
 The theory underpinning complex networks is discussed, covering the representation of atomic systems as networks and the relationship of the dual network to ring structure.
-The laws which govern the topological properties of physical networks, namely Euler's law, \lm's law and the \aw{} law are also introduced.
+The laws which govern the topological properties of physical networks are also introduced, namely Euler's law (mean node degree), \lm's law (node degree distribution) and the \aw{} law (node degree correlations).
 \end{chapterabstract}
 
 \section{Network Theory}
@@ -24,7 +24,7 @@ All the networks considered in this work are undirected and all the theory assum
 \end{figure}
 
 \subsection{Node Degree and Probability Distributions} 
-\ref{s:theorynodeprob}
+\label{s:theorynodeprob}
 
 A key concept in network science is the the node degree, defined as the number of links that each node possesses.
 A node with $k$ links is then said simply to have degree $k$, where $k\in\mathbb{N}$.
@@ -116,21 +116,21 @@ This network is to first order indeterminable from a crystalline hexagonal latti
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/graph.pdf}
-         \caption{Atomic network.}
+         \caption{Atomic network}
          \label{fig:graphdualgraph}
      \end{subfigure}
      \hfill
 	\begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/dual.pdf}
-         \caption{Ring network.}
+         \caption{Ring network}
          \label{fig:graphdualdual}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/graph_dual.pdf}
-         \caption{Dual relationship.}
+         \caption{Dual relationship}
          \label{}
      \end{subfigure}
      \hfill
@@ -217,21 +217,21 @@ Much of the richness in the behaviour of \td{} physical networks stems from this
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.4cm]{./figures/methods/hex.pdf}
-         \caption{Hexagonal.}
+         \caption{Hexagonal}
          \label{fig:latticeshex}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.4cm]{./figures/methods/cai.pdf}
-         \caption{Cairo.}
+         \caption{Cairo}
          \label{fig:latticescairo}
      \end{subfigure}
      \hfill
 	\begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.4cm]{./figures/methods/sq.pdf}
-         \caption{Square.}
+         \caption{Square}
          \label{fig:latticessq}
      \end{subfigure}
      \hfill
@@ -240,14 +240,14 @@ Much of the richness in the behaviour of \td{} physical networks stems from this
        \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=2.4cm]{./figures/methods/full92.pdf}
-         \caption{3\--coordinate fullerene.}
+         \caption{3\--coordinate fullerene}
          \label{fig:latticesfull92}
      \end{subfigure}
      \hspace{1cm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=2.4cm]{./figures/methods/full98.pdf}
-         \caption{4\--coordinate fullerene.}
+         \caption{4\--coordinate fullerene}
          \label{fig:latticesfull98}
      \end{subfigure}
      
@@ -303,14 +303,14 @@ The maximum value of these curves can be simply determined by removing constrain
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/lm_1.pdf}
-         \caption{Maximum entropy distributions.}
+         \caption{Maximum entropy distributions}
          \label{fig:lm1}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/lm_2.pdf}
-         \caption{\lm's law.}
+         \caption{\lm's law}
          \label{fig:lm2}
      \end{subfigure}
      \hfill
@@ -318,7 +318,7 @@ The maximum value of these curves can be simply determined by removing constrain
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/lm_3.pdf}
-         \caption{Extensions to \lm's law.}
+         \caption{Extensions to \lm's law}
          \label{fig:lm3}
      \end{subfigure}
      \hfill

@@ -115,7 +115,7 @@ Some potential models have an additional term to prevent overlap of edges in a \
 This can be detected using standard computational geometry algorithms \cite{ORourke1998}.
 The signed area of a triangle, $A$, is given by:
 \begin{equation}
-	A\left(\mathbf{r_0}, \mathbf{r_1}, \mathbf{r_2}\right) = \frac{1}{2}\sum_{i=0}^{2} \left(x_iy_{i+1}-y_ix_{i+1}\right)\,.
+	A\left(\mathbf{r}_0, \mathbf{r}_1, \mathbf{r}_2\right) = \frac{1}{2}\sum_{i=0}^{2} \left(x_iy_{i+1}-y_ix_{i+1}\right)\,.
 \end{equation}
 A point can then be designated ``left'' of a line segment if $A>0$ and ``right'' otherwise.
 Overlap of two line segments can be detected if one point of one segment is ``left'' and the other point ``right'' with respect to the other segment, and no three points are collinear.

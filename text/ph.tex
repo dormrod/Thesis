@@ -45,10 +45,7 @@ Actual numerical persistent homology calculations can be carried out with the GU
 \subsection{Filtered Simplicial Complexes}
 
 The input for a persistent homology calculation is simply a point cloud \ie{} a set of coordinates in Euclidean space.
-\davidnote{change $\mathbf{r}$ in Voronoi chapter}.
-\davidnote{change all $r_{ij}\rightarrow d_{ij}$}.
 For materials, this corresponds to the set of atomic positions, $\mathbf{r}=\left\{r_1,r_2,\cdots,r_\mathcal{N}\right\}$, as obtained from simulation or for instance experimentally via STM.
-%Two example point clouds are provided in figures \ref{fig:phexa} and \ref{fig:phexe}, corresponding to a crystalline and amorphous configuration respectively.
 Using this point cloud, a filtered simplicial complex can be constructed \cite{Fugacci2016}.
 To explain what is meant by a filtered simplicial complex, it is useful to break down this definition further:
 \begin{itemize}
@@ -246,7 +243,7 @@ As such, the $0$\--dimensional features provide little insight for atomic system
 On the other hand, the 1\--dimensional features show significant differences between the crystalline and amorphous configurations.
 Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa}, \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
 For the crystalline system, all persistent cycles (corresponding to hexagons) terminate at almost the same value of $\epsilon=r_0$, whereas in the amorphous case there is a much broader distribution of values.
-These values will be discussed in detail in section \davidnote{link}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
+These values will be discussed in detail in section \ref{s:phbands}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
 It is not only the persistent cycles which show variation though.
 The persistence diagrams, figures \ref{fig:exvise} and \ref{fig:exvisf}, also show that the short lived features, which lie close to the line $b=d$, show greater variation in the amorphous case.
 This will also be explored in greater depth in the remainder of the chapter.
@@ -308,7 +305,7 @@ The question is whether these visualisations can be systematically interpreted t
 
 \section{Persistent Homology with Triangle Rafts}
 
-Persistent homology is first studied in reference to triangle rafts, introduced in chapter \davidnote{link}.
+Persistent homology is first studied in reference to triangle rafts, introduced in chapter \ref{ch:bilayers}.
 To briefly reiterate, triangle rafts are a model for \td{} amorphous silica, representing the bilayer of corner sharing tetrahedra as projected equilateral triangles.
 Triangle rafts are characterised by having a diverse ring distributions, owing to the flexibility afforded to the structure by the oxygen linkages.
 Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity afforded by the triangular subunits.
@@ -326,10 +323,10 @@ Si\--Si & 0.966 & 0.995 & 1.000 & 0.997 & 0.991 & 0.985 & 0.978 \\
 \end{tabular}
 \end{table}
 
-An algorithm to construct triangle rafts was introduced in section \davidnote{link}.
+An algorithm to construct triangle rafts was introduced in section \ref{s:triangleraft}.
 The ring statistics in the resulting configurations can be tuned with a ``temperature'' parameter, $T$, with a higher temperature leading to the incorporation of more extreme ring sizes.
 This is beneficial, as it allows a systematic evaluation of the results of persistent homology calculations, using configurations with a continuous evolution in structure.
-As such, the samples from sections \davidnote{link}, with ring sizes in the range $k=4\rightarrow10$, were analysed using the GUDHI library \cite{gudhi}.
+As such, the samples from section \ref{s:triangleraft}, with ring sizes in the range $k=4\rightarrow10$, were analysed using the GUDHI library \cite{gudhi}.
 In these analyses, only the silicon positions were included, as again the oxygen positions are in a sense ``degenerate'' (as they do not affect the ring topologies) and would only serve to obscure the calculation.
 In addition, this makes the cycles computed by persistent homology consistent with the definitions of rings elsewhere in this thesis.
 
@@ -390,6 +387,7 @@ By studying this problem in two dimensions, it can now be shown that these bands
 
 
 \subsection{Band Structure in Persistence Diagrams}
+\label{s:phbands}
 
 Before rationalising the band structure observed in the persistence diagrams of triangle rafts, it is useful to consider again the process of cycle formation in persistent homology.
 The important points are summarised below:
@@ -714,11 +712,11 @@ The results of persistent homology with triangle rafts led to a well defined ban
 This structure is not always observed in simulations, for example with Cu\--Zr alloys and high density molecular liquids \cite{Hiraoka2016,Onodera2019}.
 In these cases, more diffuse diagrams are found, which naturally accompanies the increase in degrees of freedom in such systems.
 The triangle raft algorithm is unable to directly reproduce these effects in two dimensions, owing to the innate rigidity of the model.
-However, this can be achieved with another algorithm developed in this thesis, namely bond switching \davidnote{link}.
+However, this can be achieved with another algorithm developed in this thesis, namely bond switching \ref{s:bondswitch}.
 In bond switching, the potential model allows for greater freedom in the bond lengths and angles, and the process of randomising an existing lattice (as opposed to building an random ring structure sequentially) allows configurations with a greater range of ring sizes, and a greater level of ring disorder, to be realised.
 
 Therefore, in this section, persistent homology analysis will be performed on the configurations generated from bond switching, applying the information learned from analogous calculations on triangle rafts.
-The specific systems studied will be a subset of those from chapter \davidnote{link}, namely those at two different bond stretching and angle force constant ratios of $k_r/t_\theta=16,4$, with convexity maintained.
+The specific systems studied will be a subset of those from chapter \ref{ch:generalnetworks}, namely those at two different bond stretching and angle force constant ratios of $k_r/t_\theta=16,4$, with convexity maintained.
 The persistence diagrams and change in Betti numbers will be investigated for these systems, and the effect of the potential model highlighted.
 In addition, the results will be contrasted with those of triangle rafts.
 Again calculations were performed with the GUDHI library \cite{gudhi}, and birth and death filtration values are given with reference to the equilibrium bond length, $r_0$.
@@ -834,7 +832,7 @@ As there remain the same number of primitive rings, the implication of the maxim
 This in turn means that all these rings are not detectable on the same length scale.
 The final broad distribution resembles closely that of previous studies of random structures \cite{Nakamura2015}.
 This can therefore be considered characteristic of a highly amorphous (approaching liquid) disordered limit.
-As mentioned for the corresponding persistence diagrams, this results from the large variation in bond length and angle distributions \davidnote{Would it be useful to include histograms of the bond lengths/angles in all this discussion?}.
+As mentioned for the corresponding persistence diagrams, this results from the large variation in bond length and angle distributions \davidnote{Todo: discuss if it would be useful to include histograms of the bond lengths/angles in all this discussion.}.
 Once again, the effect of changing the force constant ratio is weak, with some broadening observed for $k_r/k_\theta=4$ over $k_r/k_\theta=16$ at higher $p_6$ values.
 
 \begin{figure}[tb]
@@ -897,7 +895,7 @@ It is certainly true that to the trained eye, a persistence diagram of a crystal
 Once the principle is understood, there is no more inherent difficulty in interpreting such diagrams than RDFs, structure factors or any other traditional measure.
 In addition, the use of persistent homology is by no means limited to chemical systems, and it may be that improvements in other fields will allow a novel interpretation of the structure of atomistic systems.
    
-\section{Chapter Summary}
+\section{Chapter Conclusions}
 
 Persistent homology, a tool from topological data analysis, has been applied to the study computational configurations of \td{} materials.
 These were generated using methods described elsewhere in this thesis, namely triangle rafts and bond switching.
