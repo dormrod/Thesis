@@ -75,7 +75,7 @@ To demonstrate the effectiveness and potential of this approach, results will be
      \vspace{0.2cm}
      \begin{subfigure}[b]{0.5\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{./figures/general_networks/ch.pdf}
+         \includegraphics[width=\textwidth]{./figures/general_networks/ch_lowres.pdf}
          \caption{Communes of Switzerland.}
          \label{fig:ne7}
      \end{subfigure}
@@ -172,10 +172,75 @@ Deviation from this random arrangement is the assortativity, and can be measured
 \end{equation}
 For this coefficient to be calculable, the second and third moments of the degree distribution must be finite \cite{Litvak2013}.
 This condition is satisfied for these physical systems, as the proportion of large rings quickly becomes vanishingly small.
-\davidnote{Include some plots of matrices here?}
+
+\begin{figure}[bt]
+     \centering
+       
+     \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_pk.pdf}
+         \caption{$p_k$}
+         \label{fig:rexa}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_-75.pdf}
+         \caption{$r=-0.75$}
+         \label{fig:rexb}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_-50.pdf}
+         \caption{$r=-0.50$}
+         \label{fig:rexc}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_-25.pdf}
+         \caption{$r=-0.25$}
+         \label{fig:rexd}
+     \end{subfigure}
+     \hfill
+     
+        \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_0.pdf}
+         \caption{$r=0.00$}
+         \label{fig:rexe}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_25.pdf}
+         \caption{$r=0.25$}
+         \label{fig:rexf}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_50.pdf}
+         \caption{$r=0.50$}
+         \label{fig:rexg}
+     \end{subfigure}
+      \hfill
+       \begin{subfigure}[b]{0.205\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_75.pdf}
+         \caption{$r=0.75$}
+         \label{fig:rexh}
+     \end{subfigure}
+      \hfill
+ 
+     \caption{Visualisation of the joint node degree distribution, $e_jk$, for a given node degree distribution, $p_k$, at different assortativities, $r$. Panel (a) gives the node degree distribution (\ie{} ring statistics), and panels (b)\--(h) visualisations of the joint node degree distribution at increasing assortativities. All matrices have the same orientation and colouring as panel (e).}
+     \label{fig:rex}
+\end{figure}
 
 The advantages of adopting this measure of assortativity are clear.
 The correlation coefficient is bounded between $-1\leq r \leq 1$ and has three well defined limits: $r=0$ indicating a random network, $r=1$ a perfectly assortative network and $r=-1$ a perfectly disassortative network.
+Intermediate values of $r$ are then readily understandable in reference to these limits, with a concomitant effect on the joint degree distribution, as illustrated in figure \ref{fig:rex}. 
 This allows physical networks to be readily compared in a way that the \aw{} law does not allow.
 Physical networks can now be fitted in to the wider field of network science, introducing them as important examples alongside more traditionally studied networks.
 Using the assortativity also provides a natural extension to higher dimensions, which has been difficult to reconcile with the empirical \aw{} law \cite{Mason2012}.
