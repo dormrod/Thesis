@@ -1,89 +1,61 @@
-\chapter{Conclusions}
+\chapter[\,Conclusions]{Conclusions}
 \label{ch:conclusions}
 
-\davidnote{Do conclusions}
+The overarching theme of this thesis has been improvement in the simulation and characterisation of \td{} disordered materials, in order to better understand their structure.
+The motivation behind this was ultimately to facilitate the design and synthesis of technologically useful materials, where mechanical and electronic properties can be tuned through manipulation of the ring structure.
+This includes control of pore size and density, modifying ductility or tuning the band gap in ultra\--thin materials.
+The contributions of this work to these eventual goals can be summarised by advancements in the computational generation of amorphous materials with \mc{} methods, application of network theory to quantify their disorder, and surveying their properties in the context of related experimental systems.
 
-In this chapter a method for the effective growth of \td{} networks from a given seed has been developed, allowing for control over the ring size distributions and the system topologies. 
-The latter is often characterised by the Aboav-Weaire parameter, $\alpha$, and
-the values obtained here are more commensurate with those obtained
-from experimental imaging compared with previously constructed configurations.
-The high throughput method has allowed a detailed analysis of \lm's
-law and has highlighted why the fraction of six-membered rings observed
-in real systems is often $\sim$0.4. 
-Finally, a consideration of the ring areas show our configurations to contain more regular polyhedra than a number of previous configurations. 
-However, the area itself is shown to be a relatively poor measure of a deviation from ideality for systems of this type.
+On the side of algorithmic development, stochastic methods have been used to create a versatile set of tools for generating configurations of a variety of \td{} systems.
+These comprised triangle rafts, a diverse array of CRNs, fullerenes, non\--additive hard disks and a wide selection of procrystalline lattices.
+A key priority of these tools was to have the capability to produce samples in which the level of disorder could be systematically and reliably varied.
+As a result, the ring statistics and correlations were often controlled by a ``temperature'' parameter, so that configurational space could be continuously scanned.
+This approach allowed for a holistic examination of the structural properties in generic physical networks. 
 
+All these systems mentioned above can be considered to belong to the same broad class of \td{} networks, but each is governed by a unique set of constraints that influence the overall structure.
+To compare and contrast their properties effectively, a robust set of metrics was required.
+The traditional manner of quantifying ring disorder in \td{} materials involved coupling the ring statistics and an \aw{} fit, to obtain a parameter which measures ring\--ring correlations.
+The \aw{} parameter in particular proved insufficient for these purposes, as it had poorly defined limits and a large associated error.
+This suggested a need for a modern and generalised approach for quantifying disorder in physical \td{} networks.
+By modelling the ring structure as a network, multiple empirical laws could be treated using the same formalism.
+Euler's law now reflected the mean node degree and \lm's law the node degree distribution.
+Most importantly, modern network theory had a natural replacement for the \aw{} law, in the form of the assortativity.
+The assortativity measured the node degree correlations, had well defined limits and was shown to be relatable to the \aw{} parameter.
+This enabled accurate quantification of physical networks, and tied them into the wider field of network science.
 
+The development of algorithmic methods and associated theory to model physical networks allowed for a series of high\--level investigations into the structures of different systems.
+Generic disordered networks were found to have a ring structure which was consistent with \lm's maximum entropy law.
+This implied that any pore distribution in disordered media would be heavily constrained by this law.
+The specific arrangement of these rings, as measured by the assortativity, was however influenced by the balance of bond stretch and angle terms in the underlying potential model.
+However, a system was eventually found which violated \lm's law.
+Procrystalline lattices, which have a high symmetry atomic lattice but disordered ring structure, were demonstrated to have fundamentally different network properties to either the crystalline or amorphous state, and therefore have the potential to display unique transport properties.
+Furthermore, the balance of order and disorder in procrystals was dependent on the nature of the underlying lattice and the atomic coordination number.
 
+The study of experimental \td{} networks also led to some more speculative topics in analysis.
+In particular, following on from network analysis of colloids, a detailed study was undertaken on the use of Voronoi diagrams with polydisperse hard sphere monolayers.
+This yielded the result that an unweighted Voronoi diagram was appropriate and had a well defined meaning in this context, likely of some reassurance to experimentalists.
+In addition, an attempt to find the ring structure in experimental STM images via persistent homology led to a broader examination of the utility of the technique in characterising amorphous materials.
+Here again, the ability to generate samples computationally for different systems with controlled levels of disorder was key to interpreting the band structure in persistence diagrams.
 
-An innovative method has been presented to generate \td{} materials with well defined topology. 
-This targeted \mc{} search algorithm allows configurations to be constructed which have precise ring size distributions and ring\--ring correlations.
-The advantage of this approach is that configurations can be produced rapidly with controllable properties; which may lie outside experimentally or physically accessible regions of phase space.
-These configurations may then be used as starting points for further investigations.
-For example, the algorithm outlined in this work has already been utilised to study the mechanical properties of vitreous silica under deformation \cite{Bamer2020,Ebrahem2020a,Whitaker2019}.
-In this chapter the targeted optimisation method was employed to probe the physical meaning of the \aw{} parameter.
-The effect of $\alpha$ on the ring structure has been quantified through partial RDFs.
-In addition the energetic minima for a range of systems has been shown to correspond well with values commonly found in nature.
-Finally, the method was employed in a study of the ring percolation in amorphous graphene, with the phase behaviour quantified in terms of the ring statistics and the \aw{} parameter.
+This work has hopefully also opened up further avenues for research.
+One possibility is the potential to use the tools developed here in more targeted studies for materials modelling.
+The configurations produced can be readily converted into all\--atom structures, such as silica or germania bilayers, which can be simulated with accurate potential models.
+Alternatively, the triangle raft algorithm can be used to study growth around a provided template, leading to insight into the growth of porous materials.
+The generalised bond switching method can also be applied to new systems with relatively little modification.
+An example would be to remove any constraints on atomic coordination number, to create highly disordered networks.
+This could be of utility to researches studying biological networks such as collagen or laminin. 
+The network theory introduced to describe atomic systems can also be expanded, for instance to link robustness to percolation and transport properties.
 
+However, perhaps the most obvious step from here would be to assess the implications of this work in three dimensions.
+Although this thesis has remained largely faithful to the \td{} world, there are natural extensions, which could prove more impactful, for \thd{} systems.
+The main obstacle is a consistent definition of rings or voids when treating \thd{} networks, but this is by no means insurmountable. 
+It should be pointed out that the network theory used in this work is trivially extendible to three dimensions, some of the fundamental constraints which govern \td{} networks no longer apply.
+No doubt this will only add to the thrill of the chase.
+In particular it could be interesting to study the structure of procrystalline lattices in higher dimensions, as these are more experimentally relevant, and evaluate whether persistent homology has potential to quantify void structure in such systems.
 
-
-
-
-
-In summary, this chapter has thoroughly examined the network properties of a wide range of naturally occurring \td{} systems; spanning varying coordination environments, potential models and topologies.
-Data has been collected from a range of experimental sources, and have the theoretical bond switching method has been further developed to aid the study of these diverse systems computationally.
-These data have been analysed with rigorous metrics from network science, with the aim of highlighting the study of real\--world physical systems as an important and interesting addition to the wider field.
-In particular these networks display unique constraints as a result of their underlying physics.
-It has been shown that their mean node degree is fixed and the node degree distribution is well defined, following \lm's law.
-In addition the concept of network assortativity has been introduced to measure ring correlations, and its preferability over the previous empirical measure known as the \aw{} law has been argued.
-Although the assortativity has been shown to be a function of the potential model for a system and the limits of the assortativity linked to the occurrence of well\--known physical motifs; most physical networks show a very similar overall level of disassortativity, as experienced in nature.
-An exception to this rule has also been found, where variable\--coordination systems can de\--mix to exhibit assortative behaviour.
-
-In this chapter it has demonstrated how network science is applicable to understanding and analysing generic systems in physics, but also how physical systems form a key and under\--explored area of network science.
-Going forward there is lots of potential scope to extend these explorations.
-For example, there are still questions to be answered from this work such as how network properties such as the assortativity are explicitly related to the physics of the underlying system and whether this information can be utilised experimentally \-- for example to control and effectively quantify the pore size in materials.
-This has also set up extensions to investigating more disordered networks still, such as biological networks which have a wider range of coordination environments.
-
-
-
-
-This chapter has extensively explored the role of the Voronoi construction in the analysis of \qtd{} hard sphere systems.
-A substantial part of this has been a theoretical study of the relationships between various 2D and 3D tessellations for these systems.
-Although some of the problems investigated are more esoteric, others are of direct relevance to ongoing experimental research.
-Most significantly, a link has been drawn between the application of an unweighted 2D Voronoi construction and a 3D construction in which the division of space is weighted in terms of particle size, for the case in which the spheres sit on a surface.
-As a result, a clear geometrical meaning has been provided to the commonly used unweighted 2D Voronoi diagram; showing it to be equivalent to the tessellation 
-formed from taking the basal polygons in the 3D Voronoi diagram weighted by the sphere 
-radii.
-
-As an example of this, experimental configurations of \qtd{} colloidal monolayers of varying parameters were analysed using Voronoi techniques.
-The results of these analyses were also compared to analogous configurations generated by non\--additive hard disk \mc{}, to which there was good agreement.
-Monodisperse systems were found to have ring statistics concordant with \lm's law and network assortativity which was linear in packing fraction.
-Bidisperse systems were considered in terms of the partial properties of the two sphere components.
-The partial ring size distributions were shown to be fit well by maximum entropy distributions and can be tuned through varying the system parameters of packing fraction, composition and radius ratio.
+In its inception, the focus of this thesis was relatively narrow, being concerned with the modelling of \td{} silica glass and related species.
+However, the ubiquity of the central concepts to the wider physical world broadened the scope to include colloids, procrystals and even a brief foray into geopolitics.
+It is now clear that disordered \td{} atomic networks fit into a much larger, more universal class of complex networks, the characterisation of which this thesis has just scratched the surface.
+In this field, without doubt, there are many more interesting developments to come.
 
 
-
-
-This chapter has applied the tools of network theory to analyse \td{} examples of recently\--defined procrystalline lattices.
-These procrystalline configurations, generated by \mc{} methods, have been shown to have fundamentally different structural properties to both crystalline and amorphous arrangements.
-This has been demonstrated through the violation of \lm's law, and measured assortativities atypical of more well\--understood systems.
-
-These \td{} systems provided a good starting place for investigations into the procrystalline state, because they are simpler to understand; for instance by having well\--defined ring structure.
-Extensions to this work pose exciting possibilities.
-If these results are mirrored by equally anomalous ring statistics in three\--dimensional procrystalline networks, one might expect a variety of physical properties that depend on correlation to be affected in otherwise unexpected ways. 
-For example, the disordered pore networks of Prussian blue analogues possess topological characteristics that differ meaningfully from those of random or ordered porous media, in turn influencing their transport properties \cite{Simonov2020}.
-On a different lengthscale, photonic procrystals should exhibit photonic band structures different to those of both ordered and amorphous phase \cite{Florescu2009,Sellers2017}.
-
-
-
-
-Persistent homology, a tool from topological data analysis, has been applied to the study computational configurations of \td{} materials.
-These were generated using methods described elsewhere in this thesis, namely triangle rafts and bond switching.
-Whilst the analyses of the two systems displayed similarities, the differences in the underlying constraints manifested in the persistence diagrams and Betti numbers.
-The relatively constrained triangle rafts showed well defined bands in the persistence diagrams, which were traced to successive nearest\--neighbour interactions, which broadened as ring disorder increased.
-The introduction of new ring sizes could also be quantified by plotting the Betti numbers with filtration value.
-On the other hand, the configurations from bond switching displayed similar features, but these quickly aggregated with increased disorder to make quantifying the structure more difficult.
-
-In general, persistent homology has been shown to have potential as an investigative tool for studying \td{} materials, where persistent features can be explicitly linked to atomic interactions.
-It remains an open question whether similar links can be developed for use with \thd{} systems, particularly in experiment when real\--space data is less readily available.

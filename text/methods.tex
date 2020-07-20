@@ -435,7 +435,7 @@ Typically this would extend to all atoms within five coordination shells of thos
 
 Hard particle Monte Carlo is one of the most well\--established computational methods in statistical physics.
 Through its simplicity it is able to provide insight into the fundamental behaviour of particle systems and simulations of increasing size are still performed this century \cite{Isobe2016,Bernard2009,Anderson2013,Isobe2015}.
-In this thesis it will be used to generate ring systems in the form of Voronoi tessellations (see section \ref{ssec:voronoi}), in analogy to experimental colloidal systems \cite{Thorneywork2017}.
+In this thesis it will be used to generate ring systems in the form of Voronoi tessellations (see section \ref{s:voronoiintro}), in analogy to experimental colloidal systems \cite{Thorneywork2017}.
 
 \subsection{Hard Particle Model}
 \label{s:hardparticlemodelintro}
@@ -654,12 +654,33 @@ In this way Voronoi systems provide a good complement to compare and contrast wi
 
 \section{Analysis Methods}
 
+A wide variety of additional analysis methods are used throughout this thesis, to characterise configurations from simulation and experiment.
+Most of these have either been covered in chapter \ref{ch:networktheory} or will be introduced as an accompaniment in the relevant chapters, but more elementary techniques are established here.
+
 \subsection{Bond Length and Angle Distributions}
+
+The use of semi\--empirical potentials with precisely defined neighbour lists makes the evaluation of nearest\--neighbour bond lengths and angles straightforward.
+The bond lengths, $r_{ij}$, can be calculated by scanning over all nearest\--neighbour pairs, whilst the angles, $\theta_{ijk}$, can equally be found by scanning over nearest\--neighbour triplets.
+Histograms can then be constructed for each interaction type, denoted $f\left(r\right)$ and $f\left(\theta\right)$, for lengths and angles respectively.
 
 \subsection{Radial Distribution Functions}
 
+For a given point set, the radial distribution function (RDF or $g\left(r\right)$), gives the probability of finding a point at a distance $r$ from a reference point, normalised against a system of randomly distributed points at the same density.  
+The RDF in \td{} is then given by:
+\begin{equation}
+	g\left(r\right)=\frac{1}{2 \mathcal{N} \rho \pi r}\left\langle \sum_i \sum_{j\neq i} \delta\left(r-r_{ij}\right)\right\rangle\,. 
+\end{equation} 
+The behaviour of the RDF is therefore such that $g\left(r\right)>1$ indicates an increase in probability that two points are at a given separation and $g\left(r\right)<1$ indicates a corresponding decrease.
+For disordered media, any correlations inevitably decay with distance such that $\lim_{r\rightarrow \infty} g\left(r\right)=1$.
 
-
+The reason this is framed in terms of generic point sets, is that in this thesis the RDF will be applied to the dual of the atomic coordinates, to measure ring\--ring spatial correlations.
+In fact, partial RDFs will be used, to measure correlations between rings of different sizes.
+If these sizes are denoted, $a$, $b$, the partial RDF, $g_{ab}\left(r\right)$, is then given by:
+\begin{equation}
+	g_{ab}\left(r\right)=\frac{1}{2 \mathcal{N}_a \rho_b \pi r}\left\langle \sum_i \sum_{j\neq i} \delta\left(r-r_{ij}\right)\right\rangle\,, 
+\end{equation} 
+where $\mathcal{N}_a$ is the number of $a$\--rings and $\rho_b$ the density of $b$\--rings.
+Hence the partial RDFs are normalised in a way to yield analogous behaviour to the total RDF.
 
 
 
