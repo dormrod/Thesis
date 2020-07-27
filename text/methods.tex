@@ -40,16 +40,16 @@ where
 \end{equation}
 is the configurational integral \cite{Allen2017}. 
 As will be shown, in \mc{} simulations it is the energetic differences between configurations that are required, and so at constant temperature the kinetic component can be neglected and it is only the configurational integral that is of importance.
-In this case the probability density of the system being in the configuration $\mathbf{r}$ is given by the Boltzmann distribution:
+In this case the probability density of the system being in the configuration $\mathbf{r}$, denoted $\mathcal{P}\left(\mathbf{r}\right)$, is given by the Boltzmann distribution:
 \begin{equation}
 	\label{eq:boltzmann}
-	P\left(\mathbf{r}\right) = \frac{\exp{\left[-\pen/\kb T\right]}}{Z}\,.
+	\mathcal{P}\left(\mathbf{r}\right) = \frac{\exp{\left[-\pen/\kb T\right]}}{Z}\,.
 \end{equation}
 This allows the expectation value of an observable of the system, $\obs$, to be determined from:
 \begin{equation}
 	\label{eq:expectationobs}
 	%\langle A \rangle = \frac{1}{Z}\int \dd\mathbf{r}\,\obs\exp{\left[-\pen/\kb T\right]} \,.
-		\langle A \rangle = \int \dd\mathbf{r}\,\obs P\left(\mathbf{r}\right) \,.
+		\langle A \rangle = \int \dd\mathbf{r}\,\obs \mathcal{P}\left(\mathbf{r}\right) \,.
 \end{equation} 
 The expectation value is then the ratio of two $\mathcal{N}D$ dimensional integrals.
 The next section shows how these can be evaluated by \mc{} sampling.
@@ -75,24 +75,24 @@ which converges to the exact value as $S\rightarrow\infty$.
 However, both quadrature and \mc{} uniform sampling suffer from the same inefficiency.
 As can be seen in both schemes, many of the sampling points fall in regions of phase space where the potential energy is high and hence the weighting probability distribution is very small at reasonable temperatures.
 In effect, significant effort is spent calculating regions where the contribution to the total integral is negligible.
-A better approach is therefore to generate a series of $S$ random sampling points, $\left(x_i,y_i\right)$, according to the distribution $\mathcal{P}\left(x,y\right)$, as in figure \ref{fig:montecarloint2}.
+A better approach is therefore to generate a series of $S$ random sampling points, $\left(x_i,y_i\right)$, according to the distribution $\mathcal{P}\left(x,y\right)$, as in figure \ref{fig:montecarloint3}.
 The expectation value of the observable can then be calculated using a simple average:
 \begin{equation}
 	\langle \mathcal{U} \rangle = \frac{1}{S}\sum_{i=1}^{S} \mathcal{U}\left(x_i,y_i\right)\,.
 \end{equation}
-This is known as importance sampling and is vastly more efficient when dealing with an aggressive probability distribution like the Boltzmann, where only a small proportion of the phase space is accessible.
+This is known as importance sampling and is vastly more efficient when dealing with an aggressive probability distribution like the Boltzmann, where only a small proportion of the phase space is readily accessible.
 
-\begin{figure}[bt]
+\begin{figure}[btp]
      \centering
      
-     \begin{subfigure}[b]{0.45\textwidth}
+     \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_quad.pdf}
          \caption{Quadrature}
          \label{fig:montecarloint1}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.45\textwidth}
+     \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_rand.pdf}
          \caption{Uniform sampling}
@@ -100,14 +100,15 @@ This is known as importance sampling and is vastly more efficient when dealing w
      \end{subfigure}
      \hfill
      
-     \begin{subfigure}[b]{0.45\textwidth}
+     \vspace{0.5cm}
+     \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_imp.pdf}
          \caption{Importance sampling}
          \label{fig:montecarloint3}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.45\textwidth}
+     \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_mcmc.pdf}
          \caption{Markov Chain \mc}
@@ -115,7 +116,7 @@ This is known as importance sampling and is vastly more efficient when dealing w
      \end{subfigure}
      \hfill
     
-     \caption{Demonstration of different sampling methods with an example \td{} potential energy surface (contour lines). Panels(a)\--(c) display the same number of (red) sampling points. Panel (a) shows conventional quadrature where the surface is divided into a regular grid of sampling points which are then weighted by the Boltzmann distribution. Panel (b) shows \mc{} sampling with a uniform distribution of points which again must be Boltzmann\--weighted. Panel (c) shows \mc{} importance sampling with points now selected according to the Boltzmann distribution. Panel (d) shows Markov chain \mc{} with two random walks through phase space (red and blue lines) starting from different random seeds.}
+     \caption{Demonstration of different sampling methods with an example \td{} potential energy surface (contour lines). Panels (a)\--(c) display the same number of (red) sampling points. Panel (a) shows conventional quadrature where the surface is divided into a regular grid of sampling points which are then weighted by the Boltzmann distribution. Panel (b) shows \mc{} sampling with a uniform distribution of points which again must be Boltzmann\--weighted. Panel (c) shows \mc{} importance sampling with points now selected according to the Boltzmann distribution. Panel (d) shows Markov chain \mc{} with two random walks through phase space (red and blue lines) starting from different random seeds.}
      \label{fig:montecarloint}
 \end{figure}
 
@@ -127,7 +128,7 @@ This can be achieved by talking a random walk through configurational space usin
 \subsection{Markov Chain Monte Carlo}
 
 Markov chain Monte Carlo provides a framework to perform importance sampling on a potential energy surface.
-A system of interest can exist in a (very large) number of configurational states, $\left\{\vrc{0},\vrc{1},\cdots,\vrc{M}\right\}$ (in this work the notation $\vrc{i}$ will be used to denote all particle positions in a state $i$, whereas $\vrp{i}$ will be used to denote the $i$\th{} particle position in a given state).
+A system of interest can exist in a (very large) number of configurational states\footnote{In this work the notation $\vrc{i}$ will be used to denote all particle positions in a state $i$, whereas $\vrp{i}$ will be used to denote the $i$\th{} particle position in a given state.}, $\left\{\vrc{0},\vrc{1},\cdots,\vrc{M}\right\}$.
 A Markov chain can then be constructed from this set, whereby a sequence of states is generated stochastically across a series of steps, $s=0,1,\dots,S$.
 In this process, the probability of moving between states at each step is given by the transition matrix, $\bm{\pi}$, where each element, $\pi_{ij}$, gives the probability of moving from the state $\vrc{i}$ to another state $\vrc{j}$.  
 This leads to the two relationships:
@@ -168,7 +169,7 @@ A practical solution to this problem is provided by the Metropolis algorithm.
 \subsection{Metropolis Algorithm}
 \label{ssec:metropolis}
 
-The Metropolis algorithm gives a prescription of how to construct a transition matrix, $\bm{\pi}$, with the requisite properties that samples the Boltzmann distribution \cite{Metropolis1953}.
+The Metropolis algorithm gives a prescription as to how to construct a transition matrix, $\bm{\pi}$, with the requisite properties, that samples the Boltzmann distribution \cite{Metropolis1953}.
 Firstly, combining equations \eqref{eq:tmrowsum} and \eqref{eq:mcmceig} gives a condition on the transition matrix known as global balance:
 \begin{equation}
 	\sum_j \mathcal{P}\left(\vrc{i}\right)\pi_{ij} = \sum_j \mathcal{P}\left(\vrc{j}\right)\pi_{ji}\,.
@@ -191,8 +192,8 @@ Then, in the crux of the algorithm, the acceptance probabilities are given by
 	 P_{ij}&=\begin{cases}
 	 	1 \quad &\mathcal{P}\left(\vrc{j}\right)\geq \mathcal{P}\left(\vrc{i}\right) \\
 	 	\frac{\mathcal{P}\left(\vrc{j}\right)}{\mathcal{P}\left(\vrc{i}\right)} \quad & \mathcal{P}\left(\vrc{j}\right)< \mathcal{P}\left(\vrc{i}\right)
-	 \end{cases}
-	 =\begin{cases}
+	 \end{cases}\,, \\
+	 &=\begin{cases}
 	 	1 \quad &\mathcal{U}\left(\vrc{j}\right)\leq \mathcal{U}\left(\vrc{i}\right) \\
 	 	\frac{\exp\left[-\mathcal{U}\left(\vrc{j}\right)/\kb T\right]}{\exp\left[-\mathcal{U}\left(\vrc{i}\right)/\kb T\right]} \quad & \mathcal{U}\left(\vrc{j}\right)>\mathcal{U}\left(\vrc{i}\right)
 	 \end{cases}\,,
@@ -224,12 +225,13 @@ Therefore it is necessary to have an equilibration period where the chain is gen
 In addition, whilst selecting trial moves close to the current state increases efficiency, it introduces correlation into the procedure.
 A way around this is to not calculate observables based on every step, but rather after a number of statistically significant steps.
 
-As an example of the Metropolis algorithm, consider again the \td{} potential energy surface in figure \ref{fig:montecarloint4}.
-Here two simulation paths are displayed in red and blue, starting from the same initial state but with different starting points in the random number generators \ie{} random seeds.
-As can be seen the Metropolis algorithm takes a random walk over the configurational space, conducting importance sampling as in \ref{fig:montecarloint3}.
-However, in this example highlights a potential problem.
-There are two regions of phase space with non\--zero probabilities which are separated by a relatively large energy barrier.
-Although they are in principle linked by a path, the barrier may effectively mean they are disconnected on a reasonable simulation time scale, breaking ergodicity.
+As an illustration of the Metropolis algorithm, consider again the \td{} potential energy surface in figure \ref{fig:montecarloint4}.
+Here two simulation paths are displayed in red and blue, starting from the same initial state but with different %starting points in the random number generators \ie{} random seeds.
+seeds in the random number generator.
+As can be seen, the Metropolis algorithm takes a random walk over the configurational space, conducting importance sampling as in \ref{fig:montecarloint3}.
+However, this example highlights a potential problem.
+There are two regions of phase space with significant non\--zero probabilities which are separated by a relatively large energy barrier.
+Although they are in principle linked by a path, the barrier may effectively mean they are disconnected with any reasonable number of steps, breaking ergodicity.
 This manifests as the red walk sampling one region and the blue walk being trapped in the other region.
 Using multiple seeds in this way helps to identify if any such behaviour is present.
 If it leads to significant differences in the computed averages, more advanced techniques using enhanced sampling may have to be employed \cite{Torrie1977,Earl2005}.
@@ -237,7 +239,7 @@ If it leads to significant differences in the computed averages, more advanced t
 \subsection{Global Optimisation and Simulated Annealing}
 \label{s:simulatedannealing}
 
-So far in this section it has been shown how Monte Carlo methods can be used perform importance sampling of potential energy surfaces.
+So far in this section, it has been shown how Monte Carlo methods can be used perform importance sampling of potential energy surfaces.
 These methods can also be used to solve the related problem of finding global minima in potential energy surfaces and other more general functions.
 Consider the case where there is an objective function, $\obj\left(\mathbf{r}\right)$, which depends on particle positions.
 If it is known that there exists a solution where $\obj\left(\mathbf{r}\right)=0$, it may be sufficient to perform a standard random walk of the type in figure \ref{fig:montecarloint4} until a solution is found, using the more general Metropolis criterion:
@@ -245,19 +247,20 @@ If it is known that there exists a solution where $\obj\left(\mathbf{r}\right)=0
 	\label{eq:objmetropolis}
 	P_{ij} = \min\big[1,\exp\left[-\Delta\Omega/\kb T\right]\big].
 \end{equation}
-There is of course a chance that the optimisation will not converge to the global minimum, most likely getting trapped in a local minimum (as for instance the blue path in \ref{fig:montecarloint4}).
+There is of course a chance that the optimisation will not converge to the global minimum, most likely getting trapped in a local minimum (as for instance with the blue path in \ref{fig:montecarloint4}).
 One solution to this problem is just to keep restarting the algorithm with different initial conditions until the global minimum is obtained.
 
 Often however the value of the global minimum is not known, as is the case for a potential energy surface, and this rudimentary approach is insufficient.
 One must then employ a more sophisticated technique to find the global minimum of a very high dimensional and potentially rough surface.
-This in itself is an extensive area of study and there are many approaches such as using genetic algorithms or basin\--hopping \cite{Hartke1993,Niesse1996,Wales1997}.
+This in itself is an extensive area of study and there are many approaches, such as using genetic algorithms or basin\--hopping \cite{Hartke1993,Niesse1996,Wales1997}.
 This thesis will use simulated annealing, which can be considered an extension to Metropolis \mc{} \cite{Kirkpatrick1983}.
-In addition simulated annealing is effective for searching surfaces with many similar minima as in glasses \-- the name reflecting its origins in the analogous process in metallurgy to generate defect free metals.
+In addition simulated annealing is effective for searching surfaces with many similar minima, as found in glasses.
+Indeed, the name itself reflects its origins in the analogous metallurgical process to generate defect free metals.
 
 \begin{figure}[tb]
      \centering
-    \includegraphics[width=0.45\textwidth]{./figures/methods/mc_2d_sa.pdf}
-      \caption{Demonstration of the simulated annealing algorithm on a \td{} potential energy surface, with states coloured by temperature (red$\rightarrow$blue indicating hot$\rightarrow$cold. As the temperature is reduced the state converges on the global minimum.}
+    \includegraphics[width=0.48\textwidth]{./figures/methods/mc_2d_sa.pdf}
+      \caption{Demonstration of the simulated annealing algorithm on a \td{} potential energy surface, with states coloured by temperature (red $\rightarrow$ blue indicating hot $\rightarrow$ cold. As the temperature is reduced the algorithm converges on the global minimum.}
       \label{fig:montecarloint5}
 \end{figure}
 
@@ -266,17 +269,17 @@ The system of interest is first thermalised by performing Metropolis \mc{} at in
 The system is then gradually cooled to zero temperature, with the Metropolis criterion \eqref{eq:objmetropolis} reducing the proportion of accepted moves.
 In theory if the cooling is infinitely slow, the system is maintained in thermal equilibrium and will eventually reach the global minimum \cite{Henderson2003}.
 In practice this is not realisable and so a cooling rate must be empirically selected.
-Still it is possible for trapping to occur in local minima, especially if the transition between low energy states is very slow.
+It is then still possible for trapping to occur in local minima, especially if the transition between low energy states is very slow.
 As before, one can then cycle the simulated annealing, repeatedly heating and cooling the system until the global minimum is found.
 The simulated annealing algorithm is demonstrated with the \td{} potential energy surface in figure \ref{fig:montecarloint5}.
-As can be seen at high temperature the entire surface is sampled, overcoming all energy barriers, but as cooling takes place the system settles into the low energy regions of the surface, finally terminating in the global minimum.
+Here, at high temperature the entire surface is sampled, overcoming all energy barriers, but as cooling takes place the system settles into the low energy regions of the surface, finally terminating in the global minimum.
 
 \section{Bond Switching Monte Carlo}
 \label{s:bondswitch}
 
-Bond switching Monte Carlo was originally developed by Wooten, Winer and Weaire to generate high quality configurations of three dimensional silica glass \cite{Wooten1985}.
-The basic principle is to amorphise a crystalline lattice with a series of transformations that swap the nearest neighbours of pairs of atoms and optimise the resulting structure to generate a continuous random network which is well\--relaxed.
-These continuous random network models replicate experimental observables with high accuracy (including bond length and angle distributions, radial distribution functions, electronic band gaps and Raman spectra) and have since been applied to alternative systems such as three\--dimensional amorphous carbon, binary glasses and biological polymers \cite{Treacy2012,Tu1998,Djordjevic1995,Mousseau2004,Huisman2008,Broedersz2014}.
+Bond switching Monte Carlo was originally developed by Wooten, Winer and Weaire to generate high quality configurations of \thd{} silica glass \cite{Wooten1985}.
+The basic principle is to amorphise a crystalline lattice with a series of transformations that swap the nearest neighbours of pairs of atoms, optimise the resulting structure and so generate a continuous random network (CRN) which is well\--relaxed.
+These CRN models replicate experimental observables with high accuracy (including bond length and angle distributions, radial distribution functions, electronic band gaps and Raman spectra) and have since been applied to alternative systems such as three\--dimensional amorphous carbon, binary glasses and biological polymers \cite{Treacy2012,Tu1998,Djordjevic1995,Mousseau2004,Huisman2008,Broedersz2014}.
 However, the method can also be readily modified to study \td{} systems, as has been done for amorphous graphene and silica, and which forms the basis for much of the work in this thesis, particularly in chapters \ref{ch:targetedopt}, \ref{ch:generalnetworks} and \ref{ch:ph} \cite{Kumar2014,Jain2018}.
 The basic algorithmic details are described in this section, with extensions given in sections \ref{s:targetedoptalg} and \ref{s:genbondswitching}.
 
@@ -289,7 +292,7 @@ Visualisations are provided for reference in figure \ref{fig:bsmc}.
 \begin{enumerate}
 	\item Generate initial crystalline hexagonal lattice
 	\item Thermalise the lattice with a large number of random moves 
-	\item Sample configurations by annealling the system slowly at finite temperature, accepting moves according to the Metropolis criterion \ref{eq:metropolis}
+	\item Sample configurations by annealing the system slowly at finite temperature, accepting moves according to the Metropolis criterion \eqref{eq:metropolis}
 \end{enumerate}
 \begin{figure}[bt]
      \centering
@@ -322,6 +325,7 @@ Visualisations are provided for reference in figure \ref{fig:bsmc}.
          \label{fig:bsmc4}
      \end{subfigure}
      
+     \vspace{0.5cm}
      \begin{subfigure}[b]{0.24\textwidth}
      \centering
          \includegraphics[height=2.8cm]{./figures/methods/bs_10.pdf}
@@ -358,10 +362,10 @@ augments the size of two rings and decrements two others, preserving both the me
 As defects become more concentrated they overlap, leading to increasing diversity into the ring structure (allowing access to more than the pentagons and heptagons in a single Stone\--Wales defect).
 Each bond transposition is followed by geometry optimisation to minimise and calculate the total energy of the system.  
 A key aspect in the bond switching algorithm is therefore the choice of potential model.
-The potential models and geometry optimisation process used in this thesis can be found in subsections below.
+The potential models and geometry optimisation process used in this thesis can be found in subsections \ref{s:potentials} and \ref{s:geomopt} below.
 
 Cooling the system slowly ensures that the material remains in thermodynamic equilibrium, allowing configurations to be sampled throughout the simulation.
-The ring structure of the system is then related to the temperature parameter, with more extreme ring sizes appearing at higher temperatures (compare figure \ref{fig:bsmc6}\--\ref{fig:bsmc8}).
+The ring structure of the system is then related to the temperature parameter, with more extreme ring sizes appearing at higher temperatures (compare figures \ref{fig:bsmc6}\--\ref{fig:bsmc8}).
 This simply reflects the inherent balance of enthalpic \vs{} entropic  considerations.
 Figure \ref{fig:bsmc8} also demonstrates the importance of cooling a randomised lattice instead of heating a crystal, as some low energy defects may have a multi\--step formation with a high energy barrier.  
 
@@ -397,7 +401,7 @@ This is provided through the simplified Keating potential \cite{VonAlfthan2003},
 	\pen = \frac{\fk_S}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_A}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \left(\cos\theta_{ijk}-\cos\theta_0\right)^2\,,
 \end{equation}
 which is harmonic in stretching and angular terms.
-One final modification can be made to this potential. 
+A further modification can be made to this potential. 
 Sometimes it is informative build models which enforce ring convexity \ie{} maintain all angles within the range $0\leq \theta_{ijk} \leq \pi$.
 This can be achieved by augmenting the simplified Keating potential with a restricted bending (ReB) potential \cite{Bulacu2013}:
 \begin{equation}
@@ -412,21 +416,21 @@ The purpose of geometry optimisation is to minimise the overall potential energy
 As all initial configurations are well relaxed and perturbations relatively small, this can be achieved with a local minimisation routine.
 In addition as the potential models in this work are smooth and harmonic, a straightforward steepest descent algorithm is both sufficient and efficient.
 
-The steepest descent algorithm is an iterative method which searches down the potential energy gradient until a minimum is reached \cite{Nocedal2006}.
+The steepest descent algorithm is an iterative method which searches down the potential energy gradient in a series of stages, $i$, until a minimum is reached \cite{Nocedal2006}.
 It has the following scheme:
 \begin{enumerate}
-	\item Calculate the potential energy of the system $\mathcal{U}_i=\mathcal{U}\left(\vrc{i}\right)$
+	\item Calculate the potential energy of the system $\mathcal{U}_i=\mathcal{U}\left(\mathbf{r}\right)$
 	\item Determine the negative gradient of the potential \ie{} the forces acting on the particles $\mathbf{F}_i=-\nabla \mathcal{U}_i$ 
-	\item Find the optimal distance to displace the particles along the lines of force $\mathcal{U}_{i+1}=\min \left[\mathcal{U}\left(\vrc{i}+\lambda \mathbf{F}_i\right)\right]$
-	\item Set $\vrc{i+1}=\vrc{i}+\lambda_{\text{min}} \mathbf{F}_i$
-	\item Evaluate convergence and repeat steps 1-4 if $\left|\mathcal{U}_{i+1}-\mathcal{U}_i\right|>\gamma$
+	\item Find the optimal distance to displace the particles along the lines of force $\mathcal{U}_{i+1}=\min \left[\mathcal{U}\left(\mathbf{r}+\lambda \mathbf{F}_i\right)\right]$
+	\item Set $\mathbf{r}^{\prime}=\mathbf{r}+\lambda_{\text{min}} \mathbf{F}_i$
+	\item Evaluate convergence and repeat steps 1-4 if $\left|\mathcal{U}_{i+1}-\mathcal{U}_i\right|>\kappa$
 \end{enumerate}
 The calculation of forces in stage 2 will depend on the potential model used, details of which are given in appendix \ref{app:forces}.
 Note that stage 3 also requires a minimisation routine, which may seem counter\--intuitive. 
 However, this is a one\--dimensional minimisation which trivial to estimate with a line search method \davidnote{Todo: decide on if appendix needed}.
-The tightness of the convergence condition is set through the parameter $\gamma$.
+The tightness of the convergence condition is set through the parameter $\kappa$.
 
-One final performance improvement arises from the fact that the \mc{} are inherently local.
+One final performance improvement arises from the fact that the \mc{} moves are inherently local.
 Therefore geometry optimisation can be employed such that only the atoms in the immediate vicinity of the switching move need to be minimised to obtain an accurate structure.
 Typically this would extend to all atoms within five coordination shells of those directly involved in the switch move \cite{Mousseau2001}.
 
@@ -455,7 +459,7 @@ As the total energy is simply then
 \begin{equation}
 	\pen = \sum_{i<j} \mathcal{U}_{ij}\,,
 \end{equation}
-it follows that if any pair of particles have overlap the system energy is infinite and the Boltzmann weighting is zero.
+and it follows that if any pair of particles have overlap the system energy is infinite and the Boltzmann weighting is zero.
 Hard particle models are typically quantified in terms of the packing fraction, $\phi$, which in two dimensions has the form
 \begin{equation}
 	\label{eq:packingfraction}
@@ -487,6 +491,7 @@ where $\rho=\mathcal{N}/{V}$, the number density.
          \label{fig:hardmc3}
      \end{subfigure}
      
+     	\vspace{0.5cm}
        \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[width=3cm]{./figures/methods/mc_move_d.pdf}
@@ -507,7 +512,7 @@ where $\rho=\mathcal{N}/{V}$, the number density.
      \end{subfigure}
    
      \caption{Demonstration of two displacement (a)\--(c) and two swap (d)\--(f) moves in hard particle \mc.
-     In displacement moves, particles are randomly selected and assigned a trial random displacement vector (a). In swap moves, two particles are randomly selected and their radii trial swapped (b). The trial move is then examined to see if it introduces any particle overlaps (b),(e). If there are no overlaps (green), then the trial move is accepted and the system updated but otherwise (red) the move is rejected and the system returns to the previous state (c),(f).
+     In displacement moves, particles are randomly selected and assigned a trial random displacement vector (a). In swap moves, two particles are randomly selected and as a trial their radii swapped (b). The trial move is then examined to see if it introduces any particle overlaps (b),(e). If there are no overlaps (green), then the trial move is accepted and the system updated but otherwise (red) the move is rejected and the system returns to the previous state (c),(f).
      }
      \label{fig:hardmc}
      
@@ -520,7 +525,7 @@ where $\rho=\mathcal{N}/{V}$, the number density.
 Hard particle systems can be simulated using the Metropolis algorithm outlined in section \ref{ssec:metropolis}.
 The system is initialised by selecting a random non\--overlapping configuration.
 This can be achieved easily for low to medium densities by a greedy algorithm like random sequential addition, where particles are added successively in a manner which does not overlap with any previous particles \cite{Widom1966}.
-For higher packing fractions a more sophisticated algorithm is needed where particles are swelled and optimised \cite{Woodcock1976}.
+For higher packing fractions a more sophisticated algorithm is needed where particles are swelled and their positions optimised \cite{Woodcock1976}.
 
 Once the initial configuration has been generated, it is evolved via two \mc{} moves.
 The first is the displacement move, whereby a random particle is selected and translated according to a random vector with elements generated uniformly in the range $\left[-\delta,\delta\right]$.
@@ -530,7 +535,7 @@ The optimal value can be determined by continuous adjustment during equilibratio
 
 The second is the swap move, where two random particles are selected their radii exchanged \cite{Grigera2001,Ninarello2017}. 
 Once again a swap move is only accepted if it does not lead to any overlapping particles and is demonstrated in figure \ref{fig:hardmc4}\--\ref{fig:hardmc6}.
-The swap move is used to increase the efficiency in simulations of polydisperse particles and is an example of how the design of \mc{} moves can be flexible and they do not have to have a direct physical basis. 
+The swap move is used to increase the efficiency in simulations of polydisperse particles and is an example of how the design of \mc{} moves can be flexible and that moves do not have to have a direct physical basis. 
 The swap move is attempted for every ten displacement moves. 
 
 Finally, to remove the presence of an interface in the system, simulation is performed with periodic boundary conditions.
@@ -591,7 +596,7 @@ The intersection of these lines forms the characteristic tessellating polygons.
 \end{figure}
 
 In the simplest unweighted approach, the dividing line between two neighbouring particles separated by the Euclidean distance $r_{ij}$, is simply located midway between the particles at a distance $r_{ij} /2$. 
-The elegance of the unweighted Voronoi diagram is that only the particle centres are required for its construction, with no requirement for a cut-off parameter. 
+The elegance of the unweighted Voronoi diagram is that only the particle centres are required for its construction, with no requirement for a cut\--off parameter. 
 Whilst the unweighted Voronoi tessellation is very effective for studying monodisperse particles, there are some limitations for polydisperse species. 
 Specifically, the Voronoi partition underestimates the space assigned to large particles and overestimates that for small particles \-- a simple reflection of the lack of information on particle radii  (see figure \ref{fig:vorodemov1}). 
 To rectify this, weighted modifications have been suggested which take account of the differences in radii \cite{Poupon2004}.
@@ -603,12 +608,11 @@ The weighting method used in this work is the so called radical tessellation, or
 	d_i = \frac{w_i^2-w_j^2+r_{ij}^2}{2r_{ij}}\,,
 \end{equation}
 where $w_i$ and $w_j$ are the weights for each particle. 
-The benefit of this method is that is adjusts the partitioning of space so that greater volume is assigned to the particles with larger weight, and is well designed so that all of the sample space remains accounted for - unlike some alternative constructions \cite{Richards1974}. 
-In terms of the particle weights, the logical choice is simply the disk radii. 
-This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $d_i = R_i$ \ie{} the radical dividing line sits exactly between the two disks, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
+The benefit of this method is that is adjusts the partitioning of space so that greater volume is assigned to the particles with larger weight, and is well designed so that all of the sample space remains accounted for \-- unlike some alternative constructions \cite{Richards1974}. 
+In terms of the particle weights, the logical choice is simply the particle radii. 
+This is because at the contact distance, $r_{ij} = R_i + R_j$, equation \eqref{eq:radical} shows that $d_i = R_i$ \ie{} the radical dividing line sits exactly between the two particles, producing the most equitable distribution of volume (see figure \ref{fig:vorodemor1}). 
 Furthermore, when the radii are equal, $d_i = r_{ij} /2$ and the result from the standard unweighted Voronoi is regenerated as expected.
 It is worth noting here that the weighting method can affect the ring sizes (\ie{} number of vertices) as well as the ring areas, as demonstrated in figures \ref{fig:vorodemov2},\ref{fig:vorodemor2}.
-In this thesis, the majority of Voronoi calculations were carried out practically using the excellent Voro\texttt{++} library \cite{Rycroft2009}.
 
 The outcome of the Voronoi construction is a system of percolating rings not dissimilar to those seen in materials.
 The dual network, known as the Delaunay triangulation, is also obtained, which defines the nearest neighbours for each particle.
@@ -652,10 +656,13 @@ In this way Voronoi systems provide a good complement to compare and contrast wi
      \label{fig:voromono}
 \end{figure}
 
+In this thesis, the majority of Voronoi calculations were carried out practically using the excellent Voro\texttt{++} library \cite{Rycroft2009}.
+\davidnote{Mention paraboloid stuff here???}
+
 \section{Analysis Methods}
 
 A wide variety of additional analysis methods are used throughout this thesis, to characterise configurations from simulation and experiment.
-Most of these have either been covered in chapter \ref{ch:networktheory} or will be introduced as an accompaniment in the relevant chapters, but more elementary techniques are established here.
+Most of these have either been covered in chapter \ref{ch:networktheory} or will be introduced as an accompaniment in relevant chapters, but more elementary techniques are established here.
 
 \subsection{Bond Length and Angle Distributions}
 
@@ -666,16 +673,16 @@ Histograms can then be constructed for each interaction type, denoted $f\left(r\
 \subsection{Radial Distribution Functions}
 
 For a given point set, the radial distribution function (RDF or $g\left(r\right)$), gives the probability of finding a point at a distance $r$ from a reference point, normalised against a system of randomly distributed points at the same density.  
-The RDF in \td{} is then given by:
+The RDF in two dimensions is then given by:
 \begin{equation}
 	g\left(r\right)=\frac{1}{2 \mathcal{N} \rho \pi r}\left\langle \sum_i \sum_{j\neq i} \delta\left(r-r_{ij}\right)\right\rangle\,. 
 \end{equation} 
-The behaviour of the RDF is therefore such that $g\left(r\right)>1$ indicates an increase in probability that two points are at a given separation and $g\left(r\right)<1$ indicates a corresponding decrease.
+The behaviour of the RDF is therefore such that $g\left(r\right)>1$ indicates an increase in probability and $g\left(r\right)<1$ a corresponding decrease in probability, that two points are at a given separation relative to a random distribution.
 For disordered media, any correlations inevitably decay with distance such that $\lim_{r\rightarrow \infty} g\left(r\right)=1$.
 
 The reason this is framed in terms of generic point sets, is that in this thesis the RDF will be applied to the dual of the atomic coordinates, to measure ring\--ring spatial correlations.
-In fact, partial RDFs will be used, to measure correlations between rings of different sizes.
-If these sizes are denoted, $a$, $b$, the partial RDF, $g_{ab}\left(r\right)$, is then given by:
+Furthermore, partial RDFs will be employed, to measure correlations between rings of different sizes.
+If these sizes are denoted, $a,b$, the partial RDF, $g_{ab}\left(r\right)$, is then given by:
 \begin{equation}
 	g_{ab}\left(r\right)=\frac{1}{2 \mathcal{N}_a \rho_b \pi r}\left\langle \sum_i \sum_{j\neq i} \delta\left(r-r_{ij}\right)\right\rangle\,, 
 \end{equation} 

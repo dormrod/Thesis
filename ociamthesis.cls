@@ -459,6 +459,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \captionsetup[sub]{font=footnotesize,labelfont=bf}
+%DOM -> parentheses after subfigure reference \renewcommand\thesubfigure{(\alph{subfigure})}
+
 
 % Tables
 \usepackage[para,online,flushleft]{threeparttable}
@@ -498,6 +500,13 @@
   \vskip-\ht\strutbox\noindent
   \textbf{\textcolor{gray75}\chabrule}%
   %\vspace{-2em}
+}
+
+% Footnote rule
+\renewcommand{\footnoterule}{%
+  \kern -3pt
+  {\color{gray75}\hrule}
+  \kern 2pt
 }
 
 % List of notes

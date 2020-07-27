@@ -18,17 +18,17 @@ All the networks considered in this work are undirected and all the theory assum
 
 \begin{figure}[ht]
      \centering
-      \includegraphics[width=8cm]{./figures/methods/small_periodic_net.pdf}
-     \caption{Example of a periodic \td{} network where nodes are represented by circles and links as lines. Nodes are coloured similarly according to their degree, whilst periodic images are greyed out to highlight the central repeating unit.}
+      \includegraphics[width=0.5\textwidth]{./figures/methods/small_periodic_net.pdf}
+     \caption{Example of a periodic \td{} network where nodes are represented by circles and links as lines. Nodes are coloured similarly according to their degree, whilst periodic images are faded to highlight the central repeating unit.}
      \label{fig:smallnet}
 \end{figure}
 
 \subsection{Node Degree and Probability Distributions} 
 \label{s:theorynodeprob}
 
-A key concept in network science is the the node degree, defined as the number of links that each node possesses.
+A key concept in network science is the the node degree, defined as the number of links associated with each node.
 A node with $k$ links is then said simply to have degree $k$, where $k\in\mathbb{N}$.
-This is illustrated in figure \ref{fig:smallnet}, which consists of 5\-- (blue), 6\-- (grey) and 7\-- (red) degree nodes.
+This is illustrated in figure \ref{fig:smallnet}, which consists of 5\--, 6\-- and 7\-- degree nodes (coloured blue, grey and red respectively).
 The occurrence and correlations of nodes of given degrees can then be described by a range of probability distributions.
 
 The probability of a randomly selected node having degree $k$ is given by the node degree distribution, denoted $p_k$.
@@ -49,7 +49,7 @@ As this distribution is normalised, this leads to the relations:
 	\sumk q_k &= 1 \label{eq:qknorm} \\
 	q_k &= \frac{kp_k}{\langle k \rangle} \label{eq:qkpk} \,.
 \end{align}
-In addition, one can also evaluate the probability that a randomly chosen link has nodes of degree $j$,$k$ at either end.
+In addition, one can also evaluate the probability that a randomly chosen link has nodes of degree $j,k$ at either end.
 This is the node joint degree distribution, denoted $e_{jk}$. 
 Once again this is normalised and satisfies the following relationships:
 \begin{align}
@@ -58,7 +58,9 @@ Once again this is normalised and satisfies the following relationships:
 	e_{jk} &= e_{kj} \label{eq:ejkekj} \,,
 \end{align}
 where the final result arises from reciprocal nature of the links in an undirected network.
-As an example, these three probability distributions are provided for the network in figure \ref{fig:smallnet}:
+
+As an illustration of these different distributions, examples %for all three probability distributions 
+are provided below for the network in figure \ref{fig:smallnet}:
 \begin{align}
 	\mathbf{p} =  \frac{1}{16} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
@@ -85,7 +87,7 @@ As an example, these three probability distributions are provided for the networ
 	9 & 22 & 17 & 6 \\
 	9 & 17 & 2 & 7\\
 	\end{block}
-	\end{blockarray} \, .
+	\end{blockarray} \, ,
 %	\textbf{p} = \frac{1}{96}\: \begin{blockarray}{*{5}{c} l}
 %	\begin{block}{*{5}{>{$\footnotesize}c<{$}} l}
 %	3 & 6 & 7 & 8 & 9 \\
@@ -99,6 +101,7 @@ As an example, these three probability distributions are provided for the networ
 %	\end{block}
 %	\end{blockarray}
 \end{align}
+where the adjacent numbers correspond to the node degrees.
 
 \subsection{Atomic and Ring Networks}
 \label{s:atomringnetworks}
@@ -107,8 +110,8 @@ To see how network theory relates to atomic materials, consider the amorphous gr
 In this network the nodes represent carbon atoms and the links sp$^2$ bonds.
 The node degree in the atomic network for all nodes is then equal to three, being equivalent to the atomic coordination number (which throughout this thesis will be denoted by $c$).
 This is problematic, because whilst there is clear disorder in the system, it is not well captured by the atomic network.
-Due to the fact that the local environment around the atoms is identical, when examining say the node degree distribution any information about the glassy structure is lost.
-This network is to first order indeterminable from a crystalline hexagonal lattice.
+Due to the fact that the local environment around the atoms is identical, when examining the node degree distribution, any information about the glassy structure is lost.
+This network is to at least first order indeterminable from a crystalline hexagonal lattice.
 
 \begin{figure}[bt]
      \centering
@@ -142,11 +145,11 @@ This network is to first order indeterminable from a crystalline hexagonal latti
 Observing figure \ref{fig:graphdualgraph} one can see there is another level of structure in the network, namely that of the ring structure.
 A ring is strictly any closed path of sequentially linked nodes in a network, but this thesis will use the term in reference only to the primitive rings \ie{} those which cannot be subdivided into two smaller rings \cite{Yuan2002}.
 A ring of size $k$ (or $k$\--ring) is then defined as a ring with $k$ constituent nodes.
-It is clear that finding and counting the number of rings of each size, often termed calculating the ring statistics, does then quantify the disorder in the system \cite{Kumar2014}.
+It is clear that finding and counting the number of rings of each size, often termed calculating the ring statistics, is a method of quantifying the disorder in the system \cite{Kumar2014}.
 The ring statistics can be summarised by the normalised probability distribution, $p_k$.
 
 However, there is a more efficient way of representing and quantifying the ring structure in the system, and that is by constructing the dual network \cite{Aboav1984}.
-The dual is generated by placing a node at the centre of each ring and linking the nodes of adjacent (\ie{} edge\--sharing) rings, as can be seen in figure \ref{fig:graphdualdual}.
+The dual is generated by placing a node at the centre of each ring and linking the nodes of adjacent (\ie{} edge\--sharing) rings, as in figure \ref{fig:graphdualdual}.
 This will be referred to as the ring network.
 The ring network is a reciprocal lattice in which the node degree, $k$, is equivalent to the ring size in the atomic network.
 Similarly, it consists solely of triangles, reflecting the 3\--coordinate nature of the underlying atomic network.
@@ -163,8 +166,8 @@ These laws act on a number of ``levels'': Euler's law controls the overall mean 
 \subsection{Euler's Law}
 \label{s:eulerslaw}
 
-Euler's law constrains the mean ring size, $\ki$, in an atomic network or equivalently the mean node degree of the ring network.
-The atomic networks studied in this work are all \td{}, connected (there is a path between any two nodes) and planar (they have no overlapping links) and so are subject to Euler's formula which states:
+Euler's law constrains the mean ring size, $\ki$, in an atomic network,  equivalent to the mean node degree of the ring network.
+The atomic networks studied in this work are all \td{}, connected (\ie{} there is a path between any two nodes) and planar (\ie{} they have no overlapping links) and so are subject to Euler's formula which states:
 \begin{equation}
 	\label{eq:eulerformula}
 	N + V - E = \chi,
@@ -172,7 +175,7 @@ The atomic networks studied in this work are all \td{}, connected (there is a pa
 where $N$, $V$, $E$ are the number of rings, vertices and edges in the network and $\chi$ in an integer termed the Euler characteristic, which is dependent on the global topology of the system.
 Each vertex represents an atom and the number of edges emanating from each vertex is then the coordination number.
 
-For generality consider an atomic network with atoms of assorted coordination numbers, $c$. 
+For generality, consider an atomic network with atoms of assorted coordination numbers, $c$. 
 If the proportion of each coordination type is $x_c$, then the mean coordination number is given by $\langle c \rangle = \sum\limits_c cx_c$.
 This allows the number of edges to be written in terms of the number of vertices as $E=\frac{V}{2}\langle c \rangle$. 
 In turn the mean ring size is simply the total number of vertices per ring, allowing for multiple counting, such that $\ki=\frac{V}{N}\langle c \rangle$.
@@ -191,7 +194,7 @@ The planar case with periodic boundary conditions (mimicking an infinite planar 
 	\ki = \begin{cases}
 		6, \quad x_3 = 1 \\
 		4, \quad x_4 = 1 \\
-		5, \quad x_3 = 2/3, x_4 =1/3
+		5, \quad x_3 = 2/3,\, x_4 =1/3
 	\end{cases}\,.
 \end{equation}
 To reiterate in plain terms, this means that if there is a material consisting of atoms all forming exactly three bonds (as for amorphous carbon), the mean ring size \textit{must} be equal to six. 
@@ -205,11 +208,11 @@ This analysis also extends to spherical topology where $\chi=2$, and so:
  	\label{eq:2dsphericalcases}
 	\ki = \begin{cases}
 		\frac{6N-12}{N}, \quad x_3 = 1 \\
-		\frac{4N-8}{N}, \quad x_4 = 1.
-	\end{cases}
+		\frac{4N-8}{N}, \quad x_4 = 1
+	\end{cases}\,.
 \end{equation}
 These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92}, \ref{fig:latticesfull98}) \cite{Fowler1996}.
-Much of the richness in the behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
+Much of the richness in the structural behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
 
 \begin{figure}[bt]
      \centering
@@ -280,7 +283,7 @@ The entropy can then be maximised using Lagrange's method of undetermined multip
 	\label{eq:mepk}
 	p_k = \frac{e^{-\lambda_1 k - \lambda_2 / k}}{\sumk e^{-\lambda_1 k - \lambda_2 / k}},
 \end{equation}
-which can be solved numerically by substitution into equations \eqref{con:lm2},\eqref{con:lm3}. 
+which can be solved numerically by substitution into equations \eqref{con:lm2} and \eqref{con:lm3}. 
 By allowing the chosen constant to vary, a family of maximum entropy curves can be generated, as in figure \ref{fig:lm1}.
 The resulting distributions can be summarised by relating the variance, $\mu_2=\kii-\ki^2$, to a single chosen node degree probability, leading to the plot known as \lm's law, given in figure \ref{fig:lm2}.
 It is usually framed in the context of the proportion of hexagons in a system, $p_6$, for the precise reason that most networks have $\ki=6$ and $p_6$ as the largest contribution.
@@ -342,7 +345,7 @@ The vast majority of physical systems have a preference for small rings ($k<\ki$
 This effect was first noted in the grains of polycrystals by Aboav \cite{Aboav1970}.
 Aboav quantified these ring correlations by measuring the mean ring size about a $k$\--ring, denoted $m_k$, and found empirically that $m_k \approx 5 + 8/k$.
 
-In an attempt to explain this observation, Weaire came across the following relation
+In an attempt to explain this observation, Weaire formulated the following relation
 \begin{equation}
 	\label{eq:weairesumrule}
 	\sumk km_kp_k = \sumk k^2p_k = \mu_2 + \ki^2 \,,
@@ -375,10 +378,10 @@ Hence all systems with $\alpha>-\mu_2/\ki^2$ have more small\--large ring  adjac
      \label{fig:awdemo}
 \end{figure}
 
-Despite the \aw{} law being purely empirical and there being no topological requirement for $m_k$ to vary systematically $k$, the law does seem to hold well for a diverse set of physical systems.
-The law is well used for example in studies of materials, emulsions, biological tissues as well as in planetary science \cite{LeRoux2013,Roy2018,Noever1992,Mombach1993,Pedro2008}.
+Despite the \aw{} law being purely empirical and there being no topological requirement for $m_k$ to vary systematically with $k$, the law does seem to hold well for a diverse set of physical systems.
+The law is used for example in studies of materials, emulsions, biological tissues as well as in planetary science \cite{LeRoux2013,Roy2018,Noever1992,Mombach1993,Pedro2008}.
 As an example of the calculation of the \aw{} parameter, the plots of the fits for the systems in figure \ref{fig:zach} are presented in figure \ref{fig:awdemo}, along with the corresponding $\alpha$ parameters.
 This demonstrates two contrasting aspects of the \aw{} law. 
 Firstly the law holds very well, especially given the fact that these samples consist of just twenty rings each.
-However, it also demonstrates that the law is by no means exact and that some greyness is inevitably introduced during the linear regression.
-
+However, it also demonstrates that the law is by no means exact and that some uncertainty is inevitably introduced during the linear regression.
+This dichotomy will be discussed in detail in section \ref{s:awdeficiencies}, where it will be shown that the \aw{} law can be replaced by another measure from network theory, namely the assortativity.
