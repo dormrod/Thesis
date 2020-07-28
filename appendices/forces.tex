@@ -67,6 +67,26 @@ The forces are therefore:
 \end{align}
 with $\vfi$ given by equation \eqref{eq:fistretch}.
 
+\section{Shifted and Cut 24\--12 Potential}
+
+The shifted and cut 24\--12 potential is a computationally efficient way to imitate short range hard repulsions, whilst maintaining continuous forces.
+The interaction between two particles at separation $\vrij$ is given by:
+\begin{equation}
+	\mathcal{U} = 
+	\begin{cases}
+	\epsilon \left[ \left(\frac{r_{0}}{r_{ij}}\right)^{24}-2\left(\frac{r_{0}}{r_{ij}}\right)^{12} \right] + \epsilon & r_{ij}\leq r_{0} \\
+	0 & \text{otherwise}
+	\end{cases}\,.
+\end{equation}
+The forces are therefore:
+\begin{align}
+	\vfj&=-\frac{\partial \mathcal{U}}{\partial r_{ij}} \frac{\partial r_{ij}}{\partial \vrj} = \begin{cases}
+	\frac{24\epsilon}{r} \left[ \left(\frac{r_{0}}{r_{ij}}\right)^{24}-\left(\frac{r_{0}}{r_{ij}}\right)^{12} \right] & r_{ij}\leq r_{0} \\
+	0 & \text{otherwise}
+	\end{cases}    \,,
+\end{align}
+with $\vfi$ given by equation \eqref{eq:fistretch}.
+
 \section{Harmonic Cosine Angle Potential}
 
 In analogue with the stretching potential, the harmonic cosine angle is a elegant yet simple form angular potential, utilising the cosine function to reduce overheads when calculating angles.

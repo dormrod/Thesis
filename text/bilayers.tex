@@ -3,7 +3,7 @@
 
 \begin{chapterabstract}
 A computationally tractable \mc{} method using triangle rafts is developed to generate bilayers of \sioii{} and related materials.
-The method allows defect free networks of any given shape to be grown with both tuneable ring statistics and topologies, controlled by a combination of the choice of the ``allowed'' rings and the effective growth ``temperature''. 
+The method allows defect free networks of any given shape to be grown with both tuneable ring statistics and topologies, controlled by a combination of the ``allowed'' rings and the effective growth ``temperature''. 
 Configurations are generated with \aw{} parameters commensurate with those obtained from an analysis of experimental configurations, improving significantly on previous methods.
 The ability to efficiently grow configurations allows exploration of the structural basis of \lm’s law, where the commonly observed value of $p_6\approx0.4$ is presented as a balance between entropic and enthalpic factors. 
 The deviations of ring areas from the ideal values are discussed and the relative insensitivity of the ring area to relatively strong distortions is highlighted.
@@ -57,7 +57,7 @@ More recently experimentalists have also succeeded in synthesising bilayers of g
      \end{subfigure}
      \hfill
      
-     \caption{Silica bilayers of vertex sharing tetrahedra, (a), can be represented as a \td{} triangle raft, (b), (silicon and oxygen atoms are coloured yellow and red respectively). The ring structure then emerges from the three\--coordinate network comprising the silicon atoms, (c).}
+     \caption{Silica bilayers of vertex sharing tetrahedra in (a) can be represented as a \td{} triangle raft in (b). Silicon and oxygen atoms are coloured yellow and red respectively. The ring structure then emerges from the three\--coordinate network comprising the silicon atoms, (c).}
      \label{fig:bilayer}
 \end{figure}
 
@@ -66,16 +66,16 @@ More recently experimentalists have also succeeded in synthesising bilayers of g
 
 As mentioned in the  introduction, both \abinitio{} methods and classical molecular dynamics have been used in computational studies of silica bilayers, which often require a starting atomistic configuration  \cite{Bjorkman2013,Malashevich2016,Wilson2013,Roy2018}.  
 One approach is to simply take an experimental sample as the starting structure. 
-Whilst this is on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine''.
+Whilst this may be on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine''.
 Additionally, the location of each atom has an associated uncertainty which leads to discrepancies in the observed bond lengths and angles, which can be compounded by any out\--of\--plane distortions.
 Whilst computational refinement can attenuate these problems \cite{Sadjadi2017,Wilson2018}, there remains the more fundamental question of how ``typical'' the available images are from experiment, as STM provides exceptional information but only on relatively small sample sizes.
-Computational techniques can therefore prove a valuable tool for generating a large number of high\--quality configurations, and corroborating experimental information.  
+Computational techniques can therefore prove a valuable tool for generating a large number of high\--quality configurations and corroborating experimental information.  
 
 One current approach is to transform amorphous graphene configurations \cite{Wilson2013}.
 Here amorphous samples of carbon are generated using a bond switching method (as outlined in section \ref{s:bondswitch}), before the carbon atoms are swapped from silicon and decorated with oxygens.
 Whilst this is a valid approach, the method assumes that the two materials are topologically equivalent.
 This is likely an oversimplification, as the presence of the bridging oxygens in silica afford the structure increased flexibility when compared to the carbon analogue.
-This likely explains why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large rings being under\--estimated \cite{Kumar2014}.
+This likely explains why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large ring proportions being under\--estimated \cite{Kumar2014}.
 
 An alternative approach is to use molecular dynamics coupled with an effective pair potential to obtain viable configurations \cite{Roy2018}.
 Such methods are relatively common, having been employed previously to study amorphous graphene \cite{Kumar2012}. 
@@ -89,7 +89,7 @@ In addition, as with the method above, such methods appears to systematically un
 The motivation of this work was to develop a construction algorithm to generate samples of silica bilayers which can capture the full \td{} network topology; both the ring distribution \textit{and} correlations. 
 The model should be able to explore all phases from crystalline to amorphous yet computationally efficient enough to produce configurations suitable for further high throughput calculations. 
 To achieve this a grow-from-seed Monte Carlo algorithm has been developed, where rings are individually added to build a triangle raft.
-This approach takes inspiration from the first hand\--built models, which have been noted to bear good similarity to experimental structures \cite{Shackelford1982a,Buchner2016a}.
+This approach takes inspiration from the first hand\--built models, which have been noted to bear close resemblance to experimental structures \cite{Shackelford1982a,Buchner2016a}.
 Such models were superseded by computational techniques designed to generate periodic configurations. 
 However, the recent development in techniques to simulate aperiodic samples, such as sliding boundary conditions for molecular dynamics \cite{Theran2015}, makes this constraint no longer essential, and benefit may be gained from the added freedom of an aperiodic model.
 
@@ -97,18 +97,19 @@ However, the recent development in techniques to simulate aperiodic samples, suc
 \subsection{Potential Model}
 
 As explained in figure \ref{fig:bilayer} it is possible to capture the full topology of silica bilayers with a simplified representation consisting of a network of vertex\--sharing \sioiii{} triangles. 
-As the focus of this chapter is on generating a large number of samples with varying ring statistics, to be used as a base for further calculations,  working with this reduced representation is sufficient, as it provides a computationally efficient way to produce networks with the required \textit{topology}. 
+As the focus of this chapter is on generating a large number of samples with varying ring statistics, %to be used as a base for further calculations, 
+working with this reduced representation is sufficient, as it provides a computationally efficient way to produce networks with the required \textit{topology}. 
 The precise \textit{geometry} of the bilayer can be refined with advanced optimisation techniques if required \cite{Tangney2002}. 
 
-In order to simulate bilayer systems in two\--dimensions, a suitable potential model is needed which captures the essential physics of the system: the local triangular environment of the \sioiii{} units and the relative energies of rings of different sizes. 
-The model used here is modified from a relatively simple potential used in all\--atom bilayer calculations \cite{Wilson2013,Wilson2018}. 
+In order to simulate bilayer systems in two dimensions, a suitable potential model is needed which captures the essential physics of the system: the local triangular environment of the \sioiii{} units and the relative energies of rings of different sizes. 
+The model used here is modified from a relatively simple potential used in all\--atom bilayer calculations \cite{Wilson2013,Wilson2018}, a schematic for which is given in figure \ref{fig:trpotmodel}.
 Each \sioiii{} unit has a harmonic potential acting between all three Si\---O pairs, and the three nearest\--neighbour O\---O pairs, given by:
 \begin{equation}
 	\label{eq:harmonic}
 	\mathcal{U}_{ij} = \frac{\fk}{2}\left(r_{ij}-r_{ij}^{0}\right)^{2},
 \end{equation}
-where $\fk$ is a constant, $r_{ij}$ is the interatomic separation and $r_{ij}^{0}$ the equilibrium interatomic separation between $i$, $j$. 
-The spring constant, $k$, is set to be very stiff, whilst the equilibrium separations are set according to elemental species such that $r_{\text{OO}}^{0}=\sqrt{3}\,r_{\text{SiO}}^{0}$, maintaining a set of ideal \sioiii{} triangles. 
+where $\fk$ is a constant, $r_{ij}$ is the interatomic separation and $r_{ij}^{0}$ the equilibrium interatomic separation between $i,j$. 
+The spring constant, $\fk$, is set to be very stiff, whilst the equilibrium separations are set according to elemental species such that $r_{\text{OO}}^{0}=\sqrt{3}\,r_{\text{SiO}}^{0}$, maintaining a set of ideal \sioiii{} triangles. 
 
 The Si\---O\---Si angle, which determines the strain associated with different ring sizes, is controlled by a shifted and cut 24\--12 potential of the form:
 \begin{equation}
@@ -123,15 +124,24 @@ It is the value of $r_{0}$ which sets the Si\---O\---Si angle at which strain be
 Taking the hexagonal lattice as being the zero in energy it follows that $r_{0}=2r_{\text{SiO}}$.
 Rings which deviates increasingly from the ideal hexagon will therefore incur an increasingly energetic penalty.
 
+\begin{figure}[bt]
+     \centering
+  
+         \includegraphics[width=0.6\textwidth]{./figures/bilayers/tr_pot_model.pdf}
+ 
+     \caption{Schematic of the potential model in triangle rafts. Stiff harmonic springs (dashed and dashed\--dotted lines) preserve the triangular subunits, whilst the shifted and cut 24\--12 potential (dotted line) maintains an equilibrium angle of $120^\circ$ between neighbouring subunits.}
+     \label{fig:trpotmodel}
+\end{figure}
+
 To summarise, the primary aim here is to generate topologies suitable for later investigation using more detailed (and hence more accurate but more
 computationally-demanding) potential models. 
 As a result, the harmonic springs simply control the local (triangular) geometries whilst the 24-12 potential controls the repulsion between these local polyhedra. 
 These functions are chosen as deliberately simple to improve computational efficiency and achieve high throughput of idealised networks. 
-Furthermore, the parameters $k$ and $\epsilon$ need have no direct physical meaning, simply controlling the
+Furthermore, the parameters $\fk$ and $\epsilon$ need have no direct physical meaning, simply controlling the
 meaning of the system ``temperature'' as discussed below. 
 The only requirement is that they generate energies of the same magnitude to allow for efficient
 structural evolution.
-\davidnote{Accompanying figure}
+
 
 \subsection{Algorithmic Details}
 
@@ -252,7 +262,7 @@ The ``temperature'' parameter is therefore the primary method for controlling th
 
 The triangle raft method is evaluated in terms of its effectiveness in producing configurations which accurately replicate the network properties of experimental silica bilayers \ie{} the ring statistics and \aw{} parameter.
 It is also compared against the existing methods introduced in section \ref{s:triraftexisting}, namely generation from amorphous graphene or molecular dynamics.
-This is performed in wider context of systematically varying the model parameters to explore the behaviour of generic networks of this type.
+This is performed in the wider context of systematically varying the model parameters to explore the behaviour of generic networks of this type.
 
 \subsection{Network Growth}
  
@@ -339,7 +349,7 @@ Additionally, both $\br{5}{7}$ and $\br{4}{8}$ achieve uniform distributions in 
 
 This disparity in behaviour can largely be traced back to the constraint of Euler's theorem. 
 As $\br{5}{7}$ comprises of just three ring sizes, Euler's formula demands that $p_5=p_7=\left(1-p_6\right)/2$ and so the system is relatively well defined. 
-Hence as the 5 and 7-rings are more strained than the 6-ring, $p_5$ and $p_7$ show a systematic increase with temperature. 
+Hence, as the 5 and 7-rings are more strained than the 6-ring, $p_5$ and $p_7$ show a systematic increase with temperature. 
 Furthermore, the uniform equilibrium distribution can only satisfy Euler's formula when the ring size range is symmetric about 6, as is observed for $\br{5}{7}$ and $\br{4}{8}$. 
 The form of the ring statistics at intermediate temperatures and for $\br{4}{10}$ follow the maximum entropy solutions according to \lm's law, discussed in section \ref{s:lemaitre} and later in this section.
 
@@ -361,6 +371,7 @@ The form of the ring statistics at intermediate temperatures and for $\br{4}{10}
      \end{subfigure}
      \hfill
      
+	\vspace{0.5cm}          
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/bilayers/triraft_410.pdf}
@@ -399,7 +410,7 @@ This provides confidence that this simplified but physically motivated triangle 
 \cmidrule{2-3} \cmidrule{5-8} \cmidrule{10-10}
 & Ru(0001) \cite{Buchner2016a} & Graphene \cite{Huang2012} & & MC\tnote{a}\, \cite{Kumar2014} & MC\tnote{a}\, \cite{Kumar2014} & MD\tnote{b}\, \cite{Roy2018} & TR\tnote{c} & & \lm{} \cite{Gervois1992}  \\ 
 \midrule
-$\mathcal{N}$ & 317    & 444    &&    216 & 418      & $16 \times 85000$ & $1000 \times 100$ && \--- \\ 
+$N$ & 317    & 444    &&    216 & 418      & $16 \times 85000$ & $1000 \times 100$ && \--- \\ 
 $p_3$  &0.0000 & 0.0000 && 0.00 & 0.00     & 0.0038            & 0.0000 && 0.0000 \\ 
 $p_4$  &0.0379 & 0.0383 && 0.02   & 0.00     & 0.0537            & 0.0295 && 0.0280 \\  
 $p_5$  &0.2744 & 0.2725 && 0.33   & 0.37     & 0.2686            & 0.2786 && 0.2834 \\
@@ -414,10 +425,10 @@ $\alpha$  &0.32   & 0.33 && 0.18 & 0.23 & 0.25 & 0.32 && \--- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-  Note: Each method is given alongside the number of rings in the sample, $\mathcal{N}$, followed by the ring statistics, $p_k$, the second moment of the ring statistics, $\mu_2$, and the \aw{} parameter, $\alpha$ \\
-  \item[a] Bond Switching Monte Carlo (graphene potential)
-  \item[b] Molecular Dynamics
-  \item[c] Triangle Rafts, this work, $T=10^{-3}$
+  Note: Each method is given alongside the number of rings in the sample, $N$, followed by the ring statistics, $p_k$, the second moment of the ring statistics, $\mu_2$, and the \aw{} parameter, $\alpha$ \\
+  \item[a] Bond switching \mc{} (graphene potential)
+  \item[b] Molecular dynamics
+  \item[c] Triangle rafts, this work, $T=10^{-3}$
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -478,7 +489,7 @@ However, \lm's law gives no information on why a particular maximum entropy dist
 The triangle raft method allows systematic generation of configurations with different $p_6$ values by tuning the temperature parameter. 
 The resulting configurations follow \lm's law across the entire temperature range. 
 Figures \ref{fig:trlm} gives the results from the individual 1000 ring samples, coloured by temperature.
-Figures \ref{fig:trlm1} and \ref{fig:trlm2} compare the observed $\mu_2$ and $S$ (entropy) of the generated configurations to those expected from \lm's law, showing the law provides a good fit, with only a small deviation observed for $p_k>0.5$. 
+Figures \ref{fig:trlm1} and \ref{fig:trlm2} compare the observed $\mu_2$ and $\mathcal{S}$ (entropy) of the generated configurations to those expected from \lm's law, showing the law provides a good fit, with only a small deviation observed for $p_k>0.5$. 
 
 Figure \ref{fig:trlm3} plots the geometry optimised potential energy of the samples against $p_6$, which increases as the ring sizes become more diverse. 
 The curve is split into two regimes, with gradual increase in energy from $p_6=1.0\rightarrow 0.4$ followed by exponential increase for $p_6<0.4$. 
@@ -581,7 +592,7 @@ Moreover, consideration of the ring areas shows that triangle raft configuration
 The real advantage of the method is that it enables a computationally tractable and systematic exploration of bilayer systems at increasing levels of disorder.
 This has been employed in this chapter for a detailed analysis of \lm's
 law, which rationalised why the fraction of six-membered rings observed
-in real systems is often $\sim$0.4. 
+in real systems is often $\approx$0.4. 
 However, it will also be used in chapter \ref{ch:ph} to investigate the use of persistent homology in amorphous materials.
 The ability to build a triangle raft from any user\--defined starting seed also opens further possibilities for the method.
 In particular, it would be interesting to see how network growth is affected by the presence of a template, which could be for example a very large ring.
