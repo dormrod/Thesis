@@ -14,7 +14,7 @@ A short study on ring percolation in amorphous graphene is also presented.
 
 \section{Disorder in Two\--Dimensional Networks}
 
-As mentioned in previously, the characterisation of the disorder in \td{} networks can be achieved through the ring structure. 
+A central theme in this thesis is that the characterisation of the disorder in \td{} networks can be achieved through the ring structure. 
 For three\--coordinate atomic materials the mean ring size is constrained to six by Euler's law, which allows the variance of the ring size distribution, $\mu_2$, to act as a proxy measure for disorder (see sections \ref{s:eulerslaw}, \ref{s:lemaitre}).
 The same set of ring statistics can however lead to a large number of different ring arrangements, as shown in figure \ref{fig:zach}.
 These can be further quantified by the \aw{} parameter, which measures the ring\--ring correlations.
@@ -22,7 +22,7 @@ An interesting observation across a wide range of experimental systems, is that 
 This is also effect is also seen in computational studies, including for example the previous chapter.
 
 Whilst it is necessary for good computational models to capture these measures accurately, they do not give insight into \textit{why} such configurations are preferred. 
-To answer this question a different approach is required, where configurations can be systematically generated, covering a parameter space which exceeds the experimentally accessible region.
+To answer this question a different approach is required, where configurations can be systematically generated, covering a parameter space which extends beyond the experimentally accessible region.
 To achieve this a targeted optimisation method can be employed, whereby configurations are produced to fit network properties, and not driven by an underlying potential model.
 This allows the experimentally occurring structures to be viewed in the context of the wider configurational landscape.
 
@@ -73,7 +73,7 @@ In addition, the mean ring sizes about each ring, $m_j$, required for the Aboav\
 	\label{eq:mjejklink}
 	m_j = \sumk \frac{ke_{jk}}{q_j}\,.
 \end{equation}
-Hence, by utilising the ring network, the book\--keeping to track the network properties becomes trivial.
+Hence, by utilising the ring network, the book\--keeping to track the network properties is greatly simplified.
 
 \begin{figure}[bt]
      \centering
@@ -207,6 +207,7 @@ In addition, the range of accessible values, $\Delta\alpha=\alpha_{\mathrm{max}}
          \label{fig:toptconfigs2}
      \end{subfigure}
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/topt_-10.pdf}
@@ -271,7 +272,7 @@ The curves have a very similar form with the minima aligned, suggesting that wor
      \label{fig:toptenergy}
 \end{figure}
 
-Partial radial distribution functions (RDF) \davidnote{link to methods rdf} can be used to further quantify any ordering imposed on the generated configurations.
+Partial radial distribution functions (RDF) can be used to further quantify any ordering imposed on the generated configurations (see section \ref{s:rdfs}).
 These partial RDFs are constructed in reference to the distance of the centroids of a $k$\--ring from a central $j$\--ring, denoted $g_{jk}\left(r\right)$.
 They can therefore equivalently be thought of as the dual\--space RDFs between nodes of degrees $j$,$k$.
 The Euclidean distance is used as opposed to the topological distance (\ie{} the number of links from a given node) as the latter has been shown to lead to artificial long range correlations \cite{Sadjadi2016}. 
@@ -318,6 +319,7 @@ Again this is demonstrated through the next nearest neighbours by the 8\--4\--8 
          \label{fig:toptrdf2}
      \end{subfigure}
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/partial_gr_44_zach.pdf}
@@ -380,7 +382,7 @@ Quantifying this behaviour is the essence of percolation theory \-- exploring th
      \end{subfigure}
      \hfill
      
-     \vspace{0.5cm}
+     \vspace{0.2cm}
       \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/perc_tri_5.pdf}
@@ -407,7 +409,7 @@ Quantifying this behaviour is the essence of percolation theory \-- exploring th
      \label{fig:perctri}
 \end{figure}
 
-To formalise this slightly, let's say there is an infinite triangular lattice, of which a random proportion, $p$, of nodes are occupied.
+To formalise this slightly, take an infinite triangular lattice, of which a random proportion, $p$, of nodes are occupied.
 The size of a cluster (\ie{} the number of nodes which comprise it) can be denoted, $s$. 
 The probability of a cluster of given size being found in the lattice is then $P_s$, and so the probability of an infinitely sized cluster as $P_{\infty}$ \cite{StaufferDietrich2014}.
 The percolation threshold, $p_c$, is then the critical occupancy at which a giant component appears \ie{}
@@ -451,7 +453,7 @@ The percolation threshold in this case is then approximated by as the occupancy,
          \label{fig:percsub2}
      \end{subfigure}
      
-     \vspace{0.5cm}
+     \vspace{0.2cm}
       \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/subgraph_6.pdf}
@@ -522,8 +524,8 @@ For each state point, $100$ networks were sampled starting from different random
 \end{figure}
 
 The results of these simulations are presented in figure \ref{fig:percolationres}.
-Figures \ref{fig:percres1}, \ref{fig:percres2} show the evolution in $P_\infty$ for selected $\alpha$ values across the $p_k$ range for the 6\-- and 7\--ring subgraphs, which demonstrate slightly different behaviours.
-Neglecting the effect of the \aw{} parameter initially, it can be seen that as the proportion of a given ring increases, the probability of a giant component forming increases.
+Figures \ref{fig:percres1} and \ref{fig:percres2} show the evolution in $P_\infty$ for selected $\alpha$ values across the $p_k$ range for the 6\-- and 7\--ring subgraphs, which demonstrate slightly different behaviours.
+Neglecting the effect of the \aw{} parameter initially, as the proportion of a given ring increases, the probability of a giant component forming increases.
 This is process is visualised in figures \ref{fig:percp7a}\--\ref{fig:percp7c}.
 In the case of the 6\--ring subgraph, it can be seen that it bears similarity to the triangular site percolation problem discussed in section \ref{s:percolationtheory}, with the percolation threshold oscillating around $p_6^c\approx0.5$.
 The 7\--ring case on the other hand displays a percolation threshold at a lower value of $p_7^c\approx0.35$.
@@ -556,6 +558,7 @@ In the most extreme case, one can see this in the example of haeckelite, in whic
          \label{fig:percp7c}
      \end{subfigure}
      
+     \vspace{0.2cm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/percolation_alpha_3.pdf}
@@ -596,9 +599,9 @@ It is interesting to note that this also around the value of $\alpha\approx 0.25
 The results discussed above can be combined to draw a percolation phase diagram for aG, presented in figure \ref{fig:percres3}.
 In this diagram there are three phases:
 \begin{itemize}
-	\item \textbf{Phase I}: exists at low $p_6\lesssim 0.35$ and preferentially low $\alpha$, where networks contain a giant component of 7\--rings.
-	\item \textbf{Phase II}: occupies intermediate values of $p_6$, where no subgraph contains a giant component.
-	\item \textbf{Phase III}: encompasses the largest region of phase space, for $p_6\gtrsim0.5$, where networks contain a giant component of 6\--rings.
+	\item \textbf{Phase I}: exists at low $p_6\lesssim 0.35$ and preferentially low $\alpha$, where networks contain a giant component of 7\--rings
+	\item \textbf{Phase II}: occupies intermediate values of $p_6$, where no subgraph contains a giant component
+	\item \textbf{Phase III}: encompasses the largest region of phase space, for $p_6\gtrsim0.5$, where networks contain a giant component of 6\--rings
 \end{itemize}
 From this phase behaviour it can be seen that relatively low values of $p_6$ must be achieved before the percolation of 6\--rings is broken.
 In addition it is unlikely that an phase I could be experimentally realised and percolation of the 7\--rings achieved. 
