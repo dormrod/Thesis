@@ -22,7 +22,7 @@ The hard particle model was introduced in section  \ref{s:hardparticlemodelintro
 However, section \ref{s:genexpnetworks} introduced a new system of recent experimental interest, that of a monolayer of hard spheres.
 These systems, where colloidal particles are sedimented on a plane in a single layer, are \thd{} (3D) systems with effectively \td{} (2D) interactions.
 As such, they are termed quasi\--\td{} (\qtd{}).
-In section\ref{s:hardparticlemodelintro}, all monolayers comprised spheres of the same size, but one can equally engineer systems where the sphere radii have a distribution of sizes \ie{} different size dispersity \cite{Thorneywork2014,Thorneywork2018}.
+In section \ref{s:hardparticlemodelintro}, all monolayers comprised spheres of the same size, but one can equally engineer systems where the sphere radii have a distribution of sizes \ie{} different size dispersity \cite{Thorneywork2014,Thorneywork2018}.
 In the polydisperse case, the centres of the spheres no longer lie in the same plane, but rather at a height equal to their radius.
 The result of this dispersity is that the interaction distances between particles of different sizes cannot be trivially projected into 2D.
 Nevertheless, it is still possible to model monolayers of spheres in 2D by using non\--additive distances.
@@ -30,7 +30,7 @@ For two particles in a \qtd{} arrangement with radii, $R_i$, the contact distanc
 \begin{equation}
 	R_{ij}=2\left(R_iR_j\right)^{1/2}\,,
 \end{equation}
-as  illustrated for two spheres, $A$, $B$, in figure \ref{fig:nonadddemo}.
+as  illustrated for two spheres, $A,B$, in figure \ref{fig:nonadddemo}.
 Alternatively, this can be expressed in terms the arithmetic mean and a non\--additivity parameter, $\Delta$, as is common for asymmetric systems \cite{Roth2001}:
 \begin{equation}
 	R_{ij}=\left(R_i+R_j\right)\left(1+\Delta\right)\,,
@@ -57,8 +57,9 @@ For instance, unlike a system of additive hard disks, it is not obvious if a unw
 It will be demonstrated in the second half of this chapter that in fact the unweighted construction retains a precise physical meaning for \qtd{} systems, and is the natural choice for partitioning space in these monolayers.
 
 \subsection{Experimental Analysis}
+\label{s:expcolloidanalysis}
 
-Raw experimental coordinates were kindly provided for a range of mono\-- and bidisperse colloidal systems by Thorneywork and Dullens \cite{Thorneywork2014,Thorneywork2017,alice2015a}.
+Raw experimental coordinates were kindly provided for a range of mono and bidisperse colloidal systems by Thorneywork and Dullens \cite{Thorneywork2014,Thorneywork2017,alice2015a}.
 The colloidal monolayers were prepared by dispersing particles of specific radii in a water\--ethanol mixture and sedimenting them on the base of a glass sample cell.
 The samples were then imaged using an inverted bright-field microscope and particle coordinates obtained using standard particle tracking routines.
 Allowing a time of around $~10s$ between frames ensured that the particle positions are sufficiently decorrelated to be statistically independent. 
@@ -151,7 +152,7 @@ The actual results of the analysis of these experimental systems will be discuss
 Experimental data can be compared and contrasted with configurations generated from simulation.
 Hard particle \mc{} was introduced in section \ref{s:hardparticlemc} as a method to generate such configurations computationally.
 One could set up a 3D system of hard spheres constrained to a plane, but as discussed above it is preferable to employ a non\--additive hard disk model.
-In this modification, if two particles are separated by a distance, $r_ij$, the pair potential is:
+In this modification, if two particles are separated by a distance, $r_{ij}$, the pair potential is:
 \begin{equation}
 	\mathcal{U}_{ij} = \begin{cases} \infty \quad &r_{ij}<2\left(R_iR_j\right)^{1/2} \\ 0 \quad &\text{otherwise} \end{cases}\,.
 \end{equation}
@@ -256,6 +257,7 @@ The overarching properties of the ring structure will first be explored, before 
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/bi_ssr_l_phi_p6.pdf}
@@ -271,11 +273,11 @@ The overarching properties of the ring structure will first be explored, before 
      \end{subfigure}
      \hfill
     
-     \caption{Overview of the evolution in the partial ring statistics in bidisperse colloidal monolayers. Panels (a),(b) show the partial mean sizes for the two radius ratios (as indicated in captions). Panels (c),(d) show the proportion of hexagons in the partial distributions for the $\gamma=1.45$ systems. The blue curves correspond to quantities pertaining to large particles, red curves to small particles. The system composition is indicated by the depth of shading, as in the legends. Experimental points are coloured using the same scale as for simulation curves, and error bars indicate one standard deviation of the mean.}
+     \caption{Overview of the evolution in the partial ring statistics in bidisperse colloidal monolayers. Panels (a) and (b) show the partial mean sizes for the two radius ratios (as indicated in captions). Panels (c) and (d) show the proportion of hexagons in the partial distributions for the $\gamma=1.45$ systems. The blue curves correspond to quantities pertaining to large particles, red curves to small particles. The system composition is indicated by the depth of shading, as in the legends. Experimental points are coloured using the same scale as for simulation curves, and error bars indicate one standard deviation of the mean.}
      \label{fig:bi}
 \end{figure}
 
-The mean values of the partial ring distributions for large and small spheres are given for the bidisperse systems of both radius ratios in figures \ref{fig:bi1}, \ref{fig:bi2}.
+The mean values of the partial ring distributions for large and small spheres are given for the bidisperse systems of both radius ratios in figures \ref{fig:bi1} and \ref{fig:bi2}.
 Beginning with the small size ratio ($\gamma=1.45$, figure \ref{fig:bi1}), it can be seen that there is once again good agreement with the experimental data.
 With the aid of the \mc{} simulations, it is clear that these experimental points actually lie on a series of curves.
 To rationalise the broad behaviour of these curves, one can begin by noting that $\ki_l>6$ and $\ki_s<6$ for all values of $\phi>0$.
@@ -324,6 +326,7 @@ Similar trends were in fact seen for 5\-- and 7\--rings in $\br{4}{10}$ triangle
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
       \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_l_9.pdf}
@@ -354,7 +357,7 @@ Unlike \lm's law, which requires only the value of a single ring, such as $p_6$,
 
 The comparison of the partial ring statistics from simulation and maximum entropy is given in figure \ref{fig:bime}.
 The partial distributions are provided for the large and small spheres, with a small size ratio, at the two limiting compositions of $c_l=0.53,0.09$.
-The continuous evolution in the ring statistics with packing fraction is detailed by the shading of the bars (note for instance that the $k=6$ bars in figure \ref{fig:bime} are the reverse of the lines of $p_6^{l,s}$ in figures \ref{fig:bi3}, \ref{fig:bi4}).
+The continuous evolution in the ring statistics with packing fraction is detailed by the shading of the bars (note for instance that the $k=6$ bars in figure \ref{fig:bime} are the reverse of the lines of $p_6^{l,s}$ in figures \ref{fig:bi3} and \ref{fig:bi4}).
 In these plots, the left\--most points in each bar represent the system at the highest packing fraction, and the right\--most points the limit of zero packing fraction.
 In all cases, the maximum entropy solutions fit the observed numerical results quite well.
 The difference in the ring statistics for each component is also stark.
@@ -471,7 +474,7 @@ Defining the direction of $x$ as as the projection of $d_A\mathbf{\hat{n}}$ on t
 The intersection of $V$ with $T$ occurs at $z=0$, and so the line of intersection is given simply by $x=r_{AB}^\prime/2$.
 However there is something significant about this result: this dividing line in 2D is the same as that which would be obtained from constructing the 2D unweighted Voronoi using the projected particle centres $\mathbf{r}^\prime_i$.
 As this must be true for all pairs of neighbouring particles, it follows that the entire 2D unweighted Voronoi will be constructed. 
-This leads to the key relationship of this work: for quasi\--2D systems of spheres, the unweighted 2D Voronoi diagram is topologically equivalent to the tessellation formed by taking the basal faces of the polyhedra in the weighted 3D Voronoi diagram. 
+This leads to the key relationship of this section: for quasi\--2D systems of spheres, the unweighted 2D Voronoi diagram is topologically equivalent to the tessellation formed by taking the basal faces of the polyhedra in the weighted 3D Voronoi diagram. 
 This holds when the 2D Voronoi is constructed using the point set of the sphere centres projected onto the basal plane, and the 3D Voronoi using the point set of the original sphere centres and weighted by the sphere radii.
 
 \begin{figure}[tb]
@@ -579,7 +582,7 @@ This 2D weighted diagram shall be referred to as the disk\--weighted Voronoi and
          \label{fig:cut40a}
      \end{subfigure}
      \hfill
-     \vspace{0.5cm}
+     \vspace{0.2cm}
      
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
@@ -618,7 +621,7 @@ This 2D weighted diagram shall be referred to as the disk\--weighted Voronoi and
 The important properties of the sphere and disk\--weighted Voronoi diagrams are outlined in this section, which will aid with their analyses.
 These include the expected number of points at a given cut height, the weight distribution of the included points and the nearest\--neighbour distances between them.
 These are the quantities that appear in equation \eqref{eq:radical} and therefore govern the wider properties of the Voronoi diagram. 
-The analytic results will be demonstrated for the model of lognormally distributed sphere radii will, but the results extend to any configuration where the sphere radii are known.
+The analytic results will be demonstrated for the model of lognormally distributed sphere radii, but the results extend to any configuration where the sphere radii are known.
 
 \subsubsection{Average Nearest\--Neighbour Distances}
 
@@ -634,7 +637,7 @@ It can therefore be expressed:
 	\rho_z = \rho_0 \zN\,,
 \end{equation}
 where $\rho_0$ is the number density considering all points (as must be the case at $z=0$), and $N\left(z\right)$ is the proportion of particles included at a given cut height.
-By dividing the area equally between all particles, we expect the average distance between neighbouring points in the 2D Voronoi diagram to follow:
+By dividing the area equally between all particles, the average distance between neighbouring points in the 2D Voronoi diagram is expected to follow:
 \begin{equation}
 	\label{eq:ndist}
 	\ed = 2\left(\frac{1}{\pi\rho_z}\right)^{1/2}.%=2\left(\frac{1}{\pi\rho_0\zN}\right)^{1/2}\,.
@@ -824,6 +827,7 @@ As these particles are in low density and likely spaced far apart, the dividing 
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/n_z_3d_disk.pdf}
@@ -865,8 +869,8 @@ Calculating packing fraction in this way always acts to reduce the overall numbe
         \midrule
 	0.05 & 0.172 & 0.188 \\
 	0.10 & 0.344 & 0.376 \\
-	0.15 & 0.515 & 0.564 \\
-	0.20 & 0.687 & 0.752 \\
+	0.15 & 0.516 & 0.564 \\
+	0.20 & 0.689 & 0.752 \\
 	\bottomrule
 \end{tabular}
 \end{table}
@@ -874,15 +878,14 @@ Calculating packing fraction in this way always acts to reduce the overall numbe
 \subsection{Network Properties}
 
 The effects of the different methods of dividing space on the network properties of the system are also a subject of interest.
-Previous studies which have compared the tessellations formed from cuts through 3D packings of mono- and bidisperse spheres have found differences when comparing the results of the different methods \cite{Oger2000,Gervois2004}.
+Previous studies which have compared the tessellations formed from cuts through 3D packings of mono and bidisperse spheres have found differences when comparing the results of the different methods \cite{Oger2000,Gervois2004}.
 For the different Voronoi methods discussed in this work, it is found that there is good agreement at low cut heights, but fundamental differences in the asymptotic limit as the cut height is increased.
 The two network metrics common in this thesis are again compared for each system: the proportion of hexagons, $p_6$, and the assortativity, $\ass$, displayed in figure \ref{fig:pr}.
 As expected there is good agreement between methods in both metrics at low cut height, with convergence in the limit of $z\rightarrow 0$.
 However, at larger $z$ key differences emerge. 
 The disk\--weighted Voronoi approaches the 2D Poisson\--Voronoi (PV) limit, $p_6\approx0.295$ and $r\approx -0.15$.
 This is the limit which is obtained from having unweighted points randomly located in 2D space.
-In contrast the sphere\--weighted Voronoi approaches a different, less well understood, limit with more diverse ring distribution and reduced ring\--ring correlations. We
-will discuss the nature of this limit in a following section.
+In contrast the sphere\--weighted Voronoi approaches a different, less well understood, limit with more diverse ring distribution and reduced ring\--ring correlations. The nature of this limit will be discussed in the following section.
 
 \begin{figure}
 
@@ -901,6 +904,7 @@ will discuss the nature of this limit in a following section.
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
        \begin{subfigure}[b]{0.46\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/p6_z_3d_disk.pdf}
@@ -955,6 +959,7 @@ As such, the decreasing density of points is directly offset by the increase in 
      \end{subfigure}
      \hfill     
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/d_z_3d_disk.pdf}
@@ -981,7 +986,7 @@ As mentioned previously, for those studying quasi\--2D systems experimentally, i
 Not only is this more practicable, it is also leads to straightforward visualisation and analysis.
 The most common approach is therefore to use a unweighted 2D Voronoi.
 This is understandable, as it requires no knowledge of the particle radii, which maybe prove difficult to accurately determine.
-With bi\-- or polydisperse particle systems, it was previously unclear that the unweighted 2D Voronoi analysis was in fact wholly appropriate, given that for true 2D systems (\eg{} polydisperse disks) it is known to allocate space disproportionately. 
+With bi or polydisperse particle systems, it was previously unclear that the unweighted 2D Voronoi analysis was in fact wholly appropriate, given that for true 2D systems (\eg{} polydisperse disks) it is known to allocate space disproportionately. 
  
 However, in the second half of this chapter it has been shown that possibly contrary to expectation, the use of an unweighted 2D Voronoi analysis, for polydisperse particles sedimented on a plane, is completely valid and well defined.
 The unweighted 2D Voronoi is topologically equivalent to the tessellation formed by taking the basal faces of the polyhedra formed from the fully \textit{weighted} 3D Voronoi diagram.

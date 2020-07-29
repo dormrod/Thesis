@@ -16,7 +16,7 @@ These atomic systems can however be considered a subset of a much larger class o
 Such networks emerge across all disciplines and span many orders of magnitude in size.
 In physical sciences random tessellations are not restricted to atomic materials, but are observed in foams, crack\--patterns  (in dessicated films, ceramics \etc) as well as in colloidal films through the Voronoi construction \-- to name a few \cite{Durand2011,Tong2017,Noever1992,Ma2019,Earnshaw1994,Allain1995,Moncho-Jorda2000}.
 Similar mosaics can also be seen in the biological world in the form of epithelial cells and polymer networks such as collagen \cite{Honda1978,Carter2017,Kim2016,Broedersz2014}, as well as in geology in the guise of rock formations and geography in context of geopolitical borders \cite{Weaire1984,Goehring2014,LeCaer1993}.
-Whilst this last example may seem to fall into the category of seemingly more esoteric offerings from the literature (including for instance crocodile scales and oil paintings \cite{Milinkovitch2019,Flores2017}), it provides an interesting insight into the formation of tessellations through random point processes.
+Whilst this last example may seem to fall into the category of seemingly more esoteric offerings from the literature (including studies on crocodile scales and oil paintings \cite{Milinkovitch2019,Flores2017}), it provides an interesting insight into the formation of tessellations through random point processes.
 Although man\--made maps are nominally carefully constructed, the influence of random geographical features serve to generate tessellations which are entirely consistent with others found in the natural world.
 
 This is to say that the study of atomic networks fits into a wider remit of understanding the behaviours of generic physical networks.
@@ -206,6 +206,7 @@ This condition is satisfied for these physical systems, as the proportion of lar
      \end{subfigure}
      \hfill
      
+     \vspace{0.2cm}
         \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/general_networks/assort_mat_0.pdf}
@@ -260,7 +261,7 @@ The accuracy of this equation will therefore depend on the applicability of the 
 \davidnote{Include that figure somewhere}.
 
 The assortativity also provides a natural framework to extend \lm's maximum entropy arguments to factor in ring adjacencies.
-The entropy is first defined in terms of the edge joint degree distribution, as $S=-\sumjk e_{jk}\log e_{jk}$.
+The entropy is first defined in terms of the edge joint degree distribution, as $\mathcal{S}=-\sumjk e_{jk}\log e_{jk}$.
 Considering $e_{jk}$, the following constraints must hold:
 \begin{align}
         \sumjk e_{jk} &=1 \label{con:as1}\\
@@ -351,7 +352,7 @@ This can be countered by using a move in which the coordinations of neighbouring
          \label{fig:bsmovec}
      \end{subfigure}
      
-     \vspace{5mm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=2.6cm]{./figures/general_networks/bs_move_d.pdf}
@@ -375,7 +376,7 @@ This can be countered by using a move in which the coordinations of neighbouring
          \label{fig:bsmovef}
      \end{subfigure}
      
-     \vspace{5mm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=1.8cm]{./figures/general_networks/bs_move_g.pdf}
@@ -412,12 +413,12 @@ To capture the possibility of variable coordination environments, the equilibriu
 \subsection{Extension to Variable Topology}
 
 As a demonstration of the general applicability of the bond switching algorithm, configurations can also be generated in spherical topology.
-In order to do this an initial crystalline fullerene\--like structure must be generated. 
-A practical method to do this is from the dual lattice of a platonic solid, as outlined below and illustrated in figure \ref{fig:topomethod}.
+In order to do this, an initial crystalline fullerene\--like structure must be generated. 
+A practical method to achieve this is from the dual lattice of a platonic solid, as outlined below and illustrated in figure \ref{fig:topomethod}.
 \begin{enumerate}
-	\item Construct an icosahedron for 3\--coordinate networks or a cube for 4\--coordinate networks and subdivide the faces into triangles or squares respectively (figures \ref{fig:topo1},\ref{fig:topo4}).
-	\item Project the lattice onto a sphere (figures \ref{fig:topo2}, \ref{fig:topo5}).
-	\item Generate atomic network from the dual lattice (figures \ref{fig:topo3},\ref{fig:topo6}).
+	\item Construct an icosahedron for 3\--coordinate networks or a cube for 4\--coordinate networks and subdivide the faces into triangles or squares respectively (figures \ref{fig:topo1},\ref{fig:topo4})
+	\item Project the lattice onto a sphere (figures \ref{fig:topo2}, \ref{fig:topo5})
+	\item Generate atomic network from the dual lattice (figures \ref{fig:topo3},\ref{fig:topo6})
 \end{enumerate}
 Once this lattice has been constructed, the bond switching algorithm may proceed as usual.
 
@@ -540,7 +541,7 @@ They are as follows:
 Out\--of\--plane fluctuations are quantified by the gravitational height of the particles, which is a very small percentage of their diameter, and as such the system is structurally two-dimensional.
 Each packing fraction has 100 associated frames, with the time between frames around 10s.
 At the highest packing fractions considered, the area of the system imaged contains around 3000 particles.
-As the system is aperiodic, after Voronoi analysis the cells on the image boundary are neglected.
+As the system is aperiodic, after Voronoi analysis the cells on the image boundary are neglected (for more information see section \ref{s:expcolloidanalysis}).
 \item \textbf{Silica bilayers}: configurations of thin films of silica glass grown on graphene \cite{Huang2012} and Ru(001) \cite{Buchner2017}.
 Three samples were obtained consisting of 291, 444 and 446 rings.
 \item \textbf{Amorphous graphene}: configurations of graphene amorphised by irradiation with an electron beam \cite{Eder2014}.
@@ -563,7 +564,7 @@ The degree distributions of physical networks are discussed in terms of Lemaitre
 Figure \ref{fig:lmgena} presents these data for a range of 3\--coordinate systems comprising experimental, computational and theoretical.
 There are many things to note, but primarily it can be seen that regardless of the nature of the underlying system, all data fit very well with the maximum entropy solution provided by \lm{}'s law.
 Whilst \lm's law highlights the similarities between these systems, it is also important to examine some of their differences. For example, what determines where a system sits on the \lm{} curve \ie{} what controls the number of hexagons?
-For materials this is based on energetics \-- the strain associated with bond and angle distortions. For instance, experimentally silica bilayers have more diverse ring statistics than graphene owing to the reduction in ring strain due to the presence of oxygen linkages\cite{Buchner2017}.
+For materials this is based on energetics \-- the strain associated with bond and angle distortions. For instance, experimentally silica bilayers have more diverse ring statistics than graphene owing to the reduction in ring strain due to the presence of oxygen linkages \cite{Buchner2017}.
 Even for the graphene samples which have been modified by an electron beam (pink diamonds), the disorder does not approach that of the silica glasses (orange hexagons).
 For the colloid systems (blue circles) however, the rings are formed from the Voronoi tessellation, with no intrinsic cost to distortions and instead it is the packing fraction, $\phi$, which determines $p_6$.
 The limit $\phi\rightarrow 0$ achieves the Poisson Voronoi ring distribution (yellow star) \cite{Tanemura2003}, with a lower bound of $p_6 \approx 0.295$.
@@ -585,6 +586,7 @@ The calculation of this line is explained at the end of section \ref{s:genassort
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/general_networks/lemaitre_6.pdf}
@@ -637,7 +639,7 @@ This is supported by the experimental results from amorphous graphene (pink diam
      \end{subfigure}
      \hfill
      
-	\vspace{0.5cm}     
+	\vspace{0.2cm}     
      \begin{subfigure}[b]{0.2\textwidth}
          \centering
          \includegraphics[height=2cm]{./figures/general_networks/defect_-33.pdf}
@@ -753,7 +755,7 @@ In addition, plots of the mean ring sizes for selected packing fractions are giv
 \subsection{Energetics of Fullerenes}
 
 As an illustration of the generalisability of the methods described in this work, results are presented for two\--dimensional networks in spherical topology.
-Such systems are also of experimental interest, as experimentalists now have access to ``non-classical'' fullerenes\cite{Tian2019,Guan2019,Brotsman2017,Kemnitz2018}, metal-organic nano-cages\cite{Fujita2016,Wang2017} as well as curved froths \cite{Roth2012}.
+Such systems are also of experimental interest, as experimentalists now have access to ``non-classical'' fullerenes \cite{Tian2019,Guan2019,Brotsman2017,Kemnitz2018}, metal-organic nano-cages \cite{Fujita2016,Wang2017} as well as curved froths \cite{Roth2012}.
 One such fullerene was investigated here: a 92\--ring 3\--coordinate fullerene consisting of 5,6 and 7\-- rings.
 Possible configurations were again generated via bond switching, starting from the lattice depicted in figure \ref{fig:topo3}.
 Here $10^6$ total configurations were sampled from 100 different simulations, with $k_r/k_\theta=4$.
@@ -765,7 +767,7 @@ However, it is also the case that the arrangement of the rings, as measured by t
 To emphasise this, three example configurations are provided in figure \ref{fig:fullerene92a}\--\ref{fig:fullerene92c}.
 These amorphous fullerenes have the same $p_6$ value (and therefore $p_5$, $p_7$), but very different strain energies.
 In \ref{fig:fullerene92c} defects appear which are similar to the common motifs as in figure \ref{fig:assortgen} \ie{} those associated with being low energy.
-The increased clustering of similar sized rings in \ref{fig:fullerene92a},\ref{fig:fullerene92b} leads to increasingly irregular ring geometries that generate high levels of strain.
+The increased clustering of similar sized rings in \ref{fig:fullerene92a} and \ref{fig:fullerene92b} leads to increasingly irregular ring geometries that generate high levels of strain.
 As previously noted with planar networks, systems which are disassortative are energetically favoured.
 Although this is a simple consequence of the mechanical properties of the system, neglecting any electronic contributions, such is the difference in stability that we would expect disassortative fullerenes of this type to be more prevalent in nature.
 
@@ -779,7 +781,7 @@ Although this is a simple consequence of the mechanical properties of the system
      \end{subfigure}
      \hfill
      
-	\vspace{0.5cm}     
+	\vspace{0.2cm}     
      
      \begin{subfigure}[b]{0.22\textwidth}
          \centering
