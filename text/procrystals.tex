@@ -84,8 +84,7 @@ the $5$\--coordinate tilings are the elongated\--triangular and snub\--square ne
      \end{subfigure}
      \hfill
      
-     \vspace{0.5cm}
-     
+     \vspace{2mm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.5cm]{./figures/procrystals/elongtri.pdf}
@@ -100,7 +99,7 @@ the $5$\--coordinate tilings are the elongated\--triangular and snub\--square ne
      \end{subfigure}
      \hfill
      
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=2.5cm]{./figures/procrystals/tri.pdf}
@@ -208,8 +207,8 @@ Again these can in turn be stacked to yield 84, $2\times 2$ building blocks, a s
          \label{fig:et1x1_6}
      \end{subfigure}
      \hfill
-     \vspace{0.5cm}
      
+     \vspace{2mm}
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[height=1.2cm]{./figures/procrystals/2x1_0.pdf}
@@ -245,8 +244,8 @@ Again these can in turn be stacked to yield 84, $2\times 2$ building blocks, a s
          \label{fig:et2x1_4}
      \end{subfigure}
      \hfill
-	\vspace{0.5cm}     
-
+     
+	\vspace{2mm}     
 	\begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[height=2.2cm]{./figures/procrystals/2x2_10.pdf}
@@ -276,8 +275,7 @@ Again these can in turn be stacked to yield 84, $2\times 2$ building blocks, a s
      \end{subfigure}
      \hfill
 	
-	\vspace{0.5cm}    
-    
+	\vspace{2mm}    
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[height=2.2cm]{./figures/procrystals/2x2_0p.pdf}
@@ -359,7 +357,7 @@ As with much of the work in this thesis, this is achieved by utilising a \mc{} a
 The algorithm in question has been developed to produce \pro{c^\prime}{c}lattices of arbitrary size.
 It is a zero\--temperature \mc{} algorithm which proceeds as follows:
 \begin{enumerate}
-	\item Initialise the required $c^\prime$\--coordinate periodic lattice from figure \ref{fig:symlat} and assign each node $c$ bonds in a random orientation. This will introduce a number of dangling bonds into the configuration.
+	\item Initialise the required $c^\prime$\--coordinate periodic lattice from figure \ref{fig:symlat} and assign bonds randonly to each node $c$. This will introduce a number of dangling bonds into the configuration.
 	\item Select a node at random and change the orientation of the bonds.
 	\item If the number of dangling bonds is less than or equal to the number in the previous configuration update the configuration; otherwise revert to the previous structure.
 	\item Repeat steps 2 and 3 until all dangling bonds have been removed and all node coordinations are satisfied.
@@ -439,7 +437,7 @@ These configurations highlight some important features of the specific procrysta
      \end{subfigure}
      \hfill
      	
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=4.5cm]{./figures/procrystals/pro_elong3.pdf}
@@ -454,7 +452,7 @@ These configurations highlight some important features of the specific procrysta
      \end{subfigure}
      \hfill
      
-     \vspace{0.5cm}     
+     \vspace{2mm}     
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=4.5cm]{./figures/procrystals/pro_tri3.pdf}
@@ -468,7 +466,7 @@ These configurations highlight some important features of the specific procrysta
 \end{figure}
 
 Importantly, these 3\--coordinate procrystals will be compared and contrasted with two other states.
-The first are networks generated from bond switching at infinite temperature (see section \ref{s:bondswitch}, which is in effect a method for producing continuous random networks (CRNs) \ie{} a fully amorphous state.
+The first are networks generated from bond switching at infinite temperature (see section \ref{s:bondswitch}), which is in effect a method for producing continuous random networks (CRNs) \ie{} a fully amorphous state.
 The second are series of crystalline motifs of the form $8-6^i-5^2$ and $8-6^i-4$ for $0\leq i\leq3$ (the nomenclature indicating the number of each ring size in the unit cell) taken from Altman \etal{} \cite{Malashevich2016}.
 
 \subsection{Ring Size Distributions}
@@ -495,46 +493,44 @@ These purpose of these maximum entropy distributions is to highlight any discrep
          \caption{\pro{4}{3}square}
          \label{fig:pro3pka}
      \end{subfigure}
-          \hfill
+         \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/trihex3_pk.pdf}
          \caption{\pro{4}{3}trihexagonal}
          \label{fig:pro3pkb}
      \end{subfigure}
-     \hfill
+ 
      	
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/elong3_pk.pdf}
          \caption{\pro{5}{3}elongated\--triangular}
          \label{fig:pro3pkc}
      \end{subfigure}
-          \hfill
+          \hspace{1cm}
      \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/snub3_pk.pdf}
          \caption{\pro{5}{3}snub\--square}
          \label{fig:pro3pkd}
      \end{subfigure}
-     \hfill
      
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/tri3_pk.pdf}
          \caption{\pro{6}{3}triangular}
          \label{fig:pro3pke}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/netmc_pk.pdf}
          \caption{CRNs}
          \label{fig:pro3pkf}
      \end{subfigure}
-     \hfill
     
      \caption{Ring statistics for selected 3\--coordinate procrystalline lattices (as highlighted in subfigure captions) and from bond switching (panel (f)). In  all  panels  the  points  and  dashed  lines show the respective maximum entropy (ME) solutions.  Each panel also highlights potential system size effects by showing the ring size distributions for different numbers of nodes, $V$, as highlighted in the legends.}
      \label{fig:pro3pk}
@@ -583,8 +579,8 @@ As the lattice dimensions increase and large rings become rarer the statistics n
          \label{fig:pro3pksq4}
      \end{subfigure}
      \hfill
-	\vspace{0.5cm}     
-          
+     
+	\vspace{2mm}               
       \begin{subfigure}[b]{0.16\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/t2.pdf}
@@ -626,7 +622,7 @@ As the lattice dimensions increase and large rings become rarer the statistics n
      
      
      
-     \vspace{0.5cm}
+     \vspace{2mm}
       \begin{subfigure}[b]{0.1\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/kagome.pdf}
@@ -662,8 +658,8 @@ As the lattice dimensions increase and large rings become rarer the statistics n
          \label{fig:pro3pktrihex5}
      \end{subfigure}
      \hfill
-     \vspace{0.2cm}
      
+     \vspace{2mm}     
      \begin{subfigure}[b]{0.1\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/kagome8a.pdf}
@@ -781,7 +777,7 @@ The assortativity for these systems is likewise closer to the random limit of $r
          \caption{}
          \label{fig:pro3p6mu2}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=6.5cm]{./figures/procrystals/pro3_p6_r.pdf}
@@ -795,7 +791,7 @@ The assortativity for these systems is likewise closer to the random limit of $r
          \caption{}
          \label{fig:pro3p6ssmu2}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
         \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=6.5cm]{./figures/procrystals/pro3_ss_r.pdf}
@@ -901,7 +897,6 @@ Again these configurations highlight some important features in the specific pro
          \caption{\pro{5}{4}elongated\--triangular}
          \label{fig:pro45a}
      \end{subfigure}
-     \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=4.5cm]{./figures/procrystals/pro_snub4.pdf}
@@ -909,14 +904,13 @@ Again these configurations highlight some important features in the specific pro
          \label{fig:pro45b}
      \end{subfigure}
      
-	\vspace{0.5cm}          
+	\vspace{2mm}          
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=4.5cm]{./figures/procrystals/pro_tri4.pdf}
          \caption{\pro{6}{4}triangular}
          \label{fig:pro45c}
-     \end{subfigure}
-     \hfill     
+     \end{subfigure}  
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=4.5cm]{./figures/procrystals/pro_tri5.pdf}
@@ -940,30 +934,28 @@ Again these configurations highlight some important features in the specific pro
          \caption{\pro{5}{4}elongated\--triangular}
          \label{fig:pro45pka}
      \end{subfigure}
-          \hfill
+     \hspace{1cm}
      \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/snub4_pk.pdf}
          \caption{\pro{5}{4}snub\--square}
          \label{fig:pro45pkb}
      \end{subfigure}
-     \hfill
      
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/tri4_pk.pdf}
          \caption{\pro{6}{4}triangular}
          \label{fig:pro45pkc}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/procrystals/tri5_pk.pdf}
          \caption{\pro{6}{5}triangular}
          \label{fig:pro45pkd}
      \end{subfigure}
-     \hfill
     
      \caption{Ring statistics for selected 4\-- and 5\--coordinate procrystalline lattices (as highlighted in subfigure captions). Each panel also highlights potential system size effects by showing the ring size distributions for different numbers of nodes, $V$, as highlighted in the legends.}
      \label{fig:pro45pk}
@@ -1008,7 +1000,7 @@ Whilst some history of the preceding lattice can be detected in the \pro{6}{4}tr
          \caption{}
          \label{fig:pro45p6mu2}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=6.5cm]{./figures/procrystals/pro45_p4_r.pdf}
@@ -1022,7 +1014,7 @@ Whilst some history of the preceding lattice can be detected in the \pro{6}{4}tr
          \caption{}
          \label{fig:pro45p6ssmu2}
      \end{subfigure}
-     \hfill
+     \hspace{1cm}
         \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[height=6.5cm]{./figures/procrystals/pro45_ss_r.pdf}

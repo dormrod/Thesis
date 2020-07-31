@@ -224,11 +224,11 @@ After running a persistent homology calculation by generating a filtered simplic
 There are multiple ways to do this, some of which are more suitable for small systems and some for large aggregated datasets.
 These are outlined below, with examples given in figure \ref{fig:exvis}, in reference to the small crystalline and amorphous configurations discussed in figure \ref{fig:phex}.
 \begin{itemize}
-	\item \textbf{Persistence barcode}: represents the lifetime of each topological feature as a bar, starting at the birth value and terminating at the death value (see figures \ref{fig:exvisa}, \ref{fig:exvisb}). The barcode therefore contains all information about each feature, and whilst useful for small samples, it becomes difficult to interpret when there are a large number of features. In addition short lived features are difficult to identify.
+	\item \textbf{Persistence barcode}: represents the lifetime of each topological feature as a bar, starting at the birth value and terminating at the death value (see figures \ref{fig:exvisa} and \ref{fig:exvisb}). The barcode therefore contains all information about each feature, and whilst useful for small samples, it becomes difficult to interpret when there are a large number of features. In addition short lived features are difficult to identify.
 	
-	\item \textbf{Evolution in Betti numbers}: plots the total number of each $n$\--dimensional feature for each filtration value (see figures \ref{fig:exvisc}, \ref{fig:exvisd}), and so provides more coarse\--grained information than the barcode. It is equivalent to counting the number of bars at a specific filtration value.
+	\item \textbf{Evolution in Betti numbers}: plots the total number of each $n$\--dimensional feature for each filtration value (see figures \ref{fig:exvisc} and \ref{fig:exvisd}), and so provides more coarse\--grained information than the barcode. It is equivalent to counting the number of bars at a specific filtration value.
 	
-	\item \textbf{Persistence diagram}: plots the birth and death value pairs, $\left(b,d\right)$, of each feature as a scatter diagram (see figures \ref{fig:exvise}, \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histogramming can be used, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
+	\item \textbf{Persistence diagram}: plots the birth and death value pairs, $\left(b,d\right)$, of each feature as a scatter diagram (see figures \ref{fig:exvise} and \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histogramming can be used, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
 	
 %	\item \textbf{Lifetime distribution function}: presents a histogram of the lifetimes of each feature. This is useful for analysing a large number of features, but loses information on the exact birth and death values.
 \end{itemize}
@@ -241,7 +241,7 @@ This is because in atomic systems, the average bond length is highly restricted,
 As such, the $0$\--dimensional features provide little insight for atomic systems, and will be neglected in the analysis in this chapter.
 
 On the other hand, the 1\--dimensional features show significant differences between the crystalline and amorphous configurations.
-Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa}, \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
+Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa} and \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
 For the crystalline system, all persistent cycles (corresponding to hexagons) terminate at almost the same value of $\epsilon=r_0$, whereas in the amorphous case there is a much broader distribution of values.
 These values will be discussed in detail in section \ref{s:phbands}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
 It is not only the persistent cycles which show variation though.
@@ -308,7 +308,7 @@ The question is whether these visualisations can be systematically interpreted t
 Persistent homology is first studied in reference to triangle rafts, introduced in chapter \ref{ch:bilayers}.
 To briefly reiterate, triangle rafts are a model for \td{} amorphous silica, representing the bilayer of corner sharing tetrahedra as projected equilateral triangles.
 Triangle rafts are characterised by having a diverse ring distributions, owing to the flexibility afforded to the structure by the oxygen linkages.
-Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity afforded by the triangular subunits.
+Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity imposed by the triangular subunits.
 
 \begin{table}[hbt]
 \centering
@@ -331,7 +331,7 @@ In these analyses, only the silicon positions were included, as again the oxygen
 In addition, this makes the cycles computed by persistent homology consistent with the definitions of rings elsewhere in this thesis.
 
 The results of the persistent homology calculations will be discussed primarily in terms of the persistence diagrams, with the structure rationalised in comparison to analytic examples. 
-However, it will also be shown how metrical quantities such as the ring statistics compare to persistent cycles.
+However, it will also be shown how metrical quantities such as the ring statistics compare to inferred persistent cycles.
 
 \subsection{Overview of Persistence Diagrams}
 
@@ -360,7 +360,7 @@ At higher temperatures still, these bands broaden and finally coalesce.
      \end{subfigure}
      \hfill
      	
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t-2700_tr_pd.pdf}
@@ -433,7 +433,7 @@ Although difficult to see, these correspond well with the bright spots in the pe
          \label{fig:b3b}
      \end{subfigure}
      
-     \vspace{0.5cm}
+     \vspace{2mm}
    \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/sl_oct_b3_150.pdf}
@@ -509,7 +509,7 @@ Although shown for the octagon here, this in fact holds for the other ring sizes
          \label{fig:b4b}
      \end{subfigure}
      
-     \vspace{0.5cm}
+     \vspace{2mm}
    \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.95\textwidth]{./figures/ph/sl_oct_b4_150.pdf}
@@ -531,7 +531,7 @@ Although shown for the octagon here, this in fact holds for the other ring sizes
          \label{fig:b4e}
      \end{subfigure}
    
-   \vspace{0.5cm}
+   \vspace{2mm}
    \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=0.8\textwidth]{./figures/ph/sl_oct_b2_a.pdf}
@@ -671,8 +671,8 @@ This is because these species are so relatively short\--lived and spread through
          \caption{Ring statistics}
          \label{fig:trpkphb}
      \end{subfigure}
-     \vspace{0.5cm}
-     
+
+     \vspace{2mm}     
       \begin{subfigure}[b]{0.96\textwidth}
          \centering
          \includegraphics[width=0.87\textwidth]{./figures/ph/tr_delta_pk.pdf}
@@ -716,7 +716,7 @@ However, this can be achieved with another algorithm developed in this thesis, n
 In bond switching, the potential model allows for greater freedom in the bond lengths and angles, and the process of randomising an existing lattice (as opposed to building an random ring structure sequentially) allows configurations with a greater range of ring sizes, and a greater level of ring disorder, to be realised.
 
 Therefore, in this section, persistent homology analysis will be performed on the configurations generated from bond switching, applying the information learned from analogous calculations on triangle rafts.
-The specific systems studied will be a subset of those from chapter \ref{ch:generalnetworks}, namely those at two different bond stretching and angle force constant ratios of $k_r/t_\theta=16,4$, with convexity maintained.
+The specific systems studied will be a subset of those from chapter \ref{ch:generalnetworks}, namely those at two different bond stretching and angle force constant ratios of $\fk_r/\fk_\theta=16,4$, with convexity maintained.
 The persistence diagrams and change in Betti numbers will be investigated for these systems, and the effect of the potential model highlighted.
 In addition, the results will be contrasted with those of triangle rafts.
 Again calculations were performed with the GUDHI library \cite{gudhi}, and birth and death filtration values are given with reference to the equilibrium bond length, $r_0$.
@@ -724,7 +724,7 @@ Again calculations were performed with the GUDHI library \cite{gudhi}, and birth
 \subsection{Persistence Diagrams}
 
 The persistence diagrams for bond switching configurations generated with the two potential models are given in figure \ref{fig:bspd}.
-Figures \ref{fig:bspda}\--\ref{fig:bspdd} pertain to the force constant ratio $k_r/k_\theta=16$ and figures \ref{fig:bspde}\--\ref{fig:bspdh} at $k_r/k_\theta=4$.
+Figures \ref{fig:bspda}\--\ref{fig:bspdd} pertain to the force constant ratio $\fk_r/\fk_\theta=16$ and figures \ref{fig:bspde}\--\ref{fig:bspdh} at $\fk_r/\fk_\theta=4$.
 For both models, four different $p_6$ values were selected, corresponding to four increasing levels of disorder.
 The initial impression may be that the persistence diagrams look very different from those of triangle rafts in figure \ref{fig:trpd}, but closer inspection reveals this is not the case, and they share many of the same characteristics.
 A key point these apparent differences is that the bond lengths have inherently more flexibility in the case of bond switching than triangle rafts.
@@ -749,7 +749,7 @@ This precludes the formation of significant higher order bands as seen in triang
          \caption{$k_r/k_\theta=16$, $p_6=0.890$} %399
          \label{fig:bspda}
      \end{subfigure}
-     \hspace{2cm}
+     \hspace{1cm}
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_301_bs_pd.pdf}
@@ -763,7 +763,7 @@ This precludes the formation of significant higher order bands as seen in triang
          \caption{$k_r/k_\theta=16$, $p_6=0.332$}% 231
          \label{fig:bspdc}
      \end{subfigure}
-     \hspace{2cm}
+     \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_0_bs_pd.pdf}
@@ -778,7 +778,7 @@ This precludes the formation of significant higher order bands as seen in triang
          \caption{$k_r/k_\theta=4$, $p_6=0.943$}% 399
          \label{fig:bspde}
      \end{subfigure}
-     \hspace{2cm}
+     \hspace{1cm}
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_257_bs_pd.pdf}
@@ -792,7 +792,7 @@ This precludes the formation of significant higher order bands as seen in triang
          \caption{$k_r/k_\theta=4$, $p_6=0.332$}% 189
          \label{fig:bspdg}
      \end{subfigure}
-     \hspace{2cm}
+     \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_0_bs_pd.pdf}

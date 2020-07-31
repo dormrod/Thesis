@@ -85,14 +85,14 @@ This is known as importance sampling and is vastly more efficient when dealing w
 \begin{figure}[btp]
      \centering
      
-     \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_quad.pdf}
          \caption{Quadrature}
          \label{fig:montecarloint1}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_rand.pdf}
          \caption{Uniform sampling}
@@ -100,15 +100,15 @@ This is known as importance sampling and is vastly more efficient when dealing w
      \end{subfigure}
      \hfill
      
-     \vspace{0.5cm}
-     \begin{subfigure}[b]{0.48\textwidth}
+     \vspace{2mm}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_imp.pdf}
          \caption{Importance sampling}
          \label{fig:montecarloint3}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/mc_2d_mcmc.pdf}
          \caption{Markov Chain \mc}
@@ -259,7 +259,7 @@ Indeed, the name itself reflects its origins in the analogous metallurgical proc
 
 \begin{figure}[tb]
      \centering
-    \includegraphics[width=0.48\textwidth]{./figures/methods/mc_2d_sa.pdf}
+    \includegraphics[width=0.45\textwidth]{./figures/methods/mc_2d_sa.pdf}
       \caption{Demonstration of the simulated annealing algorithm on a \td{} potential energy surface, with states coloured by temperature (red $\rightarrow$ blue indicating hot $\rightarrow$ cold. As the temperature is reduced the algorithm converges on the global minimum.}
       \label{fig:montecarloint5}
 \end{figure}
@@ -325,7 +325,7 @@ Visualisations are provided for reference in figure \ref{fig:bsmc}.
          \label{fig:bsmc4}
      \end{subfigure}
      
-     \vspace{0.5cm}
+     \vspace{2mm}
      \begin{subfigure}[b]{0.24\textwidth}
      \centering
          \includegraphics[height=2.8cm]{./figures/methods/bs_10.pdf}
@@ -387,25 +387,25 @@ As such a popular choice for materials modelling is the Keating potential and mo
 For a \td{} system the Keating potential has the form:
 \begin{equation}
 	\label{eq:keating}
-	\pen = \frac{3}{16}\frac{\fk_S}{r_0^2}\sum_{\substack{i,j \in \\ \text{stretches}}} \left(r_{ij}^2-r_0^2\right)^2+
-	\frac{3}{8}\frac{\fk_A}{r_0^2}\sum_{\substack{ijk \in \\ \text{angles}}}\left(r_{ij}r_{ik}\cos\theta_{ijk}-r_0^2\cos\theta_0\right)^2 \,,
+	\pen = \frac{3}{16}\frac{\fk_r}{r_0^2}\sum_{\substack{i,j \in \\ \text{stretches}}} \left(r_{ij}^2-r_0^2\right)^2+
+	\frac{3}{8}\frac{\fk_\theta}{r_0^2}\sum_{\substack{ijk \in \\ \text{angles}}}\left(r_{ij}r_{ik}\cos\theta_{ijk}-r_0^2\cos\theta_0\right)^2 \,,
 \end{equation}
 %where $r_{ij}$ the distance and $\theta_{ijk}$ the angle between particles; whilst 
-where $\fk_S$ and $\fk_A$ are the force constants for the stretching and angular terms respectively \cite{Kumar2012}.
+where $\fk_r$ and $\fk_\theta$ are the force constants for the stretching and angular terms respectively \cite{Kumar2012}.
 This potential drives the system towards equilibrium values of $r_0$ for the bond lengths and $\theta_0$ for the bond angles.
 The Keating potential has been parametrised for a range of specific materials \cite{Kumar2012,Drabold2009}. 
 
 However, a more generic potential model is sometimes required which captures the same essential physics.
 This is provided through the simplified Keating potential \cite{VonAlfthan2003},
 \begin{equation}
-	\pen = \frac{\fk_S}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_A}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \left(\cos\theta_{ijk}-\cos\theta_0\right)^2\,,
+	\pen = \frac{\fk_r}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_\theta}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \left(\cos\theta_{ijk}-\cos\theta_0\right)^2\,,
 \end{equation}
 which is harmonic in stretching and angular terms.
 A further modification can be made to this potential. 
 Sometimes it is informative build models which enforce ring convexity \ie{} maintain all angles within the range $0\leq \theta_{ijk} \leq \pi$.
 This can be achieved by augmenting the simplified Keating potential with a restricted bending (ReB) potential \cite{Bulacu2013}:
 \begin{equation}
-	\pen = \frac{\fk_S}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_A}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \frac{\left(\cos\theta_{ijk}-\cos\theta_0\right)^2}{\sin^{2}\theta_{ijk}}\,.
+	\pen = \frac{\fk_r}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_\theta}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \frac{\left(\cos\theta_{ijk}-\cos\theta_0\right)^2}{\sin^{2}\theta_{ijk}}\,.
 \end{equation}
 The addition of the sine term in denominator causes the potential to diverge as bond angles approach linearity, preventing bonds from ``inverting''.
 
@@ -491,7 +491,7 @@ where $\rho=\mathcal{N}/{V}$, the number density.
          \label{fig:hardmc3}
      \end{subfigure}
      
-     	\vspace{0.5cm}
+     	\vspace{2mm}
        \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[width=3cm]{./figures/methods/mc_move_d.pdf}

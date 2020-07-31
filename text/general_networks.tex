@@ -416,9 +416,9 @@ As a demonstration of the general applicability of the bond switching algorithm,
 In order to do this, an initial crystalline fullerene\--like structure must be generated. 
 A practical method to achieve this is from the dual lattice of a platonic solid, as outlined below and illustrated in figure \ref{fig:topomethod}.
 \begin{enumerate}
-	\item Construct an icosahedron for 3\--coordinate networks or a cube for 4\--coordinate networks and subdivide the faces into triangles or squares respectively (figures \ref{fig:topo1},\ref{fig:topo4})
-	\item Project the lattice onto a sphere (figures \ref{fig:topo2}, \ref{fig:topo5})
-	\item Generate atomic network from the dual lattice (figures \ref{fig:topo3},\ref{fig:topo6})
+	\item Construct an icosahedron for 3\--coordinate networks or a cube for 4\--coordinate networks and subdivide the faces into triangles or squares respectively (figures \ref{fig:topo1} and \ref{fig:topo4})
+	\item Project the lattice onto a sphere (figures \ref{fig:topo2} and \ref{fig:topo5})
+	\item Generate atomic network from the dual lattice (figures \ref{fig:topo3} and \ref{fig:topo6})
 \end{enumerate}
 Once this lattice has been constructed, the bond switching algorithm may proceed as usual.
 
@@ -522,7 +522,7 @@ They are as follows:
 \begin{enumerate}
 	\item \textbf{Bond switching}: networks of $1024$ rings for $\ki=4,6$ and $1152$ rings for $\ki=5$. 
 	In a simulation, the system was thermalised with $2\times 10^5$ random moves, and annealed over a further $4\times 10^6$ moves. 
-	A series of different potential models were also used with bond length/angle force constant ratios of $k_r/k_\theta=16,4,1,1/4$. 
+	A series of different potential models were also used with bond length/angle force constant ratios of $\fk_r/\fk_\theta=16,4,1,1/4$. 
 	For each parameter set, 100 simulations were run starting from different random seeds.
 	\item \textbf{Triangle rafts}: networks of $1000$ rings across a temperature range of $T=10^{-4.5}\rightarrow10^{-1.5}$, as outlined in section \ref{s:triangleraft}, totalling some $27,500$ configurations.  
 	\item \textbf{Hard disk \mc}: systems of $1000$ disks at packing fractions in the range $\phi=0.0\rightarrow0.77$.
@@ -625,7 +625,7 @@ It is found that all these 3\-- coordinate networks are disassortative and lie i
 The experimental colloid samples are well described by the hard disk model (blue points and line), with $p_6\approx0.84$ corresponding to packing fractions above the freezing transition limit ($\phi\approx 0.70$) \cite{Bernard2011}.
 The curves generated from bond switching and triangle rafts display different assortativities which depend on the balance of the length\-- and angle\--drive forces.
 The driving force for the hard disk model is purely entropic, whereas for the other methods there is also a complex energy landscape, which may favour specific assortativities and which can be ``tuned'' by altering the balance of the interactions. 
-For example the bond switching results show the effect of varying this balance with $k_r/k_\theta=16,4,1,1/4$ (black to light grey lines), leading to a shifting in the assortativity curves.
+For example the bond switching results show the effect of varying this balance with $\fk_r/\fk_\theta=16,4,1,1/4$ (black to light grey lines), leading to a shifting in the assortativity curves.
 This is supported by the experimental results from amorphous graphene (pink diamonds), which lie in the between the two curves with the largest bond length to angle force constant ratio, as would be intuitively expected for atomic systems and from empirical potential models \cite{Kumar2012}.
 
 \begin{figure}[bt]
@@ -669,7 +669,7 @@ This is supported by the experimental results from amorphous graphene (pink diam
      \end{subfigure}
      \hfill
    
-     \caption{Panel (a): variation in assortativity, $r$, against $p_6$ for a range of 3\--coordinate systems comprising experimental and simulation data. For bond switching data, darker grey colouring indicates a greater $k_r/k_\theta$.
+     \caption{Panel (a): variation in assortativity, $r$, against $p_6$ for a range of 3\--coordinate systems comprising experimental and simulation data. For bond switching data, darker grey colouring indicates a greater $\fk_r/\fk_\theta$.
 Panels (b)\--(e) show common defects found in crystalline systems, with their limiting assortativity value (b) isolated pair, $r=0.0$; (c) adjacent pair, cluster, $r=-0.1\dot{6}$;  (d) Stone\--Wales, mitosis, $r=-0.25$;  (e) 5\--7 chain (flower defect), 5\--8 chain, $r=-0.\dot{3}$.}
      \label{fig:assortgen}
 \end{figure}
@@ -758,7 +758,7 @@ As an illustration of the generalisability of the methods described in this work
 Such systems are also of experimental interest, as experimentalists now have access to ``non-classical'' fullerenes \cite{Tian2019,Guan2019,Brotsman2017,Kemnitz2018}, metal-organic nano-cages \cite{Fujita2016,Wang2017} as well as curved froths \cite{Roth2012}.
 One such fullerene was investigated here: a 92\--ring 3\--coordinate fullerene consisting of 5,6 and 7\-- rings.
 Possible configurations were again generated via bond switching, starting from the lattice depicted in figure \ref{fig:topo3}.
-Here $10^6$ total configurations were sampled from 100 different simulations, with $k_r/k_\theta=4$.
+Here $10^6$ total configurations were sampled from 100 different simulations, with $\fk_r/\fk_\theta=4$.
 
 Results of the network properties averaged across configurations are given in figure \ref{fig:fullerene92u}, coloured by potential energy.
 In this plot the value of $p_6$ is discretised, owing to the the small and well\--defined number of rings, and cannot exceed the upper limit imposed by the 12\--pentagon rule, whereas the assortativity is averaged.
