@@ -527,3 +527,11 @@
     \addcontentsline{mn}{marknote}
     {\protect\numberline{\themarknote}#1}
 }
+
+% Publications
+\newenvironment{publications}%
+{   \begin{alwayssingle}\chapter*{Publications}
+    \thispagestyle{empty}
+    \pagestyle{empty}
+   \setlength{\baselineskip}{\frontmatterbaselineskip}}
+{\end{alwayssingle}}

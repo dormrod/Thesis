@@ -18,7 +18,7 @@ All the networks considered in this work are undirected and all the theory assum
 
 \begin{figure}[ht]
      \centering
-      \includegraphics[width=0.5\textwidth]{./figures/methods/small_periodic_net.pdf}
+      \includegraphics[width=0.45\textwidth]{./figures/methods/small_periodic_net.pdf}
      \caption{Example of a periodic \td{} network where nodes are represented by circles and links as lines. Nodes are coloured similarly according to their degree, whilst periodic images are faded to highlight the central repeating unit.}
      \label{fig:smallnet}
 \end{figure}
@@ -35,32 +35,31 @@ The probability of a randomly selected node having degree $k$ is given by the no
 This is a normalised discrete distribution such that
 \begin{equation}
 	\label{eq:pknorm}
-	\sumk p_k = 1 \,.
+	\sumk p_k = 1.
 \end{equation}
 The $n$\th{} moments of this distribution are then given by:
 \begin{equation}
 	\label{eq:pkmoment}
-	\langle k^{n} \rangle = \sumk k^np_k \,.
+	\langle k^{n} \rangle = \sumk k^np_k.
 \end{equation}
 Alternatively, one can also calculate the probability that a randomly selected link has a $k$\--degree node at the end, denoted $q_k$.
 This is not the same as the distribution above, as there is greater chance of selecting links which emanate from high degree nodes, in a manner which is proportional to the node degree.
 As this distribution is normalised, this leads to the relations:
 \begin{align}
-	\sumk q_k &= 1 \label{eq:qknorm} \\
-	q_k &= \frac{kp_k}{\langle k \rangle} \label{eq:qkpk} \,.
+	\sumk q_k &= 1, \label{eq:qknorm} \\
+	q_k &= \frac{kp_k}{\langle k \rangle} \label{eq:qkpk}.
 \end{align}
 In addition, one can also evaluate the probability that a randomly chosen link has nodes of degree $j,k$ at either end.
-This is the node joint degree distribution, denoted $e_{jk}$. 
+This is the edge joint degree distribution, denoted $e_{jk}$. 
 Once again this is normalised and satisfies the following relationships:
 \begin{align}
 	\sumjk e_{jk} &= 1, \label{eq:ejknorm} \\
-	\sumjk e_{jk} &= q_j \label{eq:ejkqk} \\
-	e_{jk} &= e_{kj} \label{eq:ejkekj} \,,
+	\sumjk e_{jk} &= q_j, \label{eq:ejkqk} \\
+	e_{jk} &= e_{kj} \label{eq:ejkekj},
 \end{align}
 where the final result arises from reciprocal nature of the links in an undirected network.
-
 As an illustration of these different distributions, examples %for all three probability distributions 
-are provided below for the network in figure \ref{fig:smallnet}:
+are provided below for the network in figure \ref{fig:smallnet}:%, where the adjacent numbers correspond to the node degrees:
 \begin{align}
 	\mathbf{p} =  \frac{1}{16} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
@@ -68,7 +67,7 @@ are provided below for the network in figure \ref{fig:smallnet}:
 	8 & 6 \\
 	4 & 7 \\
 	\end{block}
-	\end{blockarray}
+	\end{blockarray},
 	\qquad
 	\mathbf{q} =  \frac{1}{96} \, \begin{blockarray}{*{1}{c} l}
 	\begin{block}{[*{1}{c}]>{$\footnotesize}l<{$}}
@@ -76,7 +75,7 @@ are provided below for the network in figure \ref{fig:smallnet}:
 	48 & 6 \\
 	28 & 7 \\
 	\end{block}
-	\end{blockarray}
+	\end{blockarray},
 	\qquad	
 	\mathbf{e} = \frac{1}{96}\: \begin{blockarray}{*{3}{c} l}
 	\begin{block}{*{3}{>{$\footnotesize}c<{$}} l}
@@ -87,7 +86,7 @@ are provided below for the network in figure \ref{fig:smallnet}:
 	9 & 22 & 17 & 6 \\
 	9 & 17 & 2 & 7\\
 	\end{block}
-	\end{blockarray} \, ,
+	\end{blockarray}.
 %	\textbf{p} = \frac{1}{96}\: \begin{blockarray}{*{5}{c} l}
 %	\begin{block}{*{5}{>{$\footnotesize}c<{$}} l}
 %	3 & 6 & 7 & 8 & 9 \\
@@ -101,7 +100,6 @@ are provided below for the network in figure \ref{fig:smallnet}:
 %	\end{block}
 %	\end{blockarray}
 \end{align}
-where the adjacent numbers correspond to the node degrees.
 
 \subsection{Atomic and Ring Networks}
 \label{s:atomringnetworks}
@@ -195,12 +193,12 @@ The planar case with periodic boundary conditions (mimicking an infinite planar 
 		6, \quad x_3 = 1 \\
 		4, \quad x_4 = 1 \\
 		5, \quad x_3 = 2/3,\, x_4 =1/3
-	\end{cases}\,.
+	\end{cases}.
 \end{equation}
 To reiterate in plain terms, this means that if there is a material consisting of atoms all forming exactly three bonds (as for amorphous carbon), the mean ring size \textit{must} be equal to six. 
 Similarly if all atoms form four bonds the mean ring size is four, and if there is a two\--thirds to one\--third mixture of coordination environments the mean ring size is five.
-The simplest illustrations of these are the hexagonal, square and cairo regular tilings, shown in figure \ref{fig:lattices}, but this law holds equally well for amorphous configurations.
-For aperiodic systems strictly $\chi=1$, but as $N\rightarrow \infty$, the proportion of vertices with unsatisfied coordination on the sample perimeter become negligible overall as does the term in $\chi$.
+The simplest illustrations of these are the hexagonal, square and Cairo regular tilings, shown in figure \ref{fig:lattices}, but this law holds equally well for amorphous configurations.
+For aperiodic systems strictly $\chi=1$, but as $N\rightarrow \infty$, the proportion of vertices with unsatisfied coordination on the sample perimeter become negligible overall, hence does the term in $\chi$.
 Therefore in reality these relationships hold, and remain as applicable to amorphous graphene as the basalt columns in Fingal's Cave, and the Penrose tiling \cite{Goehring2014,Ressouche2009}.
 
 This analysis also extends to spherical topology where $\chi=2$, and so:
@@ -211,7 +209,7 @@ This analysis also extends to spherical topology where $\chi=2$, and so:
 		\frac{4N-8}{N}, \quad x_4 = 1
 	\end{cases}\,.
 \end{equation}
-These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92}, \ref{fig:latticesfull98}) \cite{Fowler1996}.
+These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92} and \ref{fig:latticesfull98}) \cite{Fowler1996}.
 Much of the richness in the structural behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
 
 \begin{figure}[bt]
@@ -291,10 +289,15 @@ Many experimental and theoretical studies have shown good agreement to this law 
 
 Simple extensions of the classic law are however possible, by modifying the mean degree or the permitted degree range.
 For instance, $k$ is usually taken in the interval $k\geq3$ (as the triangle, $k=3$, is the smallest polygon), but there can be manifestations of physical systems where only certain degrees are accessible \cite{Rivier1988}.
-Additional examples of such systems will be procrystalline lattices explored in chapter \ref{ch:procrystals}. 
-The resulting \lm{} curves for a selection of these modifications are given in figure \ref{fig:lm3}. 
-A discussion of these will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
-The maximum value of these curves can be simply determined by removing constraint \eqref{con:lm3}, equivalent to setting $\lambda_2=0$ in equation \eqref{eq:mepk}.
+Good examples of such systems are procrystalline lattices, which are explored in chapter \ref{ch:procrystals}, in which the underlying lattice constraints may preclude the formation of odd membered rings or rings greater than a certain size. 
+\lm{} curves for a selection of $\ki$ and $k$\--range modifications are given in figure \ref{fig:lm3}. 
+%A discussion of these will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
+The maximum values of these curves, as indicated by circular points, are determined by removing constraint \eqref{con:lm3}, equivalent to setting $\lambda_2=0$ in equation \eqref{eq:mepk}.
+One can see that these modifications can lead to marked differences in the maximum entropy solutions.
+In particular, removing the possibility of small rings ($k<\ki$) forming reduces the maximum variance, as these are required to offset very large rings ($k\gg\ki$) in order to maintain the fixed mean ring size.
+
+%A discussion of \lm{} curves will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
+
 %Exploring these cases helps to understand the behaviour of \lm's law itself.
 %By restricting the ring size to just $5\leq k \leq 7$ results in a straight line, which to satisfy Euler's law must have equation $\mu_2 = 1-p_6$.
 %This line closely follows the high $p_6$ behaviour demonstrating that the initial deviation from the hexagonal lattice ($p_6=1$) is marked by the introduction of 5\-- and 7\-- ring defects.
@@ -318,6 +321,7 @@ The maximum value of these curves can be simply determined by removing constrain
      \end{subfigure}
      \hfill
      
+     \vspace{2mm}
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/methods/lm_3.pdf}
@@ -327,12 +331,12 @@ The maximum value of these curves can be simply determined by removing constrain
      \hfill
 
     
-     \caption{Illustration of \lm's maximum entropy method. Panel (a) gives examples of explicit maximum entropy distributions with different values of $p_6$. Panel (b) shows how these distributions can be summarised in a plot of $p_6$ \vs{} $\mu_2$ (\lm's law). Panel (c) provides extensions to the law by modifying the underlying constraints of the mean ring size and allowable $k$\--range.}
+     \caption{Illustration of \lm's maximum entropy method. Panel (a) gives examples of explicit maximum entropy distributions with different values of $p_6$. Panel (b) shows how these distributions can be summarised in a plot of $p_6$ \vs{} $\mu_2$ (\lm's law). Panel (c) provides extensions to the law by modifying the underlying constraints of the mean ring size and allowable $k$\--range, with circles indicating maximal values.}
      \label{fig:lm}
 \end{figure}
 
 The only somewhat puzzling aspect of this successful theory is the choice of constraint \eqref{con:lm3}.
-It was originally rationalised on the basis that the areas of rings of a given size, $A_k$, can be well fit by an expression $A_k = ak+b+c/k$, where $a$, $b$ and $c$ are constants.
+It was originally rationalised on the basis that the areas of rings of a given size, $A_k$, can be well fit by an expression $A_k = ak+b+c/k$, where $a,b,c$ are constants.
 As noted at the time, this is by no means true for all systems and in fact is contrary to the widely known Lewis law, which states that $A_k$ is linear in $k$ for many observable networks \cite{Lewis1928,Fortes1995,Kim2014}.
 Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \ref{s:assortativity} it will be demonstrated that it can be regenerated by considering ring adjacencies.
 
@@ -340,22 +344,22 @@ Despite this, the universality of the \lm{} law suggests that there must be a ph
 \label{s:awlaw}
 
 The ring statistics given by \lm's law are an important measure for physical networks, but they do not provide a complete characterisation of the ring structure, as they say nothing about the ring adjacencies. 
-This is important because whilst with the same ring statistics it is theoretically possible to organise the rings in many different arrangements, it is well known experimentally that only a subsection of these are observed.
+This is important because whilst with the same ring statistics it is theoretically possible to organise the rings in many different arrangements, it is well known experimentally that only a subset of these are observed.
 The vast majority of physical systems have a preference for small rings ($k<\ki$) be adjacent to large rings ($k>\ki$).
 This effect was first noted in the grains of polycrystals by Aboav \cite{Aboav1970}.
 Aboav quantified these ring correlations by measuring the mean ring size about a $k$\--ring, denoted $m_k$, and found empirically that $m_k \approx 5 + 8/k$.
 
-In an attempt to explain this observation, Weaire formulated the following relation
+In an attempt to explain this observation, Weaire formulated the following relationship
 \begin{equation}
 	\label{eq:weairesumrule}
-	\sumk km_kp_k = \sumk k^2p_k = \mu_2 + \ki^2 \,,
+	\sumk km_kp_k = \sumk k^2p_k = \mu_2 + \ki^2,
 \end{equation}
 known as Weaire's sum rule \cite{Weaire1974}.
 From this he suggested the modification of $m_k=5+\left(6+\mu_2\right)/k$ which satisfied this rule.
 Aboav's original equation then became a special case when $\mu_2=2$, which is close to the expected value for a random collection of Voronoi polygons (see section \ref{s:voronoiintro}).
-Aboav then proposed that if a generic form of $m_k = A + B/k$ was used in conjunction with Weaire's sum rule then
+Aboav proposed that if a generic form of $m_k = A + B/k$ was used in conjunction with Weaire's sum rule then
 \begin{equation}
-	m_k = A+\frac{\mu_2+\ki^2-A\ki}{k}\,.
+	m_k = A+\frac{\mu_2+\ki^2-A\ki}{k}.
 \end{equation}
 This is now more commonly expressed in the linear form \cite{Chiu1995}:
 \begin{equation}
@@ -364,17 +368,17 @@ This is now more commonly expressed in the linear form \cite{Chiu1995}:
 \end{equation}
 Equation \ref{eq:aboavweaire} is known as the \aw{} law and relates the mean ring size about a given central ring to a single fitting parameter, $\alpha$.
 The value of $\alpha$ describes the strength of the ring correlations, with a larger positive value indicating a greater tendency for small\--large ring adjacencies.
-More specifically, the random limit can be deduced by evaluating $\frac{\partial{m_k}}{\partial{x}}=0$ as \cite{Delannay1994}:
+More specifically, the random limit can be deduced by evaluating $\frac{\partial{m_k}}{\partial{k}}=0$ as \cite{Delannay1994}:
 \begin{equation}
 	\label{eq:awrandlim}
-	\alpha=-\frac{\mu_2}{\ki^2} \,.
+	\alpha=-\frac{\mu_2}{\ki^2}.
 \end{equation}
 Hence all systems with $\alpha>-\mu_2/\ki^2$ have more small\--large ring  adjacencies than would be expected from chance whilst conversely those with $\alpha<-\mu_2/\ki^2$ have more small\--small and large\--large pairings.
 
 \begin{figure}[tb]
      \centering
-      \includegraphics[width=8cm]{./figures/methods/aw_demo.pdf}
-     \caption{Calculation of an \aw{} fit for three configurations (shown in figure \ref{fig:zach}(b)\--(d)). The value of the $\alpha$ parameter quantifies the tendency of small rings to be adjacent to large rings, with a larger value indicating stronger small\--large ring correlations.}
+      \includegraphics[width=0.45\textwidth]{./figures/methods/aw_demo.pdf}
+     \caption{Calculation of an \aw{} fit for three configurations (shown in figures \ref{fig:zach_high}\--\ref{fig:zach_low}). The value of the $\alpha$ parameter quantifies the tendency of small rings to be adjacent to large rings, with a larger value indicating stronger small\--large ring correlations.}
      \label{fig:awdemo}
 \end{figure}
 

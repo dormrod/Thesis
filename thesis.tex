@@ -52,7 +52,7 @@
 % Either way, you'll have to choose and configure an appropriate bibliography format...
 
 % The science-type option: numerical in-text citation with references in order of appearance.
-\usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false, url=false, arxiv=false]{biblatex}
+\usepackage[style=phys, sorting=none, backend=biber, doi=false, isbn=false, url=false, arxiv=false, articletitle=true, biblabel=brackets]{biblatex}
 \newcommand*{\bibtitle}{References}
 
 % The humanities-type option: author-year in-text citation with an alphabetical works cited.
@@ -158,9 +158,14 @@
 %\end{acknowledgements}
 
 %%%%% ABSTRACT -- Nothing to do here except comment out if you don't want it.
-%\begin{abstract}
-%	\input{text/abstract}
-%\end{abstract}
+\begin{abstract}
+	\input{text/abstract}
+\end{abstract}
+
+%%%%% Publications
+\begin{publications}
+	\input{text/publications}
+\end{publications}
 
 %%%%% MINI TABLES
 % This lays the groundwork for per-chapter, mini tables of contents.  Comment the following line
@@ -193,6 +198,7 @@
 % This example includes a list of abbreviations.  Look at text/abbreviations.tex to see how that file is
 % formatted.  The template can handle any kind of list though, so this might be a good place for a
 % glossary, etc.
+%\include{text/variables}
 %\include{text/abbreviations}
 %\include{text/publications}
 
@@ -203,25 +209,26 @@
 %%%%% CHAPTERS
 % Add or remove any chapters you'd like here, by file name (excluding '.tex'):
 \flushbottom
-%\include{text/introduction}
-%\include{text/theory}
-%\include{text/methods}
-%\include{text/bilayers}
-%\include{text/targeted_opt}
-%\include{text/general_networks}
-%\include{text/quasi2d}
-%\include{text/procrystals}
+\include{text/introduction}
+\include{text/theory}
+\include{text/methods}
+\include{text/bilayers}
+\include{text/targeted_opt}
+\include{text/general_networks}
+\include{text/quasi2d}
+\include{text/procrystals}
 \include{text/ph}
-%\include{text/conclusions}
+\include{text/conclusions}
 
 %% APPENDICES %% 
 % Starts lettered appendices, adds a heading in table of contents, and adds a
 %    page that just says "Appendices" to signal the end of your main text.
 \startappendices
 % Add or remove any appendices you'd like here:
-%\include{appendices/forces}
-%\include{appendices/derivations}
-%\include{appendices/maps}
+\include{appendices/forces}
+\include{appendices/voronoi}
+\include{appendices/derivations}
+\include{appendices/maps}
 
 
 

@@ -12,23 +12,22 @@ The deviations of ring areas from the ideal values are discussed and the relativ
 \section{Bilayer Materials}
 
 An important class of \td{} materials which have emerged in the 21\st{} century are bilayers of silica, \sioii, and related species \cite{Buchner2017}.
-These can be prepared experimentally by chemical vapour deposition on metal and graphene supports \cite{Huang2012,Lichtenstein2012a}.
+The interest in these materials largely stems from the potential to control the structure and pore geometries, with the end goal being to replicate the successes of zeolitic catalysts but in reduced dimensionality. 
+Silica bilayers can be prepared experimentally by chemical vapour deposition on metal and graphene supports \cite{Huang2012,Lichtenstein2012a}.
 As in the three\--dimensional glass, the basic building blocks of silica bilayers are vertex sharing \sioiv{} tetrahedra, maintaining full coordination for all atoms in the bulk \cite{Wilson2013}.
 These are arranged such that three of the vertices are connected to tetrahedra in the same layer, with the final vertex being shared between layers acting as a ``bridge'' (figure \ref{fig:bilayer1}).
 A consequence of these bridging oxygen atoms is to enforce a symmetry plane between the upper and lower layers.
 
 Topologically, the symmetry plane means that these materials can be viewed as effective \td{} networks.
 Taking one of the layers, without the bridging oxygens, and projecting the atoms onto the horizontal plane reveals a representation of vertex sharing triangles, referred to as a triangle raft (figure \ref{fig:bilayer2}).
-The ring structure then emerges from the three\--coordinate network formed by connecting the silicon atoms of adjacent triangles as in figure \ref{fig:bilayer3}.
-Indeed, scanning tunnelling microscopy (STM) has been used to directly visualise the ring structure in silica bilayers, revealing both crystalline and glassy arrangements and even the interface between the two   \cite{Loffler2010,Lichtenstein2012b}.
+The ring structure then emerges from the 3\--coordinate network formed by connecting the silicon atoms of adjacent triangles, as in figure \ref{fig:bilayer3}.
+Indeed, a suite of analytical methods, comprising scanning tunnelling microscopy (STM), atomic force microscopy (AFM) and scanning transmission electron microscopy (STEM), have been used to directly visualise the ring structure in silica bilayers, revealing both crystalline and glassy arrangements and even the interface between the two   \cite{Loffler2010,Lichtenstein2012b}.
 
-More recently experimentalists have also succeeded in synthesising bilayers of germania, \geoii{} \cite{Lewandowski2018,Lewandowski2019}.
-\davidnote{Add a bit more experimental context here, discuss with Mark}
-%These have the same fundamental structure as \sioii{}, but with more distorted tetrahedra \davidnote{Why again...some inorganic stuff...}.
-%This can lead to a build up of strain and rumpling of the tetrahedral layers.
-%\marknote{Have you discussed somewhere why they are doing this? Control of the pore size and pote
-%density critical for gas separation applications....}
-%\marknote{Note somewhere that making the GeO2 analogue is more difficult experimentally.....}
+More recently, experimentalists have also succeeded in synthesising bilayers of aluminosilicates and germania, \geoii{} \cite{Jhang2017,Lewandowski2018,Lewandowski2019}.
+The realisation of these materials have posed additional challenges.
+The relative difficulty in obtaining bilayers of germania as opposed to silica can be traced back to the inter\--tetrahedal angles.
+Whilst silica has a Si\--O\--Si angle of $\sim 150^\circ$, the analogous Ge\--O\--Ge angle is $\sim 130^\circ$ \cite{Neuefeind1996}, a difference which can be attributed to many\--body ion polarisation effects \cite{Wilson2012a,Wilson2012b}.
+The consequence of this reduced bond angle is that it is energetically less favourable to adopt the $180^\circ$ tetrahedra required in the bilayer and significant rumpling of the surface is required.
 
 \begin{figure}[bt]
      \centering
@@ -57,7 +56,7 @@ More recently experimentalists have also succeeded in synthesising bilayers of g
      \end{subfigure}
      \hfill
      
-     \caption{Silica bilayers of vertex sharing tetrahedra in (a) can be represented as a \td{} triangle raft in (b). Silicon and oxygen atoms are coloured yellow and red respectively. The ring structure then emerges from the three\--coordinate network comprising the silicon atoms, (c).}
+     \caption{Silica bilayers of vertex sharing tetrahedra in panel (a) can be represented as a \td{} triangle raft in panel (b). Silicon and oxygen atoms are coloured yellow and red respectively. The ring structure then emerges from the 3\--coordinate network comprising the silicon atoms, panel (c).}
      \label{fig:bilayer}
 \end{figure}
 
@@ -66,30 +65,31 @@ More recently experimentalists have also succeeded in synthesising bilayers of g
 
 As mentioned in the  introduction, both \abinitio{} methods and classical molecular dynamics have been used in computational studies of silica bilayers, which often require a starting atomistic configuration  \cite{Bjorkman2013,Malashevich2016,Wilson2013,Roy2018}.  
 One approach is to simply take an experimental sample as the starting structure. 
-Whilst this may be on the surface the best solution, the experimental configurations may contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine''.
+Whilst this may be the best solution, the experimental configurations can contain defects or areas where the image is corrupted \ie{} the configuration may not be ``pristine''.
 Additionally, the location of each atom has an associated uncertainty which leads to discrepancies in the observed bond lengths and angles, which can be compounded by any out\--of\--plane distortions.
-Whilst computational refinement can attenuate these problems \cite{Sadjadi2017,Wilson2018}, there remains the more fundamental question of how ``typical'' the available images are from experiment, as STM provides exceptional information but only on relatively small sample sizes.
+Whilst computational refinement can attenuate these problems \cite{Sadjadi2017,Wilson2018}, there remains the more fundamental question of how ``typical'' the available images are from experiment.
+STM and AFM provide exceptionally well resolved information but only on relatively small sample sizes.
 Computational techniques can therefore prove a valuable tool for generating a large number of high\--quality configurations and corroborating experimental information.  
 
 One current approach is to transform amorphous graphene configurations \cite{Wilson2013}.
-Here amorphous samples of carbon are generated using a bond switching method (as outlined in section \ref{s:bondswitch}), before the carbon atoms are swapped from silicon and decorated with oxygens.
+Here disordered networks are generated using a bond switching method (as outlined in section \ref{s:bondswitch}), before the carbon atoms are exchanged for silicon and decorated with oxygens.
 Whilst this is a valid approach, the method assumes that the two materials are topologically equivalent.
 This is likely an oversimplification, as the presence of the bridging oxygens in silica afford the structure increased flexibility when compared to the carbon analogue.
-This likely explains why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large ring proportions being under\--estimated \cite{Kumar2014}.
+It also may explain why this method has struggled to mirror experimentally observed values of the ring statistics and \aw{} parameter, with small and large ring proportions being under\--estimated \cite{Kumar2014}.
 
 An alternative approach is to use molecular dynamics coupled with an effective pair potential to obtain viable configurations \cite{Roy2018}.
-Such methods are relatively common, having been employed previously to study amorphous graphene \cite{Kumar2012}. 
-Such methods offer the potential for generating realistic configurations but are difficult to control as the cooling rates which must be applied are necessarily huge compared to experimental rates. 
+Such techniques are relatively common, having been employed previously to study amorphous graphene \cite{Kumar2012}. 
+These methods offer the potential for generating realistic configurations but are difficult to control as the cooling rates which must be applied are necessarily huge compared to experimental rates. 
 A potential artefact of the high cooling rates is the effectively freezing in of defect states, either in terms of local coordination environments or highly\--strained (three-membered) rings.
 In addition, as with the method above, such methods appears to systematically underestimate the \aw{} parameter, indicative of too little structural ordering.
 
 \section{Triangle Raft Method}
 \label{s:triangleraft}
 
-The motivation of this work was to develop a construction algorithm to generate samples of silica bilayers which can capture the full \td{} network topology; both the ring distribution \textit{and} correlations. 
-The model should be able to explore all phases from crystalline to amorphous yet computationally efficient enough to produce configurations suitable for further high throughput calculations. 
+The motivation of this work was to develop a construction algorithm to generate samples of silica bilayers which can capture the full \td{} network topology, including both the ring distribution \textit{and} correlations. 
+The model should be able to explore all phases from crystalline to amorphous yet be computationally efficient enough to produce configurations suitable for further high throughput calculations. 
 To achieve this a grow-from-seed Monte Carlo algorithm has been developed, where rings are individually added to build a triangle raft.
-This approach takes inspiration from the first hand\--built models, which have been noted to bear close resemblance to experimental structures \cite{Shackelford1982a,Buchner2016a}.
+This approach takes inspiration from the first hand\--built models, which have traditionally been noted to bear close resemblance to experimental structures \cite{Shackelford1982a,Buchner2016a}.
 Such models were superseded by computational techniques designed to generate periodic configurations. 
 However, the recent development in techniques to simulate aperiodic samples, such as sliding boundary conditions for molecular dynamics \cite{Theran2015}, makes this constraint no longer essential, and benefit may be gained from the added freedom of an aperiodic model.
 
@@ -129,13 +129,13 @@ Rings which deviates increasingly from the ideal hexagon will therefore incur an
   
          \includegraphics[width=0.6\textwidth]{./figures/bilayers/tr_pot_model.pdf}
  
-     \caption{Schematic of the potential model in triangle rafts. Stiff harmonic springs (dashed and dashed\--dotted lines) preserve the triangular subunits, whilst the shifted and cut 24\--12 potential (dotted line) maintains an equilibrium angle of $120^\circ$ between neighbouring subunits.}
+     \caption{Schematic of the potential model in triangle rafts. Stiff harmonic springs (dashed and dashed\--dotted lines) preserve the triangular subunits, whilst the shifted and cut 24\--12 potential (dotted line) maintains an equilibrium inter\--triangle angle of $120^\circ$ between neighbouring subunits.}
      \label{fig:trpotmodel}
 \end{figure}
 
-To summarise, the primary aim here is to generate topologies suitable for later investigation using more detailed (and hence more accurate but more
-computationally-demanding) potential models. 
-As a result, the harmonic springs simply control the local (triangular) geometries whilst the 24-12 potential controls the repulsion between these local polyhedra. 
+To summarise, the primary aim here is to generate topologies suitable for later investigation using more detailed (\ie{} more accurate but
+computationally\--demanding) potential models. 
+As a result, the harmonic springs simply control the triangular geometries whilst the 24-12 potential controls the repulsion between these local units. 
 These functions are chosen as deliberately simple to improve computational efficiency and achieve high throughput of idealised networks. 
 Furthermore, the parameters $\fk$ and $\epsilon$ need have no direct physical meaning, simply controlling the
 meaning of the system ``temperature'' as discussed below. 
@@ -168,38 +168,28 @@ Using the model detailed above, a Monte Carlo construction algorithm has been de
 		\label{en:loopend}
 	\item Repeat steps \ref{en:loopstart} $\rightarrow$ \ref{en:loopend} until the target number of rings is reached
 \end{enumerate}
-The probability of a ring of size $k$ being accepted, $P_k$, is given by the equation:
-\begin{equation}
-	\label{eq:probdist}
-	P_k=\frac{ \exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_k\right)/T\right]}}{\sum\limits_{k}\exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_{0}\right)/T\right]}},
-\end{equation}
-where $\mathcal{U}_k$ and $\mathcal{U}_{0}$ correspond to the energy of the trial structure and lowest energy of all trial structures respectively, and $T$ is a ``temperature''. 
-The parameter $T$ controls how easily the potential energy landscape can be explored, and therefore how accessible strained rings become. 
-In the low $T$ limit, the acceptance probabilities are dominated by the energy term, and the rings which are selected will be those with the lowest energy. 
-Note that this is not necessarily the 6-ring, but rather is dependent on the local environment. On the other hand, in the high $T$ limit, the acceptance probabilities are approximately equal, and rings are selected on a more random basis. 
-This is demonstrated in table \ref{tab:prob}, using the example configurations from figure \ref{fig:triraftalgtrial}. 
-The ``temperature'' parameter is therefore the primary method for controlling the distribution of ring sizes in constructed networks.
 
 \begin{figure}[bt]
      \centering
      
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=2.5cm]{./figures/bilayers/alg_search_1.pdf}
+         \includegraphics[width=0.5\textwidth]{./figures/bilayers/alg_search_1.pdf}
          \vspace{-1mm}
          \caption{}
          \label{fig:triraftalgsearch1}
      \end{subfigure}
-     \hfill
 	\begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=2.5cm]{./figures/bilayers/alg_search_2.pdf}
+         \includegraphics[width=0.5\textwidth]{./figures/bilayers/alg_search_2.pdf}
          \caption{}
          \label{fig:triraftalgsearch2}
      \end{subfigure}
-     \hfill
+   
      \caption{Panel (a) shows how triangles used to construct a ring are initially selected. There are no atoms with dangling bonds within the first search region (blue dashed line), and so the search area is extended (red dashed line), where triangles A and B are found. Panel (b) gives the three possibilities for the triangles that will form part of the constructed ring: A–C–D–B, A–E, B–F. As A–C–D–B corresponds to the largest starting ring size this is selected.}
      \label{fig:triraftalgsearch}
+     
+     \vspace{2mm}
      
      \begin{subfigure}[b]{0.18\textwidth}
          \centering
@@ -236,10 +226,24 @@ The ``temperature'' parameter is therefore the primary method for controlling th
          \label{fig:triraftalgtrial5}
      \end{subfigure}
      \hfill
-     \caption{Geometry optimised structures for trial rings in the range $k = 4-8$. The ring structure is shown along with the \sioiii{} triangle}
+     \caption{Geometry optimised structures for trial rings in the range $k = 4-8$. The ring structure is shown along with the \sioiii{} triangle.}
      \label{fig:triraftalgtrial}
     
 \end{figure}
+
+\noindent The probability of a ring of size $k$ being accepted, $P_k$, is given by the equation:
+\begin{equation}
+	\label{eq:probdist}
+	P_k=\frac{ \exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_k\right)/T\right]}}{\sum\limits_{k}\exp{\left[-\left(\mathcal{U}_{k}-\mathcal{U}_{0}\right)/T\right]}},
+\end{equation}
+where $\mathcal{U}_k$ and $\mathcal{U}_{0}$ correspond to the energy of the trial structure and lowest energy of all trial structures respectively, and $T$ is a ``temperature''. 
+The parameter $T$ controls how easily the potential energy landscape can be explored, and therefore how accessible strained rings become. 
+In the low $T$ limit, the acceptance probabilities are dominated by the energy term, and the rings which are selected will be those with the lowest energy. 
+Note that this is not necessarily the 6-ring, but rather is dependent on the local environment. On the other hand, in the high $T$ limit, the acceptance probabilities are approximately equal, and rings are selected on a more random basis. 
+This is demonstrated in table \ref{tab:prob}, using the example configurations from figure \ref{fig:triraftalgtrial}. 
+The ``temperature'' parameter is therefore the primary method for controlling the distribution of ring sizes in constructed networks.
+
+
 
 \begin{table}[bt]
 	\centering
@@ -266,17 +270,7 @@ This is performed in the wider context of systematically varying the model param
 
 \subsection{Network Growth}
  
-The triangle raft method is robust and controllable, and is able to generate configurations with tuneable ring statistics and topologies.
-Results will largely focus on the system where $k=4-10$, denoted $\br{4}{10}$, mimicking the experimentally observed range for silica bilayers. 
-Six example configurations are given in figure \ref{fig:triraft}, which are generated with a range of temperatures and growth geometries. 
-Figures \ref{fig:triraft1}\--\ref{fig:triraft4} provide a good qualitative analysis of the effect of temperature on the ring structure. 
-At low temperature a phase boundary can be seen separating crystalline and amorphous regions, as seen in experimental silica bilayers \cite{Lichtenstein2012b}. 
-In these samples although the proportion of small and large rings is low, their positions are highly correlated and chain structures of alternating rings sizes are clearly present. 
-These motifs are reminiscent of defects found in a wide range of materials, including amorphous graphene and thin silicon and germanium oxides \cite{Bjorkman2013,Robertson2012,Buchner2017,Lewandowski2018}. 
-The increase in temperature is coupled with the emergence of rings of more extreme sizes and regions which could be viewed as nano\--crystalline are dispersed. 
-The high temperature limit reveals a fully amorphous structure.
-
-\begin{figure}[h!]
+\begin{figure}[p]
      \centering
      
      \begin{subfigure}[b]{0.35\textwidth}
@@ -327,13 +321,24 @@ The high temperature limit reveals a fully amorphous structure.
          \label{fig:triraft6}
      \end{subfigure}
      
-     \caption{Example $1,000$ ring configurations generated with different temperatures and shapes. Panels (a) through (d) show square lattices grown at $T=10^{-4.0},\,10^{-3.0},\,10^{-2.5},\, 10^{-2.0}$ respectively. The samples show the increasing diversity in ring structure as temperature is increased. Panels (e), (f) show configurations with alternative lattice shapes at $T=10^{-3.0}$, demonstrating the flexibility of the method in growing samples with variable geometries. Rings are coloured according to size with $k<6$ as blue, $k=6$ as grey and $k>6$ as red.}
+     \caption{Example $1000$ ring configurations generated with different temperatures and shapes. Panels (a) through (d) show square lattices grown at $T=10^{-4.0},\,10^{-3.0},\,10^{-2.5},\, 10^{-2.0}$ respectively. The samples show the increasing diversity in ring structure as temperature is increased. Panels (e) and (f) show configurations with alternative lattice shapes at $T=10^{-3.0}$, demonstrating the flexibility of the method in growing samples with variable geometries. Rings are coloured according to size with $k<6$ as blue, $k=6$ as grey and $k>6$ as red.}
      \label{fig:triraft}
-\end{figure}
+\end{figure} 
+ 
+The triangle raft method is robust and controllable, and is able to generate configurations with tuneable ring statistics and topologies.
+Results will largely focus on the system where $k=4\rightarrow10$, denoted $\br{4}{10}$, mimicking the experimentally observed range for silica bilayers. 
+Six example configurations are given in figure \ref{fig:triraft}, which are generated with a range of temperatures and growth geometries. 
+Figures \ref{fig:triraft1}\--\ref{fig:triraft4} provide a good qualitative analysis of the effect of temperature on the ring structure. 
+At low temperature a phase boundary can be seen separating crystalline and amorphous regions, as seen in experimental silica bilayers \cite{Lichtenstein2012b}. 
+In these samples although the proportion of small and large rings is low, their positions are highly correlated and chain structures of alternating rings sizes, including the cyclic ``flower'' defect, are clearly present. 
+These motifs are reminiscent of defects found in a wide range of materials, including amorphous graphene and thin silicon and germanium oxides \cite{Bjorkman2013,Robertson2012,Buchner2017,Lewandowski2018}. 
+In addition, these structural patterns are typical of those found elsewhere in this thesis, in particular chapter \ref{ch:generalnetworks}.
+The increase in temperature is coupled with the emergence of rings of more extreme sizes and regions which could be viewed as nano\--crystalline are dispersed. 
+The high temperature limit reveals a fully amorphous structure.
 
 Figures \ref{fig:triraft5} and \ref{fig:triraft6} give examples of the diverse geometries in which samples may be constructed. 
 It is interesting to note that even ``difficult'' shapes, such as those containing concave regions and cusps, do not prevent growth.  
-Although the shape does not affect the network topology and is in a sense arbitrary, certain calculations may benefit from the different configurational shapes. 
+Although the shape does not affect the network topology (\ie{} does appreciably affect the ring statistics) and is in a sense arbitrary, certain calculations may benefit from the different configurational shapes. 
 For instance, molecular dynamics with sliding boundary conditions requires fitting of a smooth function to the sample perimeter, which is facilitated by having a near\--circular form.
 Other areas such as percolation problems may benefit from square samples.
 
@@ -343,15 +348,10 @@ Other areas such as percolation problems may benefit from square samples.
 The quantitative relationship between temperature and ring structure was investigated for three systems of varying ring size ranges;  $\br{5}{7}$, $\br{4}{8}$ and $\br{4}{10}$. 
 For each system, 100 samples consisting of 1000 rings were grown at temperatures between $T=10^{-4.5}\rightarrow 10^{-1.5}$. 
 The evolution of the combined ring statistics with temperature is presented in figure \ref{fig:trpk}. 
-Figures \ref{fig:trpk1}\--\ref{fig:trpk3} give bar representations of the ring size distributions for the three systems, which show different behaviours. 
+Figures \ref{fig:trpk1}\--\ref{fig:trpk3} give bar representations of the ring size distributions, which show different behaviours. 
 For $\br{5}{7}$ the individual $p_k$ are all monotonically increasing ($k\neq 6$) or decreasing ($k=6$) functions, but both $\br{4}{8}$ and $\br{4}{10}$ have $p_k$ containing maxima. 
-Additionally, both $\br{5}{7}$ and $\br{4}{8}$ achieve uniform distributions in the high temperature limit but $\br{4}{10}$ does not. 
+Additionally, $\br{5}{7}$ and $\br{4}{8}$ achieve uniform distributions in the high temperature limit but not $\br{4}{10}$. 
 
-This disparity in behaviour can largely be traced back to the constraint of Euler's theorem. 
-As $\br{5}{7}$ comprises of just three ring sizes, Euler's formula demands that $p_5=p_7=\left(1-p_6\right)/2$ and so the system is relatively well defined. 
-Hence, as the 5 and 7-rings are more strained than the 6-ring, $p_5$ and $p_7$ show a systematic increase with temperature. 
-Furthermore, the uniform equilibrium distribution can only satisfy Euler's formula when the ring size range is symmetric about 6, as is observed for $\br{5}{7}$ and $\br{4}{8}$. 
-The form of the ring statistics at intermediate temperatures and for $\br{4}{10}$ follow the maximum entropy solutions according to \lm's law, discussed in section \ref{s:lemaitre} and later in this section.
 
 \begin{figure}[bt]
      \centering
@@ -387,16 +387,36 @@ The form of the ring statistics at intermediate temperatures and for $\br{4}{10}
      \end{subfigure}
      \hfill
    
-     \caption{Variation in ring statistics with temperature over a given allowable $k$\--range. Panels (a)-(c) show bar graph representations of the ring statistics, coloured by temperature, for the $\br{5}{7}$, $\br{4}{8}$ and $\br{4}{10}$ systems, respectively. Panel (d) gives an alternative line graph representation of the ring statistics for $\br{4}{10}$, coloured by ring size, along with the Aboav\--Weaire parameter. The temperature which gives the best match to the experimentally observed amorphous region is also highlighted (vertical black dashed line).}
+     \caption{Variation in ring statistics with temperature over a given allowable $k$\--range. Panels (a)-(c) show bar graph representations of the ring statistics, coloured by temperature, for the $\br{5}{7}$, $\br{4}{8}$ and $\br{4}{10}$ systems. Panel (d) gives an alternative line graph representation of the ring statistics for $\br{4}{10}$, coloured by ring size, along with the Aboav\--Weaire parameter. The temperature which gives the best match to the experimentally observed amorphous region is also highlighted (vertical black dashed line).}
      \label{fig:trpk}
 \end{figure}
 
+This disparity in behaviour can largely be traced back to the constraint of Euler's theorem. 
+As $\br{5}{7}$ comprises just three ring sizes, Euler's formula demands that $p_5=p_7=\left(1-p_6\right)/2$ and so the system is relatively well defined. 
+Hence, because the 5\-- and 7\--rings are more strained than the 6\--ring, $p_5$ and $p_7$ show a systematic increase with temperature. 
+Furthermore, the uniform equilibrium distribution can only satisfy Euler's formula when the ring size range is symmetric about 6, as is observed for $\br{5}{7}$ and $\br{4}{8}$. 
+The form of the ring statistics at intermediate temperatures and for $\br{4}{10}$ follow the maximum entropy solutions according to \lm's law, discussed in section \ref{s:lemaitre} and later in this section.
+
 The ring distribution for $\br{4}{10}$ is also shown as a function of temperature in figure \ref{fig:trpk4}, along with the value of the \aw{} parameter, $\alpha$, allowing for more facile comparison with experiment. 
-The temperature which gives the best agreement between our model and amorphous experimental samples is highlighted by the vertical dashed line. 
+The temperature which gives the best agreement to amorphous experimental samples is highlighted by the vertical dashed line. 
 The values of $p_k$ and $\alpha$ are provided in table \ref{tab:trpk}, alongside results from two experimental samples. 
 It is evident that the model can be successfully tuned to match the topology of the experimental system. 
 Not only are the ring distributions in very good accordance, but also the ring correlations, which have until now proved difficult to capture. 
 This provides confidence that this simplified but physically motivated triangle raft model is able to reproduce the behaviour of real systems.
+
+Table \ref{tab:trpk} also lists results from previous computational studies which used both Monte Carlo and molecular dynamics methods. 
+As mentioned in the review above, neither method fully succeeds in accurately capturing the topology of silica bilayers.
+Kumar \etal{} attempted to transform an amorphous graphene structure generated from bond switching \mc{} into a silica bilayer.
+The ring statistics of the resulting structure were approximately correct, but the proportion of 5\-- and 6\-- rings over\-- and under\--estimated respectively.
+In addition the \aw{} parameter was substantially lower than experiment, indicating a relative lack of structure in the ring ordering.
+The origin of these discrepancies is likely the graphene potential model.
+The increased stiffness of the carbon network (which unlike silica lacks bridging oxygens) means a high temperature must be used to obtain an amorphous structure with the required disorder.
+This leads to heavily distorted rings (as noted in the original paper) which reduces the requirement for small rings to be adjacent to large.
+
+
+{Roy \etal{} have an alternative approach of generating configurations with an effective pair potential and molecular dynamics.
+As can be seen the ring statistics are closer to the experimental values, but now contain artefacts, with a significant fraction of highly strained 3\--membered rings and large rings up to $k=14$.\unskip\parfillskip 0pt \par}
+
 
 \begin{landscape}
 \begin{table}
@@ -434,22 +454,12 @@ $\alpha$  &0.32   & 0.33 && 0.18 & 0.23 & 0.25 & 0.32 && \--- \\
 \end{table}
 \end{landscape}
 
-Table \ref{tab:trpk} also lists the ring statistics obtained from previous computational studies which used both Monte Carlo and molecular dynamics methods. 
-As mentioned in the review of these methods above, neither fully succeeds in accurately capturing the topology of silica bilayers.
-Kumar \etal{} attempted to transform an amorphous graphene structure generated from bond switching \mc{} into a silica bilayer.
-The ring statistics of the resulting structure were approximately correct, but the proportion of 5\-- and 6\-- rings over\-- and under\--estimated respectively.
-In addition the \aw{} parameter was substantially lower than experiment, indicating a relative lack of structure in the ring ordering.
-The origin of these discrepancies is likely the use of a graphene potential model.
-The increased stiffness of the carbon network (which unlike silica lacks bridging oxygens) means a high temperature must be used to obtain an amorphous structure with the required disorder.
-This leads to heavily distorted rings (as noted in the original paper) which reduces the requirement for small rings to be adjacent to large.
-
-Roy \etal{} have an alternative approach of generating configurations with an effective pair potential and molecular dynamics.
-As can be seen the ring statistics are closer to the experimental values, but now contain artefacts, with a significant fraction of highly strained 3\--membered rings and large rings up to $k=14$.
-These manifest as a result of the artificially high cooling rates in the computational studies which trap defect states in the configurations. 
+\noindent These manifest as a result of the artificially high cooling rates in the computational studies which trap defect states in the configurations. 
 Once again the final \aw{} parameter, $\alpha$, is underestimated.
 
 It is worth re\--emphasising here that the triangle raft method is able to replicate experimental values of both $p_k$ and $\alpha$, due to its tuneable approach and ``organic'' growth mechanism, where sample formation is not influenced by enforced periodicity. 
-Beyond this, the controllable nature of the method also allows insight into key questions about silica bilayers, for instance the form of the ring distribution in this amorphous phase. 
+Beyond this, the controllable nature of the method also allows insight into key questions% about silica bilayers, 
+, for instance the form of the ring distribution in the amorphous phase. 
 As detailed in section \ref{s:lemaitre}, the maximum entropy ring distribution can be calculated numerically given the value of $p_6$.
 For example, table \ref{tab:trpk} gives the maximum entropy solution for $p_6=0.42$, which agrees very well with the results from triangle rafts and experiment.
 This second moment of the distribution, $\mu_2$, is then uniquely related to $p_6$ via \lm's law, shown as the black line in in figure \ref{fig:trlm1}.
@@ -472,6 +482,8 @@ This second moment of the distribution, $\mu_2$, is then uniquely related to $p_
          \label{fig:trlm2}
      \end{subfigure}
      \hfill
+     
+     \vspace{2mm}
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/bilayers/tri_raft_lm_2.pdf}
@@ -480,16 +492,17 @@ This second moment of the distribution, $\mu_2$, is then uniquely related to $p_
      \end{subfigure}
      \hfill
 
-     \caption{Evolution of ring statistics (a), entropy (b) and potential energy (c) of triangle rafts with temperature. The experimental value of $p_6\approx 0.4$ occurs just before the exponential increase in potential energy, reflecting the balance of energetic and entropic factors.}
+     \caption{Evolution of ring statistics, entropy and potential energy (panels (a)-(c)) of triangle rafts with temperature. The experimental value of $p_6\approx 0.4$ occurs just before the exponential increase in potential energy, reflecting the balance of energetic and entropic factors.}
      \label{fig:trlm}
 \end{figure}
 
 
 However, \lm's law gives no information on why a particular maximum entropy distribution is found for a given system.
-The triangle raft method allows systematic generation of configurations with different $p_6$ values by tuning the temperature parameter. 
-The resulting configurations follow \lm's law across the entire temperature range. 
+%The triangle raft method allows systematic generation of configurations with different $p_6$ values by tuning the temperature parameter. 
+%The resulting configurations follow \lm's law across the entire temperature range. 
+The triangle raft method allows systematic generation of configurations with different $p_6$ values, and the resulting configurations follow \lm's law across the entire range.
 Figures \ref{fig:trlm} gives the results from the individual 1000 ring samples, coloured by temperature.
-Figures \ref{fig:trlm1} and \ref{fig:trlm2} compare the observed $\mu_2$ and $\mathcal{S}$ (entropy) of the generated configurations to those expected from \lm's law, showing the law provides a good fit, with only a small deviation observed for $p_k>0.5$. 
+Figures \ref{fig:trlm1} and \ref{fig:trlm2} compare the observed $\mu_2$ and $\mathcal{S}$ (entropy) of the generated configurations to those expected from \lm's law, showing the law provides a good fit, with only a small deviation observed for $p_6>0.5$. 
 
 Figure \ref{fig:trlm3} plots the geometry optimised potential energy of the samples against $p_6$, which increases as the ring sizes become more diverse. 
 The curve is split into two regimes, with gradual increase in energy from $p_6=1.0\rightarrow 0.4$ followed by exponential increase for $p_6<0.4$. 
@@ -553,8 +566,8 @@ This can be quantified by determining the average dimensionless area for each ri
 \end{align}
 As the regular polygon has the maximum achievable area for a given ring size, the ratio $A_k / A_k^0$ is expected to lie in the range $0\rightarrow 1$, with a lower value corresponding to increased deviation from regularity, and assuming $r_{\text{SiSi}}^{0}$ to be fixed.
 
-The study by Kumar \etal{} found that whereas for experimental configurations, $A_k / A_k^0 \approx 1$, configurations generated using thier bond switching method generally displayed ratios much less than unity \cite{Kumar2012}, indicative of large distortions in the ring structure. 
-For larger rings, a value of $A_k / A_k^0 > 1$ was also found, which can only be achieved if there is appreciable bond stretching (see equations \eqref{eq:trarea}, \eqref{eq:trarea0}). 
+The study by Kumar \etal{} found that whereas for experimental configurations, $A_k / A_k^0 \approx 1$, configurations generated using their bond switching method generally displayed ratios much less than unity \cite{Kumar2012}, indicative of large distortions in the ring structure. 
+For larger rings, a value of $A_k / A_k^0 > 1$ was also found, which can only be achieved if there is appreciable bond stretching (see equations \eqref{eq:trarea} and \eqref{eq:trarea0}). 
 
 The analogous results for the method presented in this chapter can be found in figure \ref{fig:trarea}, for $T=10^{-3}$. 
 This figure demonstrates that there is now good agreement between experimental and computational results. 
@@ -569,12 +582,12 @@ The degree of distortion can be described by the eccentricity of the ellipse,
 \begin{equation}
 	\xi = \left(1-\frac{b^2}{a^2}\right)^{1/2},
 \end{equation}
-where $a$, $b$ are the major and minor axis radii respectively. 
+where $a,b$ are the major and minor axis radii respectively. 
 This change in area with distortion is shown in figure \ref{fig:trellipse}, the calculation of which can be found in appendix \ref{app:derivellipse}. 
 As can be seen, a large degree of eccentricity is needed for a significant change in the observable area. 
 For example, if $a=1.5 b$, the area is still $\approx0.94\%$ of the area of the corresponding circle. 
 
-For silica networks the Si\---Si distances lie in a narrow range because of the covalent nature of the atomic bonding and the near-linear Si-O-Si bridges
+For silica networks the Si\---Si distances lie in a narrow range because of the nature of the atomic bonding and the near\--linear Si-O-Si bridges
 which join the two layers. 
 Hence we would expect similar behaviour to occur, with ring areas relatively invariant to distortions in the ring shape (this same analysis would not be expected to hold for foams for example, where the length of the boundary is much more flexible). 
 This suggests that the ring area is not the most suitable metric for quantifying the regularity of rings in systems such as this, and could explain any disagreement between the seemingly near ideal ring areas and the visual evidence. 

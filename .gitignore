@@ -32,3 +32,5 @@ thesis.mn
 *.png
 *.dvi
 figures/draft/*
+*.py
+.idea/*

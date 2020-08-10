@@ -3,8 +3,8 @@
 
 \begin{chapterabstract}
 Persistent homology is a technique in topological data analysis to find the fundamental topological features collections of points.
-The applicability of persistent homology to the analysis of network materials is explored here for the relatively simple case of \td{} networks. 
-Analysis is carried out for two systems, triangle rafts and CRNs, which have different underlying constraints.
+The applicability of persistent homology to the characterisation of network materials is explored here for the relatively simple case of \td{} networks. 
+Analysis is carried out for two systems, triangle rafts and continuous random networks (CRNs), which have different underlying constraints.
 The persistence diagrams of triangle rafts are shown to have a band structure which originates in successive nearest\--neighbour interactions, whilst the evolution of Betti numbers is related to the underlying ring statistics.
 These are compared and contrasted with CRNs, which display broader and more aggregated persistence diagrams.
 Conclusions are drawn of relevance to more complex systems.
@@ -15,37 +15,39 @@ Conclusions are drawn of relevance to more complex systems.
 The need for efficient methods to find structure in large and complex data sets is ever increasing in the age of ``big data''.
 The field of topological data analysis (TDA) has emerged to address this need, driving the development of statistical tools to analyse and understand big, noisy, real\--world data \cite{Wasserman2018}.
 One tool in particular has received significant attention, namely that of persistent homology \cite{Edelsbrunner2008}.
-Persistent homology is concerned with finding the fundamental topological features of given set of points. 
-In slightly plainer terms, here \textit{homology} means counting the number of connected components (``blobs'') and cycles (``holes'') in a system.
+Persistent homology is concerned with finding the fundamental topological features in a given set of points. 
+In slightly plainer terms, here \textit{homology} means counting the number of connected components and cycles  in a system.
 The persistence aspect arises from the fact that the these topological features can be calculated across different length scales, with those existing across multiple length scales being identified as more \textit{persistent}.
 The more persistent a topological feature, the more it can be thought of as reflecting the true underlying system topology.
 
-As with any new technique which arrives with much fanfare, persistent homology has been quickly appropriated for the study of chemical and physical systems.
-In fact, the marriage of persistent homology and atomistic materials seems apt.
+%As with any new technique which arrives with much fanfare, persistent homology has been quickly appropriated for the study of chemical and physical systems.
+%In fact, the marriage of persistent homology and atomistic materials seems apt.
+The application of persistent homology to atomistic materials seems appropriate.
 Atomic systems have long been thought of in terms of collections of point like particles, and the study of the emergent structure is deep\--rooted in the field.
 Any process which can elucidate as yet hidden structure in materials, or improve its description naturally has potential to be extremely useful.
-In this vein, research has already been conducted on applying persistent homology to diverse topics such as colloidal packings, porous media, water networks, fullerenes \cite{Carter2018,Robins2017,Jiang2018,Steinberg2019,Xia2015}, and of particular importance to this work, amorphous materials \cite{Hiraoka2016,Onodera2019,Nakamura2015,Gutierrez2019}.
+In this vein, research has already been conducted on applying persistent homology to diverse topics such as colloidal packings \cite{Carter2018}, porous media \cite{Robins2017,Jiang2018}, water networks \cite{Steinberg2019}, fullerenes \cite{Xia2015}, and of particular importance to this work, amorphous materials \cite{Hiraoka2016,Onodera2019,Nakamura2015,Gutierrez2019}.
 Whilst these latter studies claim to highlight structures which are not available using more conventional techniques, quantify the medium range order in glasses, and explain phenomena such as the origin of the first sharp diffraction peak in disordered materials; the fact remains that persistent homology remains a qualitative descriptor, with some doubt as to what is the ``added value'' from this technique. 
 In the words of Wassserman: ``\textit{...the main purpose of TDA is to help the data analyst summarize and visualize
 complex datasets. Whether or not TDA can be used to make scientific discoveries is still unclear.}'' \cite{Wasserman2018}.
 
 The purpose of this chapter is therefore to try and assess the utility of persistent homology in the context of \td{} amorphous materials, with the expectation that the interpretation may be simpler for these reduced dimensionality systems.
-The conclusions drawn from this work may then bring insight to the analysis of three dimensional systems.
+%The conclusions drawn from this work may then bring insight to the analysis of three dimensional systems.
 This chapter will begin by outlining the relevant theory to persistent homology, with the aid of small example systems.
 Persistent homology will then be calculated for triangle rafts (a proxy for amorphous silica), systematically generated with increasing levels of disorder.
-These results will then be contrasted with generic random networks as produced from bond switching.
-The conclusions of these investigations will then be discussed in the context of more complex systems, and the potential utility of persistent homology as an analytic tool for materials examined.
+These results will then be contrasted with generic continuous random networks (CRNs) as produced from bond switching.
+Finally, the conclusions of these investigations will be discussed in the context of more complex systems, and the potential usefulness of persistent homology as an analytic tool for materials examined.
 
 \section{Computing Persistent Homology}
 
 This section will give a broad outline of the mathematical background behind persistent homology, but with the focus on a practicable implementation for studying physical \td{} networks.
 It will begin by introducing the concept of a filtered simplicial complex, before discussing homology groups, persistent homology and the visualisation of persistence.
-Actual numerical persistent homology calculations can be carried out with the GUDHI library \cite{gudhi}.
+These principles will be applied to small example crystalline and amorphous configurations.
+Actual numerical persistent homology calculations are carried out with the GUDHI library \cite{gudhi}.
 
 \subsection{Filtered Simplicial Complexes}
 
 The input for a persistent homology calculation is simply a point cloud \ie{} a set of coordinates in Euclidean space.
-For materials, this corresponds to the set of atomic positions, $\mathbf{r}=\left\{r_1,r_2,\cdots,r_\mathcal{N}\right\}$, as obtained from simulation or for instance experimentally via STM.
+For materials, this corresponds to the set of atomic positions, $\mathbf{r}=\left\{r_1,r_2,\cdots,r_\mathcal{N}\right\}$, as obtained from simulation or from experimental microscopy.
 Using this point cloud, a filtered simplicial complex can be constructed \cite{Fugacci2016}.
 To explain what is meant by a filtered simplicial complex, it is useful to break down this definition further:
 \begin{itemize}
@@ -56,30 +58,6 @@ Put simply, a $0$\--simplex corresponds to a point, a $1$\--simplex to a line, a
 \end{itemize}
 For a given point cloud, there are many ways to then construct a filtered simplicial complex (Cech, Vietoris\--Rips, Witness \etc), each method identifying simplices and calculating filtration values in a different manner  \cite{Otter2017}.
 In this thesis, for reasons which will become apparent, the \textit{alpha complex} is used.
-
-As an illustration of these concepts, an introductory example with just three points is given in figure \ref{fig:phalpha}.
-Considering only the simplices at first: figure \ref{fig:phalphaa} contains three 0\--simplices, the points $A$, $B$, $C$; figures \ref{fig:phalphab1} and \ref{fig:phalphab2} three 1\--simplices, the lines $AB$, $AC$, $BC$; figure \ref{fig:phalphac} a 2\--simplex, the triangle $ABC$.
-Once the simplices have been identified, a filtration value, $\epsilon$, is computed and assigned to each.
-For the alpha complex, filtration values are determined from the radius of the circumcircles containing the simplices.
-The specific algorithm is as follows:
-\begin{itemize}
-	\item 0\--simplices: must have a filtration value of $\epsilon=0$.
-	\item 1\--simplices: provided the circumcircle is empty, they have a filtration value equal to its radius, which for two points is equivalent to half the line length $\epsilon=d_{ij}/2$.
-	If the circumcircle contains a 2\--simplex, then the filtration value is set to the filtration value of that simplex.
-	\item 2\--simplices: have a filtration value equal to the circumradius of the three points.
-\end{itemize}
-These different cases are shown and explained in figure \ref{fig:phalpha}.
-
-Having calculated the filtration values for each simplex, a subcomplex can be generated, $\mathbf{K}_\epsilon$, which contains only the simplices with filtration values less than or equal to $\epsilon$.
-Finally, the filtered simplicial complex emerges as a sequence of subcomplexes at increasing filtration values from $\epsilon=0\rightarrow \infty$.
-Again figure \ref{fig:phalpha} shows this process for the case of three points.
-The first subcomplex, $\mathbf{K}_0$, will only consist of a set of discrete points (as in figure \ref{fig:phalphaa}).
-As the filtration value increases, higher dimensionality simplices will be included, as lines and triangles form (as in figure \ref{fig:phalphab1}).
-The last subcomplex, $\mathbf{K}_\infty$, will contain all the determined simplices (as in figure \ref{fig:phalphac}).
-Crucially, for the alpha complex, this will be equivalent to the Delaunay triangulation.
-This is the motivation for choosing the alpha complex, as the Delaunay triangulation (which has already appeared throughout this thesis as the dual of the Voronoi diagram), is well defined in two dimensions. 
-As such it provides the best opportunity to relate the results of persistent homology to well understood systems.
-
 
 \begin{figure}[tb]
 	\centering
@@ -115,44 +93,39 @@ As such it provides the best opportunity to relate the results of persistent hom
      \end{subfigure}
      \hfill
     
-	\caption{Construction of an alpha simplicial complex and its filtration. Panel (a) shows three 0\--simplices, with filtration values of $\epsilon=0$. Panel (b) shows an additional two 1\--simplices, with filtration values given by the radii of the respective circumcircles (dashed lines in black circles). Panel (c) shows an additional different 1\--simplex, in which the circumcircle (grey circle) contains the 3\--simplex $\left\{A,B,C\right\}$, and so the filtration value is set to the value of the 3\--simplex. Panel (d) shows an additional 3\--simplex with a filtration value given by the circumradius.
+	\caption{Construction of an alpha simplicial complex and its filtration. Panel (a) shows three 0\--simplices, with filtration values of $\epsilon=0$. Panel (b) shows an additional two 1\--simplices, with filtration values given by the radii of the respective circumcircles (dashed lines in black circles). Panel (c) shows an additional different 1\--simplex, in which the circumcircle (grey circle) contains the 3\--simplex $\left\{A,B,C\right\}$, and so the filtration value is set to the value of the 3\--simplex. Panel (d) shows the 3\--simplex with a filtration value given by the circumradius.
 	These subfigures can also be viewed as a series of subcomplexes, as highlighted in the captions, with $\mathbf{K}_0\subseteq\mathbf{K}_{4.27}\subseteq\mathbf{K}_{5.13}=\mathbf{K}_\infty$. The final complex is the Delaunay triangulation of the original point set. Panel (c) is \textit{not} a subcomplex in the filtration, as it does not contain the simplices $\left\{A,B\right\}$, $\left\{A,C\right\}$, which have lower filtration values than $\left\{B,C\right\}$. }
 	\label{fig:phalpha}
 \end{figure}
 
+To illustrate these concepts, an introductory example with just three points is given in figure \ref{fig:phalpha}.
+Considering only the simplices at first: figure \ref{fig:phalphaa} contains three 0\--simplices, the points $A$, $B$, $C$; figures \ref{fig:phalphab1} and \ref{fig:phalphab2} three 1\--simplices, the lines $AB$, $AC$, $BC$; figure \ref{fig:phalphac} a 2\--simplex, the triangle $ABC$.
+Once the simplices have been identified, a filtration value, $\epsilon$, is computed and assigned to each.
+For the alpha complex, filtration values are determined from the radius of the circumcircles containing the simplices.
+The specific algorithm is as follows:
+\begin{itemize}
+	\item 0\--simplices: have a filtration value of $\epsilon=0$.
+	\item 1\--simplices: provided the circumcircle is empty, they have a filtration value equal to its radius, which for two points is equivalent to half the line length $\epsilon=r_{ij}/2$.
+	If the circumcircle contains a 2\--simplex, then the filtration value is set to the filtration value of that simplex.
+	\item 2\--simplices: have a filtration value equal to the circumradius.
+\end{itemize}
+These different cases are shown and explained in figure \ref{fig:phalpha}.
+
+Having calculated the filtration values for each simplex, a subcomplex can be generated, $\mathbf{K}_\epsilon$, which contains only the simplices with filtration values less than or equal to $\epsilon$.
+Finally, the filtered simplicial complex emerges as a sequence of subcomplexes at increasing filtration values from $\epsilon=0\rightarrow \infty$.
+Again figure \ref{fig:phalpha} shows this process for the case of three points.
+The first subcomplex, $\mathbf{K}_0$, will only consist of a set of discrete points (as in figure \ref{fig:phalphaa}).
+As the filtration value increases, higher dimensionality simplices will be included, as lines and triangles form (as in figure \ref{fig:phalphab1}).
+The last subcomplex, $\mathbf{K}_\infty$, will contain all the determined simplices (as in figure \ref{fig:phalphac}).
+Crucially, for the alpha complex, this will be equivalent to the Delaunay triangulation.
+This is the motivation for choosing the alpha complex, as the Delaunay triangulation (which has already appeared throughout this thesis as the dual of the Voronoi diagram), is well defined in two dimensions. 
+As such it provides the best opportunity to relate the results of persistent homology to well understood systems.
 
 \subsection{Homology and Persistent Homology}
 
 Having introduced the notion of a filtered simplicial complex, the importance of homology and persistent homology can now be discussed.
 To facilitate this, two more involved examples will be used.
-Figures \ref{fig:phexa}\--\ref{fig:phexd} and \ref{fig:phexe}\--\ref{fig:phexh} show filtrations of alpha complexes for a crystalline and amorphous atomic configuration respectively, which will be referred to throughout this section.
-
-In this context, homology is generally concerned with quantifying the number of $n$\--dimensional topological features in a simplicial complex.
-For an alpha complex, these can either be 0\-- or 1\--dimensional.
-The 0\--dimensional features correspond to the number of connected components, meaning the number of distinct groups of atoms.
-The 1\--dimensional features are the number of ``cycles'' (or ``holes'') in the structure.
-These are termed as such to differentiate from ``rings'' used elsewhere in this thesis, but often there will be significant overlap between the two.
-Any alpha complex has the homology groups, $H_n\left(\mathbf{K}_\epsilon\right)$, which contain all the associated $n$\--dimensional features.
-The rank of these groups are termed the Betti numbers, $\beta_n$ \cite{Zomorodian2005}.
-To make this less abstract, one can see how this fits with the examples in figure \ref{fig:phex}:
-\begin{itemize}
-	\item Figures \ref{fig:phexa} and \ref{fig:phexe} have $\mathcal{N}=68$ and $\mathcal{N}=70$ individual points respectively, and so have Betti numbers of $\beta_0=\mathcal{N}$ and $\beta_1=0$.
-	\item Figures \ref{fig:phexb} and \ref{fig:phexf} have all the atoms connected leading to the formation of $24$ cycles in both cases, and hence $\beta_0=1$ and $\beta_1=24$.
-	\item Figures \ref{fig:phexc} and \ref{fig:phexg} both have a reduced number of cycles owing to the filtration values of triangular simplices being met. The Betti numbers are $\beta_0=1$, $\beta_1=12$ and $\beta_0=1$, $\beta_1=10$ in each case.
-	\item Figures \ref{fig:phexd} and \ref{fig:phexh} have just one large connected component and no cycles, such that $\beta_0=1$ and $\beta_1=0$.
-\end{itemize}
-These examples illustrate a more general principle, that the ``starting point'', $\mathbf{K}_0$, will always have $\beta_0=\mathcal{N}$ and $\beta_1=0$, and the ``end point'', $\mathbf{K}_\infty$,  will always have $\beta_0=1$ and $\beta_1=0$ \ie{} trivial homology.
-It is the filtration values in between which lead to richer behaviour.
-
-This leads onto the notion of persistent homology.
-Between any two subcomplexes at different filtration values, a selection of topological features will be common to both, whilst others will appear or disappear when moving from one to the other.
-In other words, some features will \textit{persist} over the range of filtration values, whilst others will not.
-To characterise this behaviour in the vocabulary of persistent homology, each feature is said to be ``born'' at a given filtration value, $b$, and ``die'' at a later value, $d$.
-The lifetime, or persistence, of the feature is then quantified via $l=d-b$.
-Finding and measuring the lifetimes of topological features is therefore the crux of persistent homology.
-In the first instance, it is the longest lived features which are normally of most interest, as these are considered to be representative of the true system topology.
-In the case of \td{} atomic materials, this ought to be reflective of the ring structure.
-However, other more fleeting features can also be useful, as these intermediate features act as signatures for some medium range ordering \cite{Nakamura2015,Onodera2019}. 
+Figures \ref{fig:phexa}\--\ref{fig:phexd} and \ref{fig:phexe}\--\ref{fig:phexh} show filtrations of alpha complexes for a crystalline and an amorphous atomic configuration respectively, which will be referred to throughout this section.
 
 \begin{figure}[tb]
 	\centering
@@ -214,9 +187,36 @@ However, other more fleeting features can also be useful, as these intermediate 
          \label{fig:phexh}
      \end{subfigure}
    
-	\caption{Filtered alpha complexes for a crystalline (a)\--(d) and amorphous (e)\--(h) configurations. The Betti numbers for the 0\-- and 1\--dimensional features are also given in the captions, corresponding to the number of connected components and cycles respectively. In addition 2\--simplices are coloured according to their filtration value, with yellow$\rightarrow$red indicating a larger filtration value. This highlights that all 2\--simplices form almost simultaneously in the crystalline case, resulting in the death of all cycles, whilst in the amorphous case the formation is more gradual such that larger cycles tend to persist longer.}
+	\caption{Filtered alpha complexes for a crystalline (panels (a)\--(d)) and amorphous (panels (e)\--(h)) configurations. The Betti numbers for the 0\-- and 1\--dimensional features are also given in the captions, corresponding to the number of connected components and cycles respectively. In addition 2\--simplices are coloured according to their filtration value, with yellow$\rightarrow$red indicating a larger filtration value. This highlights that all 2\--simplices form almost simultaneously in the crystalline case, resulting in the death of all cycles, whilst in the amorphous case the formation is more gradual such that larger cycles tend to persist longer.}
 	\label{fig:phex}
 \end{figure}
+
+In this context, homology is generally concerned with quantifying the number of $n$\--dimensional topological features in a simplicial complex.
+For an alpha complex, these can either be 0\-- or 1\--dimensional.
+The 0\--dimensional features correspond to the number of connected components, meaning the number of distinct groups of atoms.
+The 1\--dimensional features are the number of ``cycles'' (or ``holes'') in the structure.
+These are termed as such to differentiate from ``rings'' used elsewhere in this thesis, but often there will be significant overlap between the two.
+Any alpha complex has the homology groups, $H_n\left(\mathbf{K}_\epsilon\right)$, which contain all the associated $n$\--dimensional features.
+The rank of these groups are termed the Betti numbers, $\beta_n$ \cite{Zomorodian2005}.
+To make this less abstract, one can see how this fits with the examples in figure \ref{fig:phex}:
+\begin{itemize}
+	\item Figures \ref{fig:phexa} and \ref{fig:phexe} have $\mathcal{N}=68$ and $\mathcal{N}=70$ individual points respectively, and so have Betti numbers of $\beta_0=\mathcal{N}$ and $\beta_1=0$.
+	\item Figures \ref{fig:phexb} and \ref{fig:phexf} have all the atoms connected leading to the formation of $24$ cycles in both cases, and hence $\beta_0=1$ and $\beta_1=24$.
+	\item Figures \ref{fig:phexc} and \ref{fig:phexg} both have a reduced number of cycles owing to the filtration values of triangular simplices being met. The Betti numbers are $\beta_0=1$, $\beta_1=12$ and $\beta_0=1$, $\beta_1=10$ in each case.
+	\item Figures \ref{fig:phexd} and \ref{fig:phexh} have just one large connected component and no cycles, such that $\beta_0=1$ and $\beta_1=0$.
+\end{itemize}
+These examples illustrate a more general principle, that the ``starting point'', $\mathbf{K}_0$, will always have $\beta_0=\mathcal{N}$ and $\beta_1=0$, and the ``end point'', $\mathbf{K}_\infty$,  will always have $\beta_0=1$ and $\beta_1=0$ \ie{} trivial homology.
+It is the filtration values in between which lead to richer behaviour.
+
+This leads onto the notion of persistent homology.
+Between any two subcomplexes at different filtration values, a selection of topological features will be common to both, whilst others will appear or disappear when moving from one to the other.
+In other words, some features will \textit{persist} over the range of filtration values, whilst others will not.
+To characterise this behaviour in the vocabulary of persistent homology, each feature is said to be ``born'' at a given filtration value, $b$, and ``die'' at a later value, $d$.
+The lifetime, or persistence, of the feature is then quantified via $l=d-b$.
+Finding and measuring the lifetimes of topological features is therefore the crux of persistent homology.
+In the first instance, it is the longest lived features which are normally of most interest, as these are considered to be representative of the true system topology.
+In the case of \td{} atomic materials, this ought to be reflective of the ring structure.
+However, other more fleeting features can also be useful, as these intermediate features can act as signatures for some medium range ordering \cite{Nakamura2015,Onodera2019}. 
 
 \subsection{Visualising Persistence}
 
@@ -228,28 +228,11 @@ These are outlined below, with examples given in figure \ref{fig:exvis}, in refe
 	
 	\item \textbf{Evolution in Betti numbers}: plots the total number of each $n$\--dimensional feature for each filtration value (see figures \ref{fig:exvisc} and \ref{fig:exvisd}), and so provides more coarse\--grained information than the barcode. It is equivalent to counting the number of bars at a specific filtration value.
 	
-	\item \textbf{Persistence diagram}: plots the birth and death value pairs, $\left(b,d\right)$, of each feature as a scatter diagram (see figures \ref{fig:exvise} and \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histogramming can be used, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
+	\item \textbf{Persistence diagram}: plots the birth and death value pairs, $\left(b,d\right)$, of each feature as a scatter diagram (see figures \ref{fig:exvise} and \ref{fig:exvisf}). This gives a more holistic view of the data as a whole. For large data sets, histograms can be constructed, with points coloured by their relative multiplicities. The persistence diagram is therefore suitable for visualising large amounts of aggregate information.
 	
 %	\item \textbf{Lifetime distribution function}: presents a histogram of the lifetimes of each feature. This is useful for analysing a large number of features, but loses information on the exact birth and death values.
 \end{itemize}
 For all these visualisation methods, it is worth emphasising that the filtration value, $\epsilon$, has units of length, and so is normally quoted in terms of the equilibrium bond length, $r_0$. 
-
-Although these visualisation methods have been introduced here, they will be interpreted only at a very high level, with more detailed analysis provided in the analysis sections.
-Examining the results for the two example systems in \ref{fig:exvis}, one can see that the crystalline and amorphous systems have both similarities and differences.
-To begin with, the 0\--dimensional features appear very similar across all plots, with $b=0$ and $d=r_0/2$.
-This is because in atomic systems, the average bond length is highly restricted, and so all atoms become connected in a very small range of filtration values, corresponding to half the mean bond length (as the filtration value measures the circumradius of the 1\--simplex).
-As such, the $0$\--dimensional features provide little insight for atomic systems, and will be neglected in the analysis in this chapter.
-
-On the other hand, the 1\--dimensional features show significant differences between the crystalline and amorphous configurations.
-Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa} and \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
-For the crystalline system, all persistent cycles (corresponding to hexagons) terminate at almost the same value of $\epsilon=r_0$, whereas in the amorphous case there is a much broader distribution of values.
-These values will be discussed in detail in section \ref{s:phbands}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
-It is not only the persistent cycles which show variation though.
-The persistence diagrams, figures \ref{fig:exvise} and \ref{fig:exvisf}, also show that the short lived features, which lie close to the line $b=d$, show greater variation in the amorphous case.
-This will also be explored in greater depth in the remainder of the chapter.
-
-What these small examples serve to demonstrate, is that persistent homology does show some promise for capturing the disorder in amorphous materials.
-The question is whether these visualisations can be systematically interpreted to quantify this disorder, and obtain information which is not available via alternative methods.
 
 \begin{figure}[tbp]
 	\centering
@@ -299,20 +282,37 @@ The question is whether these visualisations can be systematically interpreted t
      \end{subfigure}
      \hfill
     
-	\caption{Different methods for visualising results of persistence of topological features. The left column gives results for the example crystalline configuration in figure \ref{fig:phex}, and the right column the amorphous configuration in the same figure. Panels (a), (b) show the persistence barcode, panels (c), (d) the evolution in Betti numbers with filtration value and (e), (f) the persistence diagram.}
+	\caption{Different methods for visualising results of persistence of topological features. The left column gives results for the example crystalline configuration in figure \ref{fig:phex}, and the right column the amorphous configuration in the same figure. Panels (a) and (b) show the persistence barcode, panels (c) and (d) the evolution in Betti numbers with filtration value and (e) and (f) the persistence diagram.}
 	\label{fig:exvis}
 \end{figure}
+
+Although these visualisation methods have been introduced here, they will be interpreted only at a very high level, with more detailed analysis provided in the analysis sections.
+Nevertheless, examining the results for the two example systems in \ref{fig:exvis}, one can see that the crystalline and amorphous systems have both similarities and differences.
+To begin with, the 0\--dimensional features appear very similar across all plots, with $b=0$ and $d=r_0/2$.
+This is because in atomic systems, the average bond length is highly restricted, and so all atoms become connected in a very small range of filtration values, corresponding to half the mean bond length (as the filtration value measures the circumradius of the 1\--simplex).
+As such, the $0$\--dimensional features provide little insight for atomic systems, and will be neglected in the analysis in this chapter.
+
+On the other hand, the 1\--dimensional features show significant differences between the crystalline and amorphous configurations.
+Both systems have 24 persistent bars in their barcode (figures \ref{fig:exvisa} and \ref{fig:exvisb}), which are born at $b=\epsilon=r_0/2$, but the lifetimes vary considerably. 
+For the crystalline system, all persistent cycles (corresponding to hexagons) terminate at almost the same value of $\epsilon=r_0$, whereas in the amorphous case there is a much broader distribution of values.
+These values will be discussed in detail in section \ref{s:phbands}, but as might be expected, it is related to the radius of the circumcircle into which each polygon is inscribed. 
+It is not only the persistent cycles which show variation though.
+The persistence diagrams, figures \ref{fig:exvise} and \ref{fig:exvisf}, also show that the short lived features, which lie close to the line $b=d$, show greater variation in the amorphous case.
+This will also be explored in greater depth in the remainder of the chapter.
+
+What these small examples serve to demonstrate, is that persistent homology does show some promise for capturing the disorder in amorphous materials.
+The question is whether these visualisations can be systematically interpreted to quantify this disorder, and obtain information which is not available via alternative methods.
 
 \section{Persistent Homology with Triangle Rafts}
 
 Persistent homology is first studied in reference to triangle rafts, introduced in chapter \ref{ch:bilayers}.
 To briefly reiterate, triangle rafts are a model for \td{} amorphous silica, representing the bilayer of corner sharing tetrahedra as projected equilateral triangles.
 Triangle rafts are characterised by having a diverse ring distributions, owing to the flexibility afforded to the structure by the oxygen linkages.
-Coupled with this, the Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity imposed by the triangular subunits.
+Coupled with this, the nearest\--neighbour Si\--Si distances remain in a relatively tight distribution, as shown in table \ref{tab:trsidist}, as a result of the rigidity imposed by the triangular subunits.
 
 \begin{table}[hbt]
 \centering
-\caption{Relative Si\--Si distances within different ring sizes in a triangle raft, assuming ring regularity.}
+\caption{Relative nearest\--neighbour Si\--Si distances within different ring sizes in a triangle raft, assuming ring regularity.}
 \label{tab:trsidist}
 \begin{tabular}{cccccccc}
 \toprule
@@ -327,7 +327,7 @@ An algorithm to construct triangle rafts was introduced in section \ref{s:triang
 The ring statistics in the resulting configurations can be tuned with a ``temperature'' parameter, $T$, with a higher temperature leading to the incorporation of more extreme ring sizes.
 This is beneficial, as it allows a systematic evaluation of the results of persistent homology calculations, using configurations with a continuous evolution in structure.
 As such, the samples from section \ref{s:triangleraft}, with ring sizes in the range $k=4\rightarrow10$, were analysed using the GUDHI library \cite{gudhi}.
-In these analyses, only the silicon positions were included, as again the oxygen positions are in a sense ``degenerate'' (as they do not affect the ring topologies) and would only serve to obscure the calculation.
+In these analyses, only the silicon positions were included, as the oxygen positions are in a sense ``degenerate'' (as they do not affect the ring topologies) and would only serve to obscure the calculation.
 In addition, this makes the cycles computed by persistent homology consistent with the definitions of rings elsewhere in this thesis.
 
 The results of the persistent homology calculations will be discussed primarily in terms of the persistence diagrams, with the structure rationalised in comparison to analytic examples. 
@@ -338,6 +338,7 @@ However, it will also be shown how metrical quantities such as the ring statisti
 The persistence diagrams for triangle rafts at four increasing temperatures are shown in figures \ref{fig:trpda}\--\ref{fig:trpdd}, combined across multiple configurations.
 Discussing first the overall structure, one can see there is a definite systematic evolution in behaviour as temperature (and therefore disorder) increases.
 To aid discussion points will be referred to in terms of birth\--death pairs, $\left(b,d\right)$, with filtration values given in reference to the equilibrium bond length, $r_0$.
+
 At the lowest temperature, configurations are dominated largely by regular hexagons with few defects, reflected in the persistence diagram by bright spots at $\bd{0.5}{1.0}$ and $\bd{1.0}{1.0}$ (in comparison with figure \ref{fig:exvise}).
 As the temperature increases, and rings of different sizes are introduced, characteristic bands form in the persistence diagram, which are most intense at low lifetimes (\ie{} close to $b=d$) and then ``wash out'' at lower birth values and longer lifetimes. 
 At higher temperatures still, these bands broaden and finally coalesce.
@@ -414,7 +415,7 @@ The filtration values for these simplices are given by:
 where $\Phi_k$ will be used to denote the circumradius in a regular $k$\--sided polygon with unit edge lengths.
 The values of $\Phi_k$ for $4\leq k \leq 10$ can be found in table \ref{tab:circumradii}.
 It follows that a regular polygon will have a death value at $\Phi_k$, and furthermore, no more cycles will be born out of this point set.
-Although difficult to see, these correspond well with the bright spots in the persistence diagrams in figure \ref{fig:trpd}, as will be more apparent in subsequent analyses in this chapter.
+Although difficult to see, these correspond well with the bright spots in the persistence diagrams in figure \ref{fig:trpd}, as will become more apparent in subsequent analyses in this chapter.
 
 \begin{figure}[tb]
 	\centering
@@ -482,11 +483,10 @@ As the polygon is compressed, it can be seen that the circumcircle for this simp
 In other words, distortion of the polygon acts to reduce the lifetime of the original cycle born at $b=0.5$.
 The consequence of this is that the band $B_1$ manifests, instead of a simple series of discrete points.
 
-The distortions in figures \ref{fig:b3a}\--\ref{fig:b3e} demonstrate the phenomenon central to the discussion of the remaining bands.
-As can be seen, between some critical values of $\theta$, a second cycle is born within the first.
+The distortions in figures \ref{fig:b3a}\--\ref{fig:b3e} demonstrate the phenomenon central to the discussion of the remaining bands: that between some critical values of $\theta$, a second cycle is born within the first.
 This is only possible when the 1\--simplex $AD$ has a filtration value less than the 2\--simplex $ACD$.
 In figure \ref{fig:b3c} where $\theta_1=150^\circ$, this is \textit{not} the case, as $AD$ and $ACD$ share the same filtration value.
-This is in fact the limiting case, and beyond this angle the circumcircle for $AD$ (red circle) is not contained within that for $ACD$ (blue circle), and has a smaller radius, and therefore filtration value.
+This is in fact the limiting case, and beyond this angle the circumcircle for $AD$ (red circle) is not contained within that for $ACD$ (blue circle), it has a smaller radius, and therefore filtration value.
 The persistence of this cycle will therefore range between $\bd{0.5}{0.71}$, $\bd{0.76}{0.82}$ and $\bd{1.0}{1.0}$.
 The intermediate values can be found via numerically scanning the angle range, but even from these points it is clear that this corresponds well with the most prominent ``central'' band in the persistence diagram.
 Furthermore, this band arises from the cycles formed by connecting neighbours three bonds apart.
@@ -566,7 +566,7 @@ The atoms $A$, $E$ are separated by four bonds and so the corresponding band for
 The as\--yet unaccounted for band, at the lowest persistence, naturally must be $B_2$, arising from atoms separated by two bonds.
 Examples of the formation of $B_2$ in the octagon are given in figures \ref{fig:b4f}\--\ref{fig:b4h}, corresponding to a ``pinch''.
 
-As can be seen, for the octagon it is relatively difficult to add to the $B_2$ band.
+For the octagon it is relatively difficult to add to the $B_2$ band.
 This is worth some consideration. 
 It has been stated that this analysis is not unique to the octagon, which has merely been selected for illustrative purposes as it \textit{can} display all the required behaviour.
 However, in general large polygons ($k>6$) require little distortion to yield $B_3$ and $B_4$ bands, whereas significant rearrangement would be needed to contribute to $B_2$.
@@ -611,9 +611,9 @@ Overall, the relative simplicity and rigidity of the triangle raft model has ena
 In addition to the persistence diagrams, information is also available through the first Betti number, $\beta_1$, which quantifies the number of cycles present at specific filtration value.
 Plotting the $\beta_1$ against $\epsilon$ therefore reveals how the number of cycles grows and decays across the range of filtration values \cite{Nakamura2015}.
 As will be shown, this allows characterisation of the proportion of cycles with $k$ vertices, termed here $k$\--cycles.
-The advantage of using configurations from computation is, as ever, that the these cycles can be compared to known quantities which are known and directly calculated in the computational algorithm, in this case the ring statistics.
+The advantage of using configurations from computation is, as ever, that the these cycles can be compared to known quantities and directly calculated in the computational algorithm, in this case the ring statistics.
 
-Plots of the evolution of the first Betti number with filtration are given in  \ref{fig:trbetti}, for triangle rafts constructed at different temperatures.
+Plots of the evolution of the first Betti number with filtration are given in figure \ref{fig:trbetti}, for triangle rafts constructed at different temperatures.
 Each configuration contains $1000$ rings, but the data are averaged over all $100$ configurations produced at the same temperature.
 Note that there are two subtly different calculations presented here.
 The first, figure \ref{fig:trbettia}, gives $\beta_1$ for all cycles found via persistent homology, whilst the second, figure \ref{fig:trbettib}, gives $\beta_1$ only for the $1000$ most persistent cycles (\ie{} those with the longest lifetime).
@@ -623,14 +623,14 @@ In fact, both sets of results are very similar (which will be discussed in due c
 \begin{figure}[tb]
 	\centering
      
-      \begin{subfigure}[b]{0.48\textwidth}
+      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/tri_raft_beta1_full.pdf}
          \caption{}
          \label{fig:trbettia}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/tri_raft_beta1_cut.pdf}
          \caption{}
@@ -641,7 +641,7 @@ In fact, both sets of results are very similar (which will be discussed in due c
 	\label{fig:trbetti}
 \end{figure}
 
-As is now expected, $\beta_1$, rises very sharply from $0\rightarrow 1000$ at $\epsilon=0.5$, as the first cycles form at half the bond distance.
+As is now expected, $\beta_1$, rises very sharply from $0\rightarrow 1000$ at $\epsilon=0.5$, as the first cycles form at half the mean bond distance.
 The value of $\beta_1$ must then decay to zero in the limit of $\epsilon\rightarrow \infty$, but the form of the curve varies with the system temperature.
 At the lowest temperature, which is primarily a hexagonal lattice, the function is almost a step function at $\epsilon=1.0$, but as the temperature increases, and more diverse ring sizes are incorporated, the curve broadens and smoothens.
 Even for the highest temperature, the decay in $\beta_1$ is not however smooth, but a series of stepwise decrements.
@@ -649,8 +649,8 @@ These decrements align very closely to the values of the circumradii of $k$\--po
 As discussed in the previous section, $\Phi_k$ represents the upper bound on the death value for a $k$\--polygon in $B_1$, for triangle rafts. 
 Any deviations from regularity therefore act to reduce the lifetime.
 This largely explains the full behaviour of the curves in figure \ref{fig:trbetti}.
-The discontinuities represent changes between successive $k$\--cycles dying, with the broadening of the curve indicative of the increasing variety of $k$ values, and the smoothening the increased polygon distortion - both of which increase with temperature.
-It is interesting to note that the secondary cycles do not seem to affect the Betti numbers to a large degree, as evidenced by the similarity of figures \ref{fig:trpkpha} and \ref{fig:trpkphb}.
+The discontinuities represent changes between successive $k$\--cycles dying, with the broadening of the curve indicative of the increasing variety of $k$ values, and the smoothening the increased polygon distortion \-- both of which increase with temperature.
+It is interesting to note that the secondary cycles do not seem to affect the Betti numbers to a large degree, as evidenced by the similarity of figures \ref{fig:trbettia} and \ref{fig:trbettib}.
 Only at the highest temperature is there a detectable presence in the region between $\epsilon=0.5\rightarrow0.7$.
 This is because these species are so relatively short\--lived and spread throughout the filtration range, that at any filtration value they add a virtually insignificant contribution to the total. 
 
@@ -688,20 +688,21 @@ This is because these species are so relatively short\--lived and spread through
 With this logic, it should be possible to extract the cycle statistics, which will be denoted $p_k$, in analogy with ring statistics.
 To do so, one simply needs to calculate:
 \begin{equation}
-	p_k = \beta_1\left(\Phi_k\right)-\beta_1\left(\Phi_{k-1}\right)\,,
+	p_k = \beta_1\left(\Phi_k\right)-\beta_1\left(\Phi_{k-1}\right),
 \end{equation}
 and normalise across all $k$ values.
 The cycle statistics from this process are given in figure \ref{fig:trpkpha}, which can be considered in reference to the ring statistics in figure \ref{fig:trpkphb}.
 In addition, the comparative measure,
 \begin{equation}
-	\Delta p_k = \frac{p_k^\text{cycles}-p_k^\text{rings}}{p_k^{rings}}\,,
+	\Delta p_k = \frac{p_k^\text{cycles}-p_k^\text{rings}}{p_k^{rings}},
 \end{equation}
 is given in figure \ref{fig:trpkphc}.
-As can be seen, to a first approximation the agreement is very good, particularly for the ring sizes close to $k=6$, at modest temperatures.
-This means that the cycles computed via persistent homology agree well with the primitive rings in the system, taking account for the approximative method to calculate $k$\--cycles.
+To a first approximation the agreement is very good, particularly for the ring sizes close to $k=6$, at modest temperatures.
+This means that the cycles computed via persistent homology agree well with the primitive rings in the system, taking account for the approximate method to calculate $k$\--cycles.
 Deviations are accentuated at very low temperature, when the absolute ring statistics of non\--six rings are small, or at high temperatures, when rings are increasingly distorted.
 For example, it is clear that $p_{10}$ is systematically underestimated from cycles across the whole temperature range.
 In addition, the statistics of smaller rings ($k\leq6$) are overestimated and larger rings ($k\geq 8$) underestimated increasingly at higher temperatures.
+
 The reason for this is that when large rings become sufficiently distorted, for instance becoming very elongated or even slightly non\--convex, the cross ring distances become sufficiently small that they die much earlier than expected.
 Examining the polygons in figure \ref{fig:b3a} and \ref{fig:b4a}, and referring again to table \ref{tab:circumradii}, one can see that almost all of these examples would be classified as being of a smaller cycle size than they are in reality, when examining the death values.
 Considering all these factors, overall in two dimensions, for triangle rafts, it is reasonable to conclude that the cycles found from persistent homology are in almost exact accordance with the primitive rings in the system.
@@ -727,18 +728,13 @@ The persistence diagrams for bond switching configurations generated with the tw
 Figures \ref{fig:bspda}\--\ref{fig:bspdd} pertain to the force constant ratio $\fk_r/\fk_\theta=16$ and figures \ref{fig:bspde}\--\ref{fig:bspdh} at $\fk_r/\fk_\theta=4$.
 For both models, four different $p_6$ values were selected, corresponding to four increasing levels of disorder.
 The initial impression may be that the persistence diagrams look very different from those of triangle rafts in figure \ref{fig:trpd}, but closer inspection reveals this is not the case, and they share many of the same characteristics.
-A key point these apparent differences is that the bond lengths have inherently more flexibility in the case of bond switching than triangle rafts.
+
+A key reason for these apparent differences is that the bond lengths have inherently more flexibility in the case of bond switching than triangle rafts.
 As such, any similar features will appear much broader, but retain similar structural origins.
 For example, the $B_1$ band is present in all the diagrams in figure \ref{fig:bspd}, centred around $b=0.5$.
 The difference is that at low levels of disorder  (see for example figures \ref{fig:bspda}\--\ref{fig:bspdb}), one can clearly see distinct ``spots'' in $B_1$, which are present in figure \ref{fig:trpd} but harder to detect due to the narrowness of the band.
 The upper limits of these spots correspond well with the circumradii in table \ref{tab:circumradii} \ie{} they are related to the occurrence of specific $k$\--cycles.
 At higher disorder these spots begins to coalesce, as in figure \ref{fig:bspdc}, before fully combining to form a single high density feature, as in figure \ref{fig:bspdd}.
-This final diagram can be considered ``typical'' of a highly disordered amorphous or liquid state \cite{Hiraoka2016,Onodera2019}.
-By using the bond switching method, it is clear however that this originates from the broadening and aggregation of features relating to individual cycle sizes.
-Other bands in the persistence diagram are also detectable, in particular $B_3$, but largely only at higher $p_6$ values. 
-This is because these bands only occur when there are well defined large cycles.
-In bond switching, although there are primitive rings which are very large, these can become so distorted that they are not calculated as a single persistent cycle, but rather multiple smaller cycles.
-This precludes the formation of significant higher order bands as seen in triangle rafts. 
 
 \begin{figure}[tbp]
 	\centering
@@ -746,28 +742,28 @@ This precludes the formation of significant higher order bands as seen in triang
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_399_bs_pd.pdf}
-         \caption{$k_r/k_\theta=16$, $p_6=0.890$} %399
+         \caption{$\fk_r/\fk_\theta=16$, $p_6=0.890$} %399
          \label{fig:bspda}
      \end{subfigure}
      \hspace{1cm}
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_301_bs_pd.pdf}
-         \caption{$k_r/k_\theta=16$, $p_6=0.666$}% 301
+         \caption{$\fk_r/\fk_\theta=16$, $p_6=0.666$}% 301
          \label{fig:bspdb}
      \end{subfigure}
      
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_231_bs_pd.pdf}
-         \caption{$k_r/k_\theta=16$, $p_6=0.332$}% 231
+         \caption{$\fk_r/\fk_\theta=16$, $p_6=0.332$}% 231
          \label{fig:bspdc}
      \end{subfigure}
      \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k16_0_bs_pd.pdf}
-         \caption{$k_r/k_\theta=16$, $p_6=0.164$}% 0
+         \caption{$\fk_r/\fk_\theta=16$, $p_6=0.164$}% 0
          \label{fig:bspdd}
      \end{subfigure}
 
@@ -775,34 +771,41 @@ This precludes the formation of significant higher order bands as seen in triang
 	\begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_399_bs_pd.pdf}
-         \caption{$k_r/k_\theta=4$, $p_6=0.943$}% 399
+         \caption{$\fk_r/\fk_\theta=4$, $p_6=0.943$}% 399
          \label{fig:bspde}
      \end{subfigure}
      \hspace{1cm}
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_257_bs_pd.pdf}
-         \caption{$k_r/k_\theta=4$, $p_6=0.662$}% 257
+         \caption{$\fk_r/\fk_\theta=4$, $p_6=0.662$}% 257
          \label{fig:bspdf}
      \end{subfigure}
      
         \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_189_bs_pd.pdf}
-         \caption{$k_r/k_\theta=4$, $p_6=0.332$}% 189
+         \caption{$\fk_r/\fk_\theta=4$, $p_6=0.332$}% 189
          \label{fig:bspdg}
      \end{subfigure}
      \hspace{1cm}
       \begin{subfigure}[b]{0.40\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/t_k4_0_bs_pd.pdf}
-         \caption{$k_r/k_\theta=4$, $p_6=0.163$}% 0}
+         \caption{$\fk_r/\fk_\theta=4$, $p_6=0.163$}% 0}
          \label{fig:bspdh}
      \end{subfigure}
      
 	\caption{Persistence diagrams for configurations from bond switching, at different bond stretch/angle constants and $p_6$ (as indicated in captions).}
 	\label{fig:bspd}
 \end{figure}
+
+This final diagram can be considered ``typical'' of a highly disordered amorphous or liquid state \cite{Hiraoka2016,Onodera2019}.
+By using the bond switching method, it is clear however that this originates from the broadening and aggregation of features relating to individual cycle sizes.
+Other bands in the persistence diagram are also detectable, in particular $B_3$, but largely only at higher $p_6$ values. 
+This is because these bands only occur when there are well defined large cycles.
+In bond switching, although there are primitive rings which are very large, these can become so distorted that they are not calculated as a single persistent cycle, but rather multiple smaller cycles.
+This precludes the formation of significant higher order bands as seen in triangle rafts. 
 
 %Other bands in the persistence diagram are also detectable, in particular $B_3$, but largely only at higher $p_6$ values. 
 %This is because these bands only occur when there are well defined large cycles.
@@ -815,7 +818,7 @@ As for the comparison between the different potential models, the effect of chan
 By comparing the persistence diagram of similar $p_6$ values, one can see there is a general broadening of the regions corresponding to each cycle size on reducing the bond stretch to angle ratio.
 The rationale for this trend is the same as for increasing temperature - that increasing the variation in nearest\--neighbour interatomic distances comes with associated variation in the values at which cycles are born and die.
 The difference between potential models naturally becomes less pronounced as disorder increases, and the Monte Carlo temperature is effectively infinite, such that the final diagrams, figures \ref{fig:bspdd} and \ref{fig:bspdh}, are almost identical.
-In these diagrams, the $B_1$ line appears to become progressively angled, driven by the decreasing birth value of smaller cycles.
+In these diagrams, the gradient of the $B_1$ line appears to become progressively shallower, driven by the decreasing birth value of smaller cycles.
 This is likely because the birth filtration value of a cycle depends on the final 1\--simplex to form.
 As a cycles becomes larger, the probability that all constituent 1\--simplices will have filtrations less that $b=0.5$ becomes increasingly unlikely compared to smaller cycles.
 The result of this is that smaller cycles, with lower death values, can also have progressively lower birth values, leading to the perceived tilting of the $B_1$ band.
@@ -823,32 +826,33 @@ The result of this is that smaller cycles, with lower death values, can also hav
 \subsection{Evolution in Betti Numbers}
 
 The first Betti number, $\beta_1$, can again give insight into the cycle structure in configurations generated from bond switching.
-Figures \ref{fig:bsbettia} and \ref{fig:bsbettib} show the evolution in $\beta_1$ with $\epsilon$ for the two variations in potential, where $k_r/k_\theta = 16,4$.
+Figures \ref{fig:bsbettia} and \ref{fig:bsbettib} show the evolution in $\beta_1$ with $\epsilon$ for the two variations in potential, where $\fk_r/\fk_\theta = 16,4$.
 In all cases configurations contain 1024 rings, averaged over 100 samples. 
 For both potentials, at the two higher $p_6$ values the curves exhibit similar behaviour to those from triangle rafts.
 Around $\epsilon=0.5$, 1024 cycles form, corresponding to the primitive rings in the system, before decaying in a stepwise fashion at filtration values corresponding to the regular $k$\--polygon circumradii.
 However, at the lower $p_6$ values, the curves become smooth and the maximum decreases to around half its original value.
 As there remain the same number of primitive rings, the implication of the maximum reducing is that some cycles die before others are even born and they never coexist.
 This in turn means that all these rings are not detectable on the same length scale.
+
 The final broad distribution resembles closely that of previous studies of random structures \cite{Nakamura2015}.
 This can therefore be considered characteristic of a highly amorphous (approaching liquid) disordered limit.
-As mentioned for the corresponding persistence diagrams, this results from the large variation in bond length and angle distributions \davidnote{Todo: discuss if it would be useful to include histograms of the bond lengths/angles in all this discussion.}.
-Once again, the effect of changing the force constant ratio is weak, with some broadening observed for $k_r/k_\theta=4$ over $k_r/k_\theta=16$ at higher $p_6$ values.
+As mentioned for the corresponding persistence diagrams, this results from the large variation in bond length and angle distributions %\davidnote{Todo: discuss if it would be useful to include histograms of the bond lengths/angles in all this discussion.}.
+Once again, the effect of changing the force constant ratio is weak, with some broadening observed for $\fk_r/\fk_\theta=4$ over $\fk_r/\fk_\theta=16$ at higher $p_6$ values.
 
 \begin{figure}[tb]
 	\centering
      
-      \begin{subfigure}[b]{0.48\textwidth}
+      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/bs_k16_beta1_cut.pdf}
-         \caption{$k_r/k_\theta=16$}
+         \caption{$\fk_r/\fk_\theta=16$}
          \label{fig:bsbettia}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.48\textwidth}
+     \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/ph/bs_k4_beta1_cut.pdf}
-         \caption{$k_r/k_\theta=4$}
+         \caption{$\fk_r/\fk_\theta=4$}
          \label{fig:bsbettib}
      \end{subfigure}
 
@@ -879,21 +883,21 @@ Rather, the persistence diagram adopts a more generic and diffuse form.
 Whilst the relative flexibility in the atomic potential is detectable through broadening of features, it is not clear that it is quantifiable.
 Furthermore, there is no evidence as yet that persistent homology is able to capture information on the medium range ring order, as for instance provided by the assortativity or \aw{} parameter.
 In fairness to the method, almost by definition, other classical measures such as the RDF equally lose information as structure is lost.
-In the case of persistent homology, it is just not clear that anything ``more'' is available in this situation.
+In the case of persistent homology, it is not yet clear that anything ``more'' is available in this situation.
 
-Based on these \td{} analyses, there is certainly scope for application of persistent homology to \thd{} systems, as has been tried in previous studies.
+Based on these \td{} analyses, there is certainly scope for further application of persistent homology to \thd{} systems, as has been attempted in previous studies.
 The question is whether the same insight can be gained, as there is a less well defined ring structure.
 There are also additional complications with increasing dimensionality, in that the next homology group is also accessible.
 In the \td{} case, the focus was on cycles which were filled with triangles, but in \thd{} there are also voids which are filled with tetrahedra.
 The advantage of persistent homology is that these different groups are trivially separable, and it may be that in \thd{} systems that the voids carry more structural significance.
-One potential downside is also that while real\--space data is becoming widespread for \td{} systems, direct imaging is less feasible for \thd{} structures.
+However, one potential downside is that while real\--space data is becoming widespread for \td{} systems, direct imaging is less feasible for \thd{} structures.
 This would limit persistent homology calculations to computational systems, which adds another layer of abstraction when comparing to experimental results.
 Irrespective of this added complexity, the \td{} case has at least demonstrated how physical structure can be related to persistent topological features.
 
 Overall, there is cause for cautious optimism for the use of persistent homology as another tool in the characterisation of amorphous materials.
 It is certainly true that to the trained eye, a persistence diagram of a crystal, amorphous material and liquid are easily identifiable, and information on the ring structure may also be gleaned. 
 Once the principle is understood, there is no more inherent difficulty in interpreting such diagrams than RDFs, structure factors or any other traditional measure.
-In addition, the use of persistent homology is by no means limited to chemical systems, and it may be that improvements in other fields will allow a novel interpretation of the structure of atomistic systems.
+In addition, the use of persistent homology is by no means limited to chemical systems, and it may be that improvements in other fields will allow a novel interpretation of the structure of atomistic configurations.
    
 \section{Chapter Conclusions}
 

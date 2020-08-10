@@ -14,7 +14,7 @@ The effect on these network properties is explored by systematically changing th
 So far this thesis has focussed on 3\--coordinate atomic networks such as silica and amorphous graphene.
 These atomic systems can however be considered a subset of a much larger class of \td{} networks which occur throughout the natural world (see figure \ref{fig:networkexamples}).
 Such networks emerge across all disciplines and span many orders of magnitude in size.
-In physical sciences random tessellations are not restricted to atomic materials, but are observed in foams, crack\--patterns  (in dessicated films, ceramics \etc) as well as in colloidal films through the Voronoi construction \-- to name a few \cite{Durand2011,Tong2017,Noever1992,Ma2019,Earnshaw1994,Allain1995,Moncho-Jorda2000}.
+In the physical sciences, random tessellations are not restricted to atomic materials, but are observed in foams \cite{Durand2011,Tong2017,Noever1992}, crack\--patterns  (in dessicated films, ceramics \etc), as well as in colloidal films through the Voronoi construction \-- to name a few \cite{Ma2019,Earnshaw1994,Allain1995,Moncho-Jorda2000}.
 Similar mosaics can also be seen in the biological world in the form of epithelial cells and polymer networks such as collagen \cite{Honda1978,Carter2017,Kim2016,Broedersz2014}, as well as in geology in the guise of rock formations and geography in context of geopolitical borders \cite{Weaire1984,Goehring2014,LeCaer1993}.
 Whilst this last example may seem to fall into the category of seemingly more esoteric offerings from the literature (including studies on crocodile scales and oil paintings \cite{Milinkovitch2019,Flores2017}), it provides an interesting insight into the formation of tessellations through random point processes.
 Although man\--made maps are nominally carefully constructed, the influence of random geographical features serve to generate tessellations which are entirely consistent with others found in the natural world.
@@ -37,14 +37,14 @@ To demonstrate the effectiveness and potential of this approach, results will be
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=4cm]{./figures/general_networks/foam.pdf}
-         \caption{Planer, $c=4$, \\ angle controlled.}
+         \caption{Planer, $c=3$, \\ angle controlled.}
          \label{fig:ne2}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=4cm]{./figures/general_networks/four.pdf}
-         \caption{Planer, $c=4$, \\ angle controlled}
+         \caption{Planer, $c=4$ \\ \phantom{angle controlled}}
          \label{fig:ne3}
      \end{subfigure}
      \hfill
@@ -81,7 +81,7 @@ To demonstrate the effectiveness and potential of this approach, results will be
      \end{subfigure}
 
      \caption{Two-dimensional networks emerge in diverse physical systems and span a range of length scales, coordination environments,
-and topologies: (a) 3-coordinate, bond\--length controlled network, \eg, glass; (b) 3\--coordinate, angle controlled network, \eg{} foam; (c) 4\--coordinate network; (d) 3\--coordinate network in spherical geometry, \eg{} nonclassical fullerene; (e) triangle raft, \eg{} silica bilayer; (f) hard disk Voronoi \eg{} colloidal monolayer; and (g) communes of Switzerland. Rings are coloured similarly according to size with blue, gray, and red indicating smaller than, equal to, and greater than the mean ring size, respectively.}
+and topologies: (a) 3-coordinate, bond\--length controlled network, \eg, glass; (b) 3\--coordinate, angle controlled network, \eg{} foam; (c) 4\--coordinate network; (d) 3\--coordinate network in spherical geometry, \eg{} nonclassical fullerene; (e) triangle raft, \eg{} silica bilayer; (f) hard disk Voronoi \eg{} colloidal monolayer; and (g) communes of Switzerland. Rings are coloured similarly according to size with blue, grey, and red indicating smaller than, equal to, and greater than the mean ring size, respectively.}
      \label{fig:networkexamples}
 \end{figure}
 
@@ -113,10 +113,10 @@ Network science offers an opportunity to unite the study of these disparate phys
 Much of the groundwork for this has been laid in chapter \ref{ch:networktheory}, but there are some important additions, namely the introduction of the assortativity to describe ring\--ring correlations.
 Some of the key aspects which were introduced in chapter \ref{ch:networktheory} will be briefly recapped, before these extensions are highlighted.
 
-Chapters \ref{ch:targetedopt} and \ref{ch:bilayers} of this thesis focussed on planar atomic systems which had a fixed coordination of three.
+Chapters \ref{ch:bilayers} and \ref{ch:targetedopt} of this thesis focussed on planar atomic systems which had a fixed coordination of three.
 The main difference in this chapter is that the scope has increased to include networks with variable coordination and topologies.
 For generic physical networks the equivalent of the atomic coordination number, $c$, is not necessarily precisely defined by an atomic species. 
-The consequence of this is that the mean ring size as dictated by Euler's law is no longer always six, but rather determined by equations \eqref{eq:2dplanarcases},\eqref{eq:2dsphericalcases}; so that for example a network of $c=4$ will have a mean ring size of $\ki=4$.
+The consequence of this is that the mean ring size as dictated by Euler's law is no longer always six, but rather determined by equations \eqref{eq:2dplanarcases} and \eqref{eq:2dsphericalcases}; so that for example a network of $c=4$ will have a mean ring size of $\ki=4$.
 That being said, the majority of naturally occurring networks still have $c=3$, as higher order sites are unstable with respect to small perturbations, with for example a 4\--coordinate site readily splitting into two 3\--coordinate sites \cite{Caer1993}.
 
 The ring statistics, $p_k$, remain an important measure, and have a clear analogue in network science, being the node degree distribution of the ring network (see section \ref{s:atomringnetworks}).
@@ -134,7 +134,7 @@ This chapter therefore provides a good opportunity to replace the empirical \aw{
 
 For all its perceived success in characterising amorphous materials, the \aw{} law suffers from several deficiencies, some of them academic and others practical.
 To begin with, it remains the case that despite numerous efforts \cite{Lambert1981,Kumar1994,Blanc1979,Rivier1985,Peshkin1991,Chiu1994} there is no satisfactory theoretical justification behind the \aw{} law; the various attempts and their drawbacks summarised excellently by Mason \etal{} \cite{Mason2012}.
-In fact it seems increasingly likely that the difficulty in finding an adequate theoretical proof for the \aw{} law simply arises from the fact that there just isn't a strong physical basis behind it.
+In fact it seems increasingly likely that the difficulty in finding an adequate theoretical proof for the \aw{} law simply arises from the fact that there is not a strong physical basis behind it.
 
 One may then reasonably question why the linear \aw{} law holds so well for a range of different systems.
 The answer again may be the fact that unfortunately it is not as infallible as its widespread usage would suggest.
@@ -148,10 +148,10 @@ Nevertheless, as Mason \etal{} astutely point out \textit{``a linear model is a 
 The second issue is that little attention is paid to the exact form of the law and the fact that the intercept should be $\ki^2+\mu_2$ is rarely adhered to.
 Enforcing this condition often leads to a less satisfactory fit. 
 
-The consequences of the difficulty in obtaining an accurate \aw{} fit are naturally that the resulting $\alpha$ parameter has associated with it a degree of ``greyness''.
+The consequences of the difficulty in obtaining an accurate \aw{} fit are naturally that the resulting $\alpha$ parameter has associated with it a degree of uncertainty.
 Yet even in the case where the \aw{} law seems wholly appropriate, there is still a difficulty in fully interpreting its meaning.
 It is not intuitive what the actual value of $\alpha$ represents nor its limits.
-Even for a simple system of $\left\{5,6,7\right\}$ rings, equation \eqref{eq:agalpha} illustrated that the relationship between ring structure and $\alpha$ is non\--trivial.
+Even for a simple system of $\left[5,6,7\right]$ rings, equation \eqref{eq:agalpha} illustrated that the relationship between ring structure and $\alpha$ is non\--trivial.
 More generally, it was shown in section \ref{s:awlaw}, if rings are arranged purely randomly that $\alpha=-\frac{\mu_2}{\ki^2}$, but without a well\--defined upper limit for comparison interpretation remains restricted.
 This equation also highlights that $\alpha$ is dependent on the ring statistics and that its sign is an insufficient classifier for positive or negative correlation.
 Hence even if a high quality fit is achieved, a combination of these effects make it difficult to draw accurate comparisons between different systems.
@@ -169,7 +169,7 @@ The probability of any link having degree $k$ is distributed according to $q_k=k
 Deviation from this random arrangement is the assortativity, and can be measured by Pearson's correlation coefficient:
 \begin{equation}
         \label{eq:assortativity}
-        r = \frac{\sumjk jk\left(e_{jk}-q_jq_k\right)}{\sumk k^2q_k - \left(\sumk kq_k\right)^2}=\frac{\ki^2\sumjk jke_{jk}-\kii^2}{\ki\kiii-\kii^2}\,.
+        r = \frac{\sumjk jk\left(e_{jk}-q_jq_k\right)}{\sumk k^2q_k - \left(\sumk kq_k\right)^2}=\frac{\ki^2\sumjk jke_{jk}-\kii^2}{\ki\kiii-\kii^2}.
 \end{equation}
 For this coefficient to be calculable, the second and third moments of the degree distribution must be finite \cite{Litvak2013}.
 This condition is satisfied for these physical systems, as the proportion of large rings quickly becomes vanishingly small.
@@ -236,7 +236,7 @@ This condition is satisfied for these physical systems, as the proportion of lar
      \end{subfigure}
       \hfill
  
-     \caption{Visualisation of the joint node degree distribution, $e_jk$, for a given node degree distribution, $p_k$, at different assortativities, $r$. Panel (a) gives the node degree distribution (\ie{} ring statistics), and panels (b)\--(h) visualisations of the joint node degree distribution at increasing assortativities. All matrices have the same orientation and colouring as panel (e).}
+     \caption{Visualisation of the joint edge degree distribution, $e_{jk}$, for a given node degree distribution, $p_k$, at different assortativities, $r$. Panel (a) gives the node degree distribution (\ie{} ring statistics), and panels (b)\--(h) visualisations of the joint edge degree distribution at increasing assortativities. All matrices have the same orientation and colouring as panel (e).}
      \label{fig:rex}
 \end{figure}
 
@@ -244,7 +244,7 @@ The advantages of adopting this measure of assortativity are clear.
 The correlation coefficient is bounded between $-1\leq r \leq 1$ and has three well defined limits: $r=0$ indicating a random network, $r=1$ a perfectly assortative network and $r=-1$ a perfectly disassortative network.
 Intermediate values of $r$ are then readily understandable in reference to these limits, with a concomitant effect on the joint degree distribution, as illustrated in figure \ref{fig:rex}. 
 This allows physical networks to be readily compared in a way that the \aw{} law does not allow.
-Physical networks can now be fitted in to the wider field of network science, introducing them as important examples alongside more traditionally studied networks.
+Physical networks can now be placed into the wider field of network science, introducing them as important examples alongside more traditionally studied networks.
 Using the assortativity also provides a natural extension to higher dimensions, which has been difficult to reconcile with the empirical \aw{} law \cite{Mason2012}.
 
 For completeness, it will be shown that the assortativity can be related to the \aw{} parameter.
@@ -254,11 +254,10 @@ Substituting this expression into equation \eqref{eq:assortativity}, and assumin
         \label{eq:rawlink}
         \alpha = - \frac{r\left(\ki\kiii-\kii^2\right)}{\mu_2\ki^2}-\frac{\mu_2}{\ki^2},
 \end{equation}
-which is consistent with the topological gas, when $r=0$.
+which is consistent with the topological gas ($\alpha=-\mu_2/\ki^2$), when $r=0$.
 The derivation of this result is given in appendix \ref{app:derivalphaassort}.
 In reality, the \aw{} fit is never perfect, and so equation \eqref{eq:rawlink} provides an approximation to the value of $\alpha$. 
 The accuracy of this equation will therefore depend on the applicability of the linear fit.
-\davidnote{Include that figure somewhere}.
 
 The assortativity also provides a natural framework to extend \lm's maximum entropy arguments to factor in ring adjacencies.
 The entropy is first defined in terms of the edge joint degree distribution, as $\mathcal{S}=-\sumjk e_{jk}\log e_{jk}$.
@@ -269,7 +268,7 @@ Considering $e_{jk}$, the following constraints must hold:
         \sumjk \frac{1}{j}e_{jk} &= \frac{1}{\ki} \label{con:as3}\\
         \sumjk jke_{jk} &= c\left(r\right)\label{con:as4};
 \end{align}
-resulting from the normalisation condition, Weaire's sum rule \cite{Weaire1974} and Euler's formula and finally a constraint imposing the assortativity from equation \eqref{eq:assortativity}.
+resulting from the normalisation condition, Weaire's sum rule \cite{Weaire1974}, Euler's formula and finally a constraint imposing the assortativity from equation \eqref{eq:assortativity}.
 As for \lm's law, Lagrange's method can be used with the constraints above (noting that $e_{jk}=e_{kj}$) to generate a maximum entropy joint distribution which satisfies:
 \begin{equation}
         \label{eq:mer}
@@ -284,7 +283,7 @@ This can again be solved numerically, and the resulting distribution can be rela
 In order to study generic physical networks, a simulation method is required which can generate configurations across a wide range of coordination environments, topologies and potential models. 
 The bond switching algorithm, introduced in section \ref{s:bondswitch}, is a good candidate as it has proved effective for studying atomic networks in chapter \ref{ch:targetedopt}.
 However, currently it is only adapted to study constant coordination planar systems (in this work 3\--coordinate but there is one previous example of study of 4\--coordinate systems \cite{Greneche1990}).
-Therefore a further natural extension of the bond switching method is presented here, to variable atomic coordination environments and overall system topology.
+Therefore, a further extension of the bond switching method is presented here, to variable atomic coordination environments and overall system topology.
 
 As a review from a networks perspective, the bond switching algorithm is a stochastic sampling method.
 Starting from an initially well\--ordered network, links between neighbouring nodes are switched and the effect on the potential energy of the system (\ie{} the amount of strain which is introduced or removed) is calculated.
@@ -295,8 +294,8 @@ The specificities of the algorithm will however depend on the exact nature of th
 
 \subsection{Extension to Variable Coordination}
 
-The choice of the starting lattice can be used to determine the system properties \ie{} the atomic coordination environments and topologies (table \ref{tab:lattices}, figure \ref{fig:lattices}).
-This is because in the bond switching algorithm the node degree distribution of the atomic network is constant, and hence from equation \eqref{eq:avdegree} so is mean node degree of the dual network.
+The choice of the starting lattice can be used to determine the system properties \ie{} the atomic coordination environments and topologies (see table \ref{tab:lattices} and figure \ref{fig:lattices}).
+This is because in the bond switching algorithm, the node degree distribution of the atomic network is constant, and hence from equation \eqref{eq:avdegree} so is mean node degree of the dual network.
 Therefore whichever topology, atomic coordinations and mean ring size the system is initialised with will be preserved throughout the simulation.
 
 \begin{table}
@@ -420,7 +419,9 @@ A practical method to achieve this is from the dual lattice of a platonic solid,
 	\item Project the lattice onto a sphere (figures \ref{fig:topo2} and \ref{fig:topo5})
 	\item Generate atomic network from the dual lattice (figures \ref{fig:topo3} and \ref{fig:topo6})
 \end{enumerate}
-Once this lattice has been constructed, the bond switching algorithm may proceed as usual.
+The number of rings in the fullerene can be controlled by the number of facial subdivisions, as shown in figures \ref{fig:topo7}\--\ref{fig:topo9}.
+Irrespective of the total number of rings, the same number of initial smaller rings are always present (\ie{} 12 pentagons for 3\--coordinate lattices and 8 triangles for 4\--coordinate lattices). 
+Once the fullerene has been constructed, the bond switching algorithm may proceed as usual, using the relevant \mc{} moves from figure \ref{fig:bsmoves}.
 
 \begin{figure}[bt]
      \centering
@@ -447,7 +448,7 @@ Once this lattice has been constructed, the bond switching algorithm may proceed
      \end{subfigure}
      \hfill
      
-     \vspace{0.2cm}
+     \vspace{5mm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
          \includegraphics[height=3.5cm]{./figures/general_networks/full98_iso.pdf}
@@ -470,10 +471,10 @@ Once this lattice has been constructed, the bond switching algorithm may proceed
      \end{subfigure}
      \hfill
      
-     \vspace{0.2cm}
+     \vspace{5mm}
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[height=3.5cm]{./figures/general_networks/full42.pdf}
+         \includegraphics[height=3.35cm]{./figures/general_networks/full42.pdf}
          \caption{42\--ring fullerene}
          \label{fig:topo7}
      \end{subfigure}
@@ -493,13 +494,13 @@ Once this lattice has been constructed, the bond switching algorithm may proceed
      \end{subfigure}
      \hfill
      
-     \caption{Lattices of given coordination in spherical topology can be generated from the dual of a subdivided platonic solid, projected onto a sphere. Figures (a)\--(c) show this process for the icosahedron, giving a 3\--coordinate lattice and (d)\--(f) for the cube, giving a 4\--coordinate lattice. Altering the number of subdivisions allows the number of rings in the fullerene to be controlled.}
+     \caption{Lattices of given coordination in spherical topology can be generated from the dual of a subdivided platonic solid, projected onto a sphere. Panels (a)\--(c) show this process for the icosahedron, giving a 3\--coordinate lattice and panels (d)\--(f) for the cube, giving a 4\--coordinate lattice. Altering the number of subdivisions allows the number of rings in the fullerene to be controlled, as in panels (g)\--(i), but the number of initial defects remains constant.}
      \label{fig:topomethod}
 \end{figure}
 
 A further question that must be addressed is how to handle the potential model in spherical topology. 
 One could implement all the potentials using spherical polar coordinates, which would strictly enforce the system topology.
-However, here a simpler solution was used, whereby a simple harmonic restraining potential was between all atoms and the surface of the sphere, and the standard potential was used in three dimensional Euclidean space.
+However, a simpler solution can be used, whereby a simple harmonic restraining potential is applied between all atoms and the surface of the sphere, and the standard potential is used in three dimensional Euclidean space.
 The atoms are therefore approximately maintained on a sphere of a fixed radius.
 The radius is selected before the bond switching routine commences, corresponding to the minimum energy structure for the initial fullerene.
 
@@ -511,7 +512,7 @@ Application to systems with a larger number of topological holes would however r
 
 \section{List of Studied Networks}
 
-In this chapter data on networks will be presented from a range of different sources, covering both computation and experiment.
+In this chapter, data on networks will be presented from a range of different sources, covering both computation and experiment.
 These are detailed here as a reference for the remainder of the chapter.
 
 \subsection{Computational Networks}
@@ -523,11 +524,12 @@ They are as follows:
 	\item \textbf{Bond switching}: networks of $1024$ rings for $\ki=4,6$ and $1152$ rings for $\ki=5$. 
 	In a simulation, the system was thermalised with $2\times 10^5$ random moves, and annealed over a further $4\times 10^6$ moves. 
 	A series of different potential models were also used with bond length/angle force constant ratios of $\fk_r/\fk_\theta=16,4,1,1/4$. 
-	For each parameter set, 100 simulations were run starting from different random seeds.
+	For each parameter set, 100 simulations were performed starting from different random seeds.
 	\item \textbf{Triangle rafts}: networks of $1000$ rings across a temperature range of $T=10^{-4.5}\rightarrow10^{-1.5}$, as outlined in section \ref{s:triangleraft}, totalling some $27,500$ configurations.  
+	For each temperature, 100 simulations were performed with different random seeds and the results averaged.
 	\item \textbf{Hard disk \mc}: systems of $1000$ disks at packing fractions in the range $\phi=0.0\rightarrow0.77$.
 	Each simulation comprised cycles of $1000$ random displacement moves, with $10^5$ equilibration cycles, $10^5$ production cycles and with sampling every 10 production cycles. 
-	For each packing fraction 10 simulations were run using a different random seed.
+	For each packing fraction 10 simulations were performed using a different random seed.
 	 A Voronoi analysis was performed for each configuration to generate a system of tessellating rings, as discussed in section \ref{s:hardparticlemc}.
 \end{enumerate} 
 
@@ -537,13 +539,16 @@ They are as follows:
 Comparison is also made to a variety of experimental networks obtained from a variety of publications.
 They are as follows:
 \begin{enumerate}
-	\item \textbf{Colloidal monolayers}: particles with a diameter of $\sim 2.79~\mu$m dispersed in a water\--ethanol mixture and confined by gravity to form a monolayer on the base of a glass sample cell, with packing fractions in the range $\phi=0.29\rightarrow 0.66$ \cite{Thorneywork2017}.
+	\item \textbf{Colloidal monolayers}: particles %with a diameter of $\sim 2.79~\mu$m dispersed in a water\--ethanol mixture and 
+	 confined by gravity to form a monolayer on the base of a glass sample cell, with packing fractions in the range $\phi=0.29\rightarrow 0.66$ \cite{Thorneywork2017}.
 Out\--of\--plane fluctuations are quantified by the gravitational height of the particles, which is a very small percentage of their diameter, and as such the system is structurally two-dimensional.
 Each packing fraction has 100 associated frames, with the time between frames around 10s.
-At the highest packing fractions considered, the area of the system imaged contains around 3000 particles.
+At the highest packing fractions, the area of the system imaged contains around 3000 particles.
 As the system is aperiodic, after Voronoi analysis the cells on the image boundary are neglected (for more information see section \ref{s:expcolloidanalysis}).
-\item \textbf{Silica bilayers}: configurations of thin films of silica glass grown on graphene \cite{Huang2012} and Ru(001) \cite{Buchner2017}.
-Three samples were obtained consisting of 291, 444 and 446 rings.
+
+\item \textbf{Silica bilayers}: configurations of thin films of silica grown on graphene and Ru(001) \cite{Huang2012,Buchner2017}.
+Samples were obtained consisting of 291, 444 and 446 rings.
+
 \item \textbf{Amorphous graphene}: configurations of graphene amorphised by irradiation with an electron beam \cite{Eder2014}.
 Exposure to increasing doses created 14 samples with varying levels of disorder.
 For each sample, defects were identified from the presence of under\--coordinated atoms, arising largely from the sample perimeter or from holes in the centre, which were removed.
@@ -569,11 +574,6 @@ Even for the graphene samples which have been modified by an electron beam (pink
 For the colloid systems (blue circles) however, the rings are formed from the Voronoi tessellation, with no intrinsic cost to distortions and instead it is the packing fraction, $\phi$, which determines $p_6$.
 The limit $\phi\rightarrow 0$ achieves the Poisson Voronoi ring distribution (yellow star) \cite{Tanemura2003}, with a lower bound of $p_6 \approx 0.295$.
 For for the administrative geopolitical regions, there is no energy cost for rings, regardless of shape, convexity or separation, and so we find these points (red triangles) in the low $p_6$, high entropy portion of \lm's{} curve.
-
-On the other hand, using a flexible computational method allows access to the entire range of $\mu_2$ values, where the level of disorder is controlled by the Monte Carlo ``temperature'' parameter.
-The results from bond switching highlight the typical dispersion that can be expected within \lm's{} law, with the grey shaded region indicating the bounds of $\mu_2$ within two standard deviations of the mean.
-Finally it can be seen that using equation \eqref{eq:mer} with the $p_6$ and $r$ values from hard disk Monte Carlo (blue dashed line) reproduces the results from \lm's{} law without the need for the empirical constraint.
-The calculation of this line is explained at the end of section \ref{s:genassortativity}.
 
 \begin{figure}[bt]
      \centering
@@ -605,6 +605,11 @@ The calculation of this line is explained at the end of section \ref{s:genassort
      \caption{Physical networks are shown to agree well with \lm's law. Panel (a): \lm's law (black line) is compared to to bond switching simulations of 3\--coordinate \td{} materials (grey area representing two standard deviations from the mean), amorphous graphene (pink diamonds), silica bilayers (orange hexagons), colloidal monolayers (blue circles), the Poisson Voronoi diagram (yellow star) and maps of geopolitical regions (red triangles). Panels (b) and (c): comparison to bond switching with ring convexity maintained using the ReB potential for 3\-- and 4\--coordinate systems respectively.}
      \label{fig:lmgen}
 \end{figure}
+
+On the other hand, using a flexible computational method allows access to the entire range of $\mu_2$ values, where the level of disorder is controlled by the Monte Carlo ``temperature'' parameter.
+The results from bond switching highlight the typical dispersion that can be expected within \lm's{} law, with the grey shaded region indicating the bounds of $\mu_2$ within two standard deviations of the mean.
+Finally it can be seen that using equation \eqref{eq:mer} with the $p_6$ and $r$ values from hard disk Monte Carlo (blue dashed line) reproduces the results from \lm's{} law without the need for the empirical constraint.
+The calculation of this line is explained at the end of section \ref{s:genassortativity}.
 
 The effect on the maximum entropy solutions can also be explored for different atomic coordination environments and constraints.
 Figures \ref{fig:lmgenb} and \ref{fig:lmgenc} gives two such examples where ring convexity is enforced by using the ReB potential.
@@ -670,12 +675,12 @@ This is supported by the experimental results from amorphous graphene (pink diam
      \hfill
    
      \caption{Panel (a): variation in assortativity, $r$, against $p_6$ for a range of 3\--coordinate systems comprising experimental and simulation data. For bond switching data, darker grey colouring indicates a greater $\fk_r/\fk_\theta$.
-Panels (b)\--(e) show common defects found in crystalline systems, with their limiting assortativity value (b) isolated pair, $r=0.0$; (c) adjacent pair, cluster, $r=-0.1\dot{6}$;  (d) Stone\--Wales, mitosis, $r=-0.25$;  (e) 5\--7 chain (flower defect), 5\--8 chain, $r=-0.\dot{3}$.}
+Panels (b)\--(e) show common defects found in microcrystalline systems, with their limiting assortativity value: (b) isolated pair, $r=0.0$; (c) adjacent pair, cluster, $r=-0.1\dot{6}$;  (d) Stone\--Wales, mitosis, $r=-0.25$;  (e) 5\--7 chain (flower defect), 5\--8 chain, $r=-0.\dot{3}$.}
      \label{fig:assortgen}
 \end{figure}
 
 For all the systems we note that there are different regimes, with the high $p_6$ limit corresponding to configurations best described as crystalline with defects rather than truly amorphous as in the low $p_6$ limit \-- with the two often being linked by a phase transition.
-The high $p_6$ limit can be rationalised by considering the frequency of common defect types at infinite dilution in a hexagonal lattice \cite{Marcus1997,Bjorkman2013} (figure \ref{fig:defect33}\--\ref{fig:defect0}).
+The high $p_6$ limit can be rationalised by considering the frequency of common defect types at infinite dilution in a hexagonal lattice (see figures \ref{fig:defect33}\--\ref{fig:defect0}) \cite{Marcus1997,Bjorkman2013}.
 These can be calculated by considering the explicit edge joint probability distribution for a specific defect.
 For example, for the Stone\--Wales defect \ref{fig:defect25}, each 5\--ring has two 7\--ring neighbours, and each 7\--ring two 5\--ring and one 7\--ring neighbours such that:
 \begin{equation}
@@ -693,11 +698,11 @@ For example, for the Stone\--Wales defect \ref{fig:defect25}, each 5\--ring has 
 where $\delta=\left(1-p_6\right)/12$.
 From here it is straightforward to evaluate the dilute $p_6$ limit as $\lim\limits_{\delta\rightarrow 0} r = \frac{1}{4}$.
 
-This helps to rationalise the high $p_6$ disassortative behaviour for these 3\--coordinate systems.
+This helps to rationalise the high $p_6$ disassortative behaviour for 3\--coordinate systems.
 For hard disks as $p_6\rightarrow 1$ the adjacent pair appears to be dominant, whereas for bond switching and triangle rafts the potential model determines the balance of defect types.
 For bond switching the standard deviation is large as each sample contains a single defect corresponding to one of the low energy forms.
 By visual inspection, increasing the length relative to the angle driving force preferences chain\--like structures over isolated defects.
-Similarly the rigidity of the triangle units in the triangle raft method leads to a very tight length distribution which encourages the formation of defects such as \ref{fig:defect0}.
+Similarly the rigidity of the triangle units in the triangle raft method leads to a very tight length distribution which encourages the formation of defects such as in figure \ref{fig:defect0}.
 As $p_6$ decreases more defects are introduced and the system becomes truly amorphous.
 Again one can posit that as the hard disk model has no energetic term, it is able to incorporate less correlated defects, and in the low packing fraction the hard disk model provides an estimate for the Poisson Voronoi limit of $r\approx-0.15$.
 
@@ -735,7 +740,7 @@ It is for this same reason that the limit of $p_5\rightarrow 1$ cannot be reache
      \end{subfigure}
      \hfill
      
-     \caption{Panel (a) shows the variation in assortativity, with ring statistics for 3\--coordinate (green, grey lines), 4\--coordinate (red line) and mixed 3/4\--coordination systems (blue line) using the simplified Keating (SK) and restricted bending (ReB) potentials as indicated. Panel (b) gives a small configuration of a mixed coordination lattice displaying clustering of rings of similar size.}
+     \caption{Panel (a) shows the variation in assortativity, with ring statistics for 3\--coordinate (green and grey lines), 4\--coordinate (red line) and mixed 3/4\--coordination systems (blue line) using the simplified Keating (SK) and restricted bending (ReB) potentials as indicated. Panel (b) gives a small configuration of a mixed coordination lattice displaying clustering of rings of similar size.}
      \label{fig:assortmix}
 \end{figure}
 
@@ -748,28 +753,17 @@ In addition, plots of the mean ring sizes for selected packing fractions are giv
 \begin{figure}
 \centering
         \includegraphics[width=7cm]{./figures/general_networks/hdme.pdf}
-        \caption{Mean ring size of hard disk simulations at different packing fractions (full lines) compared to results from maximum entropy (dashed lines). In both cases only ring sizes with $p_k>10^{-4}$ are displayed and results are offset by $0.5$ along the abscissa for clarity.}
+        \caption{Mean ring size of hard disk simulations at different packing fractions (full lines) compared to results from maximum entropy (dashed lines). In both cases only ring sizes with $p_k>10^{-4}$ are displayed. Results are offset by $0.5$ along the abscissa for clarity.}
         \label{fig:hdme}
 \end{figure}
 
 \subsection{Energetics of Fullerenes}
 
 As an illustration of the generalisability of the methods described in this work, results are presented for two\--dimensional networks in spherical topology.
-Such systems are also of experimental interest, as experimentalists now have access to ``non-classical'' fullerenes \cite{Tian2019,Guan2019,Brotsman2017,Kemnitz2018}, metal-organic nano-cages \cite{Fujita2016,Wang2017} as well as curved froths \cite{Roth2012}.
-One such fullerene was investigated here: a 92\--ring 3\--coordinate fullerene consisting of 5,6 and 7\-- rings.
+Such systems are also of experimental interest, as researchers now have access to ``non-classical'' fullerenes \cite{Tian2019,Guan2019,Brotsman2017,Kemnitz2018}, metal-organic nano-cages \cite{Fujita2016,Wang2017} as well as curved froths \cite{Roth2012}.
+One such fullerene was investigated here: a 92\--ring 3\--coordinate fullerene consisting of 5\--, 6\-- and 7\-- rings.
 Possible configurations were again generated via bond switching, starting from the lattice depicted in figure \ref{fig:topo3}.
-Here $10^6$ total configurations were sampled from 100 different simulations, with $\fk_r/\fk_\theta=4$.
-
-Results of the network properties averaged across configurations are given in figure \ref{fig:fullerene92u}, coloured by potential energy.
-In this plot the value of $p_6$ is discretised, owing to the the small and well\--defined number of rings, and cannot exceed the upper limit imposed by the 12\--pentagon rule, whereas the assortativity is averaged.
-As expected, the energy of the fullerenes increases with the increasing diversity in the ring statistics, as more pentagons and heptagons are accommodated.
-However, it is also the case that the arrangement of the rings, as measured by the assortativity, is also very important in determining the stability of the networks.
-To emphasise this, three example configurations are provided in figure \ref{fig:fullerene92a}\--\ref{fig:fullerene92c}.
-These amorphous fullerenes have the same $p_6$ value (and therefore $p_5$, $p_7$), but very different strain energies.
-In \ref{fig:fullerene92c} defects appear which are similar to the common motifs as in figure \ref{fig:assortgen} \ie{} those associated with being low energy.
-The increased clustering of similar sized rings in \ref{fig:fullerene92a} and \ref{fig:fullerene92b} leads to increasingly irregular ring geometries that generate high levels of strain.
-As previously noted with planar networks, systems which are disassortative are energetically favoured.
-Although this is a simple consequence of the mechanical properties of the system, neglecting any electronic contributions, such is the difference in stability that we would expect disassortative fullerenes of this type to be more prevalent in nature.
+A total of $10^6$ configurations were sampled from 100 different simulations, with $\fk_r/\fk_\theta=4$.
 
 \begin{figure}[bt]
      \centering
@@ -783,7 +777,7 @@ Although this is a simple consequence of the mechanical properties of the system
      
 	\vspace{0.2cm}     
      
-     \begin{subfigure}[b]{0.22\textwidth}
+     \begin{subfigure}[b]{0.2\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/general_networks/full92_r10.pdf}
          \caption{$p_6=36/92$,\\ $r=0.1$}
@@ -807,9 +801,21 @@ Although this is a simple consequence of the mechanical properties of the system
      
      \caption{Panel (a) gives a map of fullerene stability as a function of ring statistics and assortativity.
         Potential energy increases as more pentagons and heptagons are accommodated, but is also strongly related to their arrangement as shown by the value of the assortativity, $r$.
-        Panels (b)-(d) give three example fullerenes with the same $p_6=36/92$ but different assortativities of $r=0.1,-0.1,-0.3$, respectively and as highlighted by the crosses in panel (a).}
+        Panels (b)-(d) give three example fullerenes with $p_6=36/92$ but different assortativities of $r=0.1,-0.1,-0.3$, respectively and as highlighted by the crosses in panel (a).}
      \label{fig:fullerene92}
 \end{figure}
+
+
+Results of the network properties averaged across configurations are given in figure \ref{fig:fullerene92u}, coloured by potential energy.
+In this plot the value of $p_6$ is discretised, owing to the the small and well\--defined number of rings, and cannot exceed the upper limit imposed by the 12\--pentagon rule, whereas the assortativity is averaged.
+As expected, the energy of the fullerenes increases with the increasing diversity in the ring statistics, as more pentagons and heptagons are accommodated.
+However, it is also the case that the arrangement of the rings, as measured by the assortativity, is also very important in determining the stability of the networks.
+To emphasise this, three example configurations are provided in figures \ref{fig:fullerene92a}\--\ref{fig:fullerene92c}.
+These amorphous fullerenes have the same $p_6$ value (and therefore $p_5$, $p_7$), but very different strain energies.
+In \ref{fig:fullerene92c} defects appear which are similar to the common motifs as in figure \ref{fig:assortgen} \ie{} those associated with being low energy.
+The increased clustering of similar sized rings in \ref{fig:fullerene92a} and \ref{fig:fullerene92b} leads to increasingly irregular ring geometries that generate high levels of strain.
+As previously noted with planar networks, systems which are disassortative are energetically favoured.
+Although this is a simple consequence of the mechanical properties of the system, neglecting any electronic contributions, such is the difference in stability that we would expect disassortative fullerenes of this type to be more prevalent in nature.
 
 \section{Chapter Conclusions}
 
@@ -824,8 +830,8 @@ An exception to this rule has also been found, where variable\--coordination sys
 
 In this chapter it has demonstrated how network science is applicable to understanding and analysing generic systems in physics, but also how physical systems form a key and under\--explored area of network science.
 Going forward there is significant scope to extend this research.
-For example, there are still questions to be answered from this work such as how network properties such as the assortativity are explicitly related to the physics of the underlying system and whether this information can be utilised experimentally \-- for example to control and effectively quantify the pore size in materials.
-This has also set up extensions towards investigating more disordered networks still, such as biological networks which have an even wider range of coordination environments.
+For example, there are still questions to be answered from this work such as how network properties such as the assortativity are explicitly related to the physics of the underlying system and whether this information can be utilised experimentally \-- for example to control and effectively quantify the pore size in \td{} materials.
+This research has also set up extensions towards investigating more disordered networks still, such as biological networks which have an even wider range of coordination environments.
 
 
 
