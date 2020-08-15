@@ -12,7 +12,7 @@ This discussion lays the groundwork for the extension of these methods and devel
 
 \mc{} methods are a class of computational algorithms designed to solve complex problems stochastically.
 These normally fall into the broad categories of calculating integrals, sampling probability distributions and finding global minima of very high dimensional functions \-- tasks which are often incredibly hard to compute deterministically.
-Since their initial development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
+Since their principle development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
 \mc{} methods are used in this context for calculating thermodynamic averages of properties in equilibrium systems; finding the minima in potential energy surfaces of small molecules, glasses, crystals and biomolecules; as well as non\--equilibrium simulations such as growth of crystals and thin\--films \cite{Landau2014,Wales1999,Levi1997,Ratsch2003,Kob1999,Jensen1999}.
 In this thesis these \mc{} methods  will be used in a variety of contexts: chapter \ref{ch:bilayers} simulates the growth of bilayer materials using  a random sequential growth algorithm; chapter \ref{ch:targetedopt} optimises a cost function to control network structure; chapter \ref{ch:generalnetworks} samples amorphous configurations of various system topologies; chapter \ref{ch:quasi2d} samples the phase space of hard particle assemblies and chapter \ref{ch:procrystals} finds solutions to the procrystalline problem, essentially via global optimisation.
 Therefore, the general theory is presented here with specific details of two established methods, namely bond switching and hard particle \mc{}, given in the following section.
@@ -150,14 +150,14 @@ This will occur only if the system is \textit{ergodic}, meaning that every state
 
 In a discrete analogue to equation \eqref{eq:expectationobs}, the expectation value of an observable, $\obs$, can be calculated from the ensemble average:
 \begin{equation}
-	\langle \obs \rangle = \sum_{i=1}^{M} A\left(\vrc{i}\right)\mathcal{P}\left(\vrc{i}\right),
+	\langle \obs \rangle = \sum_{i=1}^{M} \mathcal{A}\left(\vrc{i}\right)\mathcal{P}\left(\vrc{i}\right),
 \end{equation}
 where $\mathcal{P}\left(\vrc{i}\right)$ are the elements of $\mathbf{P}$.
 However, as previously mentioned the number of discrete states is usually exceedingly large and so calculating the average over all states is not possible.
 The solution is to take a random walk across through configurational space, sampling explicit states to form the chain $X_0,X_1,\dots,X_S$; where each move is chosen randomly according to the transition matrix $\bm{\pi}$.
 In this case the expectation of the same observable can be calculated from the average over the sampled states:
 \begin{equation}
-	\langle \obs \rangle = \frac{1}{S}\sum_{i=1}^{S} A\left(X_i\right),
+	\langle \obs \rangle = \frac{1}{S}\sum_{i=1}^{S} \mathcal{A}\left(X_i\right),
 \end{equation}
 where the true value is approached as $S\rightarrow \infty$.
 
@@ -228,7 +228,7 @@ A way around this is to not calculate observables based on every step, but rathe
 As an illustration of the Metropolis algorithm, consider again the \td{} potential energy surface in figure \ref{fig:montecarloint4}.
 Here two simulation paths are displayed in red and blue, starting from the same initial state but with different %starting points in the random number generators \ie{} random seeds.
 seeds in the random number generator.
-As can be seen, the Metropolis algorithm takes a random walk over the configurational space, conducting importance sampling as in \ref{fig:montecarloint3}.
+The Metropolis algorithm takes a random walk over the configurational space, conducting importance sampling as in \ref{fig:montecarloint3}.
 However, this example highlights a potential problem.
 There are two regions of phase space with significant non\--zero probabilities which are separated by a relatively large energy barrier.
 Although they are in principle linked by a path, the barrier may effectively mean they are disconnected with any reasonable number of steps, breaking ergodicity.
@@ -255,7 +255,7 @@ One must then use a more sophisticated technique to find the global minimum of a
 This in itself is an extensive area of study and there are many approaches, such as using genetic algorithms or basin\--hopping \cite{Hartke1993,Niesse1996,Wales1997}.
 This thesis will use simulated annealing, which can be considered an extension to Metropolis \mc{} \cite{Kirkpatrick1983}.
 In addition simulated annealing is effective for searching surfaces with many similar minima, as found in glasses.
-Indeed, the name itself reflects its origins in the analogous metallurgical process to generate defect free metals.
+Indeed, the name itself reflects its origins in the analogous metallurgical process to generate defect\--free metals.
 
 \begin{figure}[tb]
      \centering
@@ -372,7 +372,7 @@ Figure \ref{fig:bsmc8} also demonstrates the importance of cooling a randomised 
 \subsection{Potential Models}
 \label{s:potentials}
 
-To first address a matter of notation, in this thesis $\vrp{i}$ is used to denote the $i$\th{} particle position in a given configuration.
+To first address a matter of notation, in this work $\vrp{i}$ is used to denote the $i$\th{} particle position in a given configuration.
 The vector between two particles is then defined $\vrp{ij}=\vrp{j}-\vrp{i}$.
 The distance between two particles, $r_{ij}$, and the angle between three particles (with particle $i$ at the centre), $\theta_{ijk}$, are then given by:
 \begin{align}
@@ -380,7 +380,7 @@ The distance between two particles, $r_{ij}$, and the angle between three partic
 	\boldsymbol{\hat{\mathbf{r}}}_{ij} &= \frac{\vrp{ij}}{r_{ij}}, \\
 	\boldsymbol{\hat{\mathbf{r}}}_{ij} \cdot \boldsymbol{\hat{\mathbf{r}}}_{ik}&=\cos\theta_{ijk}\label{eq:nott}.
 \end{align}
-These will remain consistent throughout the work.
+These will remain consistent throughout this thesis.
 
 The nature of the bond switching method lends itself to the use of semi\--empirical potentials which have explicit stretching and angular neighbour lists.
 As such a popular choice for materials modelling is the Keating potential and modifications thereof \cite{Keating1966,Barkema2000}. 
@@ -463,7 +463,7 @@ and it follows that if any pair of particles have overlap the system energy is i
 Hard particle models are typically quantified in terms of the packing fraction, $\phi$, which in two dimensions has the form
 \begin{equation}
 	\label{eq:packingfraction}
-	\phi_{2D} = \rho\pi\langle R^2\rangle,
+	\phi = \rho\pi\langle R^2\rangle,
 \end{equation}
 where $\rho=\mathcal{N}/{V}$, the number density.
 
@@ -553,7 +553,7 @@ Formally, given the set of particle positions $\mathbf{r}$, the Voronoi cell ass
 \end{equation}
 so that the Voronoi diagram in its entirety is the set
 \begin{equation}
-	V = \left\{V_0, V_1, \cdots, V_\mathcal{N}\right\}.
+	V = \left\{V_1, V_2, \cdots, V_\mathcal{N}\right\}.
 \end{equation} 
 More intuitively, a Voronoi diagram is formed through the placement of dividing lines between the centres of neighbouring particles. 
 The intersection of these lines forms the characteristic tessellating polygons.

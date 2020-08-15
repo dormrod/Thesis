@@ -13,7 +13,7 @@ The deviations of ring areas from the ideal values are discussed and the relativ
 \section{Bilayer Materials}
 
 An important class of \td{} materials which have emerged in the 21\st{} century are bilayers of silica, \sioii, and related species \cite{Buchner2017}.
-The interest in these materials largely stems from the potential to control the structure and pore geometries, with the end goal being to replicate the successes of zeolitic catalysts but in reduced dimensionality. 
+The interest in these materials largely stems from the potential to control the structure and pore geometries, with the end goal being to replicate the successes of zeolitic catalysts in reduced dimensionality. 
 Silica bilayers can be prepared experimentally by chemical vapour deposition on metal and graphene supports \cite{Huang2012,Lichtenstein2012a}.
 As in the three\--dimensional glass, the basic building blocks of silica bilayers are vertex sharing \sioiv{} tetrahedra, maintaining full coordination for all atoms in the bulk \cite{Wilson2013}.
 These are arranged such that three of the vertices are connected to tetrahedra in the same layer, with the final vertex being shared between layers acting as a ``bridge'' (figure \ref{fig:bilayer1}).
@@ -28,7 +28,7 @@ More recently, experimentalists have also succeeded in synthesising bilayers of 
 The realisation of these materials have posed additional challenges.
 The relative difficulty in obtaining bilayers of germania as opposed to silica can be traced back to the inter\--tetrahedal angles.
 Whilst silica has a Si\--O\--Si angle of $\sim 150^\circ$, the analogous Ge\--O\--Ge angle is $\sim 130^\circ$ \cite{Neuefeind1996}, a difference which can be attributed to many\--body ion polarisation effects \cite{Wilson2012a,Wilson2012b}.
-The consequence of this reduced bond angle is that it is energetically less favourable to adopt the $180^\circ$ tetrahedra required in the bilayer and significant rumpling of the surface is required.
+The consequence of this reduced bond angle is that it is energetically less favourable to adopt the $180^\circ$ tetrahedra necessitated in the bilayer and significant rumpling of the surface is required.
 
 \begin{figure}[bt]
      \centering
@@ -81,7 +81,7 @@ It also may explain why this method has struggled to mirror experimentally obser
 An alternative approach is to use molecular dynamics coupled with an effective pair potential to obtain viable configurations \cite{Roy2018}.
 Such techniques are relatively common, having been employed previously to study amorphous graphene \cite{Kumar2012}. 
 These methods offer the potential for generating realistic configurations but are difficult to control as the cooling rates which must be applied are necessarily huge compared to experimental rates. 
-A potential artefact of the high cooling rates is the effectively freezing in of defect states, either in terms of local coordination environments or highly\--strained (three-membered) rings.
+A potential artefact of the high cooling rates is the effectively freezing in of defect states, either in terms of local coordination environments or highly\--strained (3-membered) rings.
 In addition, as with the method above, such methods appears to systematically underestimate the \aw{} parameter, indicative of too little structural ordering.
 
 \section{Triangle Raft Method}
@@ -155,7 +155,7 @@ Using the model detailed above, a Monte Carlo construction algorithm has been de
 		\begin{enumerate}
 			\item Overlay a function on the network (\eg{} circle, square)
 			\item Check for atoms with dangling bonds lying inside the function region
-			\item If no such atoms exist, systematically increase the function size until an atom is found
+			\item If no such atoms exist, systematically increase the function area until an atom is found
 			\item Find the next nearest atoms which also have a dangling bonds
 			\item Choose the two triangles that correspond to the largest starting ring size	
 		\end{enumerate}
@@ -227,7 +227,7 @@ Using the model detailed above, a Monte Carlo construction algorithm has been de
          \label{fig:triraftalgtrial5}
      \end{subfigure}
      \hfill
-     \caption{Geometry optimised structures for trial rings in the range $k = 4-8$. The ring structure is shown along with the \sioiii{} triangle.}
+     \caption{Geometry optimised structures for trial rings in the range $k = 4-8$. The ring structure is shown along with the \sioiii{} triangles.}
      \label{fig:triraftalgtrial}
     
 \end{figure}
@@ -288,7 +288,8 @@ This is performed in the wider context of systematically varying the model param
          \label{fig:triraft2}
      \end{subfigure}
      \hfill
-     %\vspace{0.5cm}
+     
+     \vspace{2mm}
      
      \begin{subfigure}[b]{0.35\textwidth}
          \centering
@@ -304,7 +305,8 @@ This is performed in the wider context of systematically varying the model param
          \label{fig:triraft4}
      \end{subfigure}
      \hfill
-     %\vspace{0.5cm}
+     
+     \vspace{2mm}
      
       \begin{subfigure}[b]{0.35\textwidth}
          \centering
@@ -316,13 +318,12 @@ This is performed in the wider context of systematically varying the model param
       \begin{subfigure}[b]{0.35\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/bilayers/mx2_heart.pdf}
-		\hfill         
-         
          \caption{}
          \label{fig:triraft6}
      \end{subfigure}
+     \hfill
      
-     \caption{Example $1000$ ring configurations generated with different temperatures and shapes. Panels (a) through (d) show square lattices grown at $T=10^{-4.0},\,10^{-3.0},\,10^{-2.5},\, 10^{-2.0}$ respectively. The samples show the increasing diversity in ring structure as temperature is increased. Panels (e) and (f) show configurations with alternative lattice shapes at $T=10^{-3.0}$, demonstrating the flexibility of the method in growing samples with variable geometries. Rings are coloured according to size with $k<6$ as blue, $k=6$ as grey and $k>6$ as red.}
+     \caption{Example $1000$ ring configurations generated with different temperatures and shapes. Panels (a) through (d) show square lattices grown at $T=10^{-4.0},\,10^{-3.0},\,10^{-2.5},\, 10^{-2.0}$ respectively. The samples highlight the increasing diversity in ring structure as temperature is increased. Panels (e) and (f) show configurations with alternative lattice shapes at $T=10^{-3.0}$, demonstrating the flexibility of the method in growing samples with variable geometries. Rings are coloured according to size with $k<6$ as blue, $k=6$ as grey and $k>6$ as red.}
      \label{fig:triraft}
 \end{figure} 
  
@@ -332,7 +333,7 @@ Six example configurations are given in figure \ref{fig:triraft}, which are gene
 Figures \ref{fig:triraft1}\--\ref{fig:triraft4} provide a good qualitative analysis of the effect of temperature on the ring structure. 
 At low temperature a phase boundary can be seen separating crystalline and amorphous regions, as seen in experimental silica bilayers \cite{Lichtenstein2012b}. 
 In these samples although the proportion of small and large rings is low, their positions are highly correlated and chain structures of alternating rings sizes, including the cyclic ``flower'' defect, are clearly present. 
-These motifs are reminiscent of defects found in a wide range of materials, including amorphous graphene and thin silicon and germanium oxides \cite{Bjorkman2013,Robertson2012,Buchner2017,Lewandowski2018}. 
+These motifs are reminiscent of defects found in a wide range of materials, including amorphous graphene and thin films of silica and germania \cite{Bjorkman2013,Robertson2012,Buchner2017,Lewandowski2018}. 
 In addition, these structural patterns are typical of those found elsewhere in this thesis, in particular chapter \ref{ch:generalnetworks}.
 The increase in temperature is coupled with the emergence of rings of more extreme sizes and regions which could be viewed as nano\--crystalline are dispersed. 
 The high temperature limit reveals a fully amorphous structure.
@@ -395,7 +396,7 @@ Additionally, $\br{5}{7}$ and $\br{4}{8}$ achieve uniform distributions in the h
 This disparity in behaviour can largely be traced back to the constraint of Euler's theorem. 
 As $\br{5}{7}$ comprises just three ring sizes, Euler's formula demands that $p_5=p_7=\left(1-p_6\right)/2$ and so the system is relatively well defined. 
 Hence, because the 5\-- and 7\--rings are more strained than the 6\--ring, $p_5$ and $p_7$ show a systematic increase with temperature. 
-Furthermore, the uniform equilibrium distribution can only satisfy Euler's formula when the ring size range is symmetric about 6, as is observed for $\br{5}{7}$ and $\br{4}{8}$. 
+Furthermore, the uniform equilibrium distribution can only satisfy Euler's formula when the ring size range is symmetric about six, as is observed for $\br{5}{7}$ and $\br{4}{8}$. 
 The form of the ring statistics at intermediate temperatures and for $\br{4}{10}$ follow the maximum entropy solutions according to \lm's law, discussed in section \ref{s:lemaitre} and later in this section.
 
 The ring distribution for $\br{4}{10}$ is also shown as a function of temperature in figure \ref{fig:trpk4}, along with the value of the \aw{} parameter, $\alpha$, allowing for more facile comparison with experiment. 
@@ -522,7 +523,7 @@ As an additional check that the developed triangle raft model behaves physically
 the angle distribution between adjacent \sioiii{} units, $f\left(\theta\right)$, was calculated for the $\br{4}{10}$ system across the range of temperatures studied. 
 The results are summarised in figure \ref{fig:trang}. 
 The angle distributions are necessarily symmetric about $120^\circ$, as each triangle pair contributes two complementary angles. 
-At lower temperatures the distribution is dominated by angles close to $120^\circ$, as a consequence of the large proportion of near strainless six membered rings.
+At lower temperatures the distribution is dominated by angles close to $120^\circ$, as a consequence of the large proportion of near strainless 6\--membered rings.
 Furthermore, at the temperature corresponding to the amorphous experimental region, $T=10^{-3}$, the distribution has a similar extent to the angle distribution found in experimental samples (see for example figure 7 reference \cite{Roy2018}). 
 However, as the temperature increases, the form of $f\left(\theta\right)$ does not simply broaden as might be expected, but becomes bimodal. 
 This can be rationalised by considering the angles that would be present in regular polygons of different sizes, marked by vertical lines in figure \ref{fig:trang}.  These ideal angles are clustered away from the mean value of $120^\circ$, and hence increasing the diversity of ring sizes through temperature acts to shift the most commonly observed angles from the central value of $120^\circ$. 
@@ -554,7 +555,7 @@ It is therefore interesting to note that increasing structure in the angle distr
      \end{subfigure}
      \hfill
 
-     \caption{Panel (a) gives the ring angle distribution function for triangle rafts formed at different temperatures. Panel (b) compares the regularity of rings in computational and experimental amorphous configurations, with points indicating the mean value and bars corresponding to the standard deviation. Experimental data is taken from ref. \cite{Kumar2014}. Panel (c) shows the effect on the area when distorting a circle to an ellipse whilst maintaining a constant perimeter length.}
+     \caption{Panel (a) gives the ring angle distribution function for triangle rafts formed at different temperatures. Panel (b) compares the regularity of rings in computational and experimental amorphous configurations, with points indicating the mean value and bars corresponding to the standard deviation. Experimental data is taken from ref. \cite{Kumar2014}. Panel (c) shows the effect on the relative area when distorting a circle to an ellipse whilst maintaining a constant perimeter length.}
      \label{fig:trangarea}
 \end{figure}
 
@@ -588,7 +589,7 @@ This change in area with distortion is shown in figure \ref{fig:trellipse}, the 
 As can be seen, a large degree of eccentricity is needed for a significant change in the observable area. 
 For example, if $a=1.5 b$, the area is still $\approx0.94\%$ of the area of the corresponding circle. 
 
-For silica networks the Si\---Si distances lie in a narrow range because of the nature of the atomic bonding and the near\--linear Si-O-Si bridges
+For silica networks the Si\--Si distances lie in a narrow range because of the nature of the atomic bonding and the near\--linear Si-O-Si bridges
 which join the two layers. 
 Hence we would expect similar behaviour to occur, with ring areas relatively invariant to distortions in the ring shape (this same analysis would not be expected to hold for foams for example, where the length of the boundary is much more flexible). 
 This suggests that the ring area is not the most suitable metric for quantifying the regularity of rings in systems such as this, and could explain any disagreement between the seemingly near ideal ring areas and the visual evidence. 

@@ -160,13 +160,13 @@
 \usepackage{dcolumn}
 \newcolumntype{d}[3]{D{.}{\cdot}{#1} }
 
-\usepackage{appendix} 
+\usepackage{appendix}
 	% For helping format appendicies
 \usepackage{notoccite} 
 	% To format the bibliography	
 
 
-\usepackage[colorlinks=false,pdfpagelabels]{hyperref} 
+\usepackage[hidelinks,colorlinks=false,pdfpagelabels]{hyperref} 
 	% for linking between references, figures, TOC, etc in the pdf document
 
 \usepackage[nohints,tight]{minitoc} 
@@ -527,6 +527,12 @@
     \addcontentsline{mn}{marknote}
     {\protect\numberline{\themarknote}#1}
 }
+
+% No sections for toc with Appendices
+\newcommand{\stoptocwriting}{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{-5}}}
+\newcommand{\resumetocwriting}{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{\arabic{tocdepth}}}}
 
 % Publications
 \newenvironment{publications}%

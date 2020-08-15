@@ -16,7 +16,7 @@ Hard particle models are a central tenet of statistical physics, forming the bas
 This is because, despite their simplicity, the hard disk and hard sphere models are able to explain many of the behaviours of classical particles in two and three dimensions.
 In particular, these models effectively complement the study of colloids \cite{Pusey1986}.
 The interest in colloids themselves stems from the fact that they occupy a ``sweet\--spot'', in that the particles are large enough to observe with confocal microscopy, whilst being small enough that their motion is governed by simple fundamental forces on a reasonable time scale. 
-It is therefore possible to track and visualise particle positions in real\--time, and makes them an good proxy for classical atomic systems.
+It is therefore possible to track and visualise particle positions in real\--time, and makes them a good proxy for classical atomic systems.
 
 The hard particle model was introduced in section  \ref{s:hardparticlemodelintro}, in the context of hard disks and hard spheres, which, as mentioned, have been extensively studied in the literature.
 However, section \ref{s:genexpnetworks} introduced a new system of recent experimental interest, that of a monolayer of hard spheres.
@@ -28,16 +28,16 @@ The result of this dispersity is that the interaction distances between particle
 Nevertheless, it is still possible to model monolayers of spheres in 2D by using non\--additive distances.
 For two particles in a \qtd{} arrangement with radii, $R_i$, the contact distance in 2D, $R_{ij}$, is related to the geometric mean of the radii:
 \begin{equation}
-	R_{ij}=2\left(R_iR_j\right)^{1/2}\,,
+	R_{ij}=2\left(R_iR_j\right)^{1/2},
 \end{equation}
 as  illustrated for two spheres, $A,B$, in figure \ref{fig:nonadddemo}.
 Alternatively, this can be expressed in terms the arithmetic mean and a non\--additivity parameter, $\Delta$, as is common for asymmetric systems \cite{Roth2001}:
 \begin{equation}
-	R_{ij}=\left(R_i+R_j\right)\left(1+\Delta\right)\,,
+	R_{ij}=\left(R_i+R_j\right)\left(1+\Delta\right),
 \end{equation}
 where
 \begin{equation}
-	\Delta=\frac{2\left(R_iR_j\right)^{1/2}}{R_i+R_j}-1\,.
+	\Delta=\frac{2\left(R_iR_j\right)^{1/2}}{R_i+R_j}-1.
 \end{equation}
 This allows \qtd{} systems to be modelled purely in 2D.
 
@@ -84,20 +84,21 @@ Packing fraction & $\phi=\rho\pi R^2$ & & $\phi_l=\rho_l\pi R_l^2$ & $\phi_s=\rh
 \end{table}
 
 Data was made available across a range of experimental conditions.
-For the monodisperse systems, samples contained particles with radii of $R=1.395\mu$m, across a range of 2D packing fractions, $\phi$, as defined in equation \eqref{eq:packingfraction}.
+For the monodisperse systems, samples contain particles with radii of $R=1.395\mu$m, across a range of 2D packing fractions, $\phi$, as defined in equation \eqref{eq:packingfraction}.
 For bidisperse systems, which consist of two particle sizes, one ``large'' and the other ``small'', there are more free parameters to control, which are summarised in table \ref{tab:expcolloidparams}.
 Firstly there is the radius ratio of the particles, $\gamma=R_l/R_s$ (the subscripts ``$l$'' and ``$s$'' will be used to denote variables corresponding to large and small particles respectively), which relates the relative particle sizes.
 Secondly, the composition, $c_l$, $c_s$, determines the proportion of each particle type, where $c_l+c_s=1$.
 Finally there is also the packing fraction, calculated with reference to one of the components $\phi_l$, $\phi_s$, or using all particles to give a total packing fraction $\phi=\phi_l+\phi_s$.
 For completeness, it is noted that the composition can also be represented by $\phi_l/\phi$, but for the purposes of this work the definition above was found to be more intuitive.
-The available experimental data contained systems at two radius ratios and a variety of compositions and packing fractions.
-More specifically, these had either $R_s=1.395\mu$m and $R_l=3.05,2.02\mu$m, corresponding to size ratios of $\gamma=2.19, 1.45$ respectively.
-In addition, each set of experimental conditions had an associated 100 configurations. 
+
+The available experimental data contains systems at two radius ratios and a variety of compositions and packing fractions.
+More specifically, these have either $R_s=1.395\mu$m and $R_l=3.05,2.02\mu$m, corresponding to size ratios of $\gamma=2.19, 1.45$ respectively.
+In addition, each set of experimental conditions has an associated 100 configurations. 
 The exact compositions and packing fractions for each experimental parameter set are presented in table \ref{tab:expcolloid}
 
 \begin{table}
 \centering
-\caption{Details of experimental colloidal samples. Samples are defined in terms of particle size dispersity, particle radius ratio, composition and total packing fraction. The mean value is supplied for each, with the standard deviation given in brackets.}
+\caption{Details of experimental colloidal samples. Samples are defined in terms of particle size dispersity, radius ratio, composition and total packing fraction. The mean value is supplied for each, with the standard deviation given in brackets.}
 \label{tab:expcolloid}
 \begin{tabular}{@{}ccccccccccc@{}}
 \toprule
@@ -115,7 +116,7 @@ $0.289(0)$&& &&&$0.345(2)$&$0.337(2)$&&$0.087(1)$&$0.257(1)$\\
 \end{tabular}
 \end{table}
 
-The 2D experimental coordinates can be analysed using a Voronoi construction. An example for both a mono and bidisperse configurations can be found in figure \ref{fig:expvoro}.
+The 2D experimental coordinates can be analysed using a Voronoi construction. An example for both a mono and bidisperse configuration can be found in figure \ref{fig:expvoro}.
 With the raw coordinates, the experimental samples can be treated analogously to configurations generated from computation.
 The only difference is that the experimental images are by nature aperiodic, and so when analysing the network properties of the Voronoi diagram, the cells close to the boundary must be neglected, to remove any edge effects. 
 
@@ -144,7 +145,7 @@ The actual results of the analysis of these experimental systems will be discuss
      \end{subfigure}
      \hfill
      
-     \caption{Voronoi analysis of two example experimental snapshots, of a monodisperse and bidisperse \qtd{} colloidal monolayer (system parameters in captions). Circles indicate particles of a given radius whilst Voronoi cells are coloured according to size. Voronoi cells without shading indicates those that were neglected from network analysis due to proximity to the image boundary.}
+     \caption{Voronoi analysis of two example experimental snapshots, of a monodisperse and bidisperse \qtd{} colloidal monolayer (system parameters in captions). Circles indicate particles of a given radius whilst Voronoi cells are coloured according to size. Voronoi cells without shading indicates particles that were neglected from network analysis due to proximity to the image boundary.}
      \label{fig:expvoro}
 \end{figure}
 
@@ -222,7 +223,7 @@ This phase transition seems to be captured through the assortativity.
 \section{Bidisperse Spheres}
 \label{s:bidisperse}
 
-Monolayers of bidisperse spheres present a natural extension to the monodisperse case, and come with the advantage of having available experiment information for comparison.
+Monolayers of bidisperse spheres present a natural extension to the monodisperse case, and come with the advantage of having available experimental information for comparison.
 In this section the ring statistics of bidisperse systems will be explored, with a focus on systems matching the experimental parameters, as outlined in table \ref{tab:expcolloid}.
 Owing to the fact that there are two types of particle present (which experimental imaging is able to differentiate), metrics in this section will be considered in reference to both large and small particles.
 To this point, the ring statistics can then be divided into partial ring distributions for each particle type, denoted $p_k^l$ and $p_k^s$.
@@ -313,9 +314,9 @@ Similar trends were in fact seen for 5\-- and 7\--rings in $\br{4}{10}$ triangle
 To further investigate the ring statistics in bidisperse colloidal monolayers, the numerical partial ring size distributions are compared to maximum entropy solutions.
 These maximum entropy solutions to are assumed to follow the same form as \lm's law, \ie{} satisfy the constraints:
 \begin{align}
-	\sum_k p_k &= 1\,, \\
-	\sum_k kp_k &= \langle k \rangle_{l,s}\,, \\
-	\sum_k \frac{p_k}{k} &= \text{constant}\,.
+	\sum_k p_k &= 1, \\
+	\sum_k kp_k &= \langle k \rangle_{l,s}, \\
+	\sum_k \frac{p_k}{k} &= \text{constant}.
 \end{align}
 Unlike \lm's law, which requires only the value of a single ring, such as $p_6$, to obtain the entire distribution, the additional freedom afforded to the mean ring size means that here the mean ring size of the partial distributions must also be provided.
 
@@ -332,7 +333,7 @@ Unlike \lm's law, which requires only the value of a single ring, such as $p_6$,
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/phi_me_s_53.pdf}
-         \caption{$\gamma=1.45$, $c_l=0.53$, \\small spheres}
+         \caption{$\gamma=1.45$, $c_l=0.53$,\\ small spheres}
          \label{fig:bime2}
      \end{subfigure}
      \hfill
@@ -362,6 +363,7 @@ The partial distributions are provided for the large and small spheres, with a s
 The continuous evolution in the ring statistics with packing fraction is detailed by the shading of the bars (note for instance that the $k=6$ bars in figure \ref{fig:bime} are the reverse of the lines of $p_6^{l,s}$ in figures \ref{fig:bi3} and \ref{fig:bi4}).
 In these plots, the left\--most points in each bar represent the system at the highest packing fraction, and the right\--most points the limit of zero packing fraction.
 In all cases, the maximum entropy solutions fit the observed numerical results quite well.
+
 The difference in the ring statistics for each component is also stark.
 For the $c_l=0.53$ system (which is roughly equal in large and small spheres), although at high packing fraction $p_6$ is comparable in magnitude, the distribution for large spheres is skewed heavily towards large rings (particularly $k=7$), whereas that for the small spheres is skewed towards small rings (particularly $k=5$).
 For the $c_l=0.09$ system, the distribution for the large spheres is even more dramatic, being dominated at high packing fraction by $7$\--rings.
@@ -373,7 +375,7 @@ Hence, in this way, the two effects offset each other, so that by extremising th
 
 \section{Voronoi Construction in Quasi\--2D}
 
-The case of \qtd{} polydisperse spheres is a further generalisation of the mono\-- and bidisperse systems discussed already in this chapter.
+The case of \qtd{} polydisperse spheres is a further generalisation of the mono and bidisperse systems discussed already in this chapter.
 Owing to this generality, a different approach will be taken here, with the meaning of the Voronoi diagram carefully examined in the context of \qtd{} hard sphere systems, before numerical results are presented for polydisperse spheres.
 The motivation for this is that up to this point, it has merely been stated that the unweighted 2D Voronoi is an appropriate construction (as opposed to a weighted variant - see section \ref{s:voronoiintro}), even for collections of particles of varying radii.
 The opportunity will now be taken to explore this claim more fully.
@@ -559,28 +561,28 @@ This 2D weighted diagram shall be referred to as the disk\--weighted Voronoi and
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z0_a.pdf}
-         \caption{Sphere weighted, \\$z=0$.}
+         \caption{Sphere weighted, \\$z=0$}
          \label{fig:cut0a}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z10_a.pdf}
-         \caption{Sphere weighted, \\$z=1$.}
+         \caption{Sphere weighted, \\$z=1$}
          \label{fig:cut10a}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z20_a.pdf}
-         \caption{Sphere weighted, \\$z=2$.}
+         \caption{Sphere weighted, \\$z=2$}
          \label{fig:cut20a}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z40_a.pdf}
-         \caption{Sphere weighted, \\$z=4$.}
+         \caption{Sphere weighted, \\$z=4$}
          \label{fig:cut40a}
      \end{subfigure}
      \hfill
@@ -589,21 +591,21 @@ This 2D weighted diagram shall be referred to as the disk\--weighted Voronoi and
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z0_b.pdf}
-         \caption{Disk weighted, \\$z=0$.}
+         \caption{Disk weighted, \\$z=0$}
          \label{fig:cut0b}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z10_b.pdf}
-         \caption{Disk weighted, \\$z=1$.}
+         \caption{Disk weighted, \\$z=1$}
          \label{fig:cut10b}
      \end{subfigure}
      \hfill
       \begin{subfigure}[b]{0.23\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/quasi2d/cut_z20_b.pdf}
-         \caption{Disk weighted, \\$z=2$.}
+         \caption{Disk weighted, \\$z=2$}
          \label{fig:cut20b}
      \end{subfigure}
      \hfill
@@ -667,7 +669,7 @@ as all particles with $R < z/2$ are neglected.
 The moments of the weight distribution function at a given cut height can then be calculated by integrating over the range of the remaining particle radii,
 \begin{equation}
 	\label{eq:wmom}
-	\ewDn = \frac{1}{\nDz}\int_{z/2}^\infty  \left(2Rz-z^2\right)^{n/2} f\left(R\right) \dd R.
+	\ewDn = \frac{1}{\nDz}\int_{z/2}^\infty  \left(2Rz-z^2\right)^{n/2} f\left(R\right) \dd R,
 \end{equation}
 as required.
 For example, the analytic solution for the second moment can be found in section \ref{s:qtdpackingfrac}.
@@ -730,7 +732,7 @@ One final complication with quasi\--2D hard spheres is that the definition of pa
 For a quasi\--2D system, if the 2D packing fraction,
 \begin{equation}
 	\label{eq:simplepackingfrac}
-	\phi_{2D}=\pi\rho\langle \rs^2\rangle\,.
+	\phi_{2D}=\pi\rho\langle \rs^2\rangle,
 \end{equation}
 is used, there can be adverse consequences, as this definition can lead to a packing fraction greater than unity.
 As an example, consider the binary crystalline lattice in figure \ref{fig:crystalpackingfrac}, consisting of a two particle types with radius ratio $\gamma$.
@@ -789,7 +791,6 @@ This sampling also has an impact on the optimal number of particles to include.
 If this number is too low the statistics will be affected at high $z$, regardless of number of starting seeds (\eg{} in the case where only a handful of particles are included in a 2D Voronoi, it becomes impossible to achieve a polygon with a large number of sides).
 One must therefore balance these statistical considerations with the limits of computational efficiency.
 In this section simulations included $\mathcal{N}=1000\rightarrow 5000$ particles, depending on cut height, so that all tessellations contained at least 50 cells, with a total of $\sim 10^7$ cells sampled for each state point.
-
 To reiterate, the following different Voronoi methods will be compared:
 \begin{enumerate}
 	\item The section of a 3D Voronoi weighted with sphere radii, $\rs_i$, cut at height $z$
@@ -799,7 +800,7 @@ To reiterate, the following different Voronoi methods will be compared:
 As explained in section \ref{sec:vorrel} methods 1 and 2 are equivalent and produce identical results.
 Method 3 on the other hand is expected to approximate the other methods in the region near $z=0$.
 
-\subsection{Cell Frequency and Packing Fraction}
+\subsection{Voronoi Cell Frequency and Packing Fraction}
 \label{s:polycell}
 
 To begin with, the number of cells that can be found in each tessellation is evaluated, as the cut height is increased; displayed in figure \ref{fig:nphia}\--\ref{fig:nphic}.

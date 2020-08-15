@@ -36,12 +36,12 @@
 % generating a PDF to send to the printer!
 
 % This adds a "DRAFT" footer to every normal page.  (The first page of each chapter is not a "normal" page.)
-\fancyfoot[C]{\emph{DRAFT Printed on \today}}  
+%\fancyfoot[C]{\emph{DRAFT Printed on \today}}  
 
 % This highlights (in blue) corrections marked with (for words) \mccorrect{blah} or (for whole
 % paragraphs) \begin{mccorrection} . . . \end{mccorrection}.  This can be useful for sending a PDF of
 % your corrected thesis to your examiners for review.  Turn it off, and the blue disappears.
-\correctionstrue
+%\correctionstrue
 
 
 %%%%% BIBLIOGRAPHY SETUP
@@ -52,7 +52,7 @@
 % Either way, you'll have to choose and configure an appropriate bibliography format...
 
 % The science-type option: numerical in-text citation with references in order of appearance.
-\usepackage[style=phys, sorting=none, backend=biber, doi=false, isbn=false, url=false, arxiv=false, articletitle=true, biblabel=brackets]{biblatex}
+\usepackage[style=phys, sorting=none, backend=biber, doi=false, isbn=false, url=false, arxiv=false, articletitle=true, biblabel=brackets, maxnames=5]{biblatex}
 \newcommand*{\bibtitle}{References}
 
 % The humanities-type option: author-year in-text citation with an alphabetical works cited.
@@ -153,9 +153,9 @@
 %\end{dedication}
 
 %%%%% ACKNOWLEDGEMENTS -- Nothing to do here except comment out if you don't want it.
-%\begin{acknowledgements}
-% 	\input{text/acknowledgements}
-%\end{acknowledgements}
+\begin{acknowledgements}
+ 	\input{text/acknowledgements}
+\end{acknowledgements}
 
 %%%%% ABSTRACT -- Nothing to do here except comment out if you don't want it.
 %\begin{abstract}
@@ -182,9 +182,9 @@
 \tableofcontents
 
 % DOM
-\clearpage
-\listofdavidnote
-\listofmarknote
+%\clearpage
+%\listofdavidnote
+%\listofmarknote
 
 %\listoffigures
 %	\mtcaddchapter
@@ -229,8 +229,6 @@
 \include{appendices/voronoi}
 \include{appendices/derivations}
 \include{appendices/maps}
-
-
 
 %%%%% REFERENCES
 

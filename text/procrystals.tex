@@ -45,7 +45,7 @@ More strikingly, a system of percolating rings once again emerges, highlighted i
          \label{fig:prointroc}
      \end{subfigure}
      
-     \caption{Example procrystalline lattice based on the square net. Panel (a) shows the lattice with each node representing a 3\--coordinate molecular unit. Panel (b) adds the nodes of the dual network, which form a defective square lattice. Panel (c) highlights the corresponding ring structure, coloured by ring size.}
+     \caption{Example procrystalline lattice based on the square net. Panel (a) shows the lattice with each node representing a 3\--coordinate atomic or molecular unit. Panel (b) adds the nodes of the dual network, which form a defective square lattice. Panel (c) highlights the corresponding ring structure, coloured by ring size.}
      \label{fig:nprointro}
 \end{figure}
 
@@ -139,7 +139,7 @@ This allows further comparison with systems discussed in previous chapters.
 \section{Computational Generation of Procrystals}
 
 Although experimental procrystalline lattices are aperiodic with no unit cell, computational studies are naturally restricted in scope and an effective way of generating lattices with fully satisfied valence is to reintroduce periodicity, with the aim of using large enough lattices that any constraining effects are minimised. 
-In addition, configurations which are divided in two, \ie{} have two disconnected components are neglected, as these would contain infinitely sized rings.
+In addition, configurations which are divided in two, \ie{} have two disconnected components, are neglected, as these would contain infinitely sized rings.
 
 There are then two possible ways to proceed in order to map the configurational space of procrystals.
 Firstly, one can attempt to find all possible arrangements for a lattice of given size, which here is termed \textit{exact tiling}.
@@ -307,7 +307,7 @@ Again these can in turn be stacked to yield 84, $2\times 2$ building blocks, a s
      \end{subfigure}
      \hfill
     
-     \caption{Illustration of the process of exact tiling. Panels (a)\--(g) give the 7 fundamental $1\times 1$ environments for a square in the \pro{4}{3}square lattice (individually coloured with a central circle, merely intended a guide for the eye). These can be combined to give $2\times 1$ tiles, the 5 acceptable tiles using (a) shown in panels (h)\--(l). The process can be repeated to build up larger tiles such as the $2\times 2$ tiles in panels (m)\--(p). Finally the periodic tiles can be identified, the 4 only $2\times 2$ cases given in panels (q)\--(t).}
+     \caption{Illustration of the process of exact tiling. Panels (a)\--(g) give the 7 fundamental $1\times 1$ environments for a square in the \pro{4}{3}square lattice (individually coloured with a central circle, merely intended a guide for the eye). These can be combined to give $1\times 2$ tiles, the 5 acceptable tiles using (a) shown in panels (h)\--(l). The process can be repeated to build up larger tiles such as the $2\times 2$ tiles in panels (m)\--(p). Finally the periodic tiles can be identified, the 4 only $2\times 2$ cases given in panels (q)\--(t).}
      \label{fig:exacttiling}
 \end{figure}
 
@@ -326,7 +326,8 @@ In this case any units which are not periodic in the fixed dimension can also be
 
 \begin{table}[bt]
 	\centering
-     \caption{Performance of the exact tiling algorithm. For each lattice dimension the number of aperiodic, periodic and symmetrically unique periodic tiles are listed. The search space can be found by squaring the number of aperiodic tiles of the previous tile size. }
+     \caption{Performance of the exact tiling algorithm. For each lattice dimension the number of aperiodic, periodic and symmetrically unique periodic tiles are listed. The search space can be found by squaring the number of aperiodic tiles of the previous tile size. 
+     }
      \label{tab:exacttiling}
      \begin{tabular}{cccc}
      \toprule
@@ -471,7 +472,7 @@ These configurations highlight some important features of the specific procrysta
 
 Importantly, these 3\--coordinate procrystals will be compared and contrasted with two other states.
 The first are networks generated from bond switching at infinite temperature (see section \ref{s:bondswitch}), which is in effect a method for producing continuous random networks (CRNs) \ie{} a highly amorphous state.
-The second are series of crystalline motifs of the form $8-6^i-5^2$ and $8-6^i-4$ for $0\leq i\leq3$ (the nomenclature indicating the number of each ring size in the unit cell) taken from Altman \etal{} \cite{Malashevich2016}.
+The second are series of crystalline motifs of the form $8-6^i-5^2$ and $8-6^i-4$ for $0\leq i\leq3$ (the nomenclature indicating the number of each ring size in the unit cell) taken from Altman \etal{} (detailed in appendix \ref{app:crystals}) \cite{Malashevich2016}.
 
 \subsection{Ring Size Distributions}
 \label{s:pro3pk}
@@ -538,7 +539,7 @@ These purpose of these maximum entropy distributions is to highlight any discrep
          \label{fig:pro3pkf}
      \end{subfigure}
     
-     \caption{Ring statistics for selected 3\--coordinate procrystalline lattices (panels (a)\--(e), as given in the captions) and from bond switching (panel (f)). In  all  panels  the  points  and  dashed  lines show the respective maximum entropy (ME) solutions.  Each panel also highlights potential system size effects by showing the ring size distributions for different numbers of nodes, $V$, as highlighted in the legends.}
+     \caption{Ring statistics for selected 3\--coordinate procrystalline lattices (panels (a)\--(e), as given in the captions) and from bond switching (panel (f)). In  all  panels  the  points  and  dashed  lines show the respective maximum entropy (ME) solutions.  Each panel also highlights potential system size effects by showing the ring size distributions for different numbers of nodes, $V$, as indicated in the legends.}
      \label{fig:pro3pk}
 \end{figure}
 
@@ -552,7 +553,7 @@ This gives confidence that the configurations generated via \mc{} are appropriat
 As the lattice size increases, the ring statistics initially change markedly, before settling on values close to the ME distribution.
 This demonstrates that there are important system size effects, the most obvious of which is the largest ring size which can be supported.
 As only linear rings are allowed, the largest possible ring can have $k=2\left(V^{1/2}+1\right)$, which evidently places an upper bound on the ring statistics.
-As the lattice dimensions increase and large rings become rarer, the statistics naturally converge.
+As the lattice dimensions increase and large rings become rarer, the statistics converge.
 
 \begin{figure}[bt]
      \centering
@@ -703,7 +704,7 @@ As the lattice dimensions increase and large rings become rarer, the statistics 
      \hfill
     
      \caption{Units which can be used to rationalise the ring statistics of the \pro{4}{3}trihexagonal lattice. Panel (a) shows a small $V=12$ unit of kagome whilst panels (b)\--(j) show all possible manifestations of 
-$6\-- \rightarrow 9$\-- rings.     
+6\-- $\rightarrow$ 9\-- rings.     
      % a 6\-- (b), 7\-- (c)\--(e), 8\-- (f)\--(i) and 9\-- (j) ring. 
      The numbers in the ring centres indicate the relative degeneracies for each structure.} 
      \label{fig:pro3pktrihex}
@@ -891,7 +892,7 @@ Again these configurations highlight some important features in the specific pro
 
 \begin{itemize}
 	
-	\item $\mathbf{5,4-}$\textbf{elongated\--triangular}: supports all even ring sizes but only the two smallest odd ring sizes \i.e. $k\in\left\{3,4,5,6,8,10\dots\right\}$. This is due to rings with $k>6$ only being formed from linear rings in analogy with the \pro{4}{3}square lattice, which must have an even number of nodes.
+	\item $\mathbf{5,4-}$\textbf{elongated\--triangular}: supports all even ring sizes but only the two smallest odd ring sizes \ie{} $k\in\left\{3,4,5,6,8,10\dots\right\}$. This is due to rings with $k>6$ only being formed from linear rings in analogy with the \pro{4}{3}square lattice, which must have an even number of nodes.
 	\item $\mathbf{5,4-}$\textbf{snub\--square}: contains only rings in the set $k\in\left\{3,4,5,6\right\}$.
 	\item $\mathbf{6,4-}$\textbf{triangular}: difference between underlying and procrystalline lattice is 2, and all ring sizes are accessible $k\in\left\{3,4,5\dots\right\}$.
 	\item $\mathbf{6,5-}$\textbf{triangular}: only two ring sizes are possible, namely $k\in\left\{3,4\right\}$. This is because the procrystal can only be formed by removing a bond between a pair of edge\--sharing triangles.
@@ -942,7 +943,7 @@ Assuming the full $k$\--range in accessible, where $\ki=4$ one might expect the 
 \end{equation}
 The purpose of the ME ring distribution is to highlight the differences in the observed distributions as a result of the specific lattice constraints.
 
-The ring statistics for the 4 procrystals discussed in this section can be found in figure \ref{fig:pro45pk}.
+The ring statistics for the four procrystals discussed in this section can be found in figure \ref{fig:pro45pk}.
 It is also an interesting exercise to compare these distributions to those found for the 3\--coordinate procrystals in figure \ref{fig:pro3pk}, to see the evolution in structure.
 Each lattice will now briefly be examined in turn.
 As previously mentioned, the \pro{5}{4}elongated\--triangular lattice cannot support any odd ring sizes greater than $k=5$. 
