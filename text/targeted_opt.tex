@@ -48,7 +48,7 @@ This is not a concern for $\alpha^t$, which must also have the flexibility to ta
 
 Moves in targeted optimisation are accepted with probability given by the Metropolis condition:
 \begin{equation}
-	P_{ij}=\min\left[1,\exp{-\Delta\obj/T}\right]\,,
+	P_{ij}=\min\left[1,\exp{\left(-\Delta\obj/T\right)}\right]\,,
 \end{equation}
 where $\Delta\obj$ is the difference in cost functions before and after the proposed move, and $T$ is a temperature parameter. 
 In contrast to bond switching which is concerned with sampling, this is a global optimisation algorithm and moves are proposed until the network has converged to the target properties and the cost function is zero.
@@ -358,7 +358,7 @@ It is clear that in this lattice all the nodes are connected \ie{} there is some
 Equally, one could say that all the rings belong to the same cluster.
 Now imagine the process of removing nodes sequentially and at random from the original lattice, as shown in figure \ref{fig:perctri}.
 Initially, removing nodes will have little effect on the network structure, but after a sufficient number are deleted, the interconnectivity of all the nodes will likely be broken, and the original large cluster will fragment into smaller clusters.
-At some point, the lattice will undergo a phase transition, from one in which there is a single ``giant'' component to one which has many small components.
+At some point, the lattice will undergo a phase transition, from one which is dominated by a ``giant'' component to one which has many small components.
 Quantifying this behaviour is the essence of percolation theory \-- exploring this transition and determining at what point this ``percolation threshold'' occurs.
 
 \begin{figure}[bt]
@@ -416,14 +416,17 @@ Quantifying this behaviour is the essence of percolation theory \-- exploring th
 To formalise this slightly, take an infinite triangular lattice, of which a random proportion, $p$, of nodes are occupied.
 The size of a cluster (\ie{} the number of nodes which comprise it) can be denoted, $s$. 
 The probability of a node belonging to a cluster of size $s$ is then $P_s$, and so the probability of belonging to an infinitely sized cluster $P_{\infty}$ \cite{StaufferDietrich2014}.
-The percolation threshold, $p_c$, is then the critical occupancy at which a giant component appears \ie{}
+The percolation threshold, $p_c$, is then the critical occupancy at which a giant component appears.
+$P_\infty$ acts as an order parameter for the system, taking the values:
 \begin{equation}
-	P_{\infty}=\begin{cases} 1 \quad p\geq p_c \\
+	P_{\infty}=\begin{cases} 1 \quad p=1 \\
 							0 \quad p<p_c
-	\end{cases}.
+	\end{cases},
 \end{equation}
-Additionally, at this critical point, measures such as the average finite cluster size and connectedness length diverge.
-For the example given above, which is the classic example of site percolation on a triangular lattice, the percolation threshold is $p_c=\frac{1}{2}$  \cite{Sykes1964}.
+and increasing monotonically between the two limits. 
+In addition, in the region close to the percolation threshold, the increase in $P_\infty$ is described by $P_\infty\sim\left(p-p_c\right)^\beta$, where $\beta$ is the critical exponent.
+At this critical point, other measures such as the correlation length, $\zeta$, (the average cluster diameter which defines the characteristic length scale), diverge, following $\zeta\sim \abs{p-p_c}^{-\nu}$.
+For the example given above, which is the classic example of site percolation on a triangular lattice, the percolation threshold is $p_c=\frac{1}{2}$ \cite{Sykes1964}. For \td{} systems the critical exponents are $\beta=5/36$ and $\nu=4/3$.
 
 The case of the triangular lattice above is one of the few examples of problems in percolation theory that can be solved analytically \cite{Kirkpatrick1973}.
 In order to find percolation thresholds for all but the simplest cases, numerical methods must be used.
@@ -438,34 +441,40 @@ This expression will hold in the limit of $N\rightarrow \infty$.
 As will be seen in section \ref{s:percphasediagram}, for finite size lattices this approximation leads to smoothing of the step\--like form of $P_{\infty}$.
 The percolation threshold in this case is then approximated by as the occupancy, $p$, for which $P_{\infty}=\frac{1}{2}$.
 
+In more advanced analyses, finite\--size effects can actually be exploited to investigate critical phenomena. 
+Near the percolation threshold, the correlation length becomes related to the lattice dimension, $L$, as $\zeta \sim L \sim \abs{p-p_c}^{-\nu}$, and hence $P_\infty \sim L^{-
+\beta/\nu}$. 
+By incrementing the lattice dimension and comparing $P_\infty$ against $1/L$, one can extrapolate to the thermodynamic limit as $1/L \rightarrow 0$, to obtain a more accurate estimation of $P_\infty$, or use this relationship to infer the critical exponents. 
+This however is beyond the scope of this section.
+
 \subsection{Percolation in Disordered Networks}
 
 \begin{figure}[bt]
      \centering
      
-     \begin{subfigure}[b]{0.3\textwidth}
+     \begin{subfigure}[b]{0.26\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/subgraph_rings.pdf}
          \caption{Ring structure}
          \label{fig:percsub1}
      \end{subfigure}
      \hspace{1cm}
-      \begin{subfigure}[b]{0.3\textwidth}
+      \begin{subfigure}[b]{0.26\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/subgraph_5.pdf}
          \caption{5\--ring subgraph}
          \label{fig:percsub2}
      \end{subfigure}
-     
      \vspace{0.2cm}
-      \begin{subfigure}[b]{0.3\textwidth}
+     
+      \begin{subfigure}[b]{0.26\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/subgraph_6.pdf}
          \caption{6\--ring subgraph}
          \label{fig:percsub3}
      \end{subfigure}
-     \hspace{1cm}
-     \begin{subfigure}[b]{0.3\textwidth}
+    \hspace{1cm}
+     \begin{subfigure}[b]{0.26\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/targeted_opt/subgraph_7.pdf}
          \caption{7\--ring subgraph}
@@ -610,14 +619,12 @@ In this diagram there are three phases:
 From this phase behaviour it is evident that relatively low values of $p_6$ must be achieved before the percolation of 6\--rings is broken.
 In addition it is unlikely that phase I could be experimentally realised and percolation of the 7\--rings achieved. 
 This is because from maximum entropy, the most disordered lattice possible would have $p_5=p_6=p_7=\frac{1}{3}$ which is on the fringe of the percolation threshold for $p_7$, and would necessitate a value of $\alpha$ much lower than is currently seen experimentally.
-This could have implications when designing materials, for which there are eigenstates localised on specific ring sizes \cite{Kapko2010,Zhu2016}.
-
-
-
+This could have implications when designing materials.
+Specifically, the presence of percolating rings could change the mechanical properties, modifying plasticity, or affect materials for which there are eigenstates localised on specific ring sizes, potentially altering the conducting properties \cite{Kapko2010,Zhu2016}.
 
 \section{Chapter Conclusions}
 
-An novel method has been presented to generate \td{} network materials with well defined topology. 
+A novel method has been presented to generate \td{} network materials with well defined topology. 
 This targeted \mc{} search algorithm allows configurations to be constructed which have precise ring size distributions and ring\--ring correlations.
 The advantage of this approach is that configurations can be produced rapidly with controllable properties; which may lie outside experimentally or physically accessible regions of phase space.
 These configurations may then be used as starting points for further investigations.

@@ -3,7 +3,7 @@
 \label{ch:ph}
 
 \begin{chapterabstract}
-Persistent homology is a technique in topological data analysis to find the fundamental topological features collections of points.
+Persistent homology is a technique in topological data analysis to find the fundamental topological features of collections of points.
 The applicability of persistent homology to the characterisation of network materials is explored here for the relatively simple case of \td{} networks. 
 Analysis is carried out for two systems, triangle rafts and continuous random networks (CRNs), which have different underlying constraints.
 The persistence diagrams of triangle rafts are shown to have a band structure which originates in successive nearest\--neighbour interactions, whilst the evolution of Betti numbers is related to the underlying ring statistics.
@@ -18,7 +18,7 @@ The field of topological data analysis (TDA) has emerged to address this need, d
 One tool in particular has received significant attention, namely that of persistent homology \cite{Edelsbrunner2008}.
 Persistent homology is concerned with finding the fundamental topological features in a given set of points. 
 In slightly plainer terms, here \textit{homology} means counting the number of connected components and cycles  in a system.
-The persistence aspect arises from the fact that the these topological features can be calculated across different length scales, with those existing across multiple length scales being identified as more \textit{persistent}.
+The persistence aspect arises from the fact that these topological features can be calculated across different length scales, with those existing across multiple length scales being identified as more \textit{persistent}.
 The more persistent a topological feature, the more it can be thought of as reflecting the true underlying system topology.
 
 %As with any new technique which arrives with much fanfare, persistent homology has been quickly appropriated for the study of chemical and physical systems.
@@ -28,7 +28,7 @@ Atomic systems have long been thought of in terms of collections of point like p
 Any process which can elucidate as yet hidden structure in materials, or improve its description naturally has potential to be extremely useful.
 In this vein, research has already been conducted on applying persistent homology to diverse topics such as colloidal packings \cite{Carter2018}, porous media \cite{Robins2017,Jiang2018}, water networks \cite{Steinberg2019}, fullerenes \cite{Xia2015}, and of particular importance to this work, amorphous materials \cite{Hiraoka2016,Onodera2019,Nakamura2015,Gutierrez2019}.
 Whilst these latter studies claim to highlight structures which are not available using more conventional techniques, quantify the medium range order in glasses, and explain phenomena such as the origin of the first sharp diffraction peak in disordered materials; the fact remains that persistent homology remains a qualitative descriptor, with some doubt as to what is the ``added value'' from this technique. 
-In the words of Wassserman: ``\textit{...the main purpose of TDA is to help the data analyst summarize and visualize
+In the words of Wasserman: ``\textit{...the main purpose of TDA is to help the data analyst summarize and visualize
 complex datasets. Whether or not TDA can be used to make scientific discoveries is still unclear.}'' \cite{Wasserman2018}.
 
 The purpose of this chapter is therefore to try and assess the utility of persistent homology in the context of \td{} amorphous materials, with the expectation that the interpretation may be simpler for these reduced dimensionality systems.
@@ -865,11 +865,12 @@ Once again, the effect of changing the force constant ratio is weak, with some b
 
 Having investigated the results of persistent homology calculations for range of \td{} systems, an attempt will be made to draw conclusions on the utility of persistent homology in the characterisation of \td{} materials and more complex atomic systems.
 To begin with, the success of persistent homology is evaluated in comparison to other, more established, analysis methods.
-For systems with relatively rigid geometries, persistence diagrams have proved effective in showing the evolution in structure through the band structure.
-On the one hand, these diagrams can be considered to contain more information than other measures such as RDFs, as the interaction distances are already partitioned into increasing nearest\--neighbour contributions.
-On the other hand, the distances conveyed by the filtration value can be viewed as less intuitive than other real\--space methods, being related to the circumcircles of variously sized simplices.
+For systems with relatively rigid geometries, persistence diagrams have proved effective in showing the evolution in structure through the appearance of bands.
+A series of bands, $B_i$, manifest from atoms separated by $i$ bonds.
+These diagrams can then be considered to contain more information than other measures such as RDFs or structure factors, which as the interaction distances are already partitioned into increasing nearest\--neighbour contributions.
+%On the other hand, the distances conveyed by the filtration value can be viewed as less intuitive than other real\--space methods, being related to the circumcircles of variously sized simplices.
 
-Nevertheless, presenting these data through the Betti numbers does allow a good estimation of the ring statistics in the system.
+Presenting these data through the Betti numbers does allow a good estimation of the ring statistics in the system.
 The natural analogue of this would be integrating under successive peaks in the RDF to extract coordination numbers.
 In this case persistent homology does give access to clear information which is hard to extract otherwise.
 It is worth remembering that the samples studied in this chapter were computationally generated, and the ring structure is readily available.
@@ -895,19 +896,24 @@ However, one further potential downside is that while real\--space data is becom
 This would limit persistent homology calculations to computational systems, which adds another layer of abstraction when comparing to experimental results.
 %Irrespective of this added complexity, the \td{} case has at least demonstrated how physical structure can be related to persistent topological features.
 
-Overall, there is cause for cautious optimism for the use of persistent homology as another tool in the characterisation of amorphous materials.
+Overall, there is some cause for optimism for the use of persistent homology as another tool in the characterisation of amorphous materials.
 It is certainly true that to the trained eye, a persistence diagram of a crystal, amorphous material and liquid are easily identifiable, and information on the ring structure may also be gleaned. 
 Once the principle is understood, there is no more inherent difficulty in interpreting such diagrams than RDFs, structure factors or any other traditional measure.
 In addition, the use of persistent homology is by no means limited to chemical systems, and it may be that improvements in other fields will allow a novel interpretation of the structure of atomistic configurations.
-   
+
 \section{Chapter Conclusions}
 
 Persistent homology, a tool from topological data analysis, has been applied to the study computational configurations of \td{} materials.
 These were generated using methods described elsewhere in this thesis, namely triangle rafts and bond switching.
+Requiring only the atomic coordinates as an input, persistent homology delivers persistence diagrams, Betti numbers and lifetime distribution functions as outputs for analysis.
+
 Whilst the analyses of the two systems displayed similarities, the differences in the underlying constraints manifested in the persistence diagrams and Betti numbers.
 The relatively constrained triangle rafts showed well defined bands in the persistence diagrams, which were traced to successive nearest\--neighbour interactions, which broadened as ring disorder increased.
+This information is not accessible from traditional methods such as radial  distribution functions, which describe pair\--correlations alone.
 The introduction of new ring sizes could also be quantified by plotting the Betti numbers with filtration value.
-On the other hand, the configurations from bond switching displayed similar features, but these quickly aggregated with increased disorder to make quantifying the structure more difficult.
+On the other hand, the configurations from bond switching displayed similar features in the persistence diagrams, but these quickly aggregated with increased disorder to make quantifying the structure more difficult.
+With  increasing  structural  disorder,  features in the Betti numbers broadened to the point where the persistent cycles and primitive rings no longer coincide.  
 
 In general, persistent homology has been shown to have potential as an investigative tool for studying \td{} materials, where persistent features can be explicitly linked to atomic interactions.
-It remains an open question whether similar links can be developed for use with \thd{} systems, particularly in experiment when real\--space data is less readily available.
+The findings for \td{} systems provide a starting point for the interpretation of persistent homology metrics for three\--dimensional systems.
+For instance, it may be possible to follow processes such as crystallisation  in  which  the  ordering  increases, and  link  quantitatively  the  structural  evolution to the appearance of features persistence diagrams.

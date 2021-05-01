@@ -30,21 +30,21 @@ To demonstrate the effectiveness and potential of this approach, results will be
       \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=4cm]{./figures/general_networks/silica.pdf}
-         \caption{Planar, $c=3$, \\ length controlled.}
+         \caption{Planar, $c=3$, \\ length controlled}
          \label{fig:ne1}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=4cm]{./figures/general_networks/foam.pdf}
-         \caption{Planer, $c=3$, \\ angle controlled.}
+         \caption{Planar, $c=3$, \\ angle controlled}
          \label{fig:ne2}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.25\textwidth}
          \centering
          \includegraphics[height=4cm]{./figures/general_networks/four.pdf}
-         \caption{Planer, $c=4$ \\ \phantom{angle controlled}}
+         \caption{Planar, $c=4$ \\ \phantom{angle controlled}}
          \label{fig:ne3}
      \end{subfigure}
      \hfill
@@ -163,7 +163,7 @@ It is more to point out that there is scope to improve the quantification of the
 \label{s:assortativity}
 
 The assortativity was introduced by Newman to measure the preference of low degree nodes to be adjacent to high degree nodes in generic networks \cite{Newman2002}.
-It has proved highly popular in the network science and the study of social and biological networks \cite{Noldus2015}, but has also been applied for example in theoretical studies of hard disk packings \cite{Chremos2007}.
+It has proved highly popular in network science and the study of social and biological networks \cite{Noldus2015}, but has also been applied for example in theoretical studies of hard disk and Apollonian packings \cite{Chremos2007,Doye2005}.
 The calculation of the assortativity revolves around the edge joint degree distribution, $e_{jk}$, which measures the probability of two nodes of degrees $j$,$k$ sharing a link (\ie{} two rings of sizes $j$,$k$ being adjacent).
 The probability of any link having degree $k$ is distributed according to $q_k=kp_k/\ki$, and so if nodes are randomly arranged $e_{jk}=q_j q_k$.
 Deviation from this random arrangement is the assortativity, and can be measured by Pearson's correlation coefficient:
@@ -268,7 +268,7 @@ Considering $e_{jk}$, the following constraints must hold:
         \sumjk \frac{1}{j}e_{jk} &= \frac{1}{\ki} \label{con:as3}\\
         \sumjk jke_{jk} &= c\left(r\right)\label{con:as4};
 \end{align}
-resulting from the normalisation condition, Weaire's sum rule \cite{Weaire1974}, Euler's formula and finally a constraint imposing the assortativity from equation \eqref{eq:assortativity}.
+resulting from the normalisation condition, Weaire's sum rule \cite{Weaire1974}, Euler's formula (deriving from result \eqref{eq:ejkqk}, that $\sumk e_{jk}=jp_j/\ki$) and finally a constraint imposing the assortativity from equation \eqref{eq:assortativity}.
 As for \lm's law, Lagrange's method can be used with the constraints above (noting that $e_{jk}=e_{kj}$) to generate a maximum entropy joint distribution which satisfies:
 \begin{equation}
         \label{eq:mer}
@@ -286,7 +286,8 @@ However, currently it is only adapted to study constant coordination planar syst
 Therefore, a further extension of the bond switching method is presented here, to variable atomic coordination environments and overall system topology.
 
 As a review from a networks perspective, the bond switching algorithm is a stochastic sampling method.
-Starting from an initially well\--ordered network, links between neighbouring nodes are switched and the effect on the potential energy of the system (\ie{} the amount of strain which is introduced or removed) is calculated.
+Starting from an initially well\--ordered network, links between neighbouring nodes are switched and the effect on the potential energy of the system %(\ie{} the amount of strain which is introduced or removed) 
+is calculated.
 The energy of the system is determined by the potential model, which expresses the total energy of the network as a function of all node positions.
 After the links between nodes are switched, geometry optimisation of the node positions takes place to minimise the total potential energy.
 By incorporating switches which reduce the potential energy of the network with greater probability, one can bias the search towards networks of lower energy and therefore which occur more commonly in nature.
@@ -295,7 +296,7 @@ The specificities of the algorithm will however depend on the exact nature of th
 \subsection{Extension to Variable Coordination}
 
 The choice of the starting lattice can be used to determine the system properties \ie{} the atomic coordination environments and topologies (see table \ref{tab:lattices} and figure \ref{fig:lattices}).
-This is because in the bond switching algorithm, the node degree distribution of the atomic network is constant, and hence from equation \eqref{eq:avdegree} so is mean node degree of the dual network.
+This is because in the bond switching algorithm, the node degree distribution of the atomic network is constant, and hence from equation \eqref{eq:avdegree} so is the mean node degree of the dual network.
 Therefore whichever topology, atomic coordinations and mean ring size the system is initialised with, will be preserved throughout the simulation.
 
 \begin{table}
@@ -321,8 +322,8 @@ Figures \ref{fig:bsmovea}\--\ref{fig:bsmovec} show the original move, which was 
 This move augments the ring size of two rings and decrements two others, preserving both the mean ring size and the coordination number of the individual atoms involved in the transformation.
 The changes in ring size (equivalent to the changes in node degree of the dual network) are highlighted in the figure as ``$\pm{1}$''.
 The extension to 4\--coordinate atoms (figures \ref{fig:bsmoved}\--\ref{fig:bsmovef}) is relatively straightforward, simply involving extra spectator atoms, but for mixed coordination it is subtly different (figures \ref{fig:bsmoveg}\--\ref{fig:bsmovei}).
-For the both systems the local ring sizes are again changed by $\pm{1}$ (as highlighted, and preserving the mean ring size).
-However, whereas for the pure systems the switch move must be coordination preserving, for mixed coordination systems this prevents true melting.
+For the both systems the local ring sizes are again changed by $\pm{1}$.% (as highlighted, and preserving the mean ring size).
+ However, whereas for the pure systems the switch move must be coordination preserving, for mixed coordination systems this prevents true melting.
 This can be countered by using a move in which the coordinations of neighbouring atoms are exchanged, whilst maintaining a constant mean ring size.
 
 \begin{figure}[bt]
@@ -559,7 +560,7 @@ This tradition has been continued by analysing five further maps: the communes o
 
 \section{Investigations into Generic Physical Networks}
 
-The properties \td{} atomic networks are now discussed alongside generic physical systems introduced in this chapter.
+The properties of \td{} atomic networks are now discussed alongside generic physical systems introduced in this chapter.
 This primarily focusses on the network properties introduced in chapter \ref{ch:networktheory}, but also covers a case study on the energetics of a 92\--ring fullerene.
 
 \subsection{Degree Distributions}
@@ -618,7 +619,7 @@ Figure \ref{fig:lmgenb} gives results for a purely 3\-- coordinate system, $x_3=
 The maximum entropy solution each case is again given by equation \eqref{eq:mepk}, with $\ki=6,4$ respectively.
 The value of $\mu_2$ is very similar for $\ki=4$ and $\ki=6$ above $p_{\ki}\approx 0.5$.
 This is because in this region rings of sizes $k=\ki$ and $k=\ki\pm1$ dominate the distribution and so $\mu_2\approx 1-p_{\ki}$.
-However, as the value of $p_{\ki}$ is reduced further, the two maximum entropy curves begin to diverge as the $k=\ki-2$ ring becomes accessible only to the 3- coordinate system, which in turn facilitates the presence of higher order rings.
+However, as the value of $p_{\ki}$ is reduced further, the two maximum entropy curves begin to diverge as the $k=\ki-2$ ring becomes accessible only to the 3-coordinate system, which in turn facilitates the presence of higher order rings.
 In both cases, the results from bond switching both begin to deviate from the analytical results of \lm's{} law at low $p_{\ki}$.
 The origins of this deviation can be traced back to the fact that if ring convexity is strictly maintained, it becomes increasingly difficult to accommodate the very large rings required to achieve large $\mu_2$ values.
 
@@ -640,7 +641,7 @@ This is supported by the experimental results from amorphous graphene (pink diam
       \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{./figures/general_networks/gen_assort.pdf}
-         \caption{Assortativity.}
+         \caption{Assortativity}
          \label{fig:assortgena}
      \end{subfigure}
      \hfill
@@ -676,7 +677,7 @@ This is supported by the experimental results from amorphous graphene (pink diam
      \hfill
    
      \caption{Panel (a): variation in assortativity, $r$, against $p_6$ for a range of 3\--coordinate systems comprising experimental and simulation data. For bond switching data, darker grey colouring indicates a greater $\fk_r/\fk_\theta$.
-Panels (b)\--(e) show common defects found in microcrystalline systems, with their limiting assortativity value: (b) isolated pair, $r=0.0$; (c) adjacent pair, cluster, $r=-0.1\dot{6}$;  (d) Stone\--Wales, mitosis, $r=-0.25$;  (e) 5\--7 chain (flower defect), 5\--8 chain, $r=-0.\dot{3}$.}
+Panels (b)\--(e) show common defects found in microcrystalline systems, with their limiting assortativity value: (b) 5\--7 chain (flower defect), 5\--8 chain, $r=-0.\dot{3}$; (c) Stone\--Wales, mitosis, $r=-0.25$; (d) adjacent pair, cluster, $r=-0.1\dot{6}$; (e) isolated pair, $r=0.0$.}
      \label{fig:assortgen}
 \end{figure}
 
@@ -697,12 +698,12 @@ For example, for the Stone\--Wales defect \ref{fig:defect25}, each 5\--ring has 
         \end{blockarray}
 \end{equation}
 where $\delta=\left(1-p_6\right)/12$.
-From here it is straightforward to evaluate the dilute $p_6$ limit as $\lim\limits_{\delta\rightarrow 0} r = \frac{1}{4}$.
+From here it is straightforward to evaluate the dilute $p_6$ limit as $\lim\limits_{\delta\rightarrow 0} r = -\frac{1}{4}$.
 
 This helps to rationalise the high $p_6$ disassortative behaviour for 3\--coordinate systems.
 For hard disks as $p_6\rightarrow 1$ the adjacent pair appears to be dominant, whereas for bond switching and triangle rafts the potential model determines the balance of defect types.
 For bond switching the standard deviation is large as each sample contains a single defect corresponding to one of the low energy forms.
-By visual inspection, increasing the length relative to the angle driving force preferences chain\--like structures over isolated defects.
+By visual inspection, increasing the length relative to the angle driving force favours chain\--like structures over isolated defects.
 Similarly the rigidity of the triangle units in the triangle raft method leads to a very tight length distribution which encourages the formation of defects such as in figure \ref{fig:defect0}.
 As $p_6$ decreases more defects are introduced and the system becomes truly amorphous.
 Again one can posit that as the hard disk model has no energetic term, it is able to incorporate less correlated defects, and in the low packing fraction the hard disk model provides an estimate for the Poisson Voronoi limit of $r\approx-0.15$.
@@ -721,8 +722,8 @@ In this case one can see fundamentally different properties as these networks ar
 This assortative mixing is readily explainable through energetic considerations.
 The hexagonal and square tilings are strainless and so the disruptive effects of any defect rings is minimised when such rings are adjacent.
 Unlike the hexagonal and square lattices, the Cairo lattice is not strainless, due to a distortion in one of the edge lengths in the pentagonal tiles.
-Therefore, any 4- or 6-ring defects experience a driving force to cluster into the low energy regular tilings.
-In effect the lattice de\--mixes into Cairo, square and hexagonal regions (as in figure \ref{fig:assortmixb}), which can be identified as inherently assortative behaviour.
+Therefore, any 4- or 6-ring defects experience a driving force to cluster into the low energy regular tilings. 
+This clustering leads to the formation of Cairo, square and hexagonal regions (as in figure \ref{fig:assortmixb}), which can be identified as inherently assortative behaviour.
 It is for this same reason that the limit of $p_5\rightarrow 1$ cannot be reached, as the minimum energy lattice will be a mixture of the square, hexagonal and Cairo lattices, the exact proportion of which will depend on the potential model.
 
 \begin{figure}[bt]
@@ -751,7 +752,12 @@ Finally, the accuracy of the extension to \lm's maximum entropy method in equati
 Calculation of the maximum entropy joint degree distribution requires two parameters, $p_6$ and $r$, but the resulting distribution contains all the information required to calculate ring statistics, $p_k$, and the mean ring size about each ring, $m_k$.
 This has been performed using the parameters of $p_6$ and $r$ from hard disk simulations.
 As demonstrated in figure \ref{fig:lmgena}, the ring statistics calculated in this way regenerate those from \lm's law.
-In addition, plots of the mean ring sizes for selected packing fractions are given in figure \ref{fig:hdme}. Whilst the fit is not perfect, this method does provide a close approximation to the hard disk results, particularly in the vicinity of $k=\ki$. The results are especially good in the context that only two variables are required in $p_6$ and $r$ to generate the distributions.
+In addition, plots of the mean ring sizes for selected packing fractions are given in figure \ref{fig:hdme}. Whilst the fit is not perfect, this method does provide a close approximation to the hard disk results, particularly in the vicinity of $k=\ki$. 
+
+This suggests that although the entropy of the ring distribution is a good proxy for the configurational entropy, there are small additional contributions that are not captured through this measure, such as those arising from the free volume available to each particle.
+Incorporating these terms into the maximum entropy method would likely prove difficult, and it appears sufficient here to consider the ring entropy.
+The results are especially good in the context that only two variables are required in $p_6$ and $r$ to generate the distributions.
+
 
 \begin{figure}
 \centering
@@ -810,7 +816,7 @@ A total of $10^6$ configurations were sampled from 100 different simulations, wi
 
 
 Results of the network properties averaged across configurations are given in figure \ref{fig:fullerene92u}, coloured by potential energy.
-In this plot the value of $p_6$ is discretised, owing to the the small and well\--defined number of rings, and cannot exceed the upper limit imposed by the 12\--pentagon rule, whereas the assortativity is averaged.
+In this plot the value of $p_6$ is discretised, owing to the small and well\--defined number of rings, and cannot exceed the upper limit imposed by the 12\--pentagon rule, whereas the assortativity is averaged.
 As expected, the energy of the fullerenes increases with the increasing diversity in the ring statistics, as more pentagons and heptagons are accommodated.
 However, it is also the case that the arrangement of the rings, as measured by the assortativity, is also very important in determining the stability of the networks.
 To emphasise this, three example configurations are provided in figures \ref{fig:fullerene92a}\--\ref{fig:fullerene92c}.
@@ -829,8 +835,8 @@ These data have been analysed with rigorous metrics from network science, with t
 In particular these networks display unique constraints as a result of their underlying physics.
 It has been shown that their mean node degree is fixed and the node degree distribution is well defined, following \lm's law.
 In addition the concept of network assortativity has been introduced to measure ring correlations, and its preference over the previous empirical measure known as the \aw{} law has been argued.
-Although the assortativity has been shown to be a function of the potential model for a system and the limits of the assortativity linked to the occurrence of well\--known physical motifs; most physical networks show a very similar overall level of disassortativity, as experienced in nature.
-An exception to this rule has also been found, where variable\--coordination systems can de\--mix to exhibit assortative behaviour.
+Although the assortativity has been shown to be a function of the potential model for a system and the limits of the assortativity linked to the occurrence of well\--known physical motifs, most physical networks show a very similar overall level of disassortativity, as experienced in nature.
+An exception to this rule has also been found, where variable\--coordination systems can exhibit ring clustering and hence assortative behaviour.
 
 In this chapter it has demonstrated how network science is applicable to understanding and analysing generic systems in physics, but also how physical systems form a key and under\--explored area of network science.
 Going forward there is significant scope to extend this research.

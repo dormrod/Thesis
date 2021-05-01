@@ -171,7 +171,7 @@ For each set of simulation parameters, averaging was carried out over 10 differe
 
 The simplest \qtd{} system to study is that of a monolayer of monodisperse spheres.
 This is because as all sphere radii are the same, the non\--additive model reduces here to a simple additive model of hard disks.
-The case of monodisperse spheres has therefore already been partially explored the previous chapter.
+The case of monodisperse spheres has therefore already been partially explored in the previous chapter.
 For example, sections \ref{s:gendegreedist} and \ref{s:genassortativity} discussed the degree\--distributions and assortativity in contrast with a range of other physical networks.
 To avoid repetition, this section will therefore focus on the network properties in terms of a measure specific to colloids, the packing fraction.
 
@@ -183,19 +183,29 @@ The assortativity once again measures the local ring correlations.
 Figure \ref{fig:mono1} shows the results of the evolution of $p_6$ with $\phi$, for both experiment and simulation.
 The first thing to note is that there is excellent agreement between the experimental system and the hard particle model, indicating that this model is indeed suitable for exploring the behaviour of colloidal monolayers.
 In addition, comparison is also provided to a previous computational study \cite{Kumar2005}, to which again there is perfect agreement.
-More generally, the value of $p_6$ decreases with packing fraction.
+More generally, the value of $p_6$ decreases with decreasing packing fraction.
 The hexatic phase, which exists at high packing fraction is characterised by having particles in 6\--coordinate environments.
 Under melting, as the available volume increases, 5\-- and 7\--ring defects are initially introduced, depreciating $p_6$, before more extreme ring sizes manifest.
 Finally, in the limit of the ideal gas (as $\phi\rightarrow 0$), the Poisson Voronoi (PV) tessellation is obtained.
 
 The behaviour of the assortativity with packing fraction is given in figure \ref{fig:mono2}.
 Once again, there is very good agreement between configurations from experiment and computation.
-The fluctuations in the values of $r$ are larger than $p_6$, for the experimental systems, which could be attributable to the fact that the assortativity is a second order measure.
+The fluctuations in the values of $r$ are larger than $p_6$, for the experimental systems, which could be attributable to the fact that the assortativity is a second order measure and the implicit averaging which occurs in its calculation.
 Strikingly, the assortativity seems to display behaviour that is linear in packing fraction, at least for intermediate values.
 It is not immediately clear why this should be the case, and is an interesting result that warrants more research.
 In addition, it can be seen that this linearity comes to an end around $\phi\approx 0.66$, with $r$ displaying an upturn.
-This point is close to the limit of the liquid phase for hard disks, before it undergoes transition to a hexatic phase \cite{Thorneywork2017}.
-This phase transition seems to be captured through the assortativity.
+
+This observation can be considered in reference to results from the Kosterlitz\--Thouless\--Halperin\--Nelson\--Young (KTHNY) theory
+\cite{Kosterlitz1973,Nelson1979,Young1979}.
+KYHNY predicts that melting from crystal to liquid in a \td{} system occurs via two consecutive continuous phase transitions through an intermediary hexatic phase. 
+In this scenario, the crystalline phase (which has long\--ranged positional and orientational order) has dislocation pairs (figure \ref{fig:defect25}) which first separate to form isolated dislocations (figure \ref{fig:defect17}).
+The resulting hexatic phase is characterised by having short\--ranged positional order, whilst retaining quasi\--long\--ranged orientational order.
+The dislocations then unbind to form disclinations (figure \ref{fig:defect0}), leading to the isotropic liquid phase, with short\--ranged positional and orientational order.
+There is an effective interaction between defects of the form $\mathcal{U}\propto \left(k_i-\ki\right)\left(k_j-\ki\right)\log \frac{r_{ij}}{R_i+R_j}$.
+
+Whilst there is suggestion from recent simulations that the liquid\--hexatic transition in hard disk systems may be weakly first order \cite{Bernard2011}, KTHNY theory has been successful in describing the behaviour of many \td{} systems.
+These simulations place the two phase transitions at around $\phi=0.699$ and $\phi=0.723$, respectively.
+It is interesting to note that the first of these transitions is close to the upturn seen in figure \ref{fig:mono2} (which may be shifted due to finite size effects), and so seems to be captured through the assortativity.
 
 \begin{figure}[bt]
      \centering
@@ -234,7 +244,7 @@ Instead it is their weighted sum which is constrained by Euler's formula such th
 \end{equation}
 The mean ring sizes can then take values either side of six, quantifying the relative coordination numbers of the particles of different sizes.
 
-In this section systems of two radius ratios will be discussed: the first with $\gamma=1.45$, termed the small size ratio; the second with $\gamma=2.09$, termed the large size ratio.
+In this section systems of two radius ratios will be discussed: the first with $\gamma=1.45$, termed the small size ratio; the second with $\gamma=2.19$, termed the large size ratio.
 The primary focus will however be on the small size ratio, as this is complemented by the most experimental data.
 The overarching properties of the ring structure will first be explored, before the explicit ring statistics are again examined in relation to a maximum entropy solution.
 
@@ -285,7 +295,7 @@ With the aid of the \mc{} simulations, it is clear that these experimental point
 To rationalise the broad behaviour of these curves, one can begin by noting that $\ki_l>6$ and $\ki_s<6$ for all values of $\phi>0$.
 This is simply an expression of the fact that larger spheres will always have on average more nearest neighbours than smaller spheres.
 Following this observation, it can be seen that $\ki_l$ increases as the fraction of large particles decreases, for a fixed packing fraction.
-This is a due to large spheres having statistically fewer large sphere neighbours the lower the concentration $c_l$.
+This is due to large spheres having statistically fewer large sphere neighbours the lower the concentration $c_l$.
 %Each large particle can accommodate more particles around it, the greater the dilution in small particles.
 As a further illustration, one can consider a large sphere in a ``sea'' of small spheres ($c_l\rightarrow 0$).
 Here the large particle nearest neighbours must be maximised and equally the small particles only interact with other small particles.
@@ -365,12 +375,18 @@ In these plots, the left\--most points in each bar represent the system at the h
 In all cases, the maximum entropy solutions fit the observed numerical results quite well.
 
 The difference in the ring statistics for each component is also stark.
-For the $c_l=0.53$ system (which is roughly equal in large and small spheres), although at high packing fraction $p_6$ is comparable in magnitude, the distribution for large spheres is skewed heavily towards large rings (particularly $k=7$), whereas that for the small spheres is skewed towards small rings (particularly $k=5$).
+For the $c_l=0.53$ system, %(which is roughly equal in large and small spheres),
+although at high packing fraction $p_6$ is comparable in magnitude, the distribution for large spheres is skewed heavily towards large rings (particularly $k=7$), %whereas that for the small spheres is skewed 
+and for small spheres towards small rings (particularly $k=5$).
+This is a consequence of the larger rings being able to accommodate more nearest neighbours as a result of their increased diameter.
 For the $c_l=0.09$ system, the distribution for the large spheres is even more dramatic, being dominated at high packing fraction by $7$\--rings.
-This causes the value of $p_6$ to exhibit a maximum in $\phi$, as the proportion initially rises as $7$\--rings decay, before heading towards the PV limit.
+This causes %the value of 
+$p_6$ to exhibit a maximum in $\phi$, as %the proportion 
+it initially rises as $7$\--rings decay, before heading towards the PV limit.
 One might think that this necessarily must also enforce the small sphere distribution to be more ``extreme'', but in fact the reverse is true.
 As the small spheres interact primarily with other small spheres, due to their high relative abundance, the ring distribution actually appears more similar to that of the monodisperse case.
-Hence, in this way, the two effects offset each other, so that by extremising the distribution of one component, the other must become more regular.
+Hence%, in this way, 
+the two effects offset each other, so that by extremising the distribution of one component, the other must become more regular.
 
 
 \section{Voronoi Construction in Quasi\--2D}
@@ -404,6 +420,7 @@ This is to say that the 3D Voronoi can be trivially constructed from the 2D Voro
          \label{fig:qtdv2}
      \end{subfigure}
      \hfill
+	\vspace{5mm}     
      
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
@@ -436,6 +453,7 @@ It is these final quasi\--2D systems which are the focus of this chapter.
 In this section, it will be demonstrated that for these systems, the basal tessellation in the weighted 3D Voronoi is topologically equivalent to an unweighted 2D Voronoi diagram.
 This result will be extended to explore the more general stereology problem, showing that tessellation at an arbitrary cut height above the basal 2D plane can be related to a 2D weighted Voronoi diagram.
 These tessellations will also be compared to those formed from equivalent arrangements of hard disks.
+Finally, conclusions will be drawn of relevance to experimental investigations.
 
 \subsection{Polydisperse Hard Sphere Model}
 
@@ -465,6 +483,7 @@ However, as in figure \ref{fig:qtdv3}, for polydisperse particles whilst this ma
 
 To begin with, the stereological relationship between the 3D weighted Voronoi and the 2D tessellation formed from the intersection of the radical planes with the basal tangent plane will be considered.
 In figure \ref{fig:qtdv3}, this corresponds to the bottommost 2D tessellation.
+
 To do this, take the arrangement in figure \ref{fig:qtdda}, with two spheres $A$,$B$ separated by the dividing radical plane, $V$, and sharing the tangent plane, $T$, with equation $z=0$.
 The distance between the sphere centres is $r_{AB}$, whilst the distance between the projected centres is denoted $r_{AB}^\prime$.
 The dividing plane $V$, has a normal given by $\mathbf{n} =\overrightarrow{AB}=r_{AB}^\prime\boldsymbol{\hat{\textbf{\i}}}+\left(\rs_B-\rs_A\right)\mathbf{\hat{k}}$.
@@ -475,10 +494,12 @@ Defining the direction of $x$ as as the projection of $d_A\mathbf{\hat{n}}$ on t
 	r_{AB}^\prime x+\left(\rs_B-\rs_A\right)z=\frac{\left(r_{AB}^\prime\right)^2}{2}.
 \end{equation}
 The intersection of $V$ with $T$ occurs at $z=0$, and so the line of intersection is given simply by $x=r_{AB}^\prime/2$.
+
 However there is something significant about this result: this dividing line in 2D is the same as that which would be obtained from constructing the 2D unweighted Voronoi using the projected particle centres $\mathbf{r}^\prime_i$.
 As this must be true for all pairs of neighbouring particles, it follows that the entire 2D unweighted Voronoi will be constructed. 
 This leads to the key relationship of this section: for quasi\--2D systems of spheres, the unweighted 2D Voronoi diagram is topologically equivalent to the tessellation formed by taking the basal faces of the polyhedra in the weighted 3D Voronoi diagram. 
 This holds when the 2D Voronoi is constructed using the point set of the sphere centres projected onto the basal plane, and the 3D Voronoi using the point set of the original sphere centres and weighted by the sphere radii.
+
 
 \begin{figure}[tb]
 	\centering
@@ -741,6 +762,14 @@ As $\gamma$ increases, the smaller particles swell in the tetrahedral holes with
 Beyond this radius ratio the small particles can no longer be accommodated in the tetrahedral holes, and so the larger particles are forced apart which leads to a an initial decrease in packing fraction before the hexagonal close packed limit is approached once more.
 This is problematic, as over this range the packing fraction exceeds unity and therefore obscures the physical meaning.
 
+\begin{figure}[bt]
+	\centering
+	\includegraphics[width=0.75\textwidth]{./figures/quasi2d/max_packing.pdf}
+	\caption{Variation in packing fraction for a binary crystal with varying radius ratio, $\gamma$. The packing fraction using the 2D definition is contrasted against that using the maximum packing with cut height.}
+	\label{fig:crystalpackingfrac}
+\end{figure}
+
+
 Moving to 3D does not necessarily solve the issue, as it is now not clear what volume (and therefore number density) is most appropriate.
 However, considering \qtd{} packings as a series of stacked sections through the 3D system allows an alternative definition of packing fraction:
 \begin{equation}
@@ -749,20 +778,13 @@ However, considering \qtd{} packings as a series of stacked sections through the
 \end{equation}
 as a function of $z$, the horizontal cut height, where $\rho_z$ and $\ewDii$ are provided by equations \eqref{eq:numden} and \eqref{eq:wmom} respectively.
 The rationale for this equation is as follows. 
-As the value, $\ewDii$, measures the average square radius of the circular sections in a cut of given height; here $\zphi$ quantifies the proportion of the total area occupied by the particle sections in the cut plane.
+As the value, $\ewDii$, measures the average square radius of the circular sections in a cut of given height, here $\zphi$ quantifies the proportion of the total area occupied by the particle sections in the cut plane.
 
 The overall packing fraction could thereby by quantified in these systems by $\text{max}\left[\phi\left(z\right)\right]$.
 Referring again to figure \ref{fig:crystalpackingfrac}, it can be seen that this definition gives values for the packing fraction which are now consistent with intuition.
 For the region where $\gamma\leq\frac{1}{3}$ and the large particle lattice is unperturbed by the small particles, the maximal monodisperse packing limit is found.
 Again beyond this the packing fraction then drops as the smaller particles swell above the contact distance before the hexagonal close packed lattice is once again recovered.
 In addition, if this definition were applied to the simpler systems in figures \ref{fig:qtdv1}, \ref{fig:qtdv2}, it would match with packing fraction calculated using the disks of the same radii as the spheres. 
-
-\begin{figure}[bt]
-	\centering
-	\includegraphics[width=0.75\textwidth]{./figures/quasi2d/max_packing.pdf}
-	\caption{Variation in packing fraction for a binary crystal with varying radius ratio, $\gamma$. The packing fraction using the 2D definition is contrasted against that using the maximum packing with cut height.}
-	\label{fig:crystalpackingfrac}
-\end{figure}
 
 For a polydisperse system, the explicit form of the second moment for the lognormal distribution can be calculated as,
 \begin{align}
@@ -887,7 +909,7 @@ As expected there is good agreement between methods in both metrics at low cut h
 However, at larger $z$ key differences emerge. 
 The disk\--weighted Voronoi approaches the 2D Poisson\--Voronoi (PV) limit, $p_6\approx0.295$ and $r\approx -0.15$.
 This is the limit which is obtained from having unweighted points randomly located in 2D space.
-In contrast the sphere\--weighted Voronoi approaches a different, less well understood, limit with more diverse ring distribution and reduced ring\--ring correlations. The nature of this limit will be discussed in the following section.
+In contrast the sphere\--weighted Voronoi approaches a different, less well understood, limit with more diverse ring distribution and reduced ring\--ring correlations. %The nature of this limit will be discussed in the following paragraph.
 
 
 \begin{figure}[bt]

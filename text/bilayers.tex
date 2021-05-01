@@ -25,7 +25,7 @@ The ring structure then emerges from the 3\--coordinate network formed by connec
 Indeed, a suite of analytical methods, comprising scanning tunnelling microscopy (STM), atomic force microscopy (AFM) and scanning transmission electron microscopy (STEM), have been used to directly visualise the ring structure in silica bilayers, revealing both crystalline and glassy arrangements and even the interface between the two   \cite{Loffler2010,Lichtenstein2012b}.
 
 More recently, experimentalists have also succeeded in synthesising bilayers of aluminosilicates and germania, \geoii{} \cite{Jhang2017,Lewandowski2018,Lewandowski2019}.
-The realisation of these materials have posed additional challenges.
+The realisation of these materials has posed additional challenges.
 The relative difficulty in obtaining bilayers of germania as opposed to silica can be traced back to the inter\--tetrahedal angles.
 Whilst silica has a Si\--O\--Si angle of $\sim 150^\circ$, the analogous Ge\--O\--Ge angle is $\sim 130^\circ$ \cite{Neuefeind1996}, a difference which can be attributed to many\--body ion polarisation effects \cite{Wilson2012a,Wilson2012b}.
 The consequence of this reduced bond angle is that it is energetically less favourable to adopt the $180^\circ$ tetrahedra necessitated in the bilayer and significant rumpling of the surface is required.
@@ -499,9 +499,8 @@ This second moment of the distribution, $\mu_2$, is then uniquely related to $p_
 \end{figure}
 
 
-However, \lm's law gives no information on why a particular maximum entropy distribution is found for a given system.
-%The triangle raft method allows systematic generation of configurations with different $p_6$ values by tuning the temperature parameter. 
-%The resulting configurations follow \lm's law across the entire temperature range. 
+However, \lm's law does not give explicit information on why a particular maximum entropy distribution is found for a given system.
+This is because whilst the underlying constraints should correspond to measurable structural properties in the material, as discussed in section \ref{s:lemaitre}, the physical basis of one constraint is unclear and may vary between different materials.
 The triangle raft method allows systematic generation of configurations with different $p_6$ values, and the resulting configurations follow \lm's law across the entire range.
 Figures \ref{fig:trlm} gives the results from the individual 1000 ring samples, coloured by temperature.
 Figures \ref{fig:trlm1} and \ref{fig:trlm2} compare the observed $\mu_2$ and $\mathcal{S}$ (entropy) of the generated configurations to those expected from \lm's law, showing the law provides a good fit, with only a small deviation observed for $p_6>0.5$. 
@@ -515,6 +514,13 @@ The system aims to maximise entropy by obtaining a ring distribution along the \
 However, for $p_6<0.4$ the energetic cost becomes prohibitively large, as higher entropy distributions can only be achieved by increasing the proportion of extreme ring sizes at the expense of relatively low strain 5- and 7- rings.
 Interestingly it is also evident why no configurations are present below $p_6\approx 0.16$, even at the highest temperature.
 Below this point, the entropy of the $\br{4}{10}$ system decreases whilst the energy continues to rise and so there is no driving force to sample this area of phase space.
+
+One could also define a free energy for this system, $\mathcal{F}=\mathcal{U}-T\mathcal{S}$, and investigate its behaviour.
+The problem is that it is not clear what temperature would most reasonably correspond to the experimental system. 
+This is because the \mc{} temperature parameter does not correspond to a true physical observable, and the relationship between the ring entropy and the configurational entropy is not yet well defined.
+Therefore whilst one can demonstrate that there exists a temperature which will give a minimum in $\mathcal{F}$, at $p_6\approx 0.4$, it is not currently feasible to rigorously tie this to experimental conditions.
+The interesting possibilities arising from this relationship however warrant further investigations.
+These could help to determine a temperature window over which these ring statistics would be predicted to be found, and therefore whether the experimental samples are consistent with those expected from equilibrium thermodynamics. 
 
 \subsection{Physical Properties}
 \label{s:trphysprop}
@@ -594,7 +600,12 @@ which join the two layers.
 Hence we would expect similar behaviour to occur, with ring areas relatively invariant to distortions in the ring shape (this same analysis would not be expected to hold for foams for example, where the length of the boundary is much more flexible). 
 This suggests that the ring area is not the most suitable metric for quantifying the regularity of rings in systems such as this, and could explain any disagreement between the seemingly near ideal ring areas and the visual evidence. 
 As previously stated, although the potential model used is physically motivated, it is lightweight in order to facilitate generation of a large number of configurations with the correct network topology. 
-In future it would be informative to see if the required regularity can be achieved by geometry optimising the resulting bilayer configurations with a more accurate potential, such as the TS potential which includes potentially significant electrostatic interactions including many-body polarisation effects \cite{Tangney2002}.
+
+In future it would be informative to see if the required regularity can be achieved by geometry optimising the resulting bilayer configurations with a more accurate potential, such as the TS potential which includes potentially significant electrostatic interactions including many\--body polarisation effects \cite{Tangney2002}.
+There are additional subtle effects that may be captured by moving to an all\--atom model, and relaxing the constraint of strictly\--enforced two\--dimensionality.
+For instance, geometrically frustrated materials can adopt entropy\--driven ordered configurations at finite temperatures, in a process termed ``order by disorder'' \cite{Shokef2011}.
+Zig\--zag patterns have been found to occur starting from an antiferromagnetic Ising model on a triangular lattice, and in \td{} colloids, as a result of buckling of the monolayer \cite{Han2008}.
+It is possible that analogous processes could occur in bilayer materials, which  would only be observable by adopting a more detailed model.
 
 \section{Chapter Conclusions}
 

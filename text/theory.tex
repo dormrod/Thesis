@@ -54,7 +54,7 @@ This is the edge joint degree distribution, denoted $e_{jk}$.
 Once again this is normalised and satisfies the following relationships:
 \begin{align}
 	\sumjk e_{jk} &= 1, \label{eq:ejknorm} \\
-	\sumjk e_{jk} &= q_j, \label{eq:ejkqk} \\
+	\sumk e_{jk} &= q_j, \label{eq:ejkqk} \\
 	e_{jk} &= e_{kj} \label{eq:ejkekj},
 \end{align}
 where the final result arises from reciprocal nature of the links in an undirected network.
@@ -197,7 +197,7 @@ The planar case with periodic boundary conditions (mimicking an infinite planar 
 \end{equation}
 To reiterate in plain terms, this means that if there is a material consisting of atoms all forming exactly three bonds (as for amorphous carbon), the mean ring size \textit{must} be equal to six. 
 Similarly if all atoms form four bonds the mean ring size is four, and if there is a two\--thirds to one\--third mixture of coordination environments the mean ring size is five.
-The simplest illustrations of these are the hexagonal, square and Cairo regular tilings, shown in figure \ref{fig:lattices}, but this law holds equally well for amorphous configurations.
+The simplest illustrations of these are the hexagonal, square and Cairo  tilings, shown in figure \ref{fig:lattices}, but this law holds equally well for amorphous configurations.
 For aperiodic systems strictly $\chi=1$, but as $N\rightarrow \infty$, the proportion of vertices with unsatisfied coordination on the sample perimeter become negligible overall, hence does the term in $\chi$.
 Therefore in reality these relationships hold, and remain as applicable to amorphous graphene as the basalt columns in Fingal's Cave, and the Penrose tiling \cite{Goehring2014,Ressouche2009}.
 
@@ -209,7 +209,7 @@ This analysis also extends to spherical topology where $\chi=2$, and so:
 		\frac{4N-8}{N}, \quad x_4 = 1
 	\end{cases}\,.
 \end{equation}
-These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4-coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92} and \ref{fig:latticesfull98}) \cite{Fowler1996}.
+These relationships are the origin of the 12 pentagon rule for 3-coordinate fullerenes (the ``football problem''), or equivalently an ``8 triangle rule'' in the 4\--coordinate case, as this is the only way to satisfy these equations if the allowed ring sizes are limited to $k=5,6$ and $k=3,4$ respectively (as in figures \ref{fig:latticesfull92} and \ref{fig:latticesfull98}) \cite{Fowler1996}.
 Much of the richness in the structural behaviour of \td{} physical networks stems from this fundamental constraint on the network average degree.
 
 \begin{figure}[bt]
@@ -291,16 +291,9 @@ Simple extensions of the classic law are however possible, by modifying the mean
 For instance, $k$ is usually taken in the interval $k\geq3$ (as the triangle, $k=3$, is the smallest polygon), but there can be manifestations of physical systems where only certain degrees are accessible \cite{Rivier1988}.
 Good examples of such systems are procrystalline lattices, which are explored in chapter \ref{ch:procrystals}, in which the underlying lattice constraints may preclude the formation of odd membered rings or rings greater than a certain size. 
 \lm{} curves for a selection of $\ki$ and $k$\--range modifications are given in figure \ref{fig:lm3}. 
-%A discussion of these will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
 The maximum values of these curves, as indicated by circular points, are determined by removing constraint \eqref{con:lm3}, equivalent to setting $\lambda_2=0$ in equation \eqref{eq:mepk}.
 One can see that these modifications can lead to marked differences in the maximum entropy solutions.
 In particular, removing the possibility of small rings ($k<\ki$) forming reduces the maximum variance, as these are required to offset very large rings ($k\gg\ki$) in order to maintain the fixed mean ring size.
-
-%A discussion of \lm{} curves will be recur throughout this thesis, but one can see that the application of the allowable ring size constraints leads to marked differences in the maximum entropy solutions.
-
-%Exploring these cases helps to understand the behaviour of \lm's law itself.
-%By restricting the ring size to just $5\leq k \leq 7$ results in a straight line, which to satisfy Euler's law must have equation $\mu_2 = 1-p_6$.
-%This line closely follows the high $p_6$ behaviour demonstrating that the initial deviation from the hexagonal lattice ($p_6=1$) is marked by the introduction of 5\-- and 7\-- ring defects.
 
 
 \begin{figure}[bt]
@@ -338,7 +331,9 @@ In particular, removing the possibility of small rings ($k<\ki$) forming reduces
 The only somewhat puzzling aspect of this successful theory is the choice of constraint \eqref{con:lm3}.
 It was originally rationalised on the basis that the areas of rings of a given size, $A_k$, can be well fit by an expression $A_k = ak+b+c/k$, where $a,b,c$ are constants.
 As noted at the time, this is by no means true for all systems and in fact is contrary to the widely known Lewis law, which states that $A_k$ is linear in $k$ for many observable networks \cite{Lewis1928,Fortes1995,Kim2014}.
-Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \ref{s:assortativity} it will be demonstrated that it can be regenerated by considering ring adjacencies.
+Overall, there does not appear to be a strong physical basis for this constraint, its justification relying on the perceived universality of the \lm{} law, and  hence it can be viewed as a tool that engineers the correct behaviour in the underlying distributions. 
+
+%Despite this, the universality of the \lm{} law suggests that there must be a physical basis to \eqref{con:lm3}, and in the section \ref{s:assortativity} it will be demonstrated that it can be regenerated by considering ring adjacencies.
 
 \subsection{\aw{} Law}
 \label{s:awlaw}
@@ -349,12 +344,14 @@ The vast majority of physical systems have a preference for small rings ($k<\ki$
 This effect was first noted in the grains of polycrystals by Aboav \cite{Aboav1970}.
 Aboav quantified these ring correlations by measuring the mean ring size about a $k$\--ring, denoted $m_k$, and found empirically that $m_k \approx 5 + 8/k$.
 
-In an attempt to explain this observation, Weaire formulated the following relationship
+In an attempt to explain this observation, Weaire formulated the %following
+relationship:
 \begin{equation}
 	\label{eq:weairesumrule}
 	\sumk km_kp_k = \sumk k^2p_k = \mu_2 + \ki^2,
 \end{equation}
 known as Weaire's sum rule \cite{Weaire1974}.
+Although Weaire's original proof was not rigorous, the sum rule has since been shown to be exact, and formulations have also been constructed for use in higher dimensions \cite{Chiu1994}.
 From this he suggested the modification of $m_k=5+\left(6+\mu_2\right)/k$ which satisfied this rule.
 Aboav's original equation then became a special case when $\mu_2=2$, which is close to the expected value for a random collection of Voronoi polygons (see section \ref{s:voronoiintro}).
 Aboav proposed that if a generic form of $m_k = A + B/k$ was used in conjunction with Weaire's sum rule then
@@ -383,9 +380,11 @@ Hence all systems with $\alpha>-\mu_2/\ki^2$ have more small\--large ring  adjac
 \end{figure}
 
 Despite the \aw{} law being purely empirical and there being no topological requirement for $m_k$ to vary systematically with $k$, the law does seem to hold well for a diverse set of physical systems.
-The law is used for example in studies of materials, emulsions, biological tissues as well as in planetary science \cite{LeRoux2013,Roy2018,Noever1992,Mombach1993,Pedro2008}.
-As an example of the calculation of the \aw{} parameter, the plots of the fits for the systems in figure \ref{fig:zach} are presented in figure \ref{fig:awdemo}, along with the corresponding $\alpha$ parameters.
+The law is used %for example 
+in studies of materials, emulsions, biological tissues as well as in planetary science \cite{LeRoux2013,Roy2018,Noever1992,Mombach1993,Pedro2008}.
+As an example of the calculation% of the \aw{} parameter
+, the plots of the fits for the systems in figure \ref{fig:zach} are presented in figure \ref{fig:awdemo}, along with the corresponding $\alpha$ parameters.
 This demonstrates two contrasting aspects of the \aw{} law. 
-Firstly the law holds very well, especially given the fact that these samples consist of just twenty rings each.
+Firstly the law holds very well, especially given the fact that these samples consist of just 20 rings each.
 However, it also demonstrates that the law is by no means exact and that some uncertainty is inevitably introduced during the linear regression.
 This dichotomy will be discussed in detail in section \ref{s:awdeficiencies}, where it will be shown that the \aw{} law can be replaced by another measure from network theory, namely the assortativity.

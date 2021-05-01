@@ -12,7 +12,7 @@ This discussion lays the groundwork for the extension of these methods and devel
 
 \mc{} methods are a class of computational algorithms designed to solve complex problems stochastically.
 These normally fall into the broad categories of calculating integrals, sampling probability distributions and finding global minima of very high dimensional functions \-- tasks which are often incredibly hard to compute deterministically.
-Since their principle development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
+Since their principal development in the mid\--20\th{} century, such methods have become an invaluable tool for solving problems in the physical sciences.
 \mc{} methods are used in this context for calculating thermodynamic averages of properties in equilibrium systems; finding the minima in potential energy surfaces of small molecules, glasses, crystals and biomolecules; as well as non\--equilibrium simulations such as growth of crystals and thin\--films \cite{Landau2014,Wales1999,Levi1997,Ratsch2003,Kob1999,Jensen1999}.
 In this thesis these \mc{} methods  will be used in a variety of contexts: chapter \ref{ch:bilayers} simulates the growth of bilayer materials using  a random sequential growth algorithm; chapter \ref{ch:targetedopt} optimises a cost function to control network structure; chapter \ref{ch:generalnetworks} samples amorphous configurations of various system topologies; chapter \ref{ch:quasi2d} samples the phase space of hard particle assemblies and chapter \ref{ch:procrystals} finds solutions to the procrystalline problem, essentially via global optimisation.
 Therefore, the general theory is presented here with specific details of two established methods, namely bond switching and hard particle \mc{}, given in the following section.
@@ -30,11 +30,11 @@ At fixed volume, $\mathcal{V}$, and temperature, $T$, all the the essential ther
 	Q = \frac{1}{h^{D\mathcal{N}}\mathcal{N}!}\int \dd\mathbf{p}\,\dd\mathbf{r}\,\exp{\left[-\ham/ \kb T\right]},
 \end{equation}
 where $D$ is the number of spatial dimensions.
-This can be factorised into kinetic and potential components as
+This can be factorised into kinetic and potential components (denoted $Q_p$, $Q_r$ respectively) as
 \begin{equation}
-	Q = \frac{1}{h^{D\mathcal{N}}\mathcal{N}!}\int \dd\mathbf{p}\,\exp{\left[-\ken/\kb T\right]} \int \dd\mathbf{r}\,\exp{\left[-\pen/\kb T\right]},
+	Q = Q_p Q_r = \frac{1}{h^{D\mathcal{N}}\mathcal{N}!}\int \dd\mathbf{p}\,\exp{\left[-\ken/\kb T\right]} \int \dd\mathbf{r}\,\exp{\left[-\pen/\kb T\right]}.
 \end{equation}
-where
+Integrating over the particle momenta gives $Q_p = \frac{\mathcal{V}^\mathcal{N}}{\mathcal{N}!\Lambda^{D\mathcal{N}}}$, where $\Lambda$ is the de Broglie wavelength. This leaves $Q_r=\mathcal{V}^{-\mathcal{N}}Z$, where
 \begin{equation}
 	Z = \int \dd\mathbf{r}\,\exp{\left[-\pen/\kb T\right]}
 \end{equation}
@@ -80,7 +80,8 @@ The expectation value of the observable can then be calculated using a simple av
 \begin{equation}
 	\langle \mathcal{U} \rangle = \frac{1}{S}\sum_{i=1}^{S} \mathcal{U}\left(x_i,y_i\right).
 \end{equation}
-This is known as importance sampling and is vastly more efficient when dealing with an aggressive probability distribution like the Boltzmann, where only a small proportion of the phase space is readily accessible.
+This is known as importance sampling and is vastly more efficient when %dealing with an aggressive probability distribution, where 
+only a small proportion of the phase space is readily accessible.
 
 \begin{figure}[btp]
      \centering
@@ -122,6 +123,7 @@ This is known as importance sampling and is vastly more efficient when dealing w
 
 Whilst this scheme is ideal theoretically, it is impracticable for physical systems.
 This is because for any problem of real interest one lives in a ``black box'' where the functional form of the potential energy surface in its hundreds if not thousands of dimensions is unknown.
+Moreover, even in model cases where the potential energy surface is well described, the explicit calculation of the configurational integral in \eqref{eq:boltzmann} remains infeasible. 
 In this case often the only way of learning about the form is by on\--the\--fly exploration of the surface \cite{Brooks2011}.
 This can be achieved by taking a random walk through configurational space using Markov chain \mc.
 
@@ -186,7 +188,7 @@ In the Metropolis algorithm the off\--diagonal elements of the transition matrix
 	\end{cases},
 \end{equation}
 where $\tau_{ij}$ is the trial probability of moving from state $\vrc{i}$ to $\vrc{j}$ and $P_{ij}$ is the probability of accepting the trial move.
-To conform to detailed balance, the trial probabilities must be chosen to satisfy $\tau_{ij}=\tau_{ji}$.
+To conform to detailed balance, the trial probabilities can be chosen to satisfy the symmetry condition $\tau_{ij}=\tau_{ji}$.
 Then, in the crux of the algorithm, the acceptance probabilities are given by
 \begin{align}
 	 P_{ij}&=\begin{cases}
@@ -201,7 +203,7 @@ Then, in the crux of the algorithm, the acceptance probabilities are given by
 which can be expressed more succinctly as
 \begin{equation}
 	\label{eq:metropolis}
-	 P_{ij}=\text{min}\big[1,\exp\left[-\Delta \mathcal{U}/\kb T\right]\big],
+	 P_{ij}=\min\big[1,\exp\left(-\Delta \mathcal{U}/\kb T\right)\big],
 \end{equation}
 where $\Delta \mathcal{U}$ is the difference in potential energy between the final and initial states.
 The elegance of the Metropolis algorithm lies in the fact that the acceptance probability depends only on the ratio of the configuration probabilities removing the need for a normalising factor.
@@ -234,7 +236,16 @@ There are two regions of phase space with significant non\--zero probabilities w
 Although they are in principle linked by a path, the barrier may effectively mean they are disconnected with any reasonable number of steps, breaking ergodicity.
 This manifests as the red walk sampling one region and the blue walk being trapped in the other region.
 Using multiple seeds in this way helps to identify if any such behaviour is present.
-If it leads to significant differences in the computed averages, more advanced techniques using enhanced sampling may have to be employed \cite{Torrie1977}.%,Earl2005}.
+
+If significant differences are noticed in the computed averages, more advanced techniques using enhanced sampling may have to be employed.
+One option is to sample from a distribution which is non\--Boltzmann, accounting for the bias in subsequent analysis. 
+Umbrella sampling achieves this by adding a harmonic restraining potential to drive sampling in a particular region of phase space \cite{Torrie1977}.
+Another tactic is to efficiently combine global and local searches to overcome large energy barriers.
+This is the approach taken by parallel tempering (or replica exchange), in which many replicas of the same system are simulated at different temperatures and configurations allowed to exchange \cite{Earl2005}.
+Finally a range of ``smarter'' \mc{} methods can be used, whereby trial moves are preferentially attempted in given directions (\ie{} $\tau_{ij}\neq\tau_{ji}$).
+Detailed balance is then maintained through modification of the acceptance probabilities \cite{Rossky1978,Allen2017}.
+Movement of specified particles or along certain pathways can then be attempted more frequently.
+
 
 \subsection{Global Optimisation and Simulated Annealing}
 \label{s:simulatedannealing}
@@ -245,7 +256,7 @@ Consider the case where there is an objective function, $\obj\left(\mathbf{r}\ri
 If it is known that there exists a solution where $\obj\left(\mathbf{r}\right)=0$, it may be sufficient to perform a standard random walk of the type in figure \ref{fig:montecarloint4} until a solution is found, using the more general Metropolis criterion:
 \begin{equation}
 	\label{eq:objmetropolis}
-	P_{ij} = \min\big[1,\exp\left[-\Delta\Omega/\kb T\right]\big].
+	P_{ij} = \min\big[1,\exp\left(-\Delta\Omega/\kb T\right)\big].
 \end{equation}
 There is of course a chance that the optimisation will not converge to the global minimum, most likely getting trapped in a local minimum (as for instance with the blue path in \ref{fig:montecarloint4}).
 One solution to this problem is just to keep restarting the algorithm with different initial conditions until the global minimum is obtained.
@@ -383,7 +394,7 @@ The distance between two particles, $r_{ij}$, and the angle between three partic
 These will remain consistent throughout this thesis.
 
 The nature of the bond switching method lends itself to the use of semi\--empirical potentials which have explicit stretching and angular neighbour lists.
-As such a popular choice for materials modelling is the Keating potential and modifications thereof \cite{Keating1966,Barkema2000}. 
+As such, a popular choice for materials modelling is the Keating potential and modifications thereof \cite{Keating1966,Barkema2000}. 
 For a \td{} system the Keating potential has the form:
 \begin{equation}
 	\label{eq:keating}
@@ -402,7 +413,7 @@ This is provided through the simplified Keating potential \cite{VonAlfthan2003},
 \end{equation}
 which is harmonic in stretching and angular terms.
 A further modification can be made to this potential. 
-Sometimes it is informative build models which enforce ring convexity \ie{} maintain all angles within the range $0\leq \theta_{ijk} \leq \pi$.
+Sometimes it is informative to build models which enforce ring convexity \ie{} maintain all angles within the range $0\leq \theta_{ijk} \leq \pi$.
 This can be achieved by augmenting the simplified Keating potential with a restricted bending (ReB) potential \cite{Bulacu2013}:
 \begin{equation}
 	\pen = \frac{\fk_r}{2}\sum_{\substack{i,j\in \\ \text{stretches}}}\left(r_{ij}-r_0\right)^2 + \frac{\fk_\theta}{2}\sum_{\substack{i,j,k \in \\ \text{angles}}} \frac{\left(\cos\theta_{ijk}-\cos\theta_0\right)^2}{\sin^{2}\theta_{ijk}}.
@@ -427,7 +438,7 @@ It has the following scheme:
 \end{enumerate}
 The calculation of forces in stage 2 will depend on the potential model used, details of which are given in appendix \ref{app:forces}.
 Note that stage 3 also requires a minimisation routine, which may seem counter\--intuitive. 
-However, this is a one\--dimensional minimisation which trivial to estimate with a line search method.
+However, this is a one\--dimensional minimisation which is trivial to estimate with a line search method.
 The tightness of the convergence condition is set through the parameter $\kappa$.
 
 One final performance improvement arises from the fact that the \mc{} moves are inherently local.
@@ -459,7 +470,7 @@ As the total energy is simply then
 \begin{equation}
 	\pen = \sum_{i<j} \mathcal{U}_{ij},
 \end{equation}
-and it follows that if any pair of particles have overlap the system energy is infinite and the Boltzmann weighting is zero.
+it follows that if any pair of particles have overlap the system energy is infinite and the Boltzmann weighting is zero.
 Hard particle models are typically quantified in terms of the packing fraction, $\phi$, which in two dimensions has the form
 \begin{equation}
 	\label{eq:packingfraction}
@@ -531,7 +542,7 @@ If the displacement introduces any particle overlaps it is rejected, otherwise t
 The value of $\delta$ is chosen for each simulation such that the proportion of accepted moves is $\sim 50\%$, allowing for efficient searching of configurational space.
 The optimal value can be determined by continuous adjustment during equilibration.
 
-The second is the swap move, where two random particles are selected their radii exchanged \cite{Grigera2001,Ninarello2017}. 
+The second is the swap move, where two random particles are selected and their radii exchanged \cite{Grigera2001,Ninarello2017}. 
 Once again a swap move is only accepted if it does not lead to any overlapping particles and is demonstrated in figures \ref{fig:hardmc4}\--\ref{fig:hardmc6}.
 The swap move is used to increase the efficiency in simulations of polydisperse particles and is an example of how the design of \mc{} moves can be flexible and that moves do not have to have a direct physical basis. 
 The swap move is attempted for every ten displacement moves. 
@@ -622,7 +633,8 @@ In this way Voronoi systems provide a good complement to compare and contrast wi
 It should be mentioned that the limiting value as $\phi\rightarrow 0$ is well studied as the Poisson Voronoi diagram \cite{Boots1983,Tanemura2003}.
 This corresponds to the Voronoi diagram formed from a random uniform array of points.
 The ring statistics for the Poisson Voronoi have been determined numerically to high accuracy, and are summarised in table \ref{tab:pvpk} below.
-These give an estimation of $\mu_2=1.778$ in this limiting case. 
+These ring statistics give an estimation of $\mu_2=1.778$ in this limiting case. 
+As yet there is no analytic form for the cell frequencies, but they can be well fit by a gamma distribution.
 
 \begin{table}[h]
 \centering
